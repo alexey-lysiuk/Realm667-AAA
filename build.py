@@ -1,0 +1,116 @@
+#
+#    Realm667 - An Awesome Awesomeness
+#    Copyright (C) 2015 Alexey L
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+import os
+import shutil
+import urllib2
+import zipfile
+
+
+# Configuration
+
+ids = [
+    # Armory
+#    372, # BFG10K
+    408, # Drummle
+    585, # AA12 Shotgun
+    884, # Axe
+
+    # Beastiary
+      7, # Afrit
+     15, # Belphegor
+    877, # Baby Cacodemon
+]
+
+output_filename = 'realm667-aaa.pk3'
+
+url_template = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
+
+
+def prepare():
+    try:
+        os.remove(output_filename)
+    except OSError:
+        # TODO: report error
+        pass
+
+    try:
+        os.mkdir('cache')
+    except OSError:
+        # TODO: report error
+        pass
+
+    try:
+        shutil.rmtree('tmp')
+        os.mkdir('tmp')
+    except OSError:
+        # TODO: report error
+        pass
+
+def main():
+    prepare()
+
+    for id in ids:
+        cached_filename = 'cache/{:04d}.zip'.format(id)
+        wad_filename = None
+        cached_file = None
+
+        try:
+            cached_file = zipfile.ZipFile(cached_filename, 'r')
+
+        except Exception:
+            try:
+                url = url_template.format(id)
+                response = urllib2.urlopen(url)
+                data = response.read()
+
+                # TODO: add error handling
+                with open(cached_filename, 'wb') as cached_file:
+                    cached_file.write(data)
+
+                cached_file = zipfile.ZipFile(cached_filename, 'r')
+
+            except Exception:
+                # TODO: report error
+                continue
+
+        for zipped_filename in cached_file.namelist():
+            if zipped_filename.lower().endswith('.wad'):
+                wad_filename = zipped_filename
+                break
+
+        try:
+            cached_file.extract(wad_filename, 'tmp')
+            cached_file.close()
+
+        except Exception:
+            # TODO: report error
+            continue
+
+        # TODO: add error handling
+        with zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED) as output_file:
+            output_file.write('tmp/{0}'.format(wad_filename), wad_filename)
+
+        #
+        # TODO: extract all WADs first and then create a .pk3 ?!?
+        #
+
+        cached_file.close()
+
+if __name__ == '__main__':
+    main()

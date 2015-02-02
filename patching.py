@@ -35,6 +35,9 @@ def apply_patch_372(wad): # BFG10K
         'Weapon.Kickback 100\r\n  Weapon.SlotNumber 7\r\n  Inventory.Pickupmessage')
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
+def apply_patch_585(wad): # AA12 Shotgun
+    replace_in_decorate(wad, ' A_SetPitch (pitch-0.5)', '')
+
 def apply_patch_884(wad): # Axe
     replace_in_decorate(wad,
         '+WEAPON.NOALERT\r\n\tInventory.Icon',

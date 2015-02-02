@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #
 #    Realm667 - An Awesome Awesomeness
 #    Copyright (C) 2015 Alexey Lysiuk

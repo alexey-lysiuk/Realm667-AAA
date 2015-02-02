@@ -1,6 +1,6 @@
 #
 #    Realm667 - An Awesome Awesomeness
-#    Copyright (C) 2015 Alexey L
+#    Copyright (C) 2015 Alexey Lysiuk
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@ import urllib2
 import zipfile
 
 import doomwad
+import patching
 
 # Configuration
 
@@ -59,6 +60,9 @@ def prepare():
 def main():
     prepare()
 
+    # TODO: add error handling
+    output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
+
     for item in repository:
         id   = item[0]
         name = item[1]
@@ -66,7 +70,6 @@ def main():
         print('Processing #{:04d}: {:s}...'.format(id, name))
 
         cached_filename = 'cache/{:04d}.zip'.format(id)
-        wad_filename = None
         cached_file = None
 
         try:
@@ -88,6 +91,8 @@ def main():
                 # TODO: report error
                 continue
 
+        wad_filename = None
+
         for zipped_filename in cached_file.namelist():
             if zipped_filename.lower().endswith('.wad'):
                 wad_filename = zipped_filename
@@ -101,26 +106,18 @@ def main():
             cached_file.close()
 
             wad = doomwad.WadFile(wad_data)
+            patching.apply_patch(id, wad)
+
             wad_data = cStringIO.StringIO()
-
-##            for lump in wad.lumps:
-##                print lump.name, len(lump.data)
-
-            # TODO: add patching here
-
             wad.writeto(wad_data)
 
-            # TODO: add error handling
-            with zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED) as output_file:
-                output_file.writestr(wad_filename, wad_data.getvalue())
+            output_file.writestr(wad_filename, wad_data.getvalue())
 
         except Exception:
             # TODO: report error
             pass
 
-        #
-        # TODO: extract all WADs first and then create a .pk3 ?!?
-        #
+    output_file.close()
 
 if __name__ == '__main__':
     main()

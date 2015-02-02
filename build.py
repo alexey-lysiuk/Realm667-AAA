@@ -16,25 +16,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import cStringIO
 import os
-import shutil
 import urllib2
 import zipfile
 
+import doomwad
 
 # Configuration
 
-ids = [
+repository = [
     # Armory
-#    372, # BFG10K
-    408, # Drummle
-    585, # AA12 Shotgun
-    884, # Axe
+    (372, 'BFG10K'),
+    (408, 'Drummle'),
+    (585, 'AA12 Shotgun'),
+    (884, 'Axe'),
 
     # Beastiary
-      7, # Afrit
-     15, # Belphegor
-    877, # Baby Cacodemon
+    (  7, 'Afrit'),
+    ( 15, 'Belphegor'),
+    (877, 'Baby Cacodemon'),
 ]
 
 output_filename = 'realm667-aaa.pk3'
@@ -55,17 +56,15 @@ def prepare():
         # TODO: report error
         pass
 
-    try:
-        shutil.rmtree('tmp')
-        os.mkdir('tmp')
-    except OSError:
-        # TODO: report error
-        pass
-
 def main():
     prepare()
 
-    for id in ids:
+    for item in repository:
+        id   = item[0]
+        name = item[1]
+
+        print('Processing #{:04d}: {:s}...'.format(id, name))
+
         cached_filename = 'cache/{:04d}.zip'.format(id)
         wad_filename = None
         cached_file = None
@@ -95,22 +94,33 @@ def main():
                 break
 
         try:
-            cached_file.extract(wad_filename, 'tmp')
+            wad_file = cached_file.open(wad_filename)
+            wad_data = wad_file.read()
+
+            wad_file.close()
             cached_file.close()
+
+            wad = doomwad.WadFile(wad_data)
+            wad_data = cStringIO.StringIO()
+
+##            for lump in wad.lumps:
+##                print lump.name, len(lump.data)
+
+            # TODO: add patching here
+
+            wad.writeto(wad_data)
+
+            # TODO: add error handling
+            with zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED) as output_file:
+                output_file.writestr(wad_filename, wad_data.getvalue())
 
         except Exception:
             # TODO: report error
-            continue
-
-        # TODO: add error handling
-        with zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED) as output_file:
-            output_file.write('tmp/{0}'.format(wad_filename), wad_filename)
+            pass
 
         #
         # TODO: extract all WADs first and then create a .pk3 ?!?
         #
-
-        cached_file.close()
 
 if __name__ == '__main__':
     main()

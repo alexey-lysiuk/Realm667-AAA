@@ -18,7 +18,7 @@
 //
 
 
-OptionMenu "R667AAA_ArmoryMenu"
+OptionMenu "R667AAA_ArmoryMenu_AC"
 {
     StaticText "Summon Weapon"
     StaticText " "
@@ -35,9 +35,28 @@ OptionMenu "R667AAA_ArmoryMenu"
     Command "BFG10K", "summon STBFG10K"
     Command "Bio Pipebomb Launcher", "summon BioPipebombLauncher"
     Command "Black Hole Generator", "summon BHGen"
-    Command "Butchergun Chaingun", "summon Butchergun"
+    Command "Butcher Chaingun", "summon Butchergun"
     Command "Channeler Plasma Rifle", "summon Channeler"
-    Command "Drummle", "summon Drummle"
+    Command "Claymore Mines", "summon ClaymoreMine"
+    Command "Coachgun", "summon Coachgun"
+    Command "Colt 45", "summon Colt45"
+    Command "Cryobow", "summon CryoBow"
+}
+
+OptionMenu "R667AAA_ArmoryMenu_DF"
+{
+    StaticText "Summon Weapon"
+    StaticText " "
+
+    Command "Doom 2.5 Super Shotgun", "summon Doom2.5SSG"
+    Command "Double Bladed Chainsaw", "summon DoubleBladedChainsaw"
+    Command "Double Grenade Launcher", "summon DGL"
+    Command "Drummle Auto-Shotgun", "summon Drummle"
+    Command "Duke Shotgun", "summon DukeShotgun"
+    Command "EgoSmasher", "summon Egosmasher"
+    Command "Electro Gun", "summon ElectroGun"
+    Command "Fist Redux", "summon FistRedux"
+    Command "Flamethrower", "summon UTNTFlamethrower"
 }
 
 OptionMenu "R667AAA_BeastiaryMenu"
@@ -68,7 +87,8 @@ OptionMenu "R667AAA_Menu"
     StaticText "Realm667 - An Awesome Awesomeness"
     StaticText " "
 
-    Submenu "Summon Weapon", "R667AAA_ArmoryMenu"
+    Submenu "Summon Weapon [A..C]", "R667AAA_ArmoryMenu_AC"
+    Submenu "Summon Weapon [D..F]", "R667AAA_ArmoryMenu_DF"
     Submenu "Summon Monster", "R667AAA_BeastiaryMenu"
     Submenu "Summon Item", "R667AAA_ItemMenu"
 }

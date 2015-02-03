@@ -32,6 +32,8 @@ import patching
 
 repository = [
     # Armory
+
+    # Doom Style
     (342, '40mm Grenade Launcher'),
     (585, 'AA12 Shotgun'),
     (260, 'Action Machine Gun'),
@@ -44,9 +46,23 @@ repository = [
     (874, 'BFG 2704'),
     (281, 'Bio Pipebomb Launcher'),
     (903, 'Black Hole Generator'),
-    (330, 'Butchergun Chaingun'),
+    (330, 'Butcher Chaingun'),
     (403, 'Channeler Plasma Rifle'),
-    (408, 'Drummle'),
+    (758, 'Claymore Mines'),
+    (445, 'Coachgun'),
+    (581, 'Colt 45'),
+    (816, 'Cryobow'),
+    (308, 'Doom 2.5 Super Shotgun'),
+    (520, 'Double Bladed Chainsaw'),
+    (344, 'Double Grenade Launcher'),
+    (409, 'Duke Shotgun'),
+    (246, 'EgoSmasher'),
+    (262, 'Electro Gun'),
+    (507, 'Fist Redux'),
+    (541, 'Flamethrower'),
+
+    # Other Sources / Styles
+    (408, 'Drummle Auto-Shotgun'),
 
     # Beastiary
     (  7, 'Afrit'),
@@ -62,7 +78,7 @@ repository = [
 
 output_filename = 'realm667-aaa.pk3'
 
-url_template = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
+url_download = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
 
 
 def prepare():
@@ -102,7 +118,7 @@ def main():
 
         except Exception:
             try:
-                url = url_template.format(id)
+                url = url_download.format(id)
                 response = urllib2.urlopen(url)
                 data = response.read()
 

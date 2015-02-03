@@ -38,16 +38,25 @@ def replace_in_lump(name, wad, old, new, count = 1):
             lump.data = lump.data.replace(old, new, count)
 
 def replace_in_decorate(wad, old, new, count = 1):
-   replace_in_lump('DECORATE', wad, old, new, count)
+    replace_in_lump('DECORATE', wad, old, new, count)
+
+def replace_in_keyconf(wad, old, new):
+    replace_in_lump('KEYCONF', wad, old, new, 1)
 
 
 # Armory
 
+def apply_patch_246(wad): # EgoSmasher
+    replace_in_keyconf(wad, 'setslot', 'addslotdefault')
+
 def apply_patch_260(wad): # Action Machine Gun
     replace_in_decorate(wad, ' replaces chaingun', '')
 
+def apply_patch_308(wad): # Doom 2.5 SSG
+    replace_in_decorate(wad, ' Replaces SuperShotgun', '')
+
 def apply_patch_330(wad): # Butchergun Chaingun
-    replace_in_lump('KEYCONF', wad,
+    replace_in_keyconf(wad,
         'setslot 4 Butchergun Chaingun',
         'addslotdefault 4 Butchergun')
 

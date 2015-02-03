@@ -23,7 +23,7 @@ import os, sys
 import urllib2
 import zipfile
 
-sys.path.append('lib')
+sys.path.append(os.path.dirname(__file__) + '/lib')
 
 import doomwad
 import patching

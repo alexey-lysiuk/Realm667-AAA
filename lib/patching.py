@@ -23,17 +23,17 @@ no_set_pitch = True
 detect_errors = True
 
 
-def replace_in_lump(name, wad, old, new):
+def replace_in_lump(name, wad, old, new, count = 1):
     lump = wad.find(name)
 
     if lump:
         if detect_errors and 0 == lump.data.count(old):
             print("Error: Failed to apply patch for lump {0}".format(name))
         else:
-            lump.data = lump.data.replace(old, new, 1)
+            lump.data = lump.data.replace(old, new, count)
 
-def replace_in_decorate(wad, old, new):
-   replace_in_lump('DECORATE', wad, old, new)
+def replace_in_decorate(wad, old, new, count = 1):
+   replace_in_lump('DECORATE', wad, old, new, count)
 
 
 # Armory
@@ -52,6 +52,10 @@ def apply_patch_432(wad): # Action Machine Gun
 def apply_patch_585(wad): # AA12 Shotgun
     if no_set_pitch:
         replace_in_decorate(wad, ' A_SetPitch (pitch-0.5)', '')
+
+def apply_patch_685(wad): # Ammo Satchels
+    if no_set_pitch:
+        replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667', 100)
 
 
 def apply_patch(id, wad):

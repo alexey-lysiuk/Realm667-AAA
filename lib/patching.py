@@ -20,13 +20,17 @@
 # Configuration
 
 no_set_pitch = True
+detect_errors = True
 
 
 def replace_in_lump(name, wad, old, new):
     lump = wad.find(name)
 
     if lump:
-        lump.data = lump.data.replace(old, new, 1)
+        if detect_errors and 0 == lump.data.count(old):
+            print("Error: Failed to apply patch for lump {0}".format(name))
+        else:
+            lump.data = lump.data.replace(old, new, 1)
 
 def replace_in_decorate(wad, old, new):
    replace_in_lump('DECORATE', wad, old, new)

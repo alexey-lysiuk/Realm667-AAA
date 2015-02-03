@@ -46,6 +46,11 @@ def replace_in_decorate(wad, old, new, count = 1):
 def apply_patch_260(wad): # Action Machine Gun
     replace_in_decorate(wad, ' replaces chaingun', '')
 
+def apply_patch_330(wad): # Butchergun Chaingun
+    replace_in_lump('KEYCONF', wad,
+        'setslot 4 Butchergun Chaingun',
+        'addslotdefault 4 Butchergun')
+
 def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 

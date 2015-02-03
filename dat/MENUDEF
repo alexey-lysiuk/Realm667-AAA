@@ -33,6 +33,10 @@ OptionMenu "R667AAA_ArmoryMenu"
     Command "Axe", "summon Axe"
     Command "BFG 2704", "summon BFG2704"
     Command "BFG10K", "summon STBFG10K"
+    Command "Bio Pipebomb Launcher", "summon BioPipebombLauncher"
+    Command "Black Hole Generator", "summon BHGen"
+    Command "Butchergun Chaingun", "summon Butchergun"
+    Command "Channeler Plasma Rifle", "summon Channeler"
     Command "Drummle", "summon Drummle"
 }
 

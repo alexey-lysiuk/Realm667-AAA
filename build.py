@@ -42,6 +42,10 @@ repository = [
     (884, 'Axe'),
     (372, 'BFG10K'),
     (874, 'BFG 2704'),
+    (281, 'Bio Pipebomb Launcher'),
+    (903, 'Black Hole Generator'),
+    (330, 'Butchergun Chaingun'),
+    (403, 'Channeler Plasma Rifle'),
     (408, 'Drummle'),
 
     # Beastiary

@@ -70,8 +70,18 @@ repository = [
 
     # Beastiary
     (  7, 'Afrit'),
-    ( 15, 'Belphegor'),
+    (  8, 'Agathodemon'),
+    (316, 'Agaures'),
+    (  9, 'Annihilator'),
+    (284, 'Arachnobaron'),
+    ( 11, 'Arachnophyte'),
+    (285, 'Aracnorb'),
+    ( 12, 'Archon of Hell'),
+    (768, 'Augmented Arachnotron'),
+    (555, 'Auto Shotgun Guy'),
+    (148, 'Azazel'),
     (877, 'Baby Cacodemon'),
+    ( 15, 'Belphegor'),
 
     # Items
     (490, 'Adrenaline Kit'),

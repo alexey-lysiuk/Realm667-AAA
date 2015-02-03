@@ -76,14 +76,25 @@ OptionMenu "Menu_R667AAA_Armory_Other"
 
 // Beastiary
 
-OptionMenu "Menu_R667AAA_Beastiary"
+OptionMenu "Menu_R667AAA_Beastiary_Doom"
 {
     StaticText "Summon Monster"
     StaticText " "
 
     Command "Afrit", "summon Afrit"
-    Command "Belphegor", "summon BelphegorClone"
+    Command "Agathodemon", "summon Agathodemon"
+    Command "Agathodemon, another", "summon AnotherAgathodemon"
+    Command "Agaures", "summon Agaures"
+    Command "Annihilator", "summon Annihilator"
+    Command "Arachnobaron", "summon Arachnobaron"
+    Command "Arachnophyte", "summon Arachnophyte"
+    Command "Aracnorb", "summon Aracnorb"
+    Command "Archon of Hell", "summon ArchonOfHell"
+    Command "Augmented Arachnotron", "summon ArachnotronMK2"
+    Command "Auto Shotgun Guy", "summon ASGGuy"
+    Command "Azazel", "summon Azazel"
     Command "Baby Cacodemon", "summon BabyCaco"
+    Command "Belphegor", "summon BelphegorClone"
 }
 
 
@@ -110,6 +121,10 @@ OptionMenu "Menu_R667AAA"
     Submenu "Summon Doom Weapon [A..D]", "Menu_R667AAA_Armory_Doom_AD"
     Submenu "Summon Doom Weapon [E..F]", "Menu_R667AAA_Armory_Doom_EF"
     Submenu "Summon Other Weapon", "Menu_R667AAA_Armory_Other"
-    Submenu "Summon Monster", "Menu_R667AAA_Beastiary"
+    StaticText " "
+
+    Submenu "Summon Doom Monster", "Menu_R667AAA_Beastiary_Doom"
+    StaticText " "
+
     Submenu "Summon Item", "Menu_R667AAA_Item"
 }

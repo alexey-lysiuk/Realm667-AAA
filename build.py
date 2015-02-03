@@ -19,9 +19,11 @@
 #
 
 import cStringIO
-import os
+import os, sys
 import urllib2
 import zipfile
+
+sys.path.append('lib')
 
 import doomwad
 import patching

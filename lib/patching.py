@@ -57,6 +57,9 @@ def apply_patch_260(wad): # Action Machine Gun
 
 def apply_patch_308(wad): # Doom 2.5 SSG
     replace_in_decorate(wad, ' Replaces SuperShotgun', '')
+    replace_in_keyconf(wad,
+        'SetSlot 3 Shotgun Doom2.5SSG',
+        'addslotdefault 3 Doom2.5SSG')
 
 def apply_patch_330(wad): # Butchergun Chaingun
     replace_in_keyconf(wad,

@@ -29,6 +29,7 @@ addslotdefault 1 FlashLightAngled
 addslotdefault 1 FlashLightCentered
 
 addslotdefault 5 STGrenadeLauncher
+addslotdefault 5 DGL
 
 addslotdefault 7 BFG2704
 addslotdefault 7 STBFG10K

@@ -23,6 +23,11 @@ no_set_pitch = True
 detect_errors = True
 
 
+# TODO:
+# [?] Remove unused lumps like CREDITS or INFO
+# [?] Optimize DECORATE lump: remove comments and extra line breaks
+
+
 def replace_in_lump(name, wad, old, new, count = 1):
     lump = wad.find(name)
 

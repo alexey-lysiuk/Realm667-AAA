@@ -38,8 +38,16 @@ def replace_in_decorate(wad, old, new):
 
 # Armory
 
-def apply_patch_372(wad): # BFG10K
+def apply_patch_260(wad): # Action Machine Gun
+    replace_in_decorate(wad, ' replaces chaingun', '')
+
+def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
+
+def apply_patch_432(wad): # Action Machine Gun
+    if no_set_pitch:
+        replace_in_decorate(wad, ' A_SetPitch (pitch-0.1)', '')
+        replace_in_decorate(wad, ' A_SetPitch (pitch-0.075)', '')
 
 def apply_patch_585(wad): # AA12 Shotgun
     if no_set_pitch:

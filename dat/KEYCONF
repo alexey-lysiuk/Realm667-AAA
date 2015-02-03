@@ -24,6 +24,7 @@ defaultbind H menu_r667aaa
 
 weaponsection R667AAA
 
-addslotdefault 1 Axe // 887
+addslotdefault 1 Axe
 
-addslotdefault 7 STBFG10K // 372
+addslotdefault 7 BFG2704
+addslotdefault 7 STBFG10K

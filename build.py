@@ -32,10 +32,17 @@ import patching
 
 repository = [
     # Armory
-    (372, 'BFG10K'),
-    (408, 'Drummle'),
+    (342, '40mm Grenade Launcher'),
     (585, 'AA12 Shotgun'),
+    (260, 'Action Machine Gun'),
+    (516, 'AK47'),
+    (685, 'Ammo Satchels'),
+    (534, 'Angled Pistol'),
+    (432, 'Autogun'),
     (884, 'Axe'),
+    (372, 'BFG10K'),
+    (874, 'BFG 2704'),
+    (408, 'Drummle'),
 
     # Beastiary
     (  7, 'Afrit'),

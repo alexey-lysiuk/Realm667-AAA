@@ -17,13 +17,34 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-alias menu_r667aaa "openmenu R667AAA_Menu"
-addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
-addmenukey "R667AAA Menu" menu_r667aaa
-defaultbind H menu_r667aaa
 
-weaponsection R667AAA
+OptionMenu "R667AAA_ArmoryMenu"
+{
+    StaticText "Summon Weapon"
+    StaticText " "
 
-addslotdefault 1 Axe // 887
+    Command "Summon AA12 Shotgun", "summon AA12"
+    Command "Summon Axe", "summon Axe"
+    Command "Summon BFG10K", "summon STBFG10K"
+    Command "Summon Drummle", "summon Drummle"
+}
 
-addslotdefault 7 STBFG10K // 372
+OptionMenu "R667AAA_BeastiaryMenu"
+{
+    StaticText "Summon a Monster"
+    StaticText " "
+
+    Command "Afrit", "summon Afrit"
+    Command "Belphegor", "summon BelphegorClone"
+    Command "Baby Cacodemon", "summon BabyCaco"
+}
+
+
+OptionMenu "R667AAA_Menu"
+{
+    StaticText "Realm667 - An Awesome Awesomeness"
+    StaticText " "
+
+    Submenu "Summon Weapon", "R667AAA_ArmoryMenu"
+    Submenu "Summon Monster", "R667AAA_BeastiaryMenu"
+}

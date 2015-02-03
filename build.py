@@ -126,6 +126,7 @@ def main():
             pass
 
     add_lump(output_file, 'KEYCONF')
+    add_lump(output_file, 'MENUDEF')
 
     output_file.close()
 

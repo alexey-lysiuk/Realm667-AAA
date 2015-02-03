@@ -140,8 +140,12 @@ def main():
 
         for zipped_filename in cached_file.namelist():
             if zipped_filename.lower().endswith('.wad'):
-                wad_filename = zipped_filename
-                break
+                # TODO: handle multiple WADs from one .zip
+                if wad_filename:
+                    print('Warning: Found additional WAD file {0} in archive, {1} will be used as a source'
+                        .format(zipped_filename, wad_filename))
+                else:
+                    wad_filename = zipped_filename
 
         try:
             wad_file = cached_file.open(wad_filename)

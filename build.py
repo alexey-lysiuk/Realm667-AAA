@@ -41,6 +41,12 @@ repository = [
     (  7, 'Afrit'),
     ( 15, 'Belphegor'),
     (877, 'Baby Cacodemon'),
+
+    # Items
+    (490, 'Adrenaline Kit'),
+    (897, 'Familiar Summon'),
+    (898, 'Ritual Knife'),
+    (926, 'Shield Spells'),
 ]
 
 output_filename = 'realm667-aaa.pk3'

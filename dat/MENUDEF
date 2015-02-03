@@ -23,20 +23,32 @@ OptionMenu "R667AAA_ArmoryMenu"
     StaticText "Summon Weapon"
     StaticText " "
 
-    Command "Summon AA12 Shotgun", "summon AA12"
-    Command "Summon Axe", "summon Axe"
-    Command "Summon BFG10K", "summon STBFG10K"
-    Command "Summon Drummle", "summon Drummle"
+    Command "AA12 Shotgun", "summon AA12"
+    Command "Axe", "summon Axe"
+    Command "BFG10K", "summon STBFG10K"
+    Command "Drummle", "summon Drummle"
 }
 
 OptionMenu "R667AAA_BeastiaryMenu"
 {
-    StaticText "Summon a Monster"
+    StaticText "Summon Monster"
     StaticText " "
 
     Command "Afrit", "summon Afrit"
     Command "Belphegor", "summon BelphegorClone"
     Command "Baby Cacodemon", "summon BabyCaco"
+}
+
+OptionMenu "R667AAA_ItemMenu"
+{
+    StaticText "Summon Item"
+    StaticText " "
+
+    Command "Adrenaline Kit", "summon Adrenalinekit"
+    Command "Familiar Summon", "summon FamiliarSummon"
+    Command "Ritual Knife", "summon RitualKnife"
+    Command "Green Shield Spell", "summon GreenShieldSpell"
+    Command "Blue Shield Spell", "summon BlueShieldSpell"
 }
 
 
@@ -47,4 +59,5 @@ OptionMenu "R667AAA_Menu"
 
     Submenu "Summon Weapon", "R667AAA_ArmoryMenu"
     Submenu "Summon Monster", "R667AAA_BeastiaryMenu"
+    Submenu "Summon Item", "R667AAA_ItemMenu"
 }

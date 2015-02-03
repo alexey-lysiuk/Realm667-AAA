@@ -61,6 +61,10 @@ def prepare():
         # TODO: report error
         pass
 
+def add_lump(zip, filename):
+    zip.write('dat/{0}'.format(filename), filename)
+
+
 def main():
     prepare()
 
@@ -120,6 +124,8 @@ def main():
         except Exception:
             # TODO: report error
             pass
+
+    add_lump(output_file, 'KEYCONF')
 
     output_file.close()
 

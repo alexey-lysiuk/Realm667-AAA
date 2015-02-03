@@ -60,6 +60,10 @@ repository = [
     (262, 'Electro Gun'),
     (507, 'Fist Redux'),
     (541, 'Flamethrower'),
+    (913, 'Flashlight'),
+    (242, 'Freeze Rifle'),
+    (559, 'Glock 18'),
+    (373, 'Grenade Launcher'),
 
     # Other Sources / Styles
     (408, 'Drummle Auto-Shotgun'),

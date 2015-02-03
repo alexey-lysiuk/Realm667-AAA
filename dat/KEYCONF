@@ -17,7 +17,7 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-alias menu_r667aaa "openmenu R667AAA_Menu"
+alias menu_r667aaa "openmenu Menu_R667AAA"
 addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
 addmenukey "R667AAA Menu" menu_r667aaa
 defaultbind H menu_r667aaa
@@ -25,9 +25,15 @@ defaultbind H menu_r667aaa
 weaponsection R667AAA
 
 addslotdefault 1 Axe
+addslotdefault 1 FlashLightAngled
+addslotdefault 1 FlashLightCentered
+
+addslotdefault 5 STGrenadeLauncher
 
 addslotdefault 7 BFG2704
 addslotdefault 7 STBFG10K
 addslotdefault 7 BHGen
 
 addslotdefault 8 BioPipebombLauncher
+
+addslotdefault 9 UTNTFlamethrower

@@ -46,6 +46,9 @@ def replace_in_keyconf(wad, old, new):
 
 # Armory
 
+def apply_patch_242(wad): # Freeze Rifle
+    replace_in_decorate(wad, 'PLSG', 'FRSG')  # fix incorrect sprite
+
 def apply_patch_246(wad): # EgoSmasher
     replace_in_keyconf(wad, 'setslot', 'addslotdefault')
 

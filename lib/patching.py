@@ -17,6 +17,11 @@
 #
 
 
+# Configuration
+
+no_set_pitch = True
+
+
 def replace_in_lump(name, wad, old, new):
     lump = wad.find(name)
 
@@ -33,7 +38,8 @@ def apply_patch_372(wad): # BFG10K
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
 def apply_patch_585(wad): # AA12 Shotgun
-    replace_in_decorate(wad, ' A_SetPitch (pitch-0.5)', '')
+    if no_set_pitch:
+        replace_in_decorate(wad, ' A_SetPitch (pitch-0.5)', '')
 
 
 def apply_patch(id, wad):

@@ -17,6 +17,9 @@
 #
 
 
+import re
+
+
 # Configuration
 
 no_set_pitch = True
@@ -69,21 +72,26 @@ def apply_patch_330(wad): # Butchergun Chaingun
 def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
-def apply_patch_432(wad): # Action Machine Gun
-    if no_set_pitch:
-        replace_in_decorate(wad, ' A_SetPitch (pitch-0.1)', '')
-        replace_in_decorate(wad, ' A_SetPitch (pitch-0.075)', '')
-
-def apply_patch_585(wad): # AA12 Shotgun
-    if no_set_pitch:
-        replace_in_decorate(wad, ' A_SetPitch (pitch-0.5)', '')
-
 def apply_patch_685(wad): # Ammo Satchels
     if no_set_pitch:
         replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667', 100)
 
 
+set_pitch_pattern = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)
+
+def remove_set_pitch(wad):
+    decorate = wad.find('DECORATE')
+
+    if decorate:
+        decorate.data = set_pitch_pattern.sub('', decorate.data)
+    else:
+        print("Error: Cannot find DECORATE lump".format(name))
+
+
 def apply_patch(id, wad):
+    if no_set_pitch:
+        remove_set_pitch(wad)
+
     func_name = 'apply_patch_{0}'.format(id)
 
     if func_name in globals():

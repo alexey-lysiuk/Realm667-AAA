@@ -20,10 +20,8 @@
 import re
 
 
-# Configuration
-
+# Disable A_SetPitch() calls to allow playing without mouselook
 no_set_pitch = True
-detect_errors = True
 
 
 # TODO:
@@ -31,37 +29,34 @@ detect_errors = True
 # [?] Optimize DECORATE lump: remove comments and extra line breaks
 
 
-def replace_in_lump(name, wad, old, new, count = 1):
+def replace_in_lump(name, wad, old, new):
     lump = wad.find(name)
 
     if lump:
-        if detect_errors and 0 == lump.data.count(old):
-            print("Error: Failed to apply patch for lump {0}".format(name))
-        else:
-            lump.data = lump.data.replace(old, new, count)
+        lump.data = re.sub(old, new, lump.data, 0, re.IGNORECASE)
     else:
         print("Error: Cannot find lump {0}".format(name))
 
-def replace_in_decorate(wad, old, new, count = 1):
-    replace_in_lump('DECORATE', wad, old, new, count)
+def replace_in_decorate(wad, old, new):
+    replace_in_lump('DECORATE', wad, old, new)
 
 def replace_in_keyconf(wad, old, new):
-    replace_in_lump('KEYCONF', wad, old, new, 1)
+    replace_in_lump('KEYCONF', wad, old, new)
+
+def fix_generic_setslot(wad):
+    replace_in_keyconf(wad, 'setslot', 'addslotdefault')
 
 
 # Armory
 
 def apply_patch_242(wad): # Freeze Rifle
-    replace_in_decorate(wad, 'PLSG', 'FRSG')  # fix incorrect sprite
+    # fix incorrect sprite
+    replace_in_decorate(wad, 'PLSG', 'FRSG')
 
 def apply_patch_246(wad): # EgoSmasher
-    replace_in_keyconf(wad, 'setslot', 'addslotdefault')
-
-def apply_patch_260(wad): # Action Machine Gun
-    replace_in_decorate(wad, ' replaces chaingun', '')
+    fix_generic_setslot(wad)
 
 def apply_patch_308(wad): # Doom 2.5 SSG
-    replace_in_decorate(wad, ' Replaces SuperShotgun', '')
     replace_in_keyconf(wad,
         'SetSlot 3 Shotgun Doom2.5SSG',
         'addslotdefault 3 Doom2.5SSG')
@@ -75,23 +70,16 @@ def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
 def apply_patch_685(wad): # Ammo Satchels
-    replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667', 100)
-
-
-set_pitch_pattern = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)
-
-def remove_set_pitch(wad):
-    decorate = wad.find('DECORATE')
-
-    if decorate:
-        decorate.data = set_pitch_pattern.sub('', decorate.data)
-    else:
-        print("Error: Cannot find DECORATE lump".format(name))
+    # fix class name collision
+    replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667')
 
 
 def apply_patch(id, wad):
     if no_set_pitch:
-        remove_set_pitch(wad)
+        replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
+
+    # Remove class replacement
+    replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+)\s+replaces\s+[\w\.]+', r'\1')
 
     func_name = 'apply_patch_{0}'.format(id)
 

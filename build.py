@@ -293,7 +293,7 @@ def main():
                 wad_data = cStringIO.StringIO()
                 wad.writeto(wad_data)
 
-                output_file.writestr(filename, wad_data.getvalue())
+                output_file.writestr(os.path.basename(filename), wad_data.getvalue())
 
             except Exception:
                 print('Error: Failed to add {0}'.format(filename))

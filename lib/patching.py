@@ -39,6 +39,8 @@ def replace_in_lump(name, wad, old, new, count = 1):
             print("Error: Failed to apply patch for lump {0}".format(name))
         else:
             lump.data = lump.data.replace(old, new, count)
+    else:
+        print("Error: Cannot find lump {0}".format(name))
 
 def replace_in_decorate(wad, old, new, count = 1):
     replace_in_lump('DECORATE', wad, old, new, count)
@@ -73,8 +75,7 @@ def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
 def apply_patch_685(wad): # Ammo Satchels
-    if no_set_pitch:
-        replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667', 100)
+    replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667', 100)
 
 
 set_pitch_pattern = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)

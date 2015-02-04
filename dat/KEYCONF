@@ -28,13 +28,21 @@ addslotdefault 1 Axe
 addslotdefault 1 FlashLightAngled
 addslotdefault 1 FlashLightCentered
 
+addslotdefault 2 iGun
+
+addslotdefault 4 HeavyChaingun
+
 addslotdefault 5 STGrenadeLauncher
 addslotdefault 5 DGL
+addslotdefault 5 KDIZDGrenadeLauncher
+
+addslotdefault 6 Ionspray
 
 addslotdefault 7 BFG2704
 addslotdefault 7 STBFG10K
 addslotdefault 7 BHGen
 
 addslotdefault 8 BioPipebombLauncher
+addslotdefault 8 HellstormCannon
 
 addslotdefault 9 UTNTFlamethrower

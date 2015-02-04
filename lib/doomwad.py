@@ -136,7 +136,7 @@ class WadFile(object):
 
     def removelump(self, lump):
        idx = lump.index
-       self.lumps.remove(idx)
+       self.lumps.remove(lump)
        self._reindex(idx)
 
     def insert(self, lump, before=None):

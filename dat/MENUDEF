@@ -63,6 +63,8 @@ OptionMenu "Menu_R667AAA_Armory_Doom_EF"
     Command "Freeze Rifle", "summon FreezeRifle"
     Command "Glock 18", "summon Glock18"
     Command "Grenade Launcher", "summon STGrenadeLauncher"
+
+    Command "Plasma Ballista", "summon PlasmaBallista" // from CryoBow, TODO
 }
 
 OptionMenu "Menu_R667AAA_Armory_Other"
@@ -106,10 +108,11 @@ OptionMenu "Menu_R667AAA_Item"
     StaticText " "
 
     Command "Adrenaline Kit", "summon Adrenalinekit"
-    Command "Familiar Summon", "summon FamiliarSummon"
+    Command "Familiar Summon Scroll", "summon FamiliarSummon" // TODO
+    Command "Familiar Summon Sphere", "summon FamiliarSummon" // TODO
     Command "Ritual Knife", "summon RitualKnife"
-    Command "Green Shield Spell", "summon GreenShieldSpell"
-    Command "Blue Shield Spell", "summon BlueShieldSpell"
+    Command "Shield Spell, Green", "summon GreenShieldSpell"
+    Command "Shield Spell, Blue", "summon BlueShieldSpell"
 }
 
 

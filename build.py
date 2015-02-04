@@ -146,35 +146,42 @@ def main():
                 # TODO: report error
                 continue
 
-        wad_filename = None
+        wad_filenames = []
 
         for zipped_filename in cached_file.namelist():
             if zipped_filename.lower().endswith('.wad'):
-                # TODO: handle multiple WADs from one .zip
-                if wad_filename:
-                    print('Warning: Found additional WAD file {0} in archive, {1} will be used as a source'
-                        .format(zipped_filename, wad_filename))
-                else:
-                    wad_filename = zipped_filename
+                wad_filenames.append(zipped_filename)
 
-        try:
-            wad_file = cached_file.open(wad_filename)
-            wad_data = wad_file.read()
-
-            wad_file.close()
+        if 0 == len(wad_filenames):
             cached_file.close()
 
-            wad = doomwad.WadFile(wad_data)
-            patching.apply_patch(id, wad)
+            print('Error: no WAD files found')
+            continue
 
-            wad_data = cStringIO.StringIO()
-            wad.writeto(wad_data)
+        for filename in wad_filenames:
+            try:
+                wad_file = cached_file.open(filename)
+                wad_data = wad_file.read()
+                wad_file.close()
 
-            output_file.writestr(wad_filename, wad_data.getvalue())
+                wad = doomwad.WadFile(wad_data)
 
-        except Exception:
-            # TODO: report error
-            pass
+                if not wad.find('DECORATE'):
+                    print('Warning: No DECORATE lump found in file {0}, skipping...'.format(filename))
+                    continue
+
+                patching.apply_patch(id, wad)
+
+                wad_data = cStringIO.StringIO()
+                wad.writeto(wad_data)
+
+                output_file.writestr(filename, wad_data.getvalue())
+
+            except Exception:
+                print('Error: Failed to add {0}'.format(filename))
+                continue
+
+        cached_file.close()
 
     add_lump(output_file, 'KEYCONF')
     add_lump(output_file, 'MENUDEF')

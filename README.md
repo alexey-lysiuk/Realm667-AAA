@@ -3,9 +3,14 @@
 #### About
 
 Attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.  
-Check ```issues.md``` file for the list of known issues.
+Check `issues.md` file for the list of known issues.
 
 #### How to build
 
-You need Python 2.7 to run ```build.py``` script. It will create ```realm667-aaa.pk3``` in the repository's root directory.  
+You need Python 2.7 to run `build.py` script. It will create `realm667-aaa.pk3` in the repository's root directory.  
 The script will download and cache all resources during the first run. Generation process will be much faster next time.
+
+#### How to play
+
+Load `realm667-aaa.pk3` in the recent development build of (G)ZDoom.  
+Press 'H' button (by default) to bring _Realm667 - An Awesome Awesomeness_ menu. This binding can be changed in _Customize Controls_ menu.

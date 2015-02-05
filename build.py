@@ -29,7 +29,7 @@ sys.path.append(os.path.dirname(__file__) + '/lib')
 import doomwad
 import patching
 
-from repo import repository
+from repo import repository, excluded_wads
 
 # Configuration
 
@@ -95,11 +95,10 @@ def main():
             if zipped_filename.lower().endswith('.wad'):
                 wad_filenames.append(zipped_filename)
 
-        # Hack to exclude Landmine Layer for Strife
-        try:
-            if 717 == id: wad_filenames.remove('StrifeLandMine.wad')
-        except:
-            pass
+        for excluded_wad in excluded_wads:
+            if id == excluded_wad[0]:
+                try: wad_filenames.remove(excluded_wad[1])
+                except: pass
 
         if 0 == len(wad_filenames):
             cached_file.close()

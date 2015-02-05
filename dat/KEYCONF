@@ -30,16 +30,25 @@ addslotdefault 1 FlashLightCentered
 
 addslotdefault 2 iGun
 addslotdefault 2 Raptor
+addslotdefault 2 ScatterPistol
+addslotdefault 2 Uzi
 
 addslotdefault 3 EgoSmasher
 addslotdefault 3 Doom2.5SSG
 addslotdefault 3 PlasmaShotgun
+addslotdefault 3 SideBySide
+addslotdefault 3 KDiZDSuperShotgun
+addslotdefault 3 SwatShotgun
+addslotdefault 3 WensternShotgun
+addslotdefault 3 Yellowboy
+addslotdefault 3 ZombiemanRifle
 
 addslotdefault 4 Butchergun
 addslotdefault 4 HeavyChaingun
 addslotdefault 4 Machinegun
 addslotdefault 4 STMinigun
 addslotdefault 4 SuppressedMP5
+addslotdefault 4 UberMinigun
 
 addslotdefault 5 STGrenadeLauncher
 addslotdefault 5 DGL
@@ -47,6 +56,8 @@ addslotdefault 5 KDIZDGrenadeLauncher
 
 addslotdefault 6 Ionspray
 addslotdefault 6 PulseRifleUAC
+addslotdefault 6 SprayCannon
+addslotdefault 6 StunnerRifle
 
 addslotdefault 7 BFG2704
 addslotdefault 7 STBFG10K
@@ -64,6 +75,9 @@ addslotdefault 9 Karasawa
 addslotdefault 9 NailgunMG
 addslotdefault 9 NailgunSG
 addslotdefault 9 STRailgun
+addslotdefault 9 SniperRifle
+addslotdefault 9 UTNTPyroCannon
 
 addslotdefault 0 D2C_Pipebomb
 addslotdefault 0 ProxLauncher
+addslotdefault 0 AlphaUnmaker

@@ -140,7 +140,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
     Command "Sniper Rifle", "summon SniperRifle"
     Command "SPAS-12", "summon SPAS-12"
     Command "Spray Cannon", "summon SprayCannon"
-    Command "Strife Pistol", "summon StrifePistol"
+    //Command "Strife Pistol", "summon StrifePistol" // TODO
     Command "Stunner Rifle", "summon StunnerRifle"
     Command "Super Shotgun (KDiZD)", "summon KDiZDSuperShotgun"
     Command "Swat Shotgun", "summon SwatShotgun"
@@ -152,7 +152,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
     Command "Uzi", "summon Uzi"
     Command "Western Shotgun", "summon WensternShotgun"
     Command "Winchester Yellowboy", "summon Yellowboy"
-    Command "Zombieman Rifle", "summon Rifle"
+    Command "Zombieman Rifle", "summon ZombiemanRifle"
 }
 
 

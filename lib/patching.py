@@ -84,9 +84,9 @@ def apply_patch(id, wad):
     if no_set_pitch:
         replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
     if no_class_replacement:
-        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\._]+)\s+replaces\s+[\w\._]+', r'\1')
+        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+)\s+replaces\s+[\w\.]+', r'\1')
     if no_doomednum:
-        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\._]+\s+(replaces\s+[\w\._]+)?)\s*\d*', r'\1')
+        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+\s+(replaces\s+[\w\.]+)?)\s*\d*', r'\1')
 
     func_name = 'apply_patch_{0}'.format(id)
 

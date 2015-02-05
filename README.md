@@ -2,7 +2,8 @@
 
 #### About
 
-Attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.
+Attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.  
+Check ```issues.md``` file for the list of known issues.
 
 #### How to build
 

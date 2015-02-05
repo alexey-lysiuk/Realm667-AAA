@@ -20,8 +20,14 @@
 import re
 
 
-# Disable A_SetPitch() calls to allow playing without mouselook
+# Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
 no_set_pitch = True
+
+# Disallow class replacement in DECORATE
+no_class_replacement = True
+
+# Disallow editor number (doomednum) assignment in DECORATE
+no_doomednum = True
 
 
 # TODO:
@@ -77,9 +83,10 @@ def apply_patch_685(wad): # Ammo Satchels
 def apply_patch(id, wad):
     if no_set_pitch:
         replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
-
-    # Remove class replacement
-    replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+)\s+replaces\s+[\w\.]+', r'\1')
+    if no_class_replacement:
+        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\._]+)\s+replaces\s+[\w\._]+', r'\1')
+    if no_doomednum:
+        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\._]+\s+(replaces\s+[\w\._]+)?)\s*\d*', r'\1')
 
     func_name = 'apply_patch_{0}'.format(id)
 

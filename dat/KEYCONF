@@ -31,6 +31,9 @@ addslotdefault 1 FlashLightCentered
 addslotdefault 2 iGun
 
 addslotdefault 4 HeavyChaingun
+addslotdefault 4 Machinegun
+addslotdefault 4 STMinigun
+addslotdefault 4 SuppressedMP5
 
 addslotdefault 5 STGrenadeLauncher
 addslotdefault 5 DGL
@@ -48,3 +51,5 @@ addslotdefault 8 LandMineLayer
 
 addslotdefault 9 UTNTFlamethrower
 addslotdefault 9 Karasawa
+addslotdefault 9 NailgunMG
+addslotdefault 9 NailgunSG

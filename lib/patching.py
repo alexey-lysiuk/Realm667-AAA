@@ -75,9 +75,28 @@ def apply_patch_330(wad): # Butchergun Chaingun
 def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
+def apply_patch_496(wad): # Nailgun (MG)
+    # fix shared class name with #560 Nailgun (SG)
+    replace_in_decorate(wad, 'NailBlur', 'NailBlurMG')
+
+def apply_patch_521(wad): # Mag .60
+    # fix wrong class name
+    # put here to avoid 'MagSixty is not a weapon' message in console
+    replace_in_keyconf(wad, 'MagSixty', 'Mag60')
+
+def apply_patch_560(wad): # Nailgun (SG)
+    # fix shared class name with #496 Nailgun (MG)
+    replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
+
 def apply_patch_685(wad): # Ammo Satchels
-    # fix class name collision
+    # fix class name collision with Strife
     replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667')
+
+def apply_patch_804(wad): # Light Machinegun
+    # fix class name collision with Machinegun weapon
+    replace_in_decorate(wad,
+        r'(actor\s+)Machinegun(\s*:\s*\w+)',
+        r'\1LightMachinegun\2')
 
 
 def apply_patch(id, wad):

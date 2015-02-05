@@ -46,19 +46,25 @@ def replace_in_lump(name, wad, old, new):
 def replace_in_decorate(wad, old, new):
     replace_in_lump('DECORATE', wad, old, new)
 
-def replace_in_keyconf(wad, old, new):
-    replace_in_lump('KEYCONF', wad, old, new)
-
-def fix_generic_setslot(wad):
-    replace_in_keyconf(wad, 'setslot', 'addslotdefault')
-
 def rename_lump(wad, old, new):
     lump = wad.find(old)
 
     if lump:
         lump.name = new
     else:
+        print("Error: Cannot find lump {0}".format(old))
+
+def remove_lump(wad, name):
+    lump = wad.find(name)
+
+    if lump:
+        wad.removelump(lump)
+    else:
         print("Error: Cannot find lump {0}".format(name))
+
+def remove_keyconf(wad):
+    remove_lump(wad, 'KEYCONF')
+
 
 # Armory
 
@@ -67,17 +73,16 @@ def apply_patch_242(wad): # Freeze Rifle
     replace_in_decorate(wad, 'PLSG', 'FRSG')
 
 def apply_patch_246(wad): # EgoSmasher
-    fix_generic_setslot(wad)
+    remove_keyconf(wad)
 
 def apply_patch_308(wad): # Doom 2.5 SSG
-    replace_in_keyconf(wad,
-        'SetSlot 3 Shotgun Doom2.5SSG',
-        'addslotdefault 3 Doom2.5SSG')
+    remove_keyconf(wad)
+
+def apply_patch_329(wad): # Plasma Shotgun
+    remove_keyconf(wad)
 
 def apply_patch_330(wad): # Butchergun Chaingun
-    replace_in_keyconf(wad,
-        'setslot 4 Butchergun Chaingun',
-        'addslotdefault 4 Butchergun')
+    remove_keyconf(wad)
 
 def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
@@ -87,9 +92,7 @@ def apply_patch_496(wad): # Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurMG')
 
 def apply_patch_521(wad): # Mag .60
-    # fix wrong class name
-    # put here to avoid 'MagSixty is not a weapon' message in console
-    replace_in_keyconf(wad, 'MagSixty', 'Mag60')
+    remove_keyconf(wad)
 
 def apply_patch_522(wad): # Pulse Rifle
     # fix sprite name collisions with #659 Pulse Rifle UAC

@@ -95,6 +95,12 @@ def main():
             if zipped_filename.lower().endswith('.wad'):
                 wad_filenames.append(zipped_filename)
 
+        # Hack to exclude Landmine Layer for Strife
+        try:
+            if 717 == id: wad_filenames.remove('StrifeLandMine.wad')
+        except:
+            pass
+
         if 0 == len(wad_filenames):
             cached_file.close()
 

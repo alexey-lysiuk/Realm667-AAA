@@ -52,6 +52,13 @@ def replace_in_keyconf(wad, old, new):
 def fix_generic_setslot(wad):
     replace_in_keyconf(wad, 'setslot', 'addslotdefault')
 
+def rename_lump(wad, old, new):
+    lump = wad.find(old)
+
+    if lump:
+        lump.name = new
+    else:
+        print("Error: Cannot find lump {0}".format(name))
 
 # Armory
 
@@ -89,11 +96,15 @@ def apply_patch_560(wad): # Nailgun (SG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
 
 def apply_patch_685(wad): # Ammo Satchels
-    # fix class name collision with Strife
+    # fix class name collision with ammo from Strife
     replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667')
 
+def apply_patch_762(wad): # Model 1887
+    # fix wrong end marker
+    rename_lump(wad, 'SS_STOP', 'SS_END')
+
 def apply_patch_804(wad): # Light Machinegun
-    # fix class name collision with Machinegun weapon
+    # fix class name collision with #233 Machinegun
     replace_in_decorate(wad,
         r'(actor\s+)Machinegun(\s*:\s*\w+)',
         r'\1LightMachinegun\2')

@@ -20,6 +20,7 @@
 
 import cStringIO
 import os, sys
+import traceback
 import urllib2
 import zipfile
 
@@ -78,14 +79,14 @@ def main():
                 response = urllib2.urlopen(url)
                 data = response.read()
 
-                # TODO: add error handling
                 with open(cached_filename, 'wb') as cached_file:
                     cached_file.write(data)
 
                 cached_file = zipfile.ZipFile(cached_filename, 'r')
 
             except Exception:
-                # TODO: report error
+                print('Error: Failed to process resource .ZIP file')
+                traceback.print_exc()
                 continue
 
         wad_filenames = []
@@ -119,8 +120,9 @@ def main():
 
                 output_file.writestr(os.path.basename(filename), wad_data.getvalue())
 
-            except Exception:
+            except Exception as ex:
                 print('Error: Failed to add {0}'.format(filename))
+                traceback.print_exc()
                 continue
 
         cached_file.close()

@@ -29,6 +29,7 @@ addslotdefault 1 FlashLightAngled
 addslotdefault 1 FlashLightCentered
 
 addslotdefault 2 iGun
+addslotdefault 2 Mag60
 addslotdefault 2 Raptor
 addslotdefault 2 ScatterPistol
 addslotdefault 2 Uzi

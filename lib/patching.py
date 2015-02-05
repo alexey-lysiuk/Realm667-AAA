@@ -91,9 +91,21 @@ def apply_patch_521(wad): # Mag .60
     # put here to avoid 'MagSixty is not a weapon' message in console
     replace_in_keyconf(wad, 'MagSixty', 'Mag60')
 
+def apply_patch_522(wad): # Pulse Rifle
+    # fix sprite name collisions with #659 Pulse Rifle UAC
+    replace_in_decorate(wad, r'(\s)PULS(\s)', r'\1PLRF\2')
+    rename_lump(wad, 'PULSA0', 'PLRFA0')
+    rename_lump(wad, 'PULSB0', 'PLRFB0')
+
 def apply_patch_560(wad): # Nailgun (SG)
     # fix shared class name with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
+
+def apply_patch_659(wad): # Pulse Rifle UAC
+    # fix class name collision with #522 Pulse Rifle
+    replace_in_decorate(wad,
+        r'(actor\s+)PulseRifle(\s*:\s*\w+)',
+        r'\1PulseRifleUAC\2')
 
 def apply_patch_685(wad): # Ammo Satchels
     # fix class name collision with ammo from Strife

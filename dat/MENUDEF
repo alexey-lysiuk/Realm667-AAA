@@ -108,15 +108,15 @@ OptionMenu "Menu_R667AAA_Armory_Doom_PR"
 
     Command "Pipe Bombs", "summon D2C_Pipebomb"
     Command "Plasma Beam", "summon PlasmaBeam"
-    Command "PlasmaBolter", "summon PlasmaBolter"
+    Command "Plasma Bolter", "summon PlasmaBolter"
     Command "Plasma Ballista", "summon PlasmaBallista" // from CryoBow
     Command "Plasma Pistol", "summon PlasmaPistol"
     Command "Plasma Shotgun", "summon Plasmashotgun"
     Command "Prox Launcher", "summon ProxLauncher"
-    Command "Pulse Nailgun ", "summon PulseNailgun"
-    Command "Pulse Rifle", "summon PulseRifle" // TODO
-    Command "Pulse Rifle", "summon PulseRifle" // TODO
-    Command "Pump-Action Shotgun", "summon AdvancedShotgun"
+    Command "Pulse Nailgun", "summon PulseNailgun"
+    Command "Pulse Rifle", "summon PulseRifle"
+    Command "Pulse Rifle UAC", "summon PulseRifleUAC"
+    Command "Pump-Action Shotgun", "summon PumpActionShotgun"
     Command "Railgun", "summon STRailgun"
     Command "Raptor Handgun", "summon Raptor"
     Command "Ray Gun", "summon RayGun"

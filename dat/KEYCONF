@@ -29,6 +29,7 @@ addslotdefault 1 FlashLightAngled
 addslotdefault 1 FlashLightCentered
 
 addslotdefault 2 iGun
+addslotdefault 2 Raptor
 
 addslotdefault 4 HeavyChaingun
 addslotdefault 4 Machinegun
@@ -40,6 +41,7 @@ addslotdefault 5 DGL
 addslotdefault 5 KDIZDGrenadeLauncher
 
 addslotdefault 6 Ionspray
+addslotdefault 6 PulseRifleUAC
 
 addslotdefault 7 BFG2704
 addslotdefault 7 STBFG10K
@@ -48,8 +50,15 @@ addslotdefault 7 BHGen
 addslotdefault 8 BioPipebombLauncher
 addslotdefault 8 HellstormCannon
 addslotdefault 8 LandMineLayer
+addslotdefault 8 Repeater
+addslotdefault 8 Rifle
+addslotdefault 8 RivetGun
 
 addslotdefault 9 UTNTFlamethrower
 addslotdefault 9 Karasawa
 addslotdefault 9 NailgunMG
 addslotdefault 9 NailgunSG
+addslotdefault 9 STRailgun
+
+addslotdefault 0 D2C_Pipebomb
+addslotdefault 0 ProxLauncher

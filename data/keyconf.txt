@@ -109,3 +109,35 @@ addslotdefault 7 RavenStaff
 
 addslotdefault 8 DsparilStaff
 addslotdefault 8 Vilestaff
+
+
+weaponsection R667AAA_Other
+
+addslotdefault 2 Flaregun
+addslotdefault 2 PSRevolver
+
+addslotdefault 3 Bearkiller
+addslotdefault 3 HunterShotgun
+addslotdefault 3 BloodSawedoff
+
+addslotdefault 4 M60
+addslotdefault 4 NecroVisionMG40
+addslotdefault 4 PowerNailgun
+addslotdefault 4 PulseMachinegun
+addslotdefault 4 SMG
+addslotdefault 4 DoubleSMG
+addslotdefault 4 BloodTommygun
+
+addslotdefault 5 Devastator
+addslotdefault 5 DoubleDevastator
+addslotdefault 5 NapalmLauncher
+addslotdefault 5 Q2Chaingun
+addslotdefault 5 SeekerBazooka
+
+addslotdefault 6 PlasmaGun
+addslotdefault 6 SwarmPG
+addslotdefault 6 TeslaCannon
+
+addslotdefault 9 PyroCannon
+
+addslotdefault 0 Jackbomb

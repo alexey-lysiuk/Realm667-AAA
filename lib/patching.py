@@ -135,6 +135,7 @@ setslot_keyconfs = [
     273, # Swat Shotgun
     274, # Western Shotgun
     308, # Doom 2.5 SSG
+    328, # Spellbinder
     329, # Plasma Shotgun
     330, # Butchergun Chaingun
     510, # Vile Staff

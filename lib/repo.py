@@ -198,4 +198,5 @@ repository = [
 excluded_wads = [
     (243, 'UnmakerCentered.wad'),
     (717, 'StrifeLandMine.wad'),
+    (816, 'CryoPal.wad'),
 ]

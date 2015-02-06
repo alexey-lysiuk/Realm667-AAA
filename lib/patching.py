@@ -71,6 +71,9 @@ def apply_patch_228(wad): # Zombieman Rifle
     replace_in_decorate(wad,
         r'(actor\s+)Rifle(\s*:\s*\w+)',
         r'\1ZombiemanRifle\2')
+    # fix sprite name collisions with #228 Zombieman Rifle and #407 Rifle
+    replace_in_decorate(wad, r'RIFL(\s+)A(\s+)', r'RIFL\1C\2')
+    rename_lump(wad, 'RIFLA0', 'RIFLC0')
 
 def apply_patch_230(wad): # Plasma Gun
     # fix class name collision with #329 Plasma Shotgun
@@ -91,6 +94,19 @@ def apply_patch_271(wad): # Saw Thrower
     replace_in_decorate(wad,
         r'Inventory.Icon(\s)SAWA',
         r'Inventory.Icon\1SAWAA0')
+
+def apply_patch_272(wad): # Sniper Rifle
+    # fix sprite name collisions with #228 Zombieman Rifle and #407 Rifle
+    replace_in_decorate(wad, r'RIFL(\s+)A(\s+)', r'RIFL\1B\2')
+    rename_lump(wad, 'RIFLA0', 'RIFLB0')
+
+    # fix sprite name collisions with #328 Spellbinder
+    replace_in_decorate(wad, r'PROJ(\s+)A(\s+)', r'PRJS\1A\2')
+    rename_lump(wad, 'PROJA1', 'PRJSA1')
+    rename_lump(wad, 'PROJA2A8', 'PRJSA2A8')
+    rename_lump(wad, 'PROJA3A7', 'PRJSA3A7')
+    rename_lump(wad, 'PROJA4A6', 'PRJSA4A6')
+    rename_lump(wad, 'PROJA5', 'PRJSA5')
 
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite

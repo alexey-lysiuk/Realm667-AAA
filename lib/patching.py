@@ -138,6 +138,7 @@ setslot_keyconfs = [
     328, # Spellbinder
     329, # Plasma Shotgun
     330, # Butchergun Chaingun
+    509, # Prox Launcher
     510, # Vile Staff
     521, # Mag .60
     626, # D'sparil Staff

@@ -162,7 +162,7 @@ OptionMenu "Menu_R667AAA_Armory_HH"
     StaticText " "
 
     Command "Apotheosis", "summon Apotheosis"
-    Command "Arbalest of the Ancients ", "summon SuperCrossbow"
+    Command "Arbalest of the Ancients", "summon Arbalest"
     Command "Blood Scepter", "summon BloodScepter"
     Command "Bow", "summon Bow"
     Command "Cult of the Serpent Staff", "summon SerpentCultStaff"

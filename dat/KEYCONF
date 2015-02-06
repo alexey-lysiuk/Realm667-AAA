@@ -22,7 +22,7 @@ addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
 addmenukey "R667AAA Menu" menu_r667aaa
 defaultbind H menu_r667aaa
 
-weaponsection R667AAA
+weaponsection R667AAA_Doom
 
 addslotdefault 1 Axe
 addslotdefault 1 FlashLightAngled
@@ -82,3 +82,29 @@ addslotdefault 9 UTNTPyroCannon
 addslotdefault 0 D2C_Pipebomb
 addslotdefault 0 ProxLauncher
 addslotdefault 0 AlphaUnmaker
+
+
+weaponsection R667AAA_HereticHexen
+
+addslotdefault 1 FireCrystal
+
+addslotdefault 2 WandOfEmbers
+
+addslotdefault 3 Arbalest
+addslotdefault 3 Bow
+addslotdefault 3 ImpalerXBow
+addslotdefault 3 IronXBow
+addslotdefault 3 SuperCrossbow
+
+addslotdefault 4 FrostFang
+addslotdefault 4 LighteningRod
+addslotdefault 4 ScepterOfSouls
+
+addslotdefault 5 SerpentCultStaff
+
+addslotdefault 7 BloodScepter
+addslotdefault 7 Lightbringer
+addslotdefault 7 RavenStaff
+
+addslotdefault 8 DsparilStaff
+addslotdefault 8 Vilestaff

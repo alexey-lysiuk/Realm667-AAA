@@ -18,6 +18,7 @@
 
 
 import re
+import doomwad
 
 
 # Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
@@ -95,6 +96,12 @@ def apply_patch_560(wad): # Nailgun (SG)
     # fix shared class name with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
 
+def apply_patch_582(wad): # Super Crossbow
+    sprite_end_marker = 'SS_END'
+    if not wad.find(sprite_end_marker):
+        marker = doomwad.Lump(sprite_end_marker, '')
+        wad.append(marker)
+
 def apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle
     replace_in_decorate(wad,
@@ -115,6 +122,12 @@ def apply_patch_804(wad): # Light Machinegun
         r'(actor\s+)Machinegun(\s*:\s*\w+)',
         r'\1LightMachinegun\2')
 
+def apply_patch_817(wad): # Arbalest of the Ancients
+    # fix class name collision with #582 Super Crossbow
+    replace_in_decorate(wad,
+        r'([^\w])SuperCrossbow',
+        r'\1Arbalest')
+
 
 setslot_keyconfs = [
     235, # Uber Minigun
@@ -124,7 +137,9 @@ setslot_keyconfs = [
     308, # Doom 2.5 SSG
     329, # Plasma Shotgun
     330, # Butchergun Chaingun
+    510, # Vile Staff
     521, # Mag .60
+    626, # D'sparil Staff
 ]
 
 

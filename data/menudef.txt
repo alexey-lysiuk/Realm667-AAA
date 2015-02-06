@@ -262,8 +262,8 @@ OptionMenu "Menu_R667AAA_Item"
     Command "Familiar Summon Scroll", "summon FamiliarSummon" // TODO
     Command "Familiar Summon Sphere", "summon FamiliarSummon" // TODO
     Command "Ritual Knife", "summon RitualKnife"
-    Command "Green, Shield Spell", "summon GreenShieldSpell"
-    Command "Blue, Shield Spell", "summon BlueShieldSpell"
+    Command "Green Shield Spell", "summon GreenShieldSpell"
+    Command "Blue Shield Spell", "summon BlueShieldSpell"
 
     Command "Bow Fire Spell", "summon FireSpell"
     Command "Bow Ice Spell", "summon IceSpell"

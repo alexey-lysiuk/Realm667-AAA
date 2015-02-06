@@ -52,7 +52,7 @@ def prepare():
         pass
 
 def add_lump(zip, filename):
-    zip.write('dat/{0}'.format(filename), filename)
+    zip.write('data/{0}'.format(filename), filename)
 
 
 def main():
@@ -132,8 +132,8 @@ def main():
 
         cached_file.close()
 
-    add_lump(output_file, 'KEYCONF')
-    add_lump(output_file, 'MENUDEF')
+    add_lump(output_file, 'keyconf.txt')
+    add_lump(output_file, 'menudef.txt')
 
     output_file.close()
 

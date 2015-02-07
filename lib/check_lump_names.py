@@ -24,10 +24,13 @@
 
 
 import md5
-import os
+import os, sys
 import zipfile
-import doomwad
 
+self_path = os.path.dirname(__file__)
+os.chdir(self_path)
+
+import doomwad
 from repo import excluded_wads
 
 
@@ -50,7 +53,7 @@ excluded_lump_names = [
 lumps_wads = { }
 
 
-cache_path = os.path.dirname(__file__) + '/../cache/'
+cache_path = '../cache/'
 
 # Analyze cache if True and generated .pk3 if False
 analyze_cache = False

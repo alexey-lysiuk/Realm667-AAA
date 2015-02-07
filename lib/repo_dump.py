@@ -23,8 +23,8 @@ import re
 import urllib2
 
 
-pattern_summon = re.compile('Summon:\s*(</strong>|</b>)\s*(\w[\w\s,-\.\(\)\']+)(<strong>|<b>|<br />)')
-pattern_id_name = re.compile('gid=(\d+)"(\s+class="doclink")?>\s*(\w[\w\s,-\.\(\)\']+)\s*</a>')
+pattern_summon = re.compile('Summon:\s*(</strong>|</b>)\s*(&nbsp;)?\s*([^\s][\w\s\[\],-\.\(\)\'/]+)(<strong>|<b>|<br />)')
+pattern_id_name = re.compile('gid=(\d+)"(\s+class="doclink")?>\s*([^s][\w\s\[\],-\.\(\)\']+)\s*</a>')
 
 repository = []
 
@@ -44,6 +44,7 @@ def fetch_repository(url):
 ##    f.close()
 
     pos = 0
+    count = 0
 
     while True:
         match = pattern_summon.search(html, pos)
@@ -51,7 +52,7 @@ def fetch_repository(url):
         if not match:
             break
 
-        summon = match.group(2)
+        summon = match.group(3).strip(' \r\n')
 
         match = pattern_id_name.search(html, match.end())
 
@@ -59,16 +60,55 @@ def fetch_repository(url):
             break
 
         id = match.group(1)
-        name = match.group(3)
+        name = match.group(3).strip()
 
-        repository.append([id, name, summon])
+        repository.append((id, name, summon))
 
         pos = match.end()
 
+        count += 1
 
-url_armory_doom  = 'http://realm667.com/index.php/en/armory-mainmenu-157-97317/doom-style-mainmenu-158-94349?start={0}'
-url_armory_hh    = 'http://realm667.com/index.php/en/armory-mainmenu-157-97317/heretic-hexen-style-mainmenu-159-20295'
-url_armory_other = 'http://realm667.com/index.php/en/armory-mainmenu-157-97317/other-sources-styles-mainmenu-160-29963'
+    if count:
+        separator = '--- {0} items ---'.format(count)
+        repository.append((-1, separator, separator))
+
+    return count
+
+
+# Configuration
+
+url_website      = 'http://realm667.com/index.php/en/'
+url_armory       = url_website + 'armory-mainmenu-157-97317/'
+url_beastiary    = url_website + 'beastiary-mainmenu-136-69621/'
+url_item_shop    = url_website + 'item-store-mainmenu-169-61042/'
+
+url_armory_doom  = url_armory + 'doom-style-mainmenu-158-94349'
+url_armory_hh    = url_armory + 'heretic-hexen-style-mainmenu-159-20295'
+url_armory_other = url_armory + 'other-sources-styles-mainmenu-160-29963'
+
+url_beast_doom   = url_beastiary + 'doom-style-mainmenu-105-73113'
+url_beast_hh     = url_beastiary + 'heretic-hexen-style-mainmenu-137-49102'
+url_beast_strife = url_beastiary + 'strife-style-mainmenu-173-3492'
+
+url_item_powerup = url_item_shop + 'powerups-a-artifacts-mainmenu-170-4162'
+url_item_other   = url_item_shop + 'others-mainmenu-172-93727'
+
+urls = [
+    url_armory_doom,
+    url_armory_hh,
+    url_armory_other,
+    url_beast_doom,
+    url_beast_hh,
+    url_beast_strife,
+    url_item_powerup,
+    url_item_other,
+]
+
+url_index_template = '?start={0}'
+indices_per_page = 30
+
+
+# Prepare
 
 path_tmp = os.path.dirname(__file__) + '/../tmp'
 
@@ -79,12 +119,15 @@ except OSError:
 
 os.chdir(path_tmp)
 
-for index in [0, 30, 60, 90]:
-    url = url_armory_doom.format(index)
-    fetch_repository(url)
+# Fetch asset descriptions from repository
 
-fetch_repository(url_armory_hh)
-fetch_repository(url_armory_other)
+for url in urls:
+    index = 0
+
+    while fetch_repository((url + url_index_template).format(index)) > 0:
+        index += indices_per_page
+
+# Save gathered asset descriptions
 
 file_menu = open('menudef.txt', 'w')
 file_repo = open('repository.py', 'w')

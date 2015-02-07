@@ -19,9 +19,11 @@
 #
 
 
-# This tool analyzes assets cache or generated .pk3
-# for duplicate lump names within WAD files
-
+'''
+ This tool analyzes assets cache or generated .pk3
+ for duplicate lump names within WAD files
+ It prints result to stdout in 'known issues' markdown format
+'''
 
 import md5
 import os, sys
@@ -117,16 +119,20 @@ for zip_filename in zip_filenames:
 
 # Print names collisions
 
+duplicates = []
+
 for lump in lumps_wads:
     wads = lumps_wads[lump]
 
     if 1 == len(wads):
         continue
 
-    filenames = ''
+    filenames = wads.values()
+    filenames.sort(key = lambda name: name.lower())
 
-    for hash in wads:
-        separator = len(filenames) > 0 and ', ' or ''
-        filenames = '{0}{1}"{2}"'.format(filenames, separator, wads[hash])
+    duplicates.append('|{0}|{1}||'.format(lump, ', '.join(filenames)))
 
-    print('Different lumps with name {0} were found in {1} WADs: {2}'.format(lump, len(wads), filenames))
+duplicates.sort()
+
+for dup in duplicates:
+    print(dup)

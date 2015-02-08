@@ -34,6 +34,7 @@ os.chdir(self_path)
 
 import doomwad
 from repo import excluded_wads
+from lumps_iwads import lumps_ultdoom, lumps_doom2, lumps_tnt, lumps_plutonia
 
 
 excluded_lump_names = [
@@ -124,10 +125,20 @@ duplicates = []
 for lump in lumps_wads:
     wads = lumps_wads[lump]
 
-    if 1 == len(wads):
+    filenames = wads.values()
+
+    if lump in lumps_ultdoom:
+        filenames.append('!DOOM.WAD')
+    if lump in lumps_doom2:
+        filenames.append('!DOOM2.WAD')
+    if lump in lumps_tnt:
+        filenames.append('!TNT.WAD')
+    if lump in lumps_plutonia:
+        filenames.append('!PLUTONIA.WAD')
+
+    if 1 == len(filenames):
         continue
 
-    filenames = wads.values()
     filenames.sort(key = lambda name: name.lower())
 
     duplicates.append('|{0}|{1}||'.format(lump, ', '.join(filenames)))

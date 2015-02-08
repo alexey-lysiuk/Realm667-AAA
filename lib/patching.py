@@ -89,10 +89,18 @@ def apply_patch_242(wad): # Freeze Rifle
     # fix incorrect sprite
     replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
 
+def apply_patch_252(wad): # Tesla Cannon
+    # fix sprite name collisions with #313 Plasma Bolter
+    replace_in_decorate(wad, r'(\s+)BOLT(\s+A\s+)', r'\1BLTA\2')
+    replace_in_decorate(wad,
+        r'Inventory.Icon(\s+)"BOLTA0"',
+        r'Inventory.Icon\1"BLTAA0"')
+    rename_lump(wad, 'BOLTA0', 'BLTAA0')
+
 def apply_patch_271(wad): # Saw Thrower
     # fix incorrect sprite
     replace_in_decorate(wad,
-        r'Inventory.Icon(\s)SAWA',
+        r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
 
 def apply_patch_272(wad): # Sniper Rifle
@@ -131,6 +139,13 @@ def apply_patch_543(wad): # UTNT Pyro-Cannon
 def apply_patch_560(wad): # Nailgun (SG)
     # fix shared class name with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
+
+def apply_patch_561(wad): # Reaper
+    # fix sprite name collisions with #581 Colt 45
+    replace_in_decorate(wad, r'(\s)COLT(\s)', r'\1CRPR\2')
+    rename_lump(wad, 'COLTA0', 'CRPRA0')
+    rename_lump(wad, 'COLTB0', 'CRPRB0')
+    rename_lump(wad, 'COLTC0', 'CRPRC0')
 
 def apply_patch_582(wad): # Super Crossbow
     # fix missing marker

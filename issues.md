@@ -19,11 +19,11 @@
 ### Duplicate lump names, weapons only
 |Name|WAD Files|Comments|
 |---|---|---|
-|AGASA0|Flamethrower.wad, UTNTPyroCannon.wad||
-|AGASB0|Flamethrower.wad, UTNTPyroCannon.wad||
-|ANIME0|SawedOff.wad, SawedOff.wad||
-|ANIMF0|SawedOff.wad, SawedOff.wad||
-|ANIMG0|SawedOff.wad, SawedOff.wad||
+|AGASA0|Flamethrower.wad, UTNTPyroCannon.wad|The same sprite saved with different PNG settings|
+|AGASB0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|~~ANIME0~~|~~SawedOff.wad, SawedOff.wad~~|Sprites with different weapon shift in firing state|
+|~~ANIMF0~~|~~SawedOff.wad, SawedOff.wad~~|_same as above_|
+|~~ANIMG0~~|~~SawedOff.wad, SawedOff.wad~~|_same as above_|
 |~~AXE~~|~~Axe.wad, Axe.wad~~|Compiled ACS and its source code in different namespaces|
 |BOLTA0|PlasmaBolter.wad, TeslaCannon.wad||
 |BXPLL0|CryoBow.wad, PlasmaBallista.wad||
@@ -31,9 +31,9 @@
 |COLTA0|Colt45.wad, Reaper.wad||
 |COLTB0|Colt45.wad, Reaper.wad||
 |COLTC0|Colt45.wad, Reaper.wad||
-|COTSFPO|CultStaff.WAD, CultStaff.WAD||
-|CREDIT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SuperCrossbow.wad||
-|DEVGN0|Devastators.wad, Devastators.wad||
+|~~COTSFPO~~|~~CultStaff.WAD, CultStaff.WAD~~|Similar sounds with the same name|
+|~~CREDIT~~|~~!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SuperCrossbow.wad~~|Informational text, lump removed|
+|~~DEVGN0~~|~~Devastators.wad, Devastators.wad~~|Sprites with different weapon shift in firing state|
 |DSDBCLS|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
 |DSDBLOAD|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
 |DSDBOPN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
@@ -79,35 +79,35 @@
 |EXP3X0|jackbomb.wad, SeekerBazooka.wad||
 |EXP3Y0|jackbomb.wad, SeekerBazooka.wad||
 |EXP3Z0|jackbomb.wad, SeekerBazooka.wad||
-|FLMEA0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEB0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEC0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMED0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEE0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEF0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEG0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEH0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEI0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEJ0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEK0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEL0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEM0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FLMEN0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXA0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXB0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXC0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXD0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXE0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXF0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXG0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXH0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXI0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXJ0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXK0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXL0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXM0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXN0|Flamethrower.wad, UTNTPyroCannon.wad||
-|FRFXO0|Flamethrower.wad, UTNTPyroCannon.wad||
+|FLMEA0|Flamethrower.wad, UTNTPyroCannon.wad|The same sprite saved with different PNG settings|
+|FLMEB0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEC0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMED0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEE0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEF0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEG0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEH0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEI0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEJ0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEK0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEL0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEM0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FLMEN0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXA0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXB0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXC0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXD0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXE0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXF0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXG0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXH0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXI0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXJ0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXK0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXL0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXM0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXN0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
+|FRFXO0|Flamethrower.wad, UTNTPyroCannon.wad|_same as above_|
 |GLAUA0|GrenadeLauncher(KDiZD).wad, GrenadeLauncher.wad||
 |GRNDA1|GrenadeLauncher(KDiZD).wad, M79.wad||
 |GRNDA5|GrenadeLauncher(KDiZD).wad, M79.wad||

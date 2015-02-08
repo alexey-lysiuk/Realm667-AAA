@@ -4,7 +4,6 @@
 |---|-----|-------|
 |~~243~~|~~Unmaker~~|~~DECORATE classes and sprite names confict between centered and angled versions WADs~~ Centered version was excluded|
 |236, 266|Flare Gun, Napalm Launcher|The same `actor NapalmDebris` is used by both weapons. Causes _Tried to register class 'NapalmDebris' more than once_ error|
-|308|Doom 3 SSG|Sprite `SGN2A0` replaces original one from `doom2.wad`|
 |313, 659|Plasma Bolter, Pulse Rifle UAC|The same `actor PlasmaBolterShot1` and `actor PlasmaBolterShot1Trail` are used by both weapons. Causes _Tried to register class '...' more than once_ errors|
 |444, 510|Necronomicon, Vile Staff|The same `actor Darkmana` is used by both weapons. Causes _Tried to register class 'Darkmana' more than once_ error|
 |496, 560|Nailgun (MG), Nailgun (SG)|The same `actor Nail` is used by both weapons. Causes _Tried to register class 'Nails' more than once_ error|
@@ -31,7 +30,12 @@
 |COLTB0|Colt45.wad, Reaper.wad||
 |COLTC0|Colt45.wad, Reaper.wad||
 |COTSFPO|CultStaff.WAD, CultStaff.WAD||
+|CREDIT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SuperCrossbow.wad||
 |DEVGN0|Devastators.wad, Devastators.wad||
+|DSDBCLS|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
+|DSDBLOAD|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
+|DSDBOPN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
+|DSDSHTGN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
 |DSMINIGN|Minigun.wad, UberMinigun.wad||
 |EXP2A0|Deviation.wad, SeekerBazooka.wad||
 |EXP2B0|Deviation.wad, SeekerBazooka.wad||
@@ -117,10 +121,20 @@
 |HNDGO0|Ammo satchels.wad, HandGrenade.wad||
 |HNDGP0|Ammo satchels.wad, HandGrenade.wad||
 |LANGUAGE|Arbalest.wad, CryoBow.wad||
+|MISLA1|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
+|MISLA5|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
+|MISLA6A4|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
+|MISLA7A3|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
+|MISLA8A2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
 |NBOXA0|Nailgun(SG).wad, PulseNailgun.wad||
 |PYXPO0|UTNTPyroCannon.wad, UTNTPyroCannon.wad||
 |~~RELOADIN~~|~~Drummle.wad, Enforcer(Pistol).wad~~|Alternative DECORATE lump, unused by engine|
 |REVII0|Necronomicon.wad, VileStaff.wad||
+|SGN2A0|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
+|SMRTA0|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SmartGun.wad||
+|SMRTB0|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SmartGun.wad||
+|SMRTC0|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SmartGun.wad||
+|SMRTD0|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SmartGun.wad||
 |SPAFA0|SPAS-12.wad, SwatShotgun.wad||
 |SPASA0|SPAS-12.wad, SwatShotgun.wad||
 |SPIKB0|NailGun.wad, SkullStaff.wad||

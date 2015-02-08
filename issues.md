@@ -25,12 +25,12 @@
 |~~ANIMF0~~|~~SawedOff.wad, SawedOff.wad~~|_same as above_|
 |~~ANIMG0~~|~~SawedOff.wad, SawedOff.wad~~|_same as above_|
 |~~AXE~~|~~Axe.wad, Axe.wad~~|Compiled ACS and its source code in different namespaces|
-|BOLTA0|PlasmaBolter.wad, TeslaCannon.wad||
-|BXPLL0|CryoBow.wad, PlasmaBallista.wad||
-|BXPLM0|CryoBow.wad, PlasmaBallista.wad||
-|COLTA0|Colt45.wad, Reaper.wad||
-|COLTB0|Colt45.wad, Reaper.wad||
-|COLTC0|Colt45.wad, Reaper.wad||
+|~~BOLTA0~~|~~PlasmaBolter.wad, TeslaCannon.wad~~|Renamed Tesla Cannon ammo sprite|
+|~~BXPLL0~~|~~CryoBow.wad, PlasmaBallista.wad~~|The same sprite with different PNG binary layout|
+|~~BXPLM0~~|~~CryoBow.wad, PlasmaBallista.wad~~|_same as above_|
+|~~COLTA0~~|~~Colt45.wad, Reaper.wad~~|Renamed Reaper sprite|
+|~~COLTB0~~|~~Colt45.wad, Reaper.wad~~|_same as above_|
+|~~COLTC0~~|~~Colt45.wad, Reaper.wad~~|_same as above_|
 |~~COTSFPO~~|~~CultStaff.WAD, CultStaff.WAD~~|Similar sounds with the same name|
 |~~CREDIT~~|~~!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SuperCrossbow.wad~~|Informational text, lump removed|
 |~~DEVGN0~~|~~Devastators.wad, Devastators.wad~~|Sprites with different weapon shift in firing state|
@@ -129,9 +129,9 @@
 |MISLA7A3|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
 |MISLA8A2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
 |NBOXA0|Nailgun(SG).wad, PulseNailgun.wad||
-|PYXPO0|UTNTPyroCannon.wad, UTNTPyroCannon.wad||
+|~~PYXPO0~~|~~UTNTPyroCannon.wad, UTNTPyroCannon.wad~~|Different frame of explosion animation with the same name|
 |~~RELOADIN~~|~~Drummle.wad, Enforcer(Pistol).wad~~|Alternative DECORATE lump, unused by engine|
-|REVII0|Necronomicon.wad, VileStaff.wad||
+|~~REVII0~~|~~Necronomicon.wad, VileStaff.wad~~|The same sprite saved with different PNG settings|
 |SGN2A0|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
 |SMRTA0|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SmartGun.wad||
 |SMRTB0|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SmartGun.wad||

@@ -133,10 +133,13 @@ def apply_patch_560(wad): # Nailgun (SG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
 
 def apply_patch_582(wad): # Super Crossbow
+    # fix missing marker
     sprite_end_marker = 'SS_END'
     if not wad.find(sprite_end_marker):
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
+    # remove unused text lump conflicting with Doom IWADs
+    remove_lump(wad, 'CREDIT')
 
 def apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle

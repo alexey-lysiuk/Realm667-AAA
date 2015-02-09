@@ -38,47 +38,47 @@
 |DSDBLOAD|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
 |DSDBOPN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
 |DSDSHTGN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
-|DSMINIGN|Minigun.wad, UberMinigun.wad||
-|EXP2A0|Deviation.wad, SeekerBazooka.wad||
-|EXP2B0|Deviation.wad, SeekerBazooka.wad||
-|EXP2C0|Deviation.wad, SeekerBazooka.wad||
-|EXP2D0|Deviation.wad, SeekerBazooka.wad||
-|EXP2E0|Deviation.wad, SeekerBazooka.wad||
-|EXP2F0|Deviation.wad, SeekerBazooka.wad||
-|EXP2G0|Deviation.wad, SeekerBazooka.wad||
-|EXP2H0|Deviation.wad, SeekerBazooka.wad||
-|EXP2I0|Deviation.wad, SeekerBazooka.wad||
-|EXP2J0|Deviation.wad, SeekerBazooka.wad||
-|EXP2K0|Deviation.wad, SeekerBazooka.wad||
-|EXP2L0|Deviation.wad, SeekerBazooka.wad||
-|EXP2M0|Deviation.wad, SeekerBazooka.wad||
-|EXP2N0|Deviation.wad, SeekerBazooka.wad||
-|EXP3A0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3B0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3C0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3D0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3E0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3F0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3G0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3H0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3I0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3J0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3K0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3L0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3M0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3N0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3O0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3P0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3Q0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3R0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3S0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3T0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3U0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3V0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3W0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3X0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3Y0|jackbomb.wad, SeekerBazooka.wad||
-|EXP3Z0|jackbomb.wad, SeekerBazooka.wad||
+|~~DSMINIGN~~|~~Minigun.wad, UberMinigun.wad~~|Renamed Minigun sound|
+|~~EXP2A0~~|~~Deviation.wad, SeekerBazooka.wad~~|Renamed Seeker Bazooka and Napalm Launcher sprites|
+|~~EXP2B0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2C0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2D0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2E0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2F0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2G0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2H0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2I0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2J0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2K0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2L0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2M0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP2N0~~|~~Deviation.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3A0~~|~~jackbomb.wad, SeekerBazooka.wad~~|Renamed Seeker Bazooka Launcher sprite|
+|~~EXP3B0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3C0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3D0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3E0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3F0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3G0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3H0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3I0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3J0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3K0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3L0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3M0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3N0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3O0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3P0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3Q0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3R0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3S0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3T0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3U0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3V0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3W0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3X0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3Y0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
+|~~EXP3Z0~~|~~jackbomb.wad, SeekerBazooka.wad~~|_same as above_|
 |~~FLMEA0~~|~~Flamethrower.wad, UTNTPyroCannon.wad~~|The same sprite saved with different PNG settings|
 |~~FLMEB0~~|~~Flamethrower.wad, UTNTPyroCannon.wad~~|_same as above_|
 |~~FLMEC0~~|~~Flamethrower.wad, UTNTPyroCannon.wad~~|_same as above_|
@@ -128,7 +128,7 @@
 |MISLA6A4|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
 |MISLA7A3|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
 |MISLA8A2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Deviation.wad||
-|NBOXA0|Nailgun(SG).wad, PulseNailgun.wad||
+|~~NBOXA0~~|~~Nailgun(SG).wad, PulseNailgun.wad~~|Renamed Pulse Nailgun sprite|
 |~~PYXPO0~~|~~UTNTPyroCannon.wad, UTNTPyroCannon.wad~~|Different frame of explosion animation with the same name|
 |~~RELOADIN~~|~~Drummle.wad, Enforcer(Pistol).wad~~|Alternative DECORATE lump, unused by engine|
 |~~REVII0~~|~~Necronomicon.wad, VileStaff.wad~~|The same sprite saved with different PNG settings|

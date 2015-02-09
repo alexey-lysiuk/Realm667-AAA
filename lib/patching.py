@@ -18,6 +18,7 @@
 
 
 import re
+import string
 import doomwad
 
 
@@ -66,6 +67,11 @@ def remove_lump(wad, name):
 
 # Armory
 
+def apply_patch_225(wad): # Minigun
+    # fix sound name collision with #235 Uber Minigun
+    replace_in_lump('SNDINFO', wad, r'(\s+)DSMINIGN(\s*)', r'\1DSMNGUNF\2')
+    rename_lump(wad, 'DSMINIGN', 'DSMNGUNF')
+
 def apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle
     replace_in_decorate(wad,
@@ -80,6 +86,16 @@ def apply_patch_230(wad): # Plasma Gun
     replace_in_decorate(wad,
         r'([^\w])PlasmaTrail([^\w])',
         r'\1D3PlasmaTrail\2')
+
+def apply_patch_240(wad): # Seeker Bazooka
+    # fix sprite name collisions with #422 Deviation Launcher
+    replace_in_decorate(wad, r'(\s+)EXP2(\s+)', r'\1SXP2\2')
+    for c in string.ascii_uppercase[:14]:
+        rename_lump(wad, 'EXP2{0}0'.format(c), 'SXP2{0}0'.format(c))
+    # fix sprite name collisions with #536 Jackbomb
+    replace_in_decorate(wad, r'(\s+)EXP3(\s+)', r'\1SXP3\2')
+    for c in string.ascii_uppercase:
+        rename_lump(wad, 'EXP3{0}0'.format(c), 'SXP3{0}0'.format(c))
 
 def apply_patch_241(wad): # Devastator
     # fix incorrect sprite
@@ -96,6 +112,13 @@ def apply_patch_252(wad): # Tesla Cannon
         r'Inventory.Icon(\s+)"BOLTA0"',
         r'Inventory.Icon\1"BLTAA0"')
     rename_lump(wad, 'BOLTA0', 'BLTAA0')
+
+def apply_patch_266(wad): # Napalm Launcher
+    # fix sprite name collisions with #422 Deviation Launcher
+    # the same set of sprites is also used for #240 Seeker Bazooka
+    replace_in_decorate(wad, r'(\s+)EXP2(\s+)', r'\1SXP2\2')
+    for c in string.ascii_uppercase[:14]:
+        rename_lump(wad, 'EXP2{0}0'.format(c), 'SXP2{0}0'.format(c))
 
 def apply_patch_271(wad): # Saw Thrower
     # fix incorrect sprite
@@ -169,6 +192,11 @@ def apply_patch_685(wad): # Ammo Satchels
 def apply_patch_762(wad): # Model 1887
     # fix wrong end marker
     rename_lump(wad, 'SS_STOP', 'SS_END')
+
+def apply_patch_764(wad): #764 Pulse Nailgun
+    # fix sprite name collisions with #496 Nailgun (MG) and #560 Nailgun (SG)
+    replace_in_decorate(wad, r'NBOX(\s+)A(\s+)1', r'NBOX\1A\g<2>1')
+    rename_lump(wad, 'NBOXA0', 'NBOXB0')
 
 def apply_patch_804(wad): # Light Machinegun
     # fix class name collision with #233 Machinegun

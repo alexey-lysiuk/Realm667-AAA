@@ -19,7 +19,7 @@
 #
 
 
-import os, sys
+import os, re, sys
 
 sys.path.append(os.path.dirname(__file__))
 
@@ -35,11 +35,33 @@ if len(sys.argv) < 2:
 wad_file = open(sys.argv[1], 'rb')
 wad = doomwad.WadFile(wad_file)
 
+def skip_namespace(namespace):
+    is_doom1_map = re.match(r'E\dM\d+', namespace)
+    is_doom2_map = re.match(r'MAP\d+', namespace)
+
+    sprite_marker = 'S_START'
+    is_sprite = sprite_marker == namespace or sprite_marker == namespace[:1]
+
+    return is_doom1_map or is_doom2_map or is_sprite
+
 print('lumps = (')
 
-for lump in wad.lumps:
-    template = lump.marker and "# {0}" or  "'{0}',"
-    print(template.format(lump.name))
+for namespace in wad.namespaces():
+    if not skip_namespace(namespace):
+        if len(namespace) > 0:
+            print('# {0}'.format(namespace))
+
+        lumps = wad.uniquenamespacelumps(namespace)
+        lumps.sort(key = lambda lump: lump.name)
+
+        for lump in lumps:
+            if not lump.marker:
+                print("'{0}',".format(lump.name))
+
+print(')\n\nsprites = (')
+
+for sprite in wad.spritenames():
+    print("'{0}',".format(sprite))
 
 print(')')
 

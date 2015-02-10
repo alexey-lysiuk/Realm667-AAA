@@ -44,6 +44,7 @@ class Lump(object):
         self.data = data
         self.index = index
         self.marker = data == "" and name not in specnames
+        self.namespace = ''
 
 class WadFile(object):
     def __init__(self, data_or_file):
@@ -81,6 +82,26 @@ class WadFile(object):
             lumps.append(Lump(name.upper(), data, i))
 
         self.lumps = lumps
+        self._assignnamespaces()
+
+    def _assignnamespaces(self):
+        namespace = ''
+        ismap = False
+
+        for lump in self:
+            ismapcur = lump.name in specnames
+
+            if lump.marker:
+                namespace = lump.name
+                ismap = False
+            else:
+                if not ismapcur and ismap:
+                    namespace = ''
+                    ismap = False
+
+                lump.namespace = namespace
+
+            ismap = ismapcur
 
     def writeto(self, file):
         directory = []

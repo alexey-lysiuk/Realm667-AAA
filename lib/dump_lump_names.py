@@ -27,13 +27,9 @@ import doomwad
 
 
 if len(sys.argv) < 2:
-    print('Usage: {0} file.wad'.format(__file__))
+    print('Usage: {0} file.wad ...'.format(__file__))
     exit(1)
 
-# Scan WAD
-
-wad_file = open(sys.argv[1], 'rb')
-wad = doomwad.WadFile(wad_file)
 
 def skip_namespace(namespace):
     is_doom1_map = re.match(r'E\dM\d+', namespace)
@@ -44,25 +40,36 @@ def skip_namespace(namespace):
 
     return is_doom1_map or is_doom2_map or is_sprite
 
-print('lumps = (')
+def dump_names(filename):
+    wad_file = open(filename, 'rb')
+    wad = doomwad.WadFile(wad_file)
 
-for namespace in wad.namespaces():
-    if not skip_namespace(namespace):
-        if len(namespace) > 0:
-            print('# {0}'.format(namespace))
+    shortname = os.path.basename(filename).lower()
+    shortname = shortname.split('.', 1)[0]
 
-        lumps = wad.uniquenamespacelumps(namespace)
-        lumps.sort(key = lambda lump: lump.name)
+    print('lumps_{0} = ('.format(shortname))
 
-        for lump in lumps:
-            if not lump.marker:
-                print("'{0}',".format(lump.name))
+    for namespace in wad.namespaces():
+        if not skip_namespace(namespace):
+            if len(namespace) > 0:
+                print('# {0}'.format(namespace))
 
-print(')\n\nsprites = (')
+            lumps = wad.uniquenamespacelumps(namespace)
+            lumps.sort(key = lambda lump: lump.name)
 
-for sprite in wad.spritenames():
-    print("'{0}',".format(sprite))
+            for lump in lumps:
+                if not lump.marker:
+                    print("'{0}',".format(lump.name))
 
-print(')')
+    print(')\n\nsprites_{0} = ('.format(shortname))
 
-wad_file.close()
+    for sprite in wad.spritenames():
+        print("'{0}',".format(sprite))
+
+    print(')\n')
+
+    wad_file.close()
+
+
+for filename in sys.argv[1:]:
+    dump_names(filename)

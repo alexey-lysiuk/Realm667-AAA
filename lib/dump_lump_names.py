@@ -32,7 +32,7 @@ if len(sys.argv) < 2:
 
 # Scan WAD
 
-wad_file = open(sys.argv[1])
+wad_file = open(sys.argv[1], 'rb')
 wad = doomwad.WadFile(wad_file)
 
 print('lumps = (')

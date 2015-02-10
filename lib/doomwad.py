@@ -185,7 +185,55 @@ class WadFile(object):
     def __iter__(self):
         return iter(self.lumps)
 
+    def namespaces(self):
+        """ Return sorted list of namespace names.
+            Namespace is named by its start marker.
+            An empty string designates the global namespace """
+        namespaces = set()
 
+        for lump in self:
+            if lump.namespace not in namespaces:
+                namespaces.add(lump.namespace)
+
+        return sorted(namespaces)
+
+    def namespacelumps(self, namespace):
+        """ Return list of lumps belong to a namespace with the given name
+            lumps ordering is preserved and duplicates are included """
+        lumps = []
+
+        for lump in self:
+            if lump.namespace == namespace:
+                lumps.append(lump)
+
+        return lumps
+
+    def uniquenamespacelumps(self, namespace):
+        """ Return list of lumps belong to a namespace with the given name
+            lumps ordering is preserved and duplicates are removed """
+        lumps = []
+        names = set()
+
+        for lump in self.namespacelumps(namespace):
+            if lump.name not in names:
+                lumps.append(lump)
+                names.add(lump.name)
+
+        return lumps
+
+    def spritenames(self):
+        """ Return sorted list of sprite names """
+        names = set()
+        marker = 'S_START'
+
+        for lump in self:
+            namespace = lump.namespace
+
+            if namespace == marker or namespace[:1] == marker:
+                # sprite name is the first four characters
+                names.add(lump.name[:4])
+
+        return sorted(names)
 
 
 parsers = {}

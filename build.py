@@ -55,6 +55,19 @@ def add_lump(zip, filename):
     zip.write('data/{0}'.format(filename), filename)
 
 
+wad_filenames = set()
+
+def make_wad_filename(original_filename):
+    wad_name = os.path.basename(original_filename)
+
+    while wad_name in wad_filenames:
+        name, ext = wad_name.rsplit('.', 1)
+        wad_name  = '{0}@.{1}'.format(name, ext)
+
+    wad_filenames.add(wad_name)
+
+    return wad_name
+
 def main():
     prepare()
 
@@ -123,7 +136,7 @@ def main():
                 wad_data = cStringIO.StringIO()
                 wad.writeto(wad_data)
 
-                output_file.writestr(os.path.basename(filename), wad_data.getvalue())
+                output_file.writestr(make_wad_filename(filename), wad_data.getvalue())
 
             except Exception as ex:
                 print('Error: Failed to add {0}'.format(filename))

@@ -15,6 +15,7 @@
 |541, 543|Flamethrower, UTNT Pyro-Cannon|The same `actor Gas` and `actor BigGas` are used by both weapons. Causes _Tried to register class '...' more than once_ errors|
 |~~717~~|~~LandMine Layer~~|~~DECORATE classes and sprite names confict between WADs for Doom and for Strife. Causes multiple _Tried to register class '...' more than once_ errors~~ Strife version was excluded|
 |874, 876|BFG 2704, Spray Cannon|_Almost_ the same `actor 2704Ball` and `actor 2704Ball2` are used by both weapons, different by obituary message only. Causes _Tried to register class '...' more than once_ errors and wrong obituary message for one of the weapons|
+|816|CryoBow|Custom palette is used. It's not included in generated .pk3|
 |926|Shield Spells|DECORATE classes and sprite names confict between Scroll and Sphere WADs|
 
 ### Duplicate lump names
@@ -30,7 +31,7 @@
 |~~DSMINIGN~~|~~Minigun.wad, UberMinigun.wad~~|Renamed Minigun sound|
 |~~DSMCGUNF~~|~~Heavy Machinegun.wad, Light Machinegun.wad~~|The same file|
 |~~FMTRFLAM~~|~~Flamethrower.wad, UTNTPyroCannon.wad~~|The same file|
-|LANGUAGE|Arbalest.wad, CryoBow.wad||
+|~~LANGUAGE~~|~~Arbalest.wad, CryoBow.wad~~|It is correct to have LANGUAGE lumps in different WADs. Content from all files are used|
 |~~NAILFLY~~|~~Nailgun(MG).wad, Nailgun(SG).wad~~|The same file|
 |~~NAILHIT~~|~~ImpalerXBow.wad, Nailgun(MG).wad, Nailgun(SG).wad~~|The same file|
 |~~NAILHTBD~~|~~ImpalerXBow.wad, Nailgun(MG).wad, Nailgun(SG).wad~~|The same file|

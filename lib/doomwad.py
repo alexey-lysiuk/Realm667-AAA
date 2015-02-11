@@ -38,6 +38,11 @@ specnames = set(('THINGS', 'VERTEXES','LINEDEFS', 'SIDEDEFS', 'SEGS',
                  'SSECTORS', 'NODES', 'SECTORS', 'REJECT', 'BLOCKMAP',
                  'BEHAVIOR', 'SCRIPTS'))
 
+spritemarker = 'S_START'
+
+def issrpitenamespace(namespace):
+    return namespace == spritemarker or namespace[1:] == spritemarker
+
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
@@ -230,9 +235,7 @@ class WadFile(object):
         marker = 'S_START'
 
         for lump in self:
-            namespace = lump.namespace
-
-            if namespace == marker or namespace[1:] == marker:
+            if issrpitenamespace(lump.namespace):
                 # sprite name is the first four characters
                 names.add(lump.name[:4])
 

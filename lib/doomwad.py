@@ -229,15 +229,23 @@ class WadFile(object):
 
         return lumps
 
-    def spritenames(self):
-        """ Return sorted list of sprite names """
-        names = set()
-        marker = 'S_START'
+    def spritelumps(self):
+        """ Return list of sprite lumps """
+        lumps = []
 
         for lump in self:
             if issrpitenamespace(lump.namespace):
-                # sprite name is the first four characters
-                names.add(lump.name[:4])
+                lumps.append(lump)
+
+        return lumps
+
+    def spritenames(self):
+        """ Return sorted list of sprite names """
+        names = set()
+
+        for lump in self.spritelumps():
+            # sprite name is the first four characters
+            names.add(lump.name[:4])
 
         return sorted(names)
 

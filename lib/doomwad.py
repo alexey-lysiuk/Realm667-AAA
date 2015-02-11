@@ -92,7 +92,10 @@ class WadFile(object):
             ismapcur = lump.name in specnames
 
             if lump.marker:
-                namespace = lump.name
+                if lump.name.endswith('_END'):
+                    namespace = ''
+                else:
+                    namespace =  lump.name
                 ismap = False
             else:
                 if not ismapcur and ismap:
@@ -229,7 +232,7 @@ class WadFile(object):
         for lump in self:
             namespace = lump.namespace
 
-            if namespace == marker or namespace[:1] == marker:
+            if namespace == marker or namespace[1:] == marker:
                 # sprite name is the first four characters
                 names.add(lump.name[:4])
 

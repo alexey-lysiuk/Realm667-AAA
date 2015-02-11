@@ -25,7 +25,6 @@
  It prints result to stdout in 'known issues' markdown format
 '''
 
-import md5
 import os, sys
 import zipfile
 
@@ -34,7 +33,7 @@ os.chdir(self_path)
 
 import doomwad
 from repo import excluded_wads
-from lumps_iwads import lumps_ultdoom, lumps_doom2, lumps_tnt, lumps_plutonia
+from lumps_iwads import lumps_ultdoom, lumps_doom2, lumps_tnt, lumps_plutonia, sprites_doom_all
 
 
 excluded_lump_names = [
@@ -54,6 +53,7 @@ excluded_lump_names = [
 ]
 
 lumps_wads = { }
+sprites_wads = { }
 
 
 cache_path = '../cache/'
@@ -105,45 +105,60 @@ for zip_filename in zip_filenames:
         if analyze_cache:
             zip_wad = '[{:04d}] {:s}'.format(asset_id, zipped_filename)
 
-        for lump in wad.lumps:
-            if not lump.name in excluded_lump_names:
-                hash = md5.new()
-                hash.update(lump.data)
-                hash_str = hash.hexdigest()
+        # Check all lumps except sprites
+
+        for namespace in wad.namespaces():
+            if doomwad.issrpitenamespace(namespace):
+                continue
+
+            for lump in wad.uniquenamespacelumps(namespace):
+                if lump.name in excluded_lump_names:
+                    continue
 
                 if lump.name in lumps_wads:
-                    lumps_wads[lump.name][hash_str] = zip_wad
+                    lumps_wads[lump.name].append(zip_wad)
                 else:
-                    lumps_wads[lump.name] = {hash_str: zip_wad}
+                    lumps_wads[lump.name] = [zip_wad]
+
+        # Check sprites (4 characters names)
+
+        for sprite in wad.spritenames():
+            if sprite in sprites_wads:
+                sprites_wads[sprite].append(zip_wad)
+            else:
+                sprites_wads[sprite] = [zip_wad]
 
     zip_file.close()
 
 # Print names collisions
 
-duplicates = []
+def print_duplicates(mapping, iwads):
+    duplicates = []
 
-for lump in lumps_wads:
-    wads = lumps_wads[lump]
+    for name in mapping:
+        wads = mapping[name]
 
-    filenames = wads.values()
+        for iwad in iwads:
+            if name in iwad[1]:
+                wads.append(iwad[0])
 
-    if lump in lumps_ultdoom:
-        filenames.append('!DOOM.WAD')
-    if lump in lumps_doom2:
-        filenames.append('!DOOM2.WAD')
-    if lump in lumps_tnt:
-        filenames.append('!TNT.WAD')
-    if lump in lumps_plutonia:
-        filenames.append('!PLUTONIA.WAD')
+        if 1 == len(wads):
+            continue
 
-    if 1 == len(filenames):
-        continue
+        wads.sort(key = lambda name: name.lower())
 
-    filenames.sort(key = lambda name: name.lower())
+        duplicates.append('|{0}|{1}||'.format(name, ', '.join(wads)))
 
-    duplicates.append('|{0}|{1}||'.format(lump, ', '.join(filenames)))
+    duplicates.sort()
 
-duplicates.sort()
+    for dup in duplicates:
+        print(dup)
 
-for dup in duplicates:
-    print(dup)
+print_duplicates(lumps_wads, (
+    ('!DOOM.WAD',     lumps_ultdoom ),
+    ('!DOOM2.WAD',    lumps_doom2   ),
+    ('!TNT.WAD',      lumps_tnt     ),
+    ('!PLUTONIA.WAD', lumps_plutonia),
+))
+print('')
+print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))

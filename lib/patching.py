@@ -17,9 +17,11 @@
 #
 
 
+import random
 import re
 import string
 import doomwad
+from lumps_iwads import sprites_doom_all
 
 
 # Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
@@ -65,6 +67,45 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
+sprites = set(sprites_doom_all)
+
+def unique_sprite_name():
+    name_chars = string.ascii_uppercase + string.digits
+    char_count = len(name_chars)
+
+    while True:
+        unique_name = ''
+
+        for i in xrange(0, 4):
+            index = random.randint(0, char_count - 1)
+            unique_name += name_chars[index]
+
+        if unique_name not in sprites:
+            sprites.add(unique_name)
+            return unique_name
+
+    assert(False)
+    return '????'
+
+def rename_sprite(wad, sprite):
+    new_name = unique_sprite_name()
+
+    replace_in_decorate(wad,
+        r'(\s+){0}(\s+)'.format(sprite),
+        r'\g<1>{0}\g<2>'.format(new_name))
+
+    for lump in wad.spritelumps():
+        if lump.name.startswith(sprite):
+            lump.name = new_name + lump.name[4:]
+
+def make_unique_sprites(wad):
+    for sprite in wad.spritenames():
+        if sprite in sprites:
+            rename_sprite(wad, sprite)
+        else:
+            sprites.add(sprite)
+
+
 # Armory
 
 def apply_patch_225(wad): # Minigun
@@ -77,25 +118,12 @@ def apply_patch_228(wad): # Zombieman Rifle
     replace_in_decorate(wad,
         r'(actor\s+)Rifle(\s*:\s*\w+)',
         r'\1ZombiemanRifle\2')
-    # fix sprite name collisions with #228 Zombieman Rifle and #407 Rifle
-    replace_in_decorate(wad, r'RIFL(\s+)A(\s+)', r'RIFL\1C\2')
-    rename_lump(wad, 'RIFLA0', 'RIFLC0')
 
 def apply_patch_230(wad): # Plasma Gun
     # fix class name collision with #329 Plasma Shotgun
     replace_in_decorate(wad,
         r'([^\w])PlasmaTrail([^\w])',
         r'\1D3PlasmaTrail\2')
-
-def apply_patch_240(wad): # Seeker Bazooka
-    # fix sprite name collisions with #422 Deviation Launcher
-    replace_in_decorate(wad, r'(\s+)EXP2(\s+)', r'\1SXP2\2')
-    for c in string.ascii_uppercase[:14]:
-        rename_lump(wad, 'EXP2{0}0'.format(c), 'SXP2{0}0'.format(c))
-    # fix sprite name collisions with #536 Jackbomb
-    replace_in_decorate(wad, r'(\s+)EXP3(\s+)', r'\1SXP3\2')
-    for c in string.ascii_uppercase:
-        rename_lump(wad, 'EXP3{0}0'.format(c), 'SXP3{0}0'.format(c))
 
 def apply_patch_241(wad): # Devastator
     # fix incorrect sprite
@@ -105,39 +133,11 @@ def apply_patch_242(wad): # Freeze Rifle
     # fix incorrect sprite
     replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
 
-def apply_patch_252(wad): # Tesla Cannon
-    # fix sprite name collisions with #313 Plasma Bolter
-    replace_in_decorate(wad, r'(\s+)BOLT(\s+A\s+)', r'\1BLTA\2')
-    replace_in_decorate(wad,
-        r'Inventory.Icon(\s+)"BOLTA0"',
-        r'Inventory.Icon\1"BLTAA0"')
-    rename_lump(wad, 'BOLTA0', 'BLTAA0')
-
-def apply_patch_266(wad): # Napalm Launcher
-    # fix sprite name collisions with #422 Deviation Launcher
-    # the same set of sprites is also used for #240 Seeker Bazooka
-    replace_in_decorate(wad, r'(\s+)EXP2(\s+)', r'\1SXP2\2')
-    for c in string.ascii_uppercase[:14]:
-        rename_lump(wad, 'EXP2{0}0'.format(c), 'SXP2{0}0'.format(c))
-
 def apply_patch_271(wad): # Saw Thrower
     # fix incorrect sprite
     replace_in_decorate(wad,
         r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
-
-def apply_patch_272(wad): # Sniper Rifle
-    # fix sprite name collisions with #228 Zombieman Rifle and #407 Rifle
-    replace_in_decorate(wad, r'RIFL(\s+)A(\s+)', r'RIFL\1B\2')
-    rename_lump(wad, 'RIFLA0', 'RIFLB0')
-
-    # fix sprite name collisions with #328 Spellbinder
-    replace_in_decorate(wad, r'PROJ(\s+)A(\s+)', r'PRJS\1A\2')
-    rename_lump(wad, 'PROJA1', 'PRJSA1')
-    rename_lump(wad, 'PROJA2A8', 'PRJSA2A8')
-    rename_lump(wad, 'PROJA3A7', 'PRJSA3A7')
-    rename_lump(wad, 'PROJA4A6', 'PRJSA4A6')
-    rename_lump(wad, 'PROJA5', 'PRJSA5')
 
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
@@ -150,25 +150,13 @@ def apply_patch_496(wad): # Nailgun (MG)
     # fix shared class name with #560 Nailgun (SG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurMG')
 
-def apply_patch_522(wad): # Pulse Rifle
-    # fix sprite name collisions with #659 Pulse Rifle UAC
-    replace_in_decorate(wad, r'(\s)PULS(\s)', r'\1PLRF\2')
-    rename_lump(wad, 'PULSA0', 'PLRFA0')
-    rename_lump(wad, 'PULSB0', 'PLRFB0')
-
 def apply_patch_543(wad): # UTNT Pyro-Cannon
+    # fix class name collision with #541 Flamethrower
     replace_in_decorate(wad, 'DropFire', 'PyroDropFire')
 
 def apply_patch_560(wad): # Nailgun (SG)
     # fix shared class name with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
-
-def apply_patch_561(wad): # Reaper
-    # fix sprite name collisions with #581 Colt 45
-    replace_in_decorate(wad, r'(\s)COLT(\s)', r'\1CRPR\2')
-    rename_lump(wad, 'COLTA0', 'CRPRA0')
-    rename_lump(wad, 'COLTB0', 'CRPRB0')
-    rename_lump(wad, 'COLTC0', 'CRPRC0')
 
 def apply_patch_582(wad): # Super Crossbow
     # fix missing marker
@@ -192,11 +180,6 @@ def apply_patch_685(wad): # Ammo Satchels
 def apply_patch_762(wad): # Model 1887
     # fix wrong end marker
     rename_lump(wad, 'SS_STOP', 'SS_END')
-
-def apply_patch_764(wad): #764 Pulse Nailgun
-    # fix sprite name collisions with #496 Nailgun (MG) and #560 Nailgun (SG)
-    replace_in_decorate(wad, r'NBOX(\s+)A(\s+)1', r'NBOX\1A\g<2>1')
-    rename_lump(wad, 'NBOXA0', 'NBOXB0')
 
 def apply_patch_804(wad): # Light Machinegun
     # fix class name collision with #233 Machinegun
@@ -240,6 +223,8 @@ broken_keyconfs = [
 
 
 def apply_patch(id, wad):
+    make_unique_sprites(wad)
+
     if no_set_pitch:
         replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
     if no_class_replacement:

@@ -20,6 +20,7 @@
 
 import cStringIO
 import os, sys
+import random
 import traceback
 import urllib2
 import zipfile
@@ -39,6 +40,8 @@ url_download = 'http://realm667.com/index.php/en/component/docman/?task=doc_down
 
 
 def prepare():
+    random.seed(31337)
+
     try:
         os.remove(output_filename)
     except OSError:

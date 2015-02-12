@@ -91,6 +91,7 @@ url_beast_hh     = url_beastiary + 'heretic-hexen-style-mainmenu-137-49102'
 url_beast_strife = url_beastiary + 'strife-style-mainmenu-173-3492'
 
 url_item_powerup = url_item_shop + 'powerups-a-artifacts-mainmenu-170-4162'
+url_item_puzzle  = url_item_shop + 'keys-a-puzzle-mainmenu-171-21592'
 url_item_other   = url_item_shop + 'others-mainmenu-172-93727'
 
 urls = [
@@ -101,6 +102,7 @@ urls = [
     url_beast_hh,
     url_beast_strife,
     url_item_powerup,
+    url_item_puzzle,
     url_item_other,
 ]
 

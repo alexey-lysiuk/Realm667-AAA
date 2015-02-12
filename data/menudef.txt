@@ -106,7 +106,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_PR"
     StaticText "Doom Weapons"
     StaticText " "
 
-    Command "Pipe Bombs", "summon D2C_Pipebomb"
+    Command "Pipebomb", "summon D2C_Pipebomb"
     Command "Plasma Beam", "summon PlasmaBeam"
     Command "Plasma Bolter", "summon PlasmaBolter"
     Command "Plasma Ballista", "summon PlasmaBallista" // from CryoBow
@@ -227,6 +227,127 @@ OptionMenu "Menu_R667AAA_Armory_Other_PZ"
     Command "TommyGun", "summon BloodTommygun"
 }
 
+// Ammo
+
+OptionMenu "Menu_R667AAA_Armory_Ammo_AD"
+{
+    Command "40mm Grenades", "summon 40mmGrenades"
+    Command "Box of 40mm Grenade", "summon 40mmGrenadeBox"
+
+    Command "6YU4 Charge", "summon Bolts"
+
+    Command "Antimatter Capsule", "summon AMCell"
+    Command "Box of Antimatter Capsules", "summon AMBox"
+
+    Command "Arrows", "summon ArrowAmmo"
+    Command "Quiver of Arrows", "summon ArrowHefty"
+
+    Command "Bio Container", "summon BioContainer"
+    Command "Hefty Bio Container", "summon BioContainerHefty"
+
+    Command "Bullets for M40", "summon M40762Ammo"
+    Command "Box of Bullets for M40", "summon M40762AmmoBox"
+
+    Command "Can of Gasoline", "summon Gasoline"
+
+    Command "Claymore Mines", "summon ClaymoreAmmo"
+
+    Command "Cryo Bolts", "summon CryoBolts"
+
+    Command "Small Sphere of Cult Energy", "summon CultAmmo"
+    Command "Large Sphere of Cult Energy", "summon LargeCultAmmo"
+
+    Command "Dark Mana", "summon Darkmana"
+
+    Command "Vail of Demon Blood", "summon DemonBlood"
+
+    Command "Demonic Orb", "summon DemonicEnergy"
+}
+
+OptionMenu "Menu_R667AAA_Armory_Ammo_EL"
+{
+    Command "EverIce Chunk", "summon EverIce"
+    Command "EverIce Cluster", "summon EverIceHefty"
+
+    Command "Box of Flares", "summon Flares"
+
+    Command "Gasoline Cannister", "summon Gas"
+    Command "Gasoline Pack", "summon BigGas"
+
+    Command "Grenade", "summon GrenadeAmmo"
+    Command "Box of Grenades", "summon GrenadeBox"
+
+    Command "High-Density Plasma Battery", "summon KSawaCell"
+    Command "High-Density Plasma Pack", "summon KSawaCellPack"
+
+    Command "Lightbringer Sun Runes", "summon LightbringerAmmo"
+    Command "Lightbringer Nova Runes", "summon LightbringerHefty"
+
+    Command "Impact Grenades", "summon ImpactGrenade"
+    Command "Box of Impact Grenade", "summon ImpactGrenadeBox"
+
+    Command "Land Mine", "summon MineAmmo"
+}
+
+OptionMenu "Menu_R667AAA_Armory_Ammo_MP"
+{
+    Command "M79 Round", "summon M79Ammo"
+    Command "Box of M79 Rounds", "summon M79AmmoBox"
+
+    Command "Mini Rockets", "summon MiniRockets"
+    Command "Box of Mini Rocket", "summon MiniRocketBox"
+
+    Command "Morph Cell", "summon MorphAmmo"
+    Command "Morph Pack", "summon MorphAmmoPack"
+
+    Command "Box of Nails", "summon Nails"
+
+    Command "Nuclear Missile", "summon NuclearMissile"
+
+    Command "Pipebomb", "summon D2C_Pipebomb"
+    Command "Box of Pipebombs", "summon PipebombBox"
+
+    Command "Plasma Ballista Bolts", "summon BallistaBolts"
+
+    Command "Prox Mines", "summon ProxMines"
+
+    Command "Pulse Magazine", "summon PulseMagazine"
+
+    Command "Pulse Nails", "summon NailPouch"
+    Command "Box of Pulse Nails", "summon NailBox"
+
+    Command "Pyro Tank", "summon PyroTank"
+    Command "Hefty Pyro Tank", "summon PyroTankHefty"
+}
+
+OptionMenu "Menu_R667AAA_Armory_Ammo_RZ"
+{
+    Command "Rifle Cartridges", "summon RifleAmmo"
+    Command "Box of Rifle Cartridges", "summon RifleBox"
+
+    Command "Rivet Pile", "summon Rivets"
+    Command "Rivet Bolt Rack", "summon RivetRack"
+
+    Command "Saws", "summon Saws"
+    Command "Box of Saws", "summon SawBox"
+
+    Command "Skull Staff Charge", "summon SkullAmmo"
+
+    Command "Sniper Ammo", "summon SniperAmmo"
+
+    Command "Soul Sapphire", "summon SoulScepterAmmo"
+    Command "Soul Orb", "summon SoulScepterHefty"
+
+    Command "Steel Bolts", "summon ImpalerBolts"
+
+    Command "TommyGun Ammo", "summon TommAmmo"
+
+    Command "Uzi Clips", "summon UziAmmo"
+
+    Command "Ember Ruby", "summon WandOfEmbersAmmo"
+    Command "Phoenix Ruby", "summon WandOfEmbersHefty"
+}
+
 // Beastiary
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom"
@@ -283,11 +404,18 @@ OptionMenu "Menu_R667AAA"
     Submenu "Doom Weapons * P..R", "Menu_R667AAA_Armory_Doom_PR"
     Submenu "Doom Weapons * S..Z", "Menu_R667AAA_Armory_Doom_SZ"
     StaticText " "
+
     Submenu "Heretic/Hexen Weapons", "Menu_R667AAA_Armory_HH"
     StaticText " "
+
     Submenu "Other Weapons * A..N", "Menu_R667AAA_Armory_Other_AN"
     Submenu "Other Weapons * P..Z", "Menu_R667AAA_Armory_Other_PZ"
-    //StaticText " "
+    StaticText " "
+
+    Submenu "Ammo * A..D", "Menu_R667AAA_Armory_Ammo_AD"
+    Submenu "Ammo * E..L", "Menu_R667AAA_Armory_Ammo_EL"
+    Submenu "Ammo * M..P", "Menu_R667AAA_Armory_Ammo_MP"
+    Submenu "Ammo * R..Z", "Menu_R667AAA_Armory_Ammo_rZ"
 
     //Submenu "Summon Doom Monster", "Menu_R667AAA_Beastiary_Doom"
     //StaticText " "

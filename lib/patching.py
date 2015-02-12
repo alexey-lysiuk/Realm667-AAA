@@ -133,6 +133,12 @@ def apply_patch_242(wad): # Freeze Rifle
     # fix incorrect sprite
     replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
 
+def apply_patch_266(wad): # Napalm Launcher
+    # fix infinite loop in engine caused by wrong state
+    replace_in_decorate(wad,
+        r'(\s+)GASO(\s+\w\s+)(\d+)(\s+)Loop',
+        r'\1GASO\2-1\4stop')
+
 def apply_patch_271(wad): # Saw Thrower
     # fix incorrect sprite
     replace_in_decorate(wad,

@@ -139,6 +139,39 @@ def apply_patch_271(wad): # Saw Thrower
         r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
 
+def apply_patch_308(wad): # Doom III Super Shotgun
+    # fix sound and sprite name collisions with Doom II Super Shotgun
+    replace_in_decorate(wad,
+        r'(\w+\s+\w\s+)(\d+\s+)(\w*\s*)A_FireShotgun2',
+        '\\g<1>0 \\3A_FireBullets(11.2, 7.1, 20, 5, "BulletPuff")\n'
+        '      \\g<1>0 \\3A_PlaySound("doom3ssg/fire", CHAN_WEAPON)\n'
+        '      \\g<1>\\2\\3A_GunFlash')
+    replace_in_decorate(wad,
+        r'(\w+\s+\w\s+\d+\s+\w*\s*)A_OpenShotgun2',
+        r'\1A_PlaySound("doom3ssg/open", CHAN_WEAPON)')
+    replace_in_decorate(wad,
+        r'(\w+\s+\w\s+\d+\s+\w*\s*)A_LoadShotgun2',
+        r'\1A_PlaySound("doom3ssg/load", CHAN_WEAPON)')
+    replace_in_decorate(wad,
+        r'(\w+\s+\w\s+\d+\s+\w*\s*)A_CloseShotgun2',
+        r'\1A_PlaySound("doom3ssg/close", CHAN_WEAPON)')
+    replace_in_decorate(wad,
+        r'Stop(\s+)}(\s+)}',
+        'Stop\n   Spawn:\n      SG3W A -1\n      Stop\\1}\\2}')
+
+    rename_lump(wad, 'SGN2A0', 'SG3WA0')
+    rename_lump(wad, 'DSDSHTGN', 'SSG3FIRE')
+    rename_lump(wad, 'DSDBLOAD', 'SSG3LOAD')
+    rename_lump(wad, 'DSDBOPN',  'SSG3OPEN')
+    rename_lump(wad, 'DSDBCLS',  'SSG3CLOS')
+
+    sndinfo = doomwad.Lump('SNDINFO',
+        'doom3ssg/fire  SSG3FIRE\n'
+        'doom3ssg/load  SSG3LOAD\n'
+        'doom3ssg/open  SSG3OPEN\n'
+        'doom3ssg/close SSG3CLOS\n')
+    wad.append(sndinfo)
+
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')

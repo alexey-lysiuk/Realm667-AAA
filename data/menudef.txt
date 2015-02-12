@@ -22,7 +22,7 @@
 
 OptionMenu "Menu_R667AAA_Armory_Doom_AD"
 {
-    StaticText "Summon Doom Weapon"
+    StaticText "Doom Weapons"
     StaticText " "
 
     Command "40mm Grenade Launcher", "summon 40mmGrenadeLauncher"
@@ -51,7 +51,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_AD"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_EI"
 {
-    StaticText "Summon Doom Weapon"
+    StaticText "Doom Weapons"
     StaticText " "
 
     Command "EgoSmasher", "summon Egosmasher"
@@ -76,7 +76,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_EI"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_KN"
 {
-    StaticText "Summon Doom Weapon"
+    StaticText "Doom Weapons"
     StaticText " "
 
     Command "Karasawa", "summon Karasawa"
@@ -103,7 +103,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_KN"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_PR"
 {
-    StaticText "Summon Doom Weapon"
+    StaticText "Doom Weapons"
     StaticText " "
 
     Command "Pipe Bombs", "summon D2C_Pipebomb"
@@ -128,7 +128,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_PR"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
 {
-    StaticText "Summon Doom Weapon"
+    StaticText "Doom Weapons"
     StaticText " "
 
     Command "Scatter Pistol", "summon ScatterPistol"
@@ -158,7 +158,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
 
 OptionMenu "Menu_R667AAA_Armory_HH"
 {
-    StaticText "Summon Heretic/Hexen Weapon"
+    StaticText "Heretic/Hexen Weapons"
     StaticText " "
 
     Command "Apotheosis", "summon Apotheosis"
@@ -187,7 +187,7 @@ OptionMenu "Menu_R667AAA_Armory_HH"
 
 OptionMenu "Menu_R667AAA_Armory_Other_AN"
 {
-    StaticText "Summon Other Weapon"
+    StaticText "Other Weapons"
     StaticText " "
 
     Command "Bearkiller", "summon Bearkiller"
@@ -208,7 +208,7 @@ OptionMenu "Menu_R667AAA_Armory_Other_AN"
 
 OptionMenu "Menu_R667AAA_Armory_Other_PZ"
 {
-    StaticText "Summon Other Weapon"
+    StaticText "Other Weapons"
     StaticText " "
 
     Command "Plasma Gun", "summon PlasmaGun"
@@ -277,18 +277,20 @@ OptionMenu "Menu_R667AAA"
     StaticText "Realm667 - An Awesome Awesomeness"
     StaticText " "
 
-    Submenu "Summon Doom Weapon * A..D", "Menu_R667AAA_Armory_Doom_AD"
-    Submenu "Summon Doom Weapon * E..I", "Menu_R667AAA_Armory_Doom_EI"
-    Submenu "Summon Doom Weapon * K..N", "Menu_R667AAA_Armory_Doom_KN"
-    Submenu "Summon Doom Weapon * P..R", "Menu_R667AAA_Armory_Doom_PR"
-    Submenu "Summon Doom Weapon * S..Z", "Menu_R667AAA_Armory_Doom_SZ"
-    Submenu "Summon Heretic/Hexen Weapon", "Menu_R667AAA_Armory_HH"
-    Submenu "Summon Other Weapon * A..N", "Menu_R667AAA_Armory_Other_AN"
-    Submenu "Summon Other Weapon * P..Z", "Menu_R667AAA_Armory_Other_PZ"
+    Submenu "Doom Weapons * A..D", "Menu_R667AAA_Armory_Doom_AD"
+    Submenu "Doom Weapons * E..I", "Menu_R667AAA_Armory_Doom_EI"
+    Submenu "Doom Weapons * K..N", "Menu_R667AAA_Armory_Doom_KN"
+    Submenu "Doom Weapons * P..R", "Menu_R667AAA_Armory_Doom_PR"
+    Submenu "Doom Weapons * S..Z", "Menu_R667AAA_Armory_Doom_SZ"
     StaticText " "
+    Submenu "Heretic/Hexen Weapons", "Menu_R667AAA_Armory_HH"
+    StaticText " "
+    Submenu "Other Weapons * A..N", "Menu_R667AAA_Armory_Other_AN"
+    Submenu "Other Weapons * P..Z", "Menu_R667AAA_Armory_Other_PZ"
+    //StaticText " "
 
     //Submenu "Summon Doom Monster", "Menu_R667AAA_Beastiary_Doom"
     //StaticText " "
 
-    Submenu "Summon Item", "Menu_R667AAA_Item"
+    //Submenu "Summon Item", "Menu_R667AAA_Item"
 }

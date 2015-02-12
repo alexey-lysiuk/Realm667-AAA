@@ -221,11 +221,30 @@ broken_keyconfs = (
     626, # D'sparil Staff
 )
 
+# list of weapons with A_SetPitch() call(s) in DECORATE
+# These weapons change player's pitch preventing smooth playing
+# without mouselook and so they are in the following list
+# Some weapons modify player's pitch but then restore it back
+# These weapons are commented out in the following list
+
+weapons_change_pitch = (
+    432, # Autogun
+#    0445, # Coachgun
+#    0513, # Smasher
+    559, # Glock 18
+    585, # AA12 Shotgun
+#    599, # MP40
+    600, # M40A1 Sniper Rifle
+    684, # MP5
+    686, # G3
+    719, # Hunting Rifle
+)
+
 
 def apply_patch(id, wad):
     make_unique_sprites(wad)
 
-    if no_set_pitch:
+    if no_set_pitch and id in weapons_change_pitch:
         replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
     if no_class_replacement:
         replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+)\s+replaces\s+[\w\.]+', r'\1')

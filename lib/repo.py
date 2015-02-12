@@ -16,7 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-repository = [
+repository = (
     # Armory
 
     # Doom Style
@@ -192,12 +192,12 @@ repository = [
 ##    (897, 'Familiar Summon'),
 ##    (898, 'Ritual Knife'),
 ##    (926, 'Shield Spells'),
-]
+)
 
 
-excluded_wads = [
+excluded_wads = (
     (243, 'UnmakerCentered.wad'),
     (258, 'PolyMorph (old version).wad'),
     (717, 'StrifeLandMine.wad'),
     (816, 'CryoPal.wad'),
-]
+)

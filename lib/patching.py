@@ -194,7 +194,7 @@ def apply_patch_817(wad): # Arbalest of the Ancients
         r'\1Arbalest')
 
 
-broken_keyconfs = [
+broken_keyconfs = (
     226, # Sawed Off
     235, # Uber Minigun
     240, # Seeker Bazooka
@@ -219,7 +219,7 @@ broken_keyconfs = [
     521, # Mag .60
     536, # Jackbomb
     626, # D'sparil Staff
-]
+)
 
 
 def apply_patch(id, wad):

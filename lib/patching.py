@@ -242,15 +242,6 @@ weapons_change_pitch = (
 
 
 def apply_patch(id, wad):
-    make_unique_sprites(wad)
-
-    if no_set_pitch and id in weapons_change_pitch:
-        replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
-    if no_class_replacement:
-        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+)\s+replaces\s+[\w\.]+', r'\1')
-    if no_doomednum:
-        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+\s+(replaces\s+[\w\.]+)?)\s*\d*', r'\1')
-
     # Fix weapon slot and player class resetting
     if id in broken_keyconfs:
         remove_lump(wad, 'KEYCONF')
@@ -259,3 +250,12 @@ def apply_patch(id, wad):
 
     if func_name in globals():
         globals()[func_name](wad)
+
+    if no_set_pitch and id in weapons_change_pitch:
+        replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
+    if no_class_replacement:
+        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+)\s+replaces\s+[\w\.]+', r'\1')
+    if no_doomednum:
+        replace_in_decorate(wad, r'(actor\s+[\w\.]+\s*:\s*[\w\.]+\s+(replaces\s+[\w\.]+)?)\s*\d*', r'\1')
+
+    make_unique_sprites(wad)

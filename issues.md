@@ -3,7 +3,7 @@
 |ID |Name | Issue |
 |---|-----|-------|
 |~~243~~|~~Unmaker~~|~~DECORATE classes and sprite names confict between centered and angled versions WADs~~ Centered version was excluded|
-|308|Doom 3 SSG|Use default Super Shotgun weapon icon|
+|~~308~~|~~Doom 3 SSG~~|~~Use default Super Shotgun weapon icon~~ Fixed|
 |236, 266|Flare Gun, Napalm Launcher|The same `actor NapalmDebris` is used by both weapons. Causes _Tried to register class 'NapalmDebris' more than once_ error|
 |313, 659|Plasma Bolter, Pulse Rifle UAC|The same `actor PlasmaBolterShot1` and `actor PlasmaBolterShot1Trail` are used by both weapons. Causes _Tried to register class '...' more than once_ errors|
 |444, 510|Necronomicon, Vile Staff|The same `actor Darkmana` is used by both weapons. Causes _Tried to register class 'Darkmana' more than once_ error|
@@ -24,10 +24,10 @@
 |~~AXE~~|~~Axe.wad, Axe.wad~~|Compiled ACS and its source code in different namespaces|
 |~~BETAFIRE~~|~~BFG2704.wad, SprayCannon.wad~~|The same file|
 |~~CREDIT~~|~~!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, SuperCrossbow.wad~~|Informational text, lump removed|
-|DSDBCLS|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
-|DSDBLOAD|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
-|DSDBOPN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
-|DSDSHTGN|!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad||
+|~~DSDBCLS~~|~~!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad~~|Fixed|
+|~~DSDBLOAD~~|~~!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad~~|Fixed|
+|~~DSDBOPN~~|~~!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad~~|Fixed|
+|~~DSDSHTGN~~|~~!DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, Doom3SSG.wad~~|Fixed|
 |~~DSMINIGN~~|~~Minigun.wad, UberMinigun.wad~~|Renamed Minigun sound|
 |~~DSMCGUNF~~|~~Heavy Machinegun.wad, Light Machinegun.wad~~|The same file|
 |~~FMTRFLAM~~|~~Flamethrower.wad, UTNTPyroCannon.wad~~|The same file|

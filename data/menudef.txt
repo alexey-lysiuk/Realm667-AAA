@@ -231,6 +231,9 @@ OptionMenu "Menu_R667AAA_Armory_Other_PZ"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_AD"
 {
+    StaticText "Ammo"
+    StaticText " "
+
     Command "40mm Grenades", "summon 40mmGrenades"
     Command "Box of 40mm Grenade", "summon 40mmGrenadeBox"
 
@@ -266,6 +269,9 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_AD"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_EL"
 {
+    StaticText "Ammo"
+    StaticText " "
+
     Command "EverIce Chunk", "summon EverIce"
     Command "EverIce Cluster", "summon EverIceHefty"
 
@@ -286,11 +292,17 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_EL"
     Command "Impact Grenades", "summon ImpactGrenade"
     Command "Box of Impact Grenade", "summon ImpactGrenadeBox"
 
+    Command "Iron Bolts", "summon IronBoltAmmo"
+    Command "Quiver of Iron Bolts", "summon IronBoltQuiverAmmo"
+
     Command "Land Mine", "summon MineAmmo"
 }
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_MP"
 {
+    StaticText "Ammo"
+    StaticText " "
+
     Command "M79 Round", "summon M79Ammo"
     Command "Box of M79 Rounds", "summon M79AmmoBox"
 
@@ -322,6 +334,9 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_MP"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_RZ"
 {
+    StaticText "Ammo"
+    StaticText " "
+
     Command "Rifle Cartridges", "summon RifleAmmo"
     Command "Box of Rifle Cartridges", "summon RifleBox"
 
@@ -347,6 +362,20 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_RZ"
     Command "Ember Ruby", "summon WandOfEmbersAmmo"
     Command "Phoenix Ruby", "summon WandOfEmbersHefty"
 }
+
+OptionMenu "Menu_R667AAA_Armory_Items"
+{
+    StaticText "Items"
+    StaticText " "
+
+    Command "Ammo Satchel", "summon AmmoSatchelR667"
+
+    Command "Bow Fire Spell", "summon FireSpell"
+    Command "Bow Ice Spell", "summon IceSpell"
+    Command "Bow Thunder Spell", "summon ThunderSpell"
+    Command "Bow Spell Breaker", "summon SpellBreaker"
+}
+
 
 // Beastiary
 
@@ -385,11 +414,6 @@ OptionMenu "Menu_R667AAA_Item"
     Command "Ritual Knife", "summon RitualKnife"
     Command "Green Shield Spell", "summon GreenShieldSpell"
     Command "Blue Shield Spell", "summon BlueShieldSpell"
-
-    Command "Bow Fire Spell", "summon FireSpell"
-    Command "Bow Ice Spell", "summon IceSpell"
-    Command "Bow Thunder Spell", "summon ThunderSpell"
-    Command "Bow Spell Breaker", "summon SpellBreaker"
 }
 
 
@@ -415,10 +439,8 @@ OptionMenu "Menu_R667AAA"
     Submenu "Ammo * A..D", "Menu_R667AAA_Armory_Ammo_AD"
     Submenu "Ammo * E..L", "Menu_R667AAA_Armory_Ammo_EL"
     Submenu "Ammo * M..P", "Menu_R667AAA_Armory_Ammo_MP"
-    Submenu "Ammo * R..Z", "Menu_R667AAA_Armory_Ammo_rZ"
+    Submenu "Ammo * R..Z", "Menu_R667AAA_Armory_Ammo_RZ"
+    StaticText " "
 
-    //Submenu "Summon Doom Monster", "Menu_R667AAA_Beastiary_Doom"
-    //StaticText " "
-
-    //Submenu "Summon Item", "Menu_R667AAA_Item"
+    Submenu "Items", "Menu_R667AAA_Armory_Items"
 }

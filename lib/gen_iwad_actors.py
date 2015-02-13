@@ -39,7 +39,8 @@ for zipped_filename in pk3.namelist():
     zipped_data = zipped_file.read()
     zipped_file.close()
 
-    actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{'
+    actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?'  \
+                     '(\s+replace\s+[\w+~.]+)?(\s+\d+)?(\s+native)?\s*{'
     actors = re.findall(actor_pattern, zipped_data, re.IGNORECASE)
 
     if len(actors) > 0:

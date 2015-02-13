@@ -29,22 +29,29 @@ sys.path.append(self_path + '/lib')
 import doomwad
 
 
+def find_derived_actors(mapping, wad_name, decorate, base_actor):
+    pattern = r'actor\s+([\w~.]+)\s*:\s+{0}'.format(base_actor)
+    actors = re.findall(pattern, decorate, re.IGNORECASE)
+
+    for actor in actors:
+        if actor in mapping:
+            mapping[actor].append(wad_name)
+        else:
+            mapping[actor] = [wad_name]
+
+        find_derived_actors(mapping, wad_name, decorate, actor)
+
+def print_result(mapping):
+    for actor in mapping:
+        print('{0}: {1}'.format(actor, mapping[actor]))
+        #print('    Command "{0}", "summon {0}"'.format(actor))
+
+
 zip_filename = self_path + '/../realm667-aaa.pk3'
 zip_file = zipfile.ZipFile(zip_filename)
 
-actors_wads = { }
-
-def find_ammo_actors(wad_name, decorate, base_actor = 'Ammo'):
-    ammo_pattern = r'\sactor\s+(\w+)\s*:\s+{0}'.format(base_actor)
-    ammo_actors = re.findall(ammo_pattern, decorate, re.IGNORECASE)
-
-    for actor in ammo_actors:
-        if actor in actors_wads:
-            actors_wads[actor].append(wad_name)
-        else:
-            actors_wads[actor] = [wad_name]
-
-        find_ammo_actors(wad_name, decorate, actor)
+ammo_actors_wads = { }
+item_actors_wads = { }
 
 for zipped_filename in zip_file.namelist():
     if not zipped_filename.lower().endswith('.wad'):
@@ -60,12 +67,18 @@ for zipped_filename in zip_file.namelist():
 
     for lump in wad:
         if 'DECORATE' == lump.name:
-            find_ammo_actors(zipped_filename, lump.data)
+            find_derived_actors(ammo_actors_wads, zipped_filename, \
+                lump.data, 'Ammo')
+            find_derived_actors(item_actors_wads, zipped_filename, \
+                lump.data, 'CustomInventory')
+            break
 
 zip_file.close()
 
 # Print names collisions
 
-for actor in actors_wads:
-    print('{0}: {1}'.format(actor, actors_wads[actor]))
-    #print('    Command "{0}", "summon {0}"'.format(actor))
+print('// Actors derived from Ammo:')
+print_result(ammo_actors_wads)
+
+print('\n// Actors derived from CustomInventory:')
+print_result(item_actors_wads)

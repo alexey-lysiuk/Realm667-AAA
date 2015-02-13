@@ -68,11 +68,9 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
-sprites = set(sprites_doom_all)
+_sprites = set(sprites_doom_all)
 
 def unique_sprite_name():
-    """ Find and rename sprites with the same names
-        New names are randomly generated """
     name_chars = string.ascii_uppercase + string.digits
     char_count = len(name_chars)
 
@@ -83,8 +81,8 @@ def unique_sprite_name():
             index = random.randint(0, char_count - 1)
             unique_name += name_chars[index]
 
-        if unique_name not in sprites:
-            sprites.add(unique_name)
+        if unique_name not in _sprites:
+            _sprites.add(unique_name)
             return unique_name
 
     assert(False)
@@ -102,11 +100,13 @@ def rename_sprite(wad, sprite):
             lump.name = new_name + lump.name[4:]
 
 def make_unique_sprites(wad):
+    """ Find and rename sprites with the same names
+        New names are randomly generated """
     for sprite in wad.spritenames():
-        if sprite in sprites:
+        if sprite in _sprites:
             rename_sprite(wad, sprite)
         else:
-            sprites.add(sprite)
+            _sprites.add(sprite)
 
 
 # Armory

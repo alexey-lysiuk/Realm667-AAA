@@ -17,10 +17,19 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-alias menu_r667aaa "openmenu Menu_R667AAA"
+alias menu_r667aaa_armory "openmenu Menu_R667AAA_Armory"
+defaultbind H menu_r667aaa_armory
+
+alias menu_r667aaa_beastiary "openmenu Menu_R667AAA_Beastiary"
+defaultbind J menu_r667aaa_beastiary
+
+alias menu_r667aaa_itemstore "openmenu Menu_R667AAA_ItemStore"
+defaultbind K menu_r667aaa_itemstore
+
 addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
-addmenukey "R667AAA Menu" menu_r667aaa
-defaultbind H menu_r667aaa
+addmenukey "Armory" menu_r667aaa_armory
+addmenukey "Beastiary" menu_r667aaa_beastiary
+addmenukey "Item Store" menu_r667aaa_itemstore
 
 weaponsection R667AAA_Doom
 

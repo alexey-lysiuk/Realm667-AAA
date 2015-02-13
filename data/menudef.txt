@@ -377,49 +377,9 @@ OptionMenu "Menu_R667AAA_Armory_Items"
 }
 
 
-// Beastiary
-
-OptionMenu "Menu_R667AAA_Beastiary_Doom"
+OptionMenu "Menu_R667AAA_Armory"
 {
-    StaticText "Summon Monster"
-    StaticText " "
-
-    Command "Afrit", "summon Afrit"
-    Command "Agathodemon", "summon Agathodemon"
-    Command "Agathodemon, another", "summon AnotherAgathodemon"
-    Command "Agaures", "summon Agaures"
-    Command "Annihilator", "summon Annihilator"
-    Command "Arachnobaron", "summon Arachnobaron"
-    Command "Arachnophyte", "summon Arachnophyte"
-    Command "Aracnorb", "summon Aracnorb"
-    Command "Archon of Hell", "summon ArchonOfHell"
-    Command "Augmented Arachnotron", "summon ArachnotronMK2"
-    Command "Auto Shotgun Guy", "summon ASGGuy"
-    Command "Azazel", "summon Azazel"
-    Command "Baby Cacodemon", "summon BabyCaco"
-    Command "Belphegor", "summon BelphegorClone"
-}
-
-
-// Items
-
-OptionMenu "Menu_R667AAA_Item"
-{
-    StaticText "Summon Item"
-    StaticText " "
-
-    Command "Adrenaline Kit", "summon Adrenalinekit"
-    Command "Familiar Summon Scroll", "summon FamiliarSummon" // TODO
-    Command "Familiar Summon Sphere", "summon FamiliarSummon" // TODO
-    Command "Ritual Knife", "summon RitualKnife"
-    Command "Green Shield Spell", "summon GreenShieldSpell"
-    Command "Blue Shield Spell", "summon BlueShieldSpell"
-}
-
-
-OptionMenu "Menu_R667AAA"
-{
-    StaticText "Realm667 - An Awesome Awesomeness"
+    StaticText "Realm667 - Armory"
     StaticText " "
 
     Submenu "Doom Weapons * A..D", "Menu_R667AAA_Armory_Doom_AD"
@@ -443,4 +403,165 @@ OptionMenu "Menu_R667AAA"
     StaticText " "
 
     Submenu "Items", "Menu_R667AAA_Armory_Items"
+}
+
+
+// Beastiary
+
+OptionMenu "Menu_R667AAA_Beastiary"
+{
+    StaticText "Realm667 - Beastiary"
+    StaticText " "
+
+    StaticText " "
+    StaticText "NOT IMPLEMENTED YET..."
+    StaticText "COME BACK LATER..."
+    StaticText " "
+}
+
+
+// Item Store
+
+OptionMenu "Menu_R667AAA_ItemStore_PowerUps"
+{
+    StaticText "PowerUps and Artifacts"
+    StaticText " "
+
+    Command "Ritual Knife", "summon RitualKnife"
+    Command "Familiar Summon", "summon FamiliarSummon, Familiar"
+    Command "Lifeshield Sphere", "summon LifeshieldSphere"
+    Command "Possession Sphere", "summon PossessionSphere"
+    Command "Crucifix Rosary", "summon Crucifix"
+    Command "Ankh of Life", "summon ArtiAnkhOfLife"
+    Command "Mutant Sphere", "summon MutantSphere"
+    Command "Blood Amulet", "summon ArtiBloodAmulet"
+    Command "Book of the Dead", "summon BookOfTheDead"
+    Command "Talisman", "summon Talisman"
+    Command "Flight Sphere", "summon FlightSphere"
+    Command "Lich Skull", "summon ArtiLichSkull"
+    Command "Haste Sphere", "summon Hastesphere"
+    Command "Regeneration Sphere", "summon RegenSphere"
+    Command "Shrink Sphere", "summon ShrinkSphere"
+    Command "Shield Sphere", "summon ShieldSphere"
+    Command "Bloodlust Sphere", "summon BloodLustSphere"
+    Command "AmmoSphere", "summon AmmoSphere"
+    Command "Armor Sphere", "summon ArmorSphere"
+    Command "Terror Sphere", "summon TerrorSphere"
+    Command "Berserk Sphere", "summon BerserkSphere"
+    Command "Doom Sphere", "summon DoomsphereST"
+    Command "Tome of the Unholy", "summon UnholyTome"
+    Command "Power Stimpack", "summon PowerStim"
+    Command "Double Damage Sphere", "summon Doublesphere"
+    Command "Summon Sphere", "summon SummonSphere"
+    Command "Salvation Sphere", "summon SalvationSphere, SalvationSphere2"
+    Command "BioSphere", "summon biosphere"
+    Command "Emerald Amulet", "summon EmeraldAmulet"
+    Command "Potion of Fire Resistance", "summon FireResistPotion"
+    Command "Rebreather", "summon rebreather"
+    Command "Scroll of Hellfire", "summon ScrollOfHellfire"
+    Command "Ring of Regeneration", "summon RingOfRegeneration"
+    Command "Talisman of the Depths", "summon DepthsTalisman"
+    Command "Mask of Terror", "summon MaskOfTerror"
+    Command "Bracers of Force", "summon BracersOfForce"
+    Command "Ring of the Owl", "summon RingOfTheOwl"
+    Command "Boots of the North", "summon BootsOfTheNorth"
+    Command "Hand of the Wraith", "summon HandOfTheWraith"
+    Command "Icon of the Raven", "summon ArtiRaven"
+    Command "Life Sphere", "summon LifeSphere"
+    Command "Turbo Sphere", "summon TurboSphereST"
+    Command "Time Freeze Sphere", "summon TimeFreezeSphereST"
+    Command "Guard Sphere", "summon GuardsphereST"
+    Command "Morph Cheddar", "summon ArtiCheese"
+    Command "Invisibility Sphere", "summon InvisibilitySphereST"
+    Command "Rage Sphere", "summon RageSphere"
+    Command "Jet Thruster", "summon RageSphere"
+    Command "Tome of the Forsaken", "summon ForsakenTome"
+    Command "Resistance Rings", "summon FireRing, IceRing, ThunderRing"
+}
+
+OptionMenu "Menu_R667AAA_ItemStore_Puzzle"
+{
+    StaticText "Keys and Puzzle Items"
+    StaticText " "
+
+    Command "Cross Keys", "summon [Color]CrossKey (i.e. BlueCrossKey)"
+    Command "Skull Orbs", "summon [Blue, Red, Yellow]SkullOrb, [Blue, Red, Yellow]SkullOrbHolder"
+    Command "Supply Chest Key", "summon ChestKey, SupplyChest"
+    Command "Doom 3 Keycards", "summon D3[Blue, Black, Brown, Green, Orange, Red, Violet, White, Yellow]Card"
+    Command "Various Doom Keys", "summon GreenCard/Skull, OrangeCard/Skull, SilverCard/Skull, PinkCard/Skull, BrownCard/Skull, BlackCard/Skull"
+}
+
+OptionMenu "Menu_R667AAA_ItemStore_Other"
+{
+    StaticText "Other Items"
+    StaticText " "
+
+    Command "Shield Spells", "summon GreenShieldSpell, BlueShieldSpell"
+    Command "Magic Apples", "summon SilverApple, GoldenApple, RedApple"
+    Command "Swarmers", "summon Swarmers"
+    Command "Medical Backpack", "summon HealthBackpack"
+    Command "Jump Boots", "summon JumpBoots"
+    Command "Elemental Gems", "summon (Fire/Earth/Wind/Water/Poison/Lightning/Ice/Dark/Light)Gem"
+    Command "Spring Mine", "summon SpringMine"
+    Command "Sigil Scroll", "summon ArtiSigil"
+    Command "Vitality Serum", "summon VitalitySerum"
+    Command "Flame Turret", "summon Flame Turret"
+    Command "Crusader Shield", "summon CrusaderShield"
+    Command "Missile Pod", "summon MissilePod"
+    Command "Oxygen Canister", "summon OxygenCanister"
+    Command "Portable Rejuvenation Unit", "summon PortableRejuvenationUnit, PRUReplenisher"
+    Command "Electric Pod", "summon ElecPod"
+    Command "Bullet Cartridge", "summon BulletCartridge"
+    Command "Phosphorus Grenade Box", "summon PhosphorusGrenadeBox"
+    Command "HE Grenade Box", "summon HEGrenadeBox"
+    Command "Poison Bolt Bundle", "summon PoisonBoltBundle"
+    Command "Electric Bolt Bundle", "summon ElectricBoltBundle"
+    Command "Energy Kit", "summon EnergyKit"
+    Command "Mini Missile Bundle", "summon MiniMissileBundle"
+    Command "Quake Item Pack", "summon See wad"
+    Command "Spiritual Armor Orb", "summon ArmorOrb"
+    Command "Medipack", "summon Medipack"
+    Command "Ammo Belt", "summon AmmoBelt"
+    Command "Combat Pack", "summon CombatPack"
+    Command "Mega Map", "summon Megamap"
+    Command "Field Kit", "summon FieldKit"
+    Command "SuperStim", "summon SuperStim"
+    Command "Biosuit", "summon Biosuit"
+    Command "Bullet Kit", "summon BulletKit"
+    Command "Cell Kit", "summon CellKit"
+    Command "Rocket Pile", "summon RocketPile"
+    Command "Shell Kit", "summon ShellKit"
+    Command "Supply Box", "summon SupplyBox"
+    Command "Deployable Sentry Gun", "summon SentryBox, SentryGun"
+    Command "PDA", "summon PDA"
+    Command "Large Blood Container", "summon LargeBloodContainer"
+    Command "Armor Set", "summon ArmorSet"
+    Command "Small Blood Container", "summon SmallBloodContainer"
+    Command "Heavy Armor", "summon HeavyArmor"
+    Command "Tech Armor", "summon TechArmor"
+    Command "Adrenaline Kit", "summon AdrenalineKit"
+    Command "Power Orb", "summon PowerOrb"
+    Command "Blaze Orb", "summon BlazeOrb"
+    Command "Greater Mace Sphere", "summon GreaterMaceSphere"
+    Command "Median Runes", "summon MedianRunes"
+    Command "Ethereal Arrow Bundle", "summon EtherealArrowBundle"
+    Command "Crystal Gem", "summon CrystalGem"
+    Command "Beacon", "summon Beacon"
+    Command "Flares", "summon Flare, FlareBox"
+    Command "Super Shield", "summon SuperShield"
+    Command "Megapack", "summon Megapack"
+    Command "Armor Shard", "summon ArmorShard"
+    Command "Stim Bonus", "summon StimBonus"
+    Command "Potion Variants", "summon [Size]HealthPotion, [Size]PortablePotion, [Size]MiraclePotion, PowerRegeneration[Size]"
+    Command "Food Barrel", "summon VegieBarrel, MeatBarrel, EmptyFoodBarrel, SmallBarrels[1-4]"
+}
+
+OptionMenu "Menu_R667AAA_ItemStore"
+{
+    StaticText "Realm667 - Item Store"
+    StaticText " "
+
+    Submenu "PowerUps and Artifacts", "Menu_R667AAA_ItemStore_PowerUps"
+    Submenu "Keys and Puzzle Items", "Menu_R667AAA_ItemStore_Puzzle"
+    Submenu "Other Items", "Menu_R667AAA_ItemStore_Other"
 }

@@ -253,6 +253,7 @@ actors_all = (
 ('RevenantTracer'),
 ('RevenantTracerSmoke'),
 # actors/doom/scriptedmarine.txt
+('ScriptedMarine'),
 ('MarineFist'),
 ('MarineBerserk'),
 ('MarineChainsaw'),
@@ -287,6 +288,7 @@ actors_all = (
 ('BeakPuff'),
 ('Beak'),
 ('BeakPowered'),
+('ChickenPlayer'),
 ('Chicken'),
 ('Feather'),
 # actors/heretic/clink.txt
@@ -320,7 +322,9 @@ actors_all = (
 # actors/heretic/hereticartifacts.txt
 ('SuperMap'),
 ('ArtiInvisibility'),
+('ArtiTomeOfPower'),
 ('ActivatedTimeBomb'),
+('ArtiTimeBomb'),
 # actors/heretic/hereticdecorations.txt
 ('SkullHang70'),
 ('SkullHang60'),
@@ -398,20 +402,31 @@ actors_all = (
 ('MaceFX1'),
 ('MaceFX2'),
 ('MaceFX3'),
+('MaceFX4'),
 ('MaceSpawner'),
 ('Blaster'),
 ('BlasterPowered'),
+('BlasterFX1'),
 ('BlasterSmoke'),
+('Ripper'),
 ('BlasterPuff'),
 ('SkullRod'),
 ('SkullRodPowered'),
 ('HornRodFX1'),
+('HornRodFX2'),
+('RainPillar'),
+('RainTracker'),
+('PhoenixRod'),
+('PhoenixRodPowered'),
+('PhoenixFX1'),
 ('PhoenixPuff'),
+('PhoenixFX2'),
 # actors/heretic/ironlich.txt
 ('Ironlich'),
 ('HeadFX1'),
 ('HeadFX2'),
 ('HeadFX3'),
+('Whirlwind'),
 # actors/heretic/knight.txt
 ('Knight'),
 ('KnightGhost'),
@@ -431,6 +446,10 @@ actors_all = (
 # actors/heretic/wizard.txt
 ('Wizard'),
 ('WizardFX1'),
+# actors/hexen/baseweapons.txt
+('FighterWeapon'),
+('ClericWeapon'),
+('MageWeapon'),
 # actors/hexen/bats.txt
 ('BatSpawner'),
 ('Bat'),
@@ -443,6 +462,8 @@ actors_all = (
 # actors/hexen/blastradius.txt
 ('ArtiBlastRadius'),
 ('BlastEffect'),
+# actors/hexen/boostarmor.txt
+('ArtiBoostArmor'),
 # actors/hexen/centaur.txt
 ('Centaur'),
 ('CentaurLeader'),
@@ -458,15 +479,18 @@ actors_all = (
 ('FlamePuff'),
 ('FlamePuff2'),
 ('CircleFlame'),
+('CFlameMissile'),
 # actors/hexen/clericholy.txt
 ('ClericWeaponPiece'),
 ('CWeaponPiece1'),
 ('CWeaponPiece2'),
 ('CWeaponPiece3'),
 ('WraithvergeDrop'),
+('CWeapWraithverge'),
 ('HolyMissile'),
 ('HolyMissilePuff'),
 ('HolyPuff'),
+('HolySpirit'),
 ('HolyTail'),
 ('HolyTailTrail'),
 # actors/hexen/clericmace.txt
@@ -475,6 +499,7 @@ actors_all = (
 ('ClericPlayer'),
 # actors/hexen/clericstaff.txt
 ('CWeapStaff'),
+('CStaffMissile'),
 ('CStaffPuff'),
 # actors/hexen/demons.txt
 ('Demon1'),
@@ -503,6 +528,7 @@ actors_all = (
 ('EttinMace'),
 ('EttinMash'),
 # actors/hexen/fighteraxe.txt
+('FWeapAxe'),
 ('AxePuff'),
 ('AxePuffGlow'),
 # actors/hexen/fighterboss.txt
@@ -524,6 +550,7 @@ actors_all = (
 ('FWeaponPiece3'),
 ('QuietusDrop'),
 ('FWeapQuietus'),
+('FSwordMissile'),
 ('FSwordFlame'),
 # actors/hexen/firedemon.txt
 ('FireDemon'),
@@ -546,13 +573,27 @@ actors_all = (
 ('PoisonBag'),
 ('FireBomb'),
 ('ThrowingBomb'),
+('ArtiPoisonBag'),
+('ArtiPoisonBag1'),
+('ArtiPoisonBag2'),
+('ArtiPoisonBag3'),
+('ArtiPoisonBagGiver'),
+('ArtiPoisonBagShooter'),
+('PoisonCloud'),
 ('ZPoisonShroom'),
 # actors/hexen/fog.txt
 ('FogSpawner'),
 ('FogPatchSmall'),
 ('FogPatchMedium'),
 ('FogPatchLarge'),
+# actors/hexen/healingradius.txt
+('ArtiHealingRadius'),
 # actors/hexen/heresiarch.txt
+('Heresiarch'),
+('SorcBall'),
+('SorcBall1'),
+('SorcBall2'),
+('SorcBall3'),
 ('SorcFX1'),
 ('SorcFX2'),
 ('SorcFX2T1'),
@@ -686,10 +727,12 @@ actors_all = (
 ('ZWingedStatueNoSkull'),
 ('ZGemPedestal'),
 ('TreeDestructible'),
+('Pottery1'),
 ('Pottery2'),
 ('Pottery3'),
 ('PotteryBit'),
 ('BloodPool'),
+('ZCorpseLynchedNoHeart'),
 ('CorpseBloodDrip'),
 ('CorpseBit'),
 ('ZCorpseSitting'),
@@ -706,6 +749,7 @@ actors_all = (
 ('ZFireBullUnlit'),
 ('ZSuitOfArmor'),
 ('ZArmorChunk'),
+('ZBell'),
 ('ZXmasTree'),
 ('ZCauldron'),
 ('ZCauldronUnlit'),
@@ -726,11 +770,14 @@ actors_all = (
 ('MageBoss'),
 # actors/hexen/magecone.txt
 ('MWeapFrost'),
+('FrostMissile'),
 ('IceShard'),
 # actors/hexen/magelightning.txt
 ('MWeapLightning'),
+('Lightning'),
 ('LightningCeiling'),
 ('LightningFloor'),
+('LightningZap'),
 # actors/hexen/mageplayer.txt
 ('MagePlayer'),
 # actors/hexen/magestaff.txt
@@ -739,6 +786,8 @@ actors_all = (
 ('MWeaponPiece2'),
 ('MWeaponPiece3'),
 ('BloodscourgeDrop'),
+('MWeapBloodscourge'),
+('MageStaffFX2'),
 # actors/hexen/magewand.txt
 ('MWeapWand'),
 ('MageWandSmoke'),
@@ -751,6 +800,7 @@ actors_all = (
 # actors/hexen/pig.txt
 ('SnoutPuff'),
 ('Snout'),
+('PigPlayer'),
 ('Pig'),
 # actors/hexen/puzzleitems.txt
 ('PuzzSkull'),
@@ -789,12 +839,16 @@ actors_all = (
 ('ArtiSpeedBoots'),
 # actors/hexen/spike.txt
 ('DirtClump'),
+('ThrustFloor'),
 ('ThrustFloorUp'),
 ('ThrustFloorDown'),
 # actors/hexen/summon.txt
+('ArtiDarkServant'),
 ('SummoningDoll'),
 ('MinotaurSmoke'),
 # actors/hexen/teleportother.txt
+('ArtiTeleportOther'),
+('TelOtherFX1'),
 ('TelOtherFX2'),
 ('TelOtherFX3'),
 ('TelOtherFX4'),
@@ -812,7 +866,11 @@ actors_all = (
 ('ArtiEgg'),
 ('PorkFX'),
 ('ArtiPork'),
+# actors/raven/artitele.txt
+('ArtiTeleport'),
 # actors/raven/minotaur.txt
+('Minotaur'),
+('MinotaurFriend'),
 ('MinotaurFX1'),
 ('MinotaurFX2'),
 ('MinotaurFX3'),
@@ -842,13 +900,17 @@ actors_all = (
 ('CajunTrace'),
 # actors/shared/bridge.txt
 ('BridgeBall'),
+('CustomBridge'),
 ('Bridge'),
 ('ZBridge'),
+('InvisibleBridge'),
 ('InvisibleBridge32'),
 ('InvisibleBridge16'),
 ('InvisibleBridge8'),
 # actors/shared/camera.txt
 ('DoomBuilderCamera'),
+('SecurityCamera'),
+('AimingCamera'),
 # actors/shared/debris.txt
 ('Rock1'),
 ('Rock2'),
@@ -859,6 +921,7 @@ actors_all = (
 ('Dirt4'),
 ('Dirt5'),
 ('Dirt6'),
+('GlassShard'),
 ('SGShard1'),
 ('SGShard2'),
 ('SGShard3'),
@@ -870,9 +933,12 @@ actors_all = (
 ('SGShard9'),
 ('SGShard0'),
 ('GlassJunk'),
+# actors/shared/decal.txt
+('Decal'),
 # actors/shared/dog.txt
 ('MBFHelperDog'),
 # actors/shared/fountain.txt
+('ParticleFountain'),
 ('RedParticleFountain'),
 ('GreenParticleFountain'),
 ('BlueParticleFountain'),
@@ -880,14 +946,95 @@ actors_all = (
 ('PurpleParticleFountain'),
 ('BlackParticleFountain'),
 ('WhiteParticleFountain'),
+# actors/shared/hatetarget.txt
+('HateTarget'),
 # actors/shared/inventory.txt
+('Inventory'),
+('ScoreItem'),
+('Ammo'),
+('BackpackItem'),
+('Armor'),
+('BasicArmor'),
+('BasicArmorBonus'),
+('BasicArmorPickup'),
+('HexenArmor'),
+('DehackedPickup'),
+('FakeInventory'),
+('CustomInventory'),
+('Health'),
+('HealthPickup'),
+('Key'),
+('PowerupGiver'),
+('Powerup'),
+('PowerInvulnerable'),
+('PowerStrength'),
+('PowerInvisibility'),
 ('PowerGhost'),
 ('PowerShadow'),
+('PowerIronFeet'),
+('PowerMask'),
+('PowerLightAmp'),
+('PowerTorch'),
+('PowerFlight'),
+('PowerWeaponLevel2'),
+('PowerSpeed'),
+('PlayerSpeedTrail'),
+('PowerMinotaur'),
+('PowerTargeter'),
+('PowerFrightener'),
+('PowerBuddha'),
+('PowerScanner'),
+('PowerTimeFreezer'),
+('PowerDamage'),
+('PowerProtection'),
+('PowerDrain'),
+('PowerRegeneration'),
+('PowerHighJump'),
+('PowerDoubleFiringSpeed'),
+('PowerMorph'),
+('PowerInfiniteAmmo'),
+('MapRevealer'),
+('PuzzleItem'),
+('Weapon'),
+('WeaponGiver'),
+('WeaponHolder'),
+('WeaponPiece'),
+# actors/shared/mapmarker.txt
+('MapMarker'),
+# actors/shared/morph.txt
+('MorphProjectile'),
+('MorphedMonster'),
+# actors/shared/movingcamera.txt
+('InterpolationPoint'),
+('InterpolationSpecial'),
+('PathFollower'),
+('ActorMover'),
+('MovingCamera'),
 # actors/shared/pickups.txt
 ('ItemFog'),
 ('PickupFlash'),
 # actors/shared/player.txt
-('native'),
+('PlayerPawn'),
+('PlayerChunk'),
+# actors/shared/secrettrigger.txt
+('SecretTrigger'),
+# actors/shared/sectoraction.txt
+('SectorAction'),
+('SecActEnter'),
+('SecActExit'),
+('SecActHitFloor'),
+('SecActHitCeil'),
+('SecActUse'),
+('SecActUseWall'),
+('SecActEyesDive'),
+('SecActEyesSurface'),
+('SecActEyesBelowC'),
+('SecActEyesAboveC'),
+('SecActHitFakeFloor'),
+('MusicChanger'),
+# actors/shared/setcolor.txt
+('ColorSetter'),
+('FadeSetter'),
 # actors/shared/sharedmisc.txt
 ('Unknown'),
 ('PatrolPoint'),
@@ -899,12 +1046,28 @@ actors_all = (
 ('PointPuller'),
 ('RealGibs'),
 ('Gibs'),
+('CustomSprite'),
+('SwitchableDecoration'),
+('SwitchingDecoration'),
+('RandomSpawner'),
+('FastProjectile'),
+('SectorFlagSetter'),
 ('SpeakerIcon'),
 # actors/shared/skies.txt
+('SkyViewpoint'),
+('SkyPicker'),
+('SkyCamCompat'),
+('StackPoint'),
 ('UpperStackLookOnly'),
 ('LowerStackLookOnly'),
+('SectorSilencer'),
+# actors/shared/soundenvironment.txt
+('SoundEnvironment'),
 # actors/shared/soundsequence.txt
+('AmbientSound'),
 ('AmbientSoundNoGravity'),
+('SoundSequenceSlot'),
+('SoundSequence'),
 ('HereticSoundSequence1'),
 ('HereticSoundSequence2'),
 ('HereticSoundSequence3'),
@@ -915,6 +1078,10 @@ actors_all = (
 ('HereticSoundSequence8'),
 ('HereticSoundSequence9'),
 ('HereticSoundSequence10'),
+# actors/shared/spark.txt
+('Spark'),
+# actors/shared/specialspot.txt
+('SpecialSpot'),
 # actors/shared/splashes.txt
 ('WaterSplash'),
 ('WaterSplashBase'),
@@ -929,9 +1096,12 @@ actors_all = (
 ('RocketSmokeTrail'),
 ('GrenadeSmokeTrail'),
 # actors/shared/teleport.txt
+('TeleportFog'),
 ('TeleportDest'),
 ('TeleportDest2'),
 ('TeleportDest3'),
+# actors/shared/waterzone.txt
+('WaterZone'),
 # actors/strife/acolyte.txt
 ('Acolyte'),
 ('AcolyteTan'),
@@ -960,6 +1130,7 @@ actors_all = (
 ('Beggar4'),
 ('Beggar5'),
 # actors/strife/coin.txt
+('Coin'),
 ('Gold10'),
 ('Gold25'),
 ('Gold50'),
@@ -980,6 +1151,7 @@ actors_all = (
 ('InquisitorArm'),
 # actors/strife/loremaster.txt
 ('Loremaster'),
+('LoreShot'),
 ('LoreShot2'),
 # actors/strife/macil.txt
 ('Macil1'),
@@ -1019,6 +1191,7 @@ actors_all = (
 # actors/strife/programmer.txt
 ('Programmer'),
 ('ProgrammerBase'),
+('ProgLevelEnder'),
 # actors/strife/questitems.txt
 ('QuestItem'),
 ('QuestItem1'),
@@ -1064,17 +1237,20 @@ actors_all = (
 ('Rebel4'),
 ('Rebel5'),
 ('Rebel6'),
+('TeleporterBeacon'),
 # actors/strife/sentinel.txt
 ('Sentinel'),
 ('SentinelFX1'),
 ('SentinelFX2'),
 # actors/strife/sigil.txt
+('Sigil'),
 ('Sigil1'),
 ('Sigil2'),
 ('Sigil3'),
 ('Sigil4'),
 ('Sigil5'),
 # actors/strife/spectral.txt
+('SpectralMonster'),
 ('SpectralLightningBase'),
 ('SpectralLightningDeath1'),
 ('SpectralLightningDeath2'),
@@ -1133,7 +1309,21 @@ actors_all = (
 ('Info'),
 ('Targeter'),
 ('Communicator'),
+('DegninOre'),
 ('GunTraining'),
+('HealthTraining'),
+('Scanner'),
+('PrisonPass'),
+('DummyStrifeItem'),
+('RaiseAlarm'),
+('OpenDoor222'),
+('CloseDoor222'),
+('OpenDoor224'),
+('AmmoFillup'),
+('HealthFillup'),
+('UpgradeStamina'),
+('UpgradeAccuracy'),
+('SlideshowStarter'),
 # actors/strife/strifekeys.txt
 ('StrifeKey'),
 ('BaseKey'),
@@ -1264,9 +1454,12 @@ actors_all = (
 ('AlienAspClimber'),
 ('AlienSpiderLight'),
 ('TargetPractice'),
+('ForceFieldGuard'),
 ('KneelingGuy'),
 ('KlaxonWarningLight'),
 ('CeilingTurret'),
+('PowerCoupling'),
+('Meat'),
 ('Junk'),
 # actors/strife/strifeweapons.txt
 ('StrifeWeapon'),
@@ -1275,6 +1468,7 @@ actors_all = (
 ('PunchDagger'),
 ('StrifeZap1'),
 ('ElectricBolt'),
+('PoisonBolt'),
 ('StrifeCrossbow'),
 ('StrifeCrossbow2'),
 ('AssaultGun'),
@@ -1292,6 +1486,7 @@ actors_all = (
 ('MaulerTorpedoWave'),
 ('HEGrenade'),
 ('PhosphorousGrenade'),
+('PhosphorousFire'),
 ('StrifeGrenadeLauncher'),
 ('StrifeGrenadeLauncher2'),
 # actors/strife/templar.txt

@@ -68,21 +68,6 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
-def move_nonsprite_lumps(wad):
-    """ Move non-sprite lumps to global namespace from sprite one """
-    angle_chars = string.digits + string.ascii_uppercase[:7]
-
-    for sprite in wad.spritelumps():
-        name = sprite.name
-        size = len(name)
-
-        if     size < 6  or name[5] not in angle_chars \
-            or size > 7 and name[7] not in angle_chars:
-                wad.removelump(sprite)
-                sprite.namespace = ''
-                wad.append(sprite)
-
-
 sprites = set(sprites_doom_all)
 
 def unique_sprite_name():
@@ -307,8 +292,6 @@ def apply_patch(id, wad):
 
     if func_name in globals():
         globals()[func_name](wad)
-
-    move_nonsprite_lumps(wad)
 
     if no_set_pitch and id in weapons_change_pitch:
         replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')

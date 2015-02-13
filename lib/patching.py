@@ -20,8 +20,10 @@
 import random
 import re
 import string
+
 import doomwad
 from iwad_lumps import sprites_doom_all
+from iwad_actors import actors_all
 
 
 # Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
@@ -107,6 +109,43 @@ def make_unique_sprites(wad):
             rename_sprite(wad, sprite)
         else:
             _sprites.add(sprite)
+
+
+_actors = set(actors_all)
+
+def rename_actor(decorate, actor):
+    suffix = 1
+
+    # generate unique actor name
+    while True:
+        new_name = '{0}~{1}'.format(actor, suffix)
+
+        if new_name not in _actors:
+            _actors.add(new_name)
+            break
+
+        suffix += 1
+
+    # replace old name
+    replace_pattern = r'(["\s]){0}(["\s])'.format(actor)
+    decorate.data = re.sub(replace_pattern,
+        r'\g<1>{0}\g<2>'.format(new_name), decorate.data, 0, re.IGNORECASE)
+
+def make_unique_actors(wad):
+    """ Find actors in DECORATE and rename them if names are already used """
+    decorate = wad.find('DECORATE')
+    assert(decorate)
+
+    actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?' \
+                     '(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{'
+    actors = re.findall(actor_pattern, decorate.data, re.IGNORECASE)
+
+    for actor in actors:
+        if actor[0] in _actors:
+            #print('Duplicate actor {0} found!'.format(actor[0]))
+            rename_actor(decorate, actor[0])
+        else:
+            _actors.add(actor[0])
 
 
 # Armory
@@ -301,3 +340,15 @@ def apply_patch(id, wad):
         replace_in_decorate(wad, r'(actor\s+[\w~.]+\s*:\s*[\w~.]+\s+(replaces\s+[\w~.]+)?)\s*\d*', r'\1')
 
     make_unique_sprites(wad)
+
+"""
+    Unique actors name patch have at least two issues:
+    1) Actor name and reserved word (property, flag, etc) can be the same
+       Without complete DECORATE parsing it's impossible to distinguish
+       these cases, regular expression in not enough...
+    2) Actors referenced in menu can be renamed
+       It's quite problematic to generate menu automatically,
+       or even to update it according to changes in DECORATE
+    That's why this patch is disabled
+"""
+##    make_unique_actors(wad)

@@ -36,6 +36,7 @@ os.chdir(self_path)
 import doomwad
 from repo import excluded_wads
 from iwad_lumps import *
+from iwad_actors import actors_all
 
 
 excluded_lump_names = [
@@ -198,4 +199,4 @@ print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))
 
 print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(actors_wads, ())
+print_duplicates(actors_wads, (('!ALL.WAD', actors_all),))

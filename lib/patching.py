@@ -239,6 +239,18 @@ def apply_patch_560(wad): # Nailgun (SG)
     # fix shared class name with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
 
+def fix_always_activate(wad):
+    # fix incorrect inventory flag
+    replace_in_decorate(wad,
+        'Inventory.AlwaysActivate',
+        'Inventory.AutoActivate')
+
+def apply_patch_577(wad): # Guard Sphere
+    fix_always_activate(wad)
+
+def apply_patch_579(wad): # Time Freeze Sphere
+    fix_always_activate(wad)
+
 def apply_patch_582(wad): # Super Crossbow
     # fix missing marker
     sprite_end_marker = 'SS_END'

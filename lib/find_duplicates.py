@@ -25,7 +25,9 @@
  It prints result to stdout in 'known issues' markdown format
 """
 
-import os, sys
+import os
+import re
+import sys
 import zipfile
 
 self_path = os.path.dirname(__file__)
@@ -56,7 +58,53 @@ excluded_lump_names = [
 ]
 
 lumps_wads = { }
+
+def find_duplicate_lumps(wad, filename):
+    """ Find duplicate lumps in WAD file
+        Sprite lumps are not taken into account """
+    for namespace in wad.namespaces():
+        if doomwad.issrpitenamespace(namespace):
+            continue
+
+        for lump in wad.uniquenamespacelumps(namespace):
+            if lump.name in excluded_lump_names:
+                continue
+
+            if lump.name in lumps_wads:
+                lumps_wads[lump.name].append(filename)
+            else:
+                lumps_wads[lump.name] = [filename]
+
 sprites_wads = { }
+
+def find_duplicate_sprites(wad, filename):
+    """ Find duplicate sprites in WAD file (4 characters names) """
+    for sprite in wad.spritenames():
+        if sprite in sprites_wads:
+            sprites_wads[sprite].append(zip_wad)
+        else:
+            sprites_wads[sprite] = [zip_wad]
+
+actors_wads = { }
+
+def find_duplicate_actors(wad, filename):
+    """ Find duplicate actors (classes) in WAD file's DECORATE lump """
+    decorate = wad.find('DECORATE')
+
+    if not decorate:
+        print('No DECORATE lump found in {0}'.format(filename))
+        return
+
+    actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{'
+    actor_defs = re.findall(actor_pattern, decorate.data, re.IGNORECASE)
+
+    for actor_def in actor_defs:
+        actor = actor_def[0]
+
+        if actor in actors_wads:
+            actors_wads[actor].append(zip_wad)
+        else:
+            actors_wads[actor] = [zip_wad]
 
 
 cache_path = '../cache/'
@@ -108,28 +156,9 @@ for zip_filename in zip_filenames:
         if analyze_cache:
             zip_wad = '[{:04d}] {:s}'.format(asset_id, zipped_filename)
 
-        # Check all lumps except sprites
-
-        for namespace in wad.namespaces():
-            if doomwad.issrpitenamespace(namespace):
-                continue
-
-            for lump in wad.uniquenamespacelumps(namespace):
-                if lump.name in excluded_lump_names:
-                    continue
-
-                if lump.name in lumps_wads:
-                    lumps_wads[lump.name].append(zip_wad)
-                else:
-                    lumps_wads[lump.name] = [zip_wad]
-
-        # Check sprites (4 characters names)
-
-        for sprite in wad.spritenames():
-            if sprite in sprites_wads:
-                sprites_wads[sprite].append(zip_wad)
-            else:
-                sprites_wads[sprite] = [zip_wad]
+        find_duplicate_lumps(wad, zip_wad)
+        find_duplicate_sprites(wad, zip_wad)
+        find_duplicate_actors(wad, zip_wad)
 
     zip_file.close()
 
@@ -157,11 +186,16 @@ def print_duplicates(mapping, iwads):
     for dup in duplicates:
         print(dup)
 
+print('|Lump|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(lumps_wads, (
     ('!DOOM.WAD',     lumps_ultdoom ),
     ('!DOOM2.WAD',    lumps_doom2   ),
     ('!TNT.WAD',      lumps_tnt     ),
     ('!PLUTONIA.WAD', lumps_plutonia),
 ))
-print('')
+
+print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))
+
+print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
+print_duplicates(actors_wads, ())

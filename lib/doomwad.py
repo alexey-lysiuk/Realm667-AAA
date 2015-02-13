@@ -27,8 +27,11 @@
 
 """Read and write Doom WAD files"""
 
+import string
 import struct
 from cStringIO import StringIO
+
+_spriteanglechar = string.digits + string.ascii_uppercase[:7]
 
 _header = struct.Struct("<4sII")
 _dirent = struct.Struct("<II8s")
@@ -244,8 +247,27 @@ class WadFile(object):
         names = set()
 
         for lump in self.spritelumps():
-            # sprite name is the first four characters
-            names.add(lump.name[:4])
+            name = lump.name
+
+            if name.startswith('ARTI'):
+                # The very special case for Heretic and Hexen
+                # This is a non-sequential sprite
+                names.add(name)
+            else:
+                size = len(name)
+
+                # 6th and 8th characters represent sprite angles
+                angle1 = 6 == size and name[5] in _spriteanglechar
+                angle2 = 8 == size and name[5] in _spriteanglechar \
+                                   and name[7] in _spriteanglechar
+
+                if angle1 or angle2:
+                    # This sprite is a part of the sequence
+                    # The first four characters denote a sprite name
+                    names.add(name[:4])
+                else:
+                    # This is a non-sequential sprite
+                    names.add(name)
 
         return sorted(names)
 

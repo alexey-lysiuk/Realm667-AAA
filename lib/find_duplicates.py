@@ -35,7 +35,7 @@ os.chdir(self_path)
 
 import doomwad
 from repo import excluded_wads
-from lumps_iwads import lumps_ultdoom, lumps_doom2, lumps_tnt, lumps_plutonia, sprites_doom_all
+from iwad_lumps import *
 
 
 excluded_lump_names = [

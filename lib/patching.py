@@ -21,7 +21,7 @@ import random
 import re
 import string
 import doomwad
-from lumps_iwads import sprites_doom_all
+from iwad_lumps import sprites_doom_all
 
 
 # Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook

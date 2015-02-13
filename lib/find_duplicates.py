@@ -19,11 +19,11 @@
 #
 
 
-'''
+"""
  This tool analyzes assets cache or generated .pk3
- for duplicate lump names within WAD files
+ for duplicate lump and sprite names within WAD files
  It prints result to stdout in 'known issues' markdown format
-'''
+"""
 
 import os, sys
 import zipfile

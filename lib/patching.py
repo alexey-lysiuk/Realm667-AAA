@@ -361,6 +361,8 @@ def apply_patch(id, wad):
     2) Actors referenced in menu can be renamed
        It's quite problematic to generate menu automatically,
        or even to update it according to changes in DECORATE
+    3) Renaming of ammo actors will produce a new ammo type
+       Although it's incorrect as the same ammo can be used by several weapons 
     That's why this patch is disabled
 """
 ##    make_unique_actors(wad)

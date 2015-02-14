@@ -315,6 +315,8 @@ excluded_wads = (
     (258, 'PolyMorph (old version).wad'),
     (717, 'StrifeLandMine.wad'),
     (816, 'CryoPal.wad'),
+    (825, 'SkullOrbsDemoMap.wad'),
+    (826, 'SupplyChestKeyDemoMap.wad'),
     (827, 'AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
     (897, 'FamiliarSummon (Sphere).wad')   # or 'FamiliarSummon (Scroll).wad'
 )

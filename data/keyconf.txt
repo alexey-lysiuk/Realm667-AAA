@@ -24,7 +24,7 @@ alias menu_r667aaa_beastiary "openmenu Menu_R667AAA_Beastiary"
 defaultbind J menu_r667aaa_beastiary
 
 alias menu_r667aaa_itemstore "openmenu Menu_R667AAA_ItemStore"
-defaultbind K menu_r667aaa_itemstore
+defaultbind N menu_r667aaa_itemstore
 
 addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
 addmenukey "Armory" menu_r667aaa_armory

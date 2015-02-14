@@ -284,6 +284,11 @@ def apply_patch_762(wad): # Model 1887
     # fix wrong end marker
     rename_lump(wad, 'SS_STOP', 'SS_END')
 
+def apply_patch_795(wad): # Missile Pod
+    # fix usage of missing actor class
+    replace_in_decorate(wad,
+        r'(\w+\s+\w\s+\d\s+A_SpawnItemEx\s*\(\s*"MissileFlameTrail")', r'//\1')
+
 def apply_patch_804(wad): # Light Machinegun
     # fix class name collision with #233 Machinegun
     replace_in_decorate(wad,

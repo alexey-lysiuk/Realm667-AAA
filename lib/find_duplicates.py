@@ -198,5 +198,5 @@ print_duplicates(lumps_wads, (
 print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))
 
-print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(actors_wads, (('!ALL.WAD', actors_all),))
+#print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
+#print_duplicates(actors_wads, (('!ALL.WAD', actors_all),))

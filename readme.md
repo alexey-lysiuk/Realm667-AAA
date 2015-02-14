@@ -13,7 +13,7 @@ The script will download and cache all resources during the first run. Generatio
 #### How to play
 
 Load `realm667-aaa.pk3` in the recent development build of (G)ZDoom.  
-Press 'H' button (by default) to bring **Realm667 - Armory** menu. Here you can summon weapons.  
-Press 'J' button (by default) to bring **Realm667 - Beastiary** menu.  Here you can summon monsters.  
-Press 'K' button (by default) to bring **Realm667 - Item Store** menu.  Here you can summon power-up, keys and other inventory items.  
+Open **Realm667 - Armory** menu ('H' button by default) to summon weapons.  
+Open **Realm667 - Beastiary** menu ('J' button by default) to summon monsters.  
+Open **Realm667 - Item Store** menu ('N' button by default) to summon power-up, keys and other inventory items.  
 The key bindings can be changed in **Customize Controls** menu. Look for **Realm667 - An Awesome Awesomeness** at the bottom of the controls list.

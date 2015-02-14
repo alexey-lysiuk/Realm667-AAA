@@ -227,8 +227,12 @@ def apply_patch_314(wad): # Revolver PS
 def apply_patch_372(wad): # Autogun
     replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
 
+def apply_patch_485(wad): # Talisman of the Depths
+    # fix class name collision with #482 Rebreather
+    replace_in_decorate(wad, r'NoDrown(\s+)', r'NoDrownTalisman\1')
+
 def apply_patch_496(wad): # Nailgun (MG)
-    # fix shared class name with #560 Nailgun (SG)
+    # fix class name collision with #560 Nailgun (SG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurMG')
 
 def apply_patch_543(wad): # UTNT Pyro-Cannon
@@ -236,7 +240,7 @@ def apply_patch_543(wad): # UTNT Pyro-Cannon
     replace_in_decorate(wad, 'DropFire', 'PyroDropFire')
 
 def apply_patch_560(wad): # Nailgun (SG)
-    # fix shared class name with #496 Nailgun (MG)
+    # fix class name collision with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
 
 def fix_always_activate(wad):
@@ -265,6 +269,12 @@ def apply_patch_659(wad): # Pulse Rifle UAC
     replace_in_decorate(wad,
         r'(actor\s+)PulseRifle(\s*:\s*\w+)',
         r'\1PulseRifleUAC\2')
+
+def apply_patch_671(wad): # Food Barrel
+    # fix class name collisions with embedded actors
+    replace_in_decorate(wad, 'Meat1', 'MeatBeef')
+    replace_in_decorate(wad, 'Meat2', 'MeatCheese')
+    replace_in_decorate(wad, 'Meat3', 'MeatFish')
 
 def apply_patch_685(wad): # Ammo Satchels
     # fix class name collision with ammo from Strife

@@ -606,7 +606,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_FO"
     Command "Oxygen Canister", "summon OxygenCanister"
 }
 
-OptionMenu "Menu_R667AAA_ItemStore_Other_QZ"
+OptionMenu "Menu_R667AAA_ItemStore_Other_PZ"
 {
     StaticText "Other Items"
     StaticText " "
@@ -715,9 +715,9 @@ OptionMenu "Menu_R667AAA_ItemStore"
     Submenu "Keys and Puzzle Items", "Menu_R667AAA_ItemStore_Puzzle_Other"
     StaticText " "
 
-    Submenu "Other Items * A..F", "Menu_R667AAA_ItemStore_Other_AF"
-    Submenu "Other Items * G..P", "Menu_R667AAA_ItemStore_Other_GP"
-    Submenu "Other Items * Q..Z", "Menu_R667AAA_ItemStore_Other_QZ"
+    Submenu "Other Items * A..E", "Menu_R667AAA_ItemStore_Other_AE"
+    Submenu "Other Items * F..O", "Menu_R667AAA_ItemStore_Other_FO"
+    Submenu "Other Items * P..Z", "Menu_R667AAA_ItemStore_Other_PZ"
     StaticText " "
 
     Submenu "Other Items * Food and Gems", "Menu_R667AAA_ItemStore_Other_FoodGems"

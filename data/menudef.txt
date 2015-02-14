@@ -479,16 +479,65 @@ OptionMenu "Menu_R667AAA_ItemStore_PowerUps"
     Command "Resistance Rings", "summon FireRing, IceRing, ThunderRing"
 }
 
-OptionMenu "Menu_R667AAA_ItemStore_Puzzle"
+OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Doom"
+{
+    StaticText "Doom Keycards and Skull Keys"
+    StaticText " "
+
+    Command "Doom Black Keycard", "summon BlackCard"
+    Command "Doom Brown Keycard", "summon BrownCard"
+    Command "Doom Green Keycard", "summon GreenCard"
+    Command "Doom Orange Keycard", "summon OrangeCard"
+    Command "Doom Pink Keycard", "summon PinkCard"
+    Command "Doom Silver Keycard", "summon SilverCard"
+    StaticText " "
+
+    Command "Doom Black Skull Key", "summon BlackSkull"
+    Command "Doom Brown Skull Key", "summon BrownSkull"
+    Command "Doom Green Skull Key", "summon GreenSkull"
+    Command "Doom Orange Skull Key", "summon OrangeSkull"
+    Command "Doom Pink Skull Key", "summon PinkSkull"
+    Command "Doom Silver Skull Key", "summon SilverSkull"
+    StaticText " "
+
+    Command "Doom III Black Keycard", "summon D3BlackCard"
+    Command "Doom III Blue Keycard", "summon D3BlueCard"
+    Command "Doom III Brown Keycard", "summon D3BrownCard"
+    Command "Doom III Green Keycard", "summon D3GreenCard"
+    Command "Doom III Orange Keycard", "summon D3OrangeCard"
+    Command "Doom III Red Keycard", "summon D3RedCard"
+    Command "Doom III Violet Keycard", "summon D3VioletCard"
+    Command "Doom III White Keycard", "summon D3WhiteCard"
+    Command "Doom III Yellow Keycard", "summon D3YellowCard"
+}
+
+OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Other"
 {
     StaticText "Keys and Puzzle Items"
     StaticText " "
 
-    Command "Cross Keys", "summon [Color]CrossKey (i.e. BlueCrossKey)"
-    Command "Skull Orbs", "summon [Blue, Red, Yellow]SkullOrb, [Blue, Red, Yellow]SkullOrbHolder"
-    Command "Supply Chest Key", "summon ChestKey, SupplyChest"
-    Command "Doom 3 Keycards", "summon D3[Blue, Black, Brown, Green, Orange, Red, Violet, White, Yellow]Card"
-    Command "Various Doom Keys", "summon GreenCard/Skull, OrangeCard/Skull, SilverCard/Skull, PinkCard/Skull, BrownCard/Skull, BlackCard/Skull"
+    Command "Black Cross Key", "summon BlackCrossKey"
+    Command "Blue Cross Keys", "summon BlueCrossKey"
+    Command "Brown Cross Key", "summon BrownCrossKey"
+    Command "Green Cross Key", "summon GreenCrossKey"
+    Command "Grey Cross Key", "summon GreyCrossKey"
+    Command "Orange Cross Key", "summon OrangeCrossKey"
+    Command "Pink Cross Key", "summon PinkCrossKey"
+    Command "Red Cross Key", "summon RedCrossKey"
+    Command "White Cross Key", "summon WhiteCrossKey"
+    Command "Yellow Cross Key", "summon YellowCrossKey"
+    StaticText " "
+
+    Command "Blue Skull Orb", "summon BlueSkullOrb"
+    Command "Red Skull Orb", "summon RedSkullOrb"
+    Command "Yellow Skull Orb", "summon YellowSkullOrb"
+    Command "Blue Skull Orb Holder", "summon BlueSkullOrbHolder"
+    Command "Red Skull Orb Holder", "summon RedSkullOrbHolder"
+    Command "Yellow Skull Orb Holder", "summon YellowSkullOrbHolder"
+    StaticText " "
+
+    Command "Supply Chest", "summon SupplyChest"
+    Command "Supply Chest Key", "summon ChestKey"
 }
 
 OptionMenu "Menu_R667AAA_ItemStore_Other"
@@ -562,6 +611,7 @@ OptionMenu "Menu_R667AAA_ItemStore"
     StaticText " "
 
     Submenu "PowerUps and Artifacts", "Menu_R667AAA_ItemStore_PowerUps"
-    Submenu "Keys and Puzzle Items", "Menu_R667AAA_ItemStore_Puzzle"
+    Submenu "Doom Keycards and Skull Keys", "Menu_R667AAA_ItemStore_Puzzle_Doom"
+    Submenu "Keys and Puzzle Items", "Menu_R667AAA_ItemStore_Puzzle_Other"
     Submenu "Other Items", "Menu_R667AAA_ItemStore_Other"
 }

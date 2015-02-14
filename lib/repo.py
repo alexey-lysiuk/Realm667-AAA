@@ -242,8 +242,8 @@ repository = (
     (580, 'Turbo Sphere'),
 
     # Keys and Puzzle Items
-    (710, 'Doom 3 Keycards'),
     (867, 'Cross Keys'),
+    (710, 'Doom 3 Keycards'),
     (825, 'Skull Orbs'),
     (826, 'Supply Chest Key'),
     (558, 'Various Doom Keys'),
@@ -318,5 +318,7 @@ excluded_wads = (
     (825, 'SkullOrbsDemoMap.wad'),
     (826, 'SupplyChestKeyDemoMap.wad'),
     (827, 'AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
+    (867, 'Crosses.wad'),                  # or 'Crosses2.wad'
+    (867, 'Crosses3.wad'),
     (897, 'FamiliarSummon (Sphere).wad')   # or 'FamiliarSummon (Scroll).wad'
 )

@@ -23,8 +23,8 @@ import re
 import urllib2
 
 
-pattern_summon = re.compile('Summon:\s*(</strong>|</b>)\s*(&nbsp;)?\s*([^\s][\w\s\[\],-\.\(\)\'/]+)(<strong>|<b>|<br />)')
-pattern_id_name = re.compile('gid=(\d+)"(\s+class="doclink")?>\s*([^s][\w\s\[\],-\.\(\)\']+)\s*</a>')
+pattern_summon = re.compile(r'Summon:\s*(</strong>|</b>)\s*(&nbsp;\s*)?([^\s][\w\s\[\],-\.\(\)\'/]+)(<strong>|<b>|<br />)', re.UNICODE)
+pattern_id_name = re.compile(r'gid=(\d+)(&amp;gt;=)?"(\s+class="doclink")?(\s+target="_self")?>\s*([^\s][\w\s\[\],-\.\(\)\']+)\s*</a>', re.UNICODE)
 
 repository = []
 
@@ -60,7 +60,7 @@ def fetch_repository(url):
             break
 
         id = match.group(1)
-        name = match.group(3).strip()
+        name = match.group(5).strip()
 
         repository.append((id, name, summon))
 

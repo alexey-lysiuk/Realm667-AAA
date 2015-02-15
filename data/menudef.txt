@@ -589,7 +589,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_FO"
     StaticText " "
 
     Command "Field Kit", "summon FieldKit"
-    Command "Flame Turret", "summon Flame Turret"
+    Command "Flame Turret", "summon FlameTurret"
     Command "Flare", "summon Flare"
     Command "Box of Flares", "summon FlareBox"
     Command "Greater Mace Sphere", "summon GreaterMaceSphere"

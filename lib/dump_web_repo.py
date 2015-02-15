@@ -59,8 +59,11 @@ def fetch_repository(url):
         if not match:
             break
 
-        id = match.group(1)
+        id = match.group(1).rjust(3)
         name = match.group(5).strip()
+
+        if name.lower().endswith('.zip'):
+            name = name[:-4]
 
         repository.append((id, name, summon))
 

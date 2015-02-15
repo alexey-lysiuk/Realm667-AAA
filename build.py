@@ -25,7 +25,8 @@ import traceback
 import urllib2
 import zipfile
 
-sys.path.append(os.path.dirname(__file__) + '/lib')
+self_path = os.path.dirname(__file__)
+sys.path.append(self_path + '/lib')
 
 import doomwad
 import patching
@@ -55,7 +56,7 @@ def prepare():
         pass
 
 def add_lump(zip, filename):
-    zip.write('data/{0}'.format(filename), filename)
+    zip.write('{0}/data/{1}'.format(self_path, filename), filename)
 
 
 wad_filenames = set()

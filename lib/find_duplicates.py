@@ -71,7 +71,7 @@ def find_duplicate_lumps(wad, filename):
             if lump.name in excluded_lump_names:
                 continue
 
-            if lump.name in lumps_wads:
+            if lump.name in lumps_wads and filename not in lumps_wads[lump.name]:
                 lumps_wads[lump.name].append(filename)
             else:
                 lumps_wads[lump.name] = [filename]

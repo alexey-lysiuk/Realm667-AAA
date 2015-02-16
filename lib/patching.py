@@ -385,7 +385,7 @@ def apply_patch(id, wad):
     if no_class_replacement:
         replace_in_decorate(wad, r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replaces\s+[\w~.]+', r'\1')
     if no_doomednum:
-        replace_in_decorate(wad, r'(actor\s+[\w~.]+\s*:\s*[\w~.]+\s+(replaces\s+[\w~.]+)?)\s*\d*', r'\1')
+        replace_in_decorate(wad, r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', r'\1')
 
     make_unique_sprites(wad)
 

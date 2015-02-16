@@ -1,6 +1,7 @@
 # doomwad.py: Doom WAD file library
 #
 # Copyright (c) 2009 Jared Stafford (jspenguin@gmail.com)
+# Copyright (c) 2015 Alexey Lysiuk
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -27,6 +28,7 @@
 
 """Read and write Doom WAD files"""
 
+import md5
 import string
 import struct
 from cStringIO import StringIO
@@ -46,6 +48,23 @@ spritemarker = 'S_START'
 def issrpitenamespace(namespace):
     return namespace == spritemarker or namespace[1:] == spritemarker
 
+def issequentialsprite(name):
+    if name.startswith('ARTI'):
+        # The very special case for Heretic and Hexen
+        # This is a non-sequential sprite
+        return False
+    else:
+        size = len(name)
+
+        # 6th and 8th characters represent sprite angles
+        angle1 = 6 == size and name[5] in _spriteanglechar
+        angle2 = 8 == size and name[5] in _spriteanglechar \
+                           and name[7] in _spriteanglechar
+
+        # Treat a sprite is a part of the sequence
+        # if its name contains one or two valid angle characters
+        return angle1 or angle2
+
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
@@ -53,6 +72,11 @@ class Lump(object):
         self.index = index
         self.marker = data == "" and name not in specnames
         self.namespace = ''
+
+    def hash(self):
+        result = md5.new()
+        result.update(self.data)
+        return result.digest()
 
 class WadFile(object):
     def __init__(self, data_or_file):
@@ -250,29 +274,37 @@ class WadFile(object):
 
         for lump in self.spritelumps():
             name = lump.name
-
-            if name.startswith('ARTI'):
-                # The very special case for Heretic and Hexen
-                # This is a non-sequential sprite
-                names.add(name)
-            else:
-                size = len(name)
-
-                # 6th and 8th characters represent sprite angles
-                angle1 = 6 == size and name[5] in _spriteanglechar
-                angle2 = 8 == size and name[5] in _spriteanglechar \
-                                   and name[7] in _spriteanglechar
-
-                if angle1 or angle2:
-                    # This sprite is a part of the sequence
-                    # The first four characters denote a sprite name
-                    names.add(name[:4])
-                else:
-                    # This is a non-sequential sprite
-                    names.add(name)
+            names.add(issequentialsprite(name) and name[:4] or name)
 
         return sorted(names)
 
+    def spritemapping(self):
+        """
+        Return dictionary with sprite/frame mapping with format:
+        { sprite: { frame: hash,
+                    frame: hash,
+                    ... },
+          sprite: { ... },
+          ... }
+        """
+        result = { }
+
+        for lump in self.spritelumps():
+            if issequentialsprite(lump.name):
+                lumpname = lump.name
+                lumphash = lump.hash()
+
+                name  = lumpname[:4]
+                frame = lumpname[4:]
+
+                if name in result:
+                    result[name][frame] = lumphash
+                else:
+                    result[name] = { frame: lumphash }
+            else:
+                result[lumpname] = { lumpname: lumphash }
+
+        return result
 
 parsers = {}
 
@@ -339,3 +371,32 @@ _defparser('Linedef', '<HHHHHhh', 'start_vtx', 'end_vtx', 'flags',
 _defparser('HexLinedef', '<HHHBBBBBBhh', 'start_vtx', 'end_vtx',
            'flags', 'special', 'arg0', 'arg1', 'arg2', 'arg3',
            'arg4', 'right_sdef', 'left_sdef')
+
+
+if __name__ == '__main__':
+    import sys
+
+    if 1 == len(sys.argv):
+        print('Usage: {0} file.wad ...'.format(__file__))
+        exit(1)
+
+    allsprites = { }
+
+    for filename in sys.argv[1:]:
+        wad_file = open(filename, 'rb')
+        wad_data = wad_file.read()
+        wad_file.close()
+
+        wad = WadFile(wad_data)
+
+        for name, frames in wad.spritemapping().iteritems():
+            if name in allsprites:
+                template = allsprites[name] == frames                 \
+                    and '[.] Identical sprite {0} was found'          \
+                    or  '[!] Sprite collision for name {0} was found'
+                print(template.format(name))
+            else:
+                allsprites[name] = frames
+
+##    from pprint import pprint
+##    pprint(allsprites)

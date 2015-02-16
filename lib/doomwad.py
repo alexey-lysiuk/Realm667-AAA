@@ -62,6 +62,8 @@ class WadFile(object):
         else:
             file = StringIO(data_or_file)
 
+        self.filename = hasattr(file, 'name') and file.name or ''
+
         sig, numentries, offset = _header.unpack(file.read(12))
 
         if (sig != 'IWAD' and sig != 'PWAD'):

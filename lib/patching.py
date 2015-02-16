@@ -46,7 +46,12 @@ def replace_in_lump(name, wad, old, new, optional = False):
     lump = wad.find(name)
 
     if lump:
-        lump.data = re.sub(old, new, lump.data, 0, re.IGNORECASE)
+        if hasattr(old, 'sub') and hasattr(old, 'groups'):
+            # regular expression object
+            lump.data = old.sub(new, lump.data, 0)
+        else:
+            # string object
+            lump.data = re.sub(old, new, lump.data, 0, re.IGNORECASE)
     elif not optional:
         print("Error: Cannot find lump {0}".format(name))
 
@@ -370,6 +375,11 @@ weapons_change_pitch = (
 )
 
 
+re_no_set_pitch = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)
+re_no_class_replacement = re.compile(r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replaces\s+[\w~.]+', re.IGNORECASE)
+re_no_doomednum = re.compile(r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', re.IGNORECASE)
+
+
 def apply_patch(id, wad):
     # Fix weapon slot and player class resetting
     if id in broken_keyconfs:
@@ -381,11 +391,11 @@ def apply_patch(id, wad):
         globals()[func_name](wad)
 
     if no_set_pitch and id in weapons_change_pitch:
-        replace_in_decorate(wad, r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', '')
+        replace_in_decorate(wad, re_no_set_pitch, '')
     if no_class_replacement:
-        replace_in_decorate(wad, r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replaces\s+[\w~.]+', r'\1')
+        replace_in_decorate(wad, re_no_class_replacement, r'\1')
     if no_doomednum:
-        replace_in_decorate(wad, r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', r'\1')
+        replace_in_decorate(wad, re_no_doomednum, r'\1')
 
     make_unique_sprites(wad)
 

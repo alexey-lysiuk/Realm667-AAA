@@ -35,3 +35,14 @@
 |RELOADIN|Drummle.wad, Enforcer(Pistol).wad|Alternative DECORATE lumps, unused by engine|
 |SCOLTFIR|Reaper.wad, SuppressedMP5.wad|The same file|
 |UPDATES|BioPipebombLauncher.wad, Glock18.wad, PossessionSphere.wad|Informational text file, unused by engine|
+
+### Clearing of player classes
+|ID|Name|
+|---|----|
+|465|Salvation Sphere|
+|509|Prox Launcher|
+|536|Jackbomb|
+|539|Blood Lich|
+|552|Hierophant|
+The assets from the table above contain `KEYCONF` lump with `clearplayerclasses` command. This command causes an issue when player class added after it doesn't match the current game, e.g. Doom player class in Heretic. Such `KEYCONF` lumps are removed during package generation.  
+_**TODO:** actors may depend on new player classes and may work incorrectly without it._

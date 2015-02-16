@@ -42,16 +42,20 @@ no_doomednum = True
 # Verbose messages about changes done by patching
 
 
-def replace_in_lump(name, wad, old, new):
+def replace_in_lump(name, wad, old, new, optional = False):
     lump = wad.find(name)
 
     if lump:
         lump.data = re.sub(old, new, lump.data, 0, re.IGNORECASE)
-    else:
+    elif not optional:
         print("Error: Cannot find lump {0}".format(name))
 
-def replace_in_decorate(wad, old, new):
-    replace_in_lump('DECORATE', wad, old, new)
+def replace_in_decorate(wad, old, new, optional = False):
+    replace_in_lump('DECORATE', wad, old, new, optional)
+
+def replace_in_gldefs(wad, old, new, optional = False):
+    replace_in_lump('GLDEFS', wad, old, new, optional)
+
 
 def rename_lump(wad, old, new):
     lump = wad.find(old)
@@ -94,8 +98,12 @@ def rename_sprite(wad, sprite):
     new_name = unique_sprite_name()
 
     replace_in_decorate(wad,
-        r'(\s+){0}(\s+)'.format(sprite),
+        r'(\s){0}(\s)'.format(sprite),
         r'\g<1>{0}\g<2>'.format(new_name))
+    replace_in_gldefs(wad,
+        r'(\s){0}(\s|[\w\s])'.format(sprite),
+        r'\g<1>{0}\g<2>'.format(new_name),
+        optional = True)
 
     for lump in wad.spritelumps():
         if lump.name.startswith(sprite):
@@ -232,7 +240,7 @@ def apply_patch_314(wad): # Revolver PS
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
 
 def apply_patch_372(wad): # Autogun
-    replace_in_lump('GLDEFS', wad, 'PlickerLight', 'FlickerLight')
+    replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
 
 def apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather

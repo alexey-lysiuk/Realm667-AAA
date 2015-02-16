@@ -79,9 +79,20 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
-_sprites = set(sprites_doom_all)
+def gen_sprite_mapping():
+    """ Generate dictionary with the same format as WadFile.spritemapping() """
+    result = { }
 
-def unique_sprite_name():
+    for sprite in sprites_doom_all:
+        # add one incorrect frame that will always be different
+        # to avoid any possibility of name collision with IWADs
+        result[sprite] = { '??': '' }
+
+    return result
+
+_sprites = gen_sprite_mapping()
+
+def unique_sprite_name(frames):
     name_chars = string.ascii_uppercase + string.digits
     char_count = len(name_chars)
 
@@ -93,14 +104,14 @@ def unique_sprite_name():
             unique_name += name_chars[index]
 
         if unique_name not in _sprites:
-            _sprites.add(unique_name)
+            _sprites[unique_name] = frames
             return unique_name
 
     assert(False)
     return '????'
 
-def rename_sprite(wad, sprite):
-    new_name = unique_sprite_name()
+def rename_sprite(wad, sprite, frames):
+    new_name = unique_sprite_name(frames)
 
     replace_in_decorate(wad,
         r'(\s){0}(\s)'.format(sprite),
@@ -115,13 +126,14 @@ def rename_sprite(wad, sprite):
             lump.name = new_name + lump.name[4:]
 
 def make_unique_sprites(wad):
-    """ Find and rename sprites with the same names
+    """ Find and rename sprites with the same name but different content
         New names are randomly generated """
-    for sprite in wad.spritenames():
-        if sprite in _sprites:
-            rename_sprite(wad, sprite)
+    for name, frames in wad.spritemapping().iteritems():
+        if name in _sprites:
+            if frames != _sprites[name]:
+                rename_sprite(wad, name, frames)
         else:
-            _sprites.add(sprite)
+            _sprites[name] = frames
 
 
 _actors = set(actors_all)

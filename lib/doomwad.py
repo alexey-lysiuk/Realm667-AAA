@@ -290,10 +290,10 @@ class WadFile(object):
         result = { }
 
         for lump in self.spritelumps():
-            if issequentialsprite(lump.name):
-                lumpname = lump.name
-                lumphash = lump.hash()
+            lumpname = lump.name
+            lumphash = lump.hash()
 
+            if issequentialsprite(lumpname):
                 name  = lumpname[:4]
                 frame = lumpname[4:]
 

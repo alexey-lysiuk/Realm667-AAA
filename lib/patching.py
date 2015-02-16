@@ -182,6 +182,12 @@ def apply_patch_10(wad): # Apprentice of D'Sparil
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
 
+def apply_patch_59(wad): # Hellstorm Archon
+    # fix class name collision with #12 Archon of Hell
+    replace_in_decorate(wad,
+        r'([^\w])ArchonComet([^\w])',
+        r'\1HellstormArchonComet\2')
+
 def apply_patch_225(wad): # Minigun
     # fix sound name collision with #235 Uber Minigun
     replace_in_lump('SNDINFO', wad, r'(\s+)DSMINIGN(\s*)', r'\1DSMNGUNF\2')
@@ -255,6 +261,12 @@ def apply_patch_308(wad): # Doom III Super Shotgun
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
+
+def apply_patch_333(wad): # Freezer Zombie
+    # fix class name collision with #242 Freeze Rifle
+    replace_in_decorate(wad,
+        r'([^\w])FreezeBlastTrail([^\w])',
+        r'\1ZombieFreezeBlastTrail\2')
 
 def apply_patch_372(wad): # Autogun
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
@@ -332,6 +344,12 @@ def apply_patch_804(wad): # Light Machinegun
     replace_in_decorate(wad,
         r'(actor\s+)Machinegun(\s*:\s*\w+)',
         r'\1LightMachinegun\2')
+
+def apply_patch_814(wad): # Chaingun Demon
+    # fix class name collision with #16 Blood Demon
+    replace_in_decorate(wad,
+        r'([^\w])BloodDemonArm([^\w])',
+        r'\1ChaingunDemonArm\2')
 
 def apply_patch_817(wad): # Arbalest of the Ancients
     # fix class name collision with #582 Super Crossbow

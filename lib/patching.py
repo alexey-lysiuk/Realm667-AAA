@@ -148,7 +148,14 @@ def make_unique_actors(wad):
             _actors.add(actor[0])
 
 
-# Armory
+# Asset-specific patches
+
+def apply_patch_10(wad): # Apprentice of D'Sparil
+    # fix missing marker
+    sprite_end_marker = 'S_END'
+    if not wad.find(sprite_end_marker):
+        marker = doomwad.Lump(sprite_end_marker, '')
+        wad.append(marker)
 
 def apply_patch_225(wad): # Minigun
     # fix sound name collision with #235 Uber Minigun
@@ -383,7 +390,7 @@ def apply_patch(id, wad):
        It's quite problematic to generate menu automatically,
        or even to update it according to changes in DECORATE
     3) Renaming of ammo actors will produce a new ammo type
-       Although it's incorrect as the same ammo can be used by several weapons 
+       Although it's incorrect as the same ammo can be used by several weapons
     That's why this patch is disabled
 """
 ##    make_unique_actors(wad)

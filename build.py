@@ -130,6 +130,7 @@ def main():
                 wad_file.close()
 
                 wad = doomwad.WadFile(wad_data)
+                wad.filename = filename
 
                 if not wad.find('DECORATE'):
                     print('Warning: No DECORATE lump found in file {0}, skipping...'.format(filename))

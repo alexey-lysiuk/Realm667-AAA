@@ -408,13 +408,14 @@ OptionMenu "Menu_R667AAA_Armory"
 
 // Beastiary
 
-OptionMenu "Menu_R667AAA_Beastiary"
+OptionMenu "Menu_R667AAA_Beastiary_Doom_01"
 {
-    StaticText "Realm667 - Beastiary"
+    StaticText "Doom Monsters"
     StaticText " "
 
     Command "Afrit", "summon Afrit"
-    Command "Agathodemon", "summon Agathodemon, AnotherAgathodemon"
+    Command "Agathodemon", "summon Agathodemon"
+    Command "Another Agathodemon", "summon AnotherAgathodemon"
     Command "Agaures", "summon Agaures, GhostlyAgaures"
     Command "Annihilator", "summon Annihilator"
     Command "Arachnobaron", "summon Arachnobaron"
@@ -430,6 +431,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Bat", "summon BatFamiliar"
     Command "Beam Revenant", "summon BeamRevenant"
     Command "Beam Zombie", "summon BeamGuy"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_02"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Beheaded Kamikaze", "summon KamikaziGuy"
     Command "Belphegor", "summon BelphegorClone"
     Command "BFG Commando", "summon BFGGuy"
@@ -450,6 +458,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "CoreTentacles", "summon Tentacle1, Tentacle2"
     Command "CrackoDemon", "summon CrackoDemon"
     Command "Crash", "summon crash2"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_03"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Cyber Baron", "summon CyberBaron"
     Command "Cyber Imp", "summon Cyberimp"
     Command "CyberMastermind", "summon CyberMastermind"
@@ -468,6 +483,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Double Chaingunner", "summon ChaingunGuy2"
     Command "Drone", "summon Drone"
     Command "DuneWarrior", "summon DuneWarrior"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_04"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Enhanced Cacodemon", "summon EnhancedCacodemon"
     Command "EtherealSoul", "summon ESoul"
     Command "Exterminator", "summon Exterminator"
@@ -482,6 +504,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Former Ranger", "summon FormerRanger, RangerCorpse"
     Command "Former Scientists Pack", "summon ZombieScientist, ZombieScientist2, FemaleScientist, FemaleScientist2"
     Command "Former Scientists Pack 2", "summon ZombieScientist3, ZombieScientist4, FemaleScientist3, FemaleScientist4"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_05"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Freezer Zombie", "summon FreezeRifleGuy"
     Command "Fusion Spider", "summon FusionSpider"
     Command "Gatekeeper", "summon Gatekeeper"
@@ -502,6 +531,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Hellion", "summon Hellion"
     Command "Hellstorm Archon", "summon HellstormArchon"
     Command "Hierophant", "summon Hierophant"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_06"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Illus", "summon Illus"
     Command "ImpTrite", "summon SpiderImpHead"
     Command "Imp Variants", "summon Various (See wads)"
@@ -520,6 +556,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "NailBorgCommando", "summon NailBorg Commando"
     Command "NetherworldDrone", "summon NetherworldDrone"
     Command "NetherworldQueen", "summon Queen"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_07"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Nightmare", "summon KDiZDNightmare"
     Command "NightmareDemon", "summon NightmareDemon"
     Command "Nightshade", "summon Nightshade"
@@ -541,6 +584,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Pyro Zombie", "summon PyroZombie"
     Command "PyroImp", "summon PyroImp"
     Command "Quad-Shotgun Zombie", "summon QuadShotgunZombie"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_08"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Rail Arachnotron", "summon RailArachnotron"
     Command "Rail Bot", "summon RailBot"
     Command "Rapid Fire Trooper", "summon RapidFireTrooper"
@@ -561,6 +611,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "SlimeImp", "summon SlimeImp"
     Command "Slime Worm", "summon SlimeWorm"
     Command "SMG Zombie", "summon SMGGuy"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_09"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Smoke Monster", "summon smokemonster"
     Command "Snake Imp", "summon SnakeImp"
     Command "SniperZombie", "summon SniperRifleGuy"
@@ -580,6 +637,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Super Shotgun Zombie", "summon SSGZombie"
     Command "Supreme Fiend", "summon SupremeFiend"
     Command "Swarm", "summon Swarm"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_10"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Terminator", "summon TerminatorÂ "
     Command "Terror", "summon Terror"
     Command "TeslaCoil", "summon TeslaCoil"
@@ -595,6 +659,13 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Unmaker Zombie", "summon UnMakerGuy"
     Command "Volacubi", "summon FlyingFatso, FFPlasma, FFSlime"
     Command "Vulgar", "summon Vulgar"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Doom_11"
+{
+    StaticText "Doom Monsters"
+    StaticText " "
+
     Command "Warlord of Hell", "summon WarlordOfHell"
     Command "Watcher", "summon Watcher"
     Command "Weakener", "summon Weakener"
@@ -610,6 +681,12 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Zombie Scientist", "summon ZombieScientist"
     Command "ZombieTank", "summon ZombieTank"
     Command "ZSpecOps", "summon See wads"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_HH_1"
+{
+    StaticText "Heretic/Hexen Monsters"
+    StaticText " "
 
     Command "Acolyte", "summon Priest"
     Command "Apprentice of D'Sparil", "summon ApprenticeofDsparil"
@@ -617,7 +694,6 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Banshee", "summon Banshee"
     Command "Blood Lich", "summon BloodLich"
     Command "Bormereth", "summon Bormereth"
-    Command "Boss Shooters", "summon HereticBossEye, HereticBossTarget, HexenBossEye, HexenBossTarget"
     Command "Butcher", "summon Butcher"
     Command "Chainmail Ettin", "summon ChainmailEttin"
     Command "Chaos Wyvern", "summon ChaosWyvern"
@@ -629,14 +705,24 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Death Knight", "summon Deathknight"
     Command "Demon Wizard", "summon DemonWizard"
     Command "Disciple", "summon Disciple"
-    Command "Disciple (with melee)", "summon Wizard (replaces original)"
+    Command "Disciple (with melee)", "summon Wizard"
+    Command "Dual Axe Undead Knight", "summon EnhancedKnight"
+    Command "Dual Axe Undead Knight Ghost", "summon EnhancedKnightGhost"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_HH_2"
+{
+    StaticText "Heretic/Hexen Monsters"
+    StaticText " "
+
     Command "Evil Knight", "summon EvilKnight"
     Command "Ghoul", "summon Ghoul"
     Command "Gold Lich", "summon GoldLich"
-    Command "Head Monster", "summon HeadMan, SneakyHeadMan"
-    Command "HellApprentice", "summon Apprentice"
-    Command "HellSmith", "summon Hellsmith1"
-    Command "HellsGuard", "summon HellGuard"
+    Command "Head Monster", "summon HeadMan"
+    Command "Sneaky Head Monster", "summon SneakyHeadMan"
+    Command "Hell Apprentice", "summon Apprentice"
+    Command "Hell Guard", "summon HellGuard"
+    Command "Hellsmith", "summon Hellsmith1"
     Command "Hex Prism", "summon GemTurret"
     Command "HornBeast", "summon HornBeast"
     Command "Hornet", "summon Hornet"
@@ -646,6 +732,19 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "ImpWarlord", "summon ImpWarlord"
     Command "Inferno Demon", "summon InfernoDemon"
     Command "Invisible Warrior", "summon InvWar"
+    StaticText " "
+
+    Command "Heretic Boss Eye", "summon HereticBossEye"
+    Command "Heretic Boss Target", "summon HereticBossTarget"
+    Command "Hexen Boss Eye", "summon HexenBossEye"
+    Command "Hexen Boss Target", "summon HexenBossTarget"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_HH_3"
+{
+    StaticText "Heretic/Hexen Monsters"
+    StaticText " "
+
     Command "Juggernaut", "summon Juggernaut"
     Command "Knight Archer", "summon ArcherKnight"
     Command "Lava Demon", "summon LavaDemon"
@@ -654,17 +753,24 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Medusa", "summon Medusa"
     Command "Nosferati", "summon Nosferati"
     Command "Plague Imp", "summon PlagueImp"
-    Command "Pyro Succubus", "summon PyroSuccubus, PyroSuccubusWalk, PyroSuccubusFly"
+    Command "Pyro Succubus", "summon PyroSuccubus"
+    Command "Flying Pyro Succubus", "summon PyroSuccubusFly"
+    Command "Walking Pyro Succubus", "summon PyroSuccubusWalk"
     Command "Rot Wraith", "summon RotWraith"
     Command "Scimitar", "summon Scimitar"
     Command "Sentinel", "summon DESentinel"
     Command "Shadow Beast", "summon ShadowBeast"
     Command "Skeleton", "summon skeleton"
     Command "Thor", "summon Thor"
-    Command "Undead Knight (Dual Axe)", "summon EnhancedKnight, EnhancedKnightGhost"
     Command "Vampire", "summon Vampire"
     Command "Wraith", "summon DEWraith"
     Command "Zardaz", "summon Zardaz"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary_Strife"
+{
+    StaticText "Strife Monsters"
+    StaticText " "
 
     Command "Black Ops", "summon BlackOpsRandomSpawner"
     Command "Dark Inquisitor", "summon DarkInquisitor"
@@ -673,7 +779,41 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Command "Mini Sentinel", "summon MiniSentinel"
     Command "Paladin", "summon Paladin"
     Command "Prison Guard", "summon PrisonGuard"
-    Command "Rebels Pack", "summon SheildRebel, EliteRebel, GrenadeRebel, MaulerRebel, FlamerRebel, CommandoRebel, RangerRebel"
+    StaticText " "
+
+    Command "Commando Rebel", "summonfoe CommandoRebel"
+    Command "Elite Rebel", "summonfoe EliteRebel"
+    Command "Flamer Rebel", "summonfoe FlamerRebel"
+    Command "Grenade Rebel", "summonfoe GrenadeRebel"
+    Command "Mauler Rebel", "summonfoe MaulerRebel"
+    Command "Ranger Rebel", "summonfoe RangerRebel"
+    Command "Shield Rebel", "summonfoe ShieldRebel"
+}
+
+OptionMenu "Menu_R667AAA_Beastiary"
+{
+    StaticText "Realm667 - Beastiary"
+    StaticText " "
+
+    Submenu "Doom Monsters * A..B", "Menu_R667AAA_Beastiary_Doom_01"
+    Submenu "Doom Monsters * B..C", "Menu_R667AAA_Beastiary_Doom_02"
+    Submenu "Doom Monsters * C..D", "Menu_R667AAA_Beastiary_Doom_03"
+    Submenu "Doom Monsters * E..F", "Menu_R667AAA_Beastiary_Doom_04"
+    Submenu "Doom Monsters * F..H", "Menu_R667AAA_Beastiary_Doom_05"
+    Submenu "Doom Monsters * I..N", "Menu_R667AAA_Beastiary_Doom_06"
+    Submenu "Doom Monsters * N..Q", "Menu_R667AAA_Beastiary_Doom_07"
+    Submenu "Doom Monsters * R..S", "Menu_R667AAA_Beastiary_Doom_08"
+    Submenu "Doom Monsters * S", "Menu_R667AAA_Beastiary_Doom_09"
+    Submenu "Doom Monsters * T..V", "Menu_R667AAA_Beastiary_Doom_10"
+    Submenu "Doom Monsters * W..Z", "Menu_R667AAA_Beastiary_Doom_11"
+    StaticText " "
+
+    Submenu "Heretic/Hexen Monsters * A..D", "Menu_R667AAA_Beastiary_HH_1"
+    Submenu "Heretic/Hexen Monsters * E..I", "Menu_R667AAA_Beastiary_HH_2"
+    Submenu "Heretic/Hexen Monsters * J..Z", "Menu_R667AAA_Beastiary_HH_3"
+    StaticText " "
+
+    Submenu "Strife Monsters", "Menu_R667AAA_Beastiary_Strife"
 }
 
 

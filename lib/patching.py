@@ -37,7 +37,6 @@ no_doomednum = True
 
 
 # TODO:
-# [?] Remove unused lumps like CREDITS or INFO
 # [?] Optimize DECORATE lump: remove comments and extra line breaks
 # Verbose messages about changes done by patching
 
@@ -171,6 +170,47 @@ def make_unique_actors(wad):
             rename_actor(decorate, actor[0])
         else:
             _actors.add(actor[0])
+
+
+_lumps = { }
+
+_included_names = {
+    'DECORATE',
+    'SNDINFO',
+    'KEYCONF',
+    'DECALDEF',
+    'GLDEFS',
+}
+
+_excluded_names = {
+    'INFO',
+    'CREDITS',
+    '--------',
+}
+
+def is_unique_lump(lump):
+    name = lump.name
+
+    if name in _excluded_names:
+        return False
+
+    if lump.marker or name in _included_names:
+        return True
+
+    hash = lump.hash()
+
+    if name in _lumps:
+        if hash in _lumps[name]:
+            return False
+        else:
+            _lumps[name].add(hash)
+            return True
+    else:
+        _lumps[name] = { hash }
+        return True
+
+def optimize(wad):
+    wad.lumps = filter(is_unique_lump, wad)
 
 
 # Asset-specific patches
@@ -432,7 +472,7 @@ def apply_patch(id, wad):
 
     make_unique_sprites(wad)
 
-"""
+    """
     Unique actors name patch have at least two issues:
     1) Actor name and reserved word (property, flag, etc) can be the same
        Without complete DECORATE parsing it's impossible to distinguish
@@ -443,5 +483,7 @@ def apply_patch(id, wad):
     3) Renaming of ammo actors will produce a new ammo type
        Although it's incorrect as the same ammo can be used by several weapons
     That's why this patch is disabled
-"""
+    """
 ##    make_unique_actors(wad)
+
+    optimize(wad)

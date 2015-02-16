@@ -348,10 +348,13 @@ broken_keyconfs = (
     328, # Spellbinder
     329, # Plasma Shotgun
     330, # Butchergun Chaingun
+    465, # Salvation Sphere
     509, # Prox Launcher
     510, # Vile Staff
     521, # Mag .60
     536, # Jackbomb
+    539, # Blood Lich
+    552, # Hierophant
     626, # D'sparil Staff
 )
 

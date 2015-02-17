@@ -331,6 +331,26 @@ def apply_patch_543(wad): # UTNT Pyro-Cannon
     # fix class name collision with #541 Flamethrower
     replace_in_decorate(wad, 'DropFire', 'PyroDropFire')
 
+_patch_554_count = 0
+
+def apply_patch_554(wad): # ZSpecOps
+    # fix duplication of actors
+    global _patch_554_count
+
+    if _patch_554_count > 0:
+        actors = (
+            'ZSpecOpAggressive',
+            'ZSpecOpSnipe',
+            'ZSpecOpWander',
+            'ZSpecOpCreep',
+            'ZSpecOpFlee')
+
+        for actor in actors:
+            template = r'actor\s+' + actor + r'\s+:.*?\}'
+            replace_in_decorate(wad, template, '')
+
+    _patch_554_count += 1
+
 def apply_patch_560(wad): # Nailgun (SG)
     # fix class name collision with #496 Nailgun (MG)
     replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')

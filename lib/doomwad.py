@@ -306,6 +306,11 @@ class WadFile(object):
 
         return result
 
+    def filter(self, function):
+        """ Keep only those lumps which function returns true """
+        self.lumps = filter(function, self)
+        self._reindex()
+
 parsers = {}
 
 def readarray(stream, clas):

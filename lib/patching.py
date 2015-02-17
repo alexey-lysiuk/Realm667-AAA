@@ -190,7 +190,7 @@ _excluded_names = {
     '--------',
 }
 
-def is_unique_lump(lump):
+def is_lump_needed(lump):
     name = lump.name
 
     if name in _excluded_names:
@@ -212,7 +212,7 @@ def is_unique_lump(lump):
         return True
 
 def optimize(wad):
-    wad.lumps = filter(is_unique_lump, wad)
+    wad.filter(is_lump_needed)
 
 
 # Asset-specific patches

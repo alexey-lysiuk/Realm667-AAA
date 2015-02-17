@@ -346,7 +346,7 @@ def apply_patch_554(wad): # ZSpecOps
             'ZSpecOpFlee')
 
         for actor in actors:
-            template = r'actor\s+' + actor + r'\s+:.*?\}'
+            template = r'actor\s+' + actor + r'\s+:.*?\}\s+'
             replace_in_decorate(wad, template, '')
 
     _patch_554_count += 1

@@ -224,6 +224,12 @@ def apply_patch_10(wad): # Apprentice of D'Sparil
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
 
+def apply_patch_14(wad): # Bat
+    # remove sprites with broken transparency
+    # lumps from #185 Baphomet's Eyes will be used
+    # they are the same sprites but with correct alpha channel
+    wad.removesprite('BFAM')
+
 def apply_patch_59(wad): # Hellstorm Archon
     # fix class name collision with #12 Archon of Hell
     replace_in_decorate(wad,

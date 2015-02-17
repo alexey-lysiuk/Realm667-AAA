@@ -311,6 +311,14 @@ class WadFile(object):
         self.lumps = filter(function, self)
         self._reindex()
 
+    def removesprite(self, sprite):
+        """ Remove sprite lumps by sprite name """
+        def should_keep_lump(lump):
+            return not issrpitenamespace(lump.namespace) \
+                or not lump.name.startswith(sprite)
+
+        self.filter(should_keep_lump)
+
 parsers = {}
 
 def readarray(stream, clas):

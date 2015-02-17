@@ -91,14 +91,16 @@ def gen_sprite_mapping():
 
 _sprites = gen_sprite_mapping()
 
-def unique_sprite_name(frames):
+def unique_sprite_name(sprite, frames):
     name_chars = string.ascii_uppercase + string.digits
     char_count = len(name_chars)
+
+    name_length = len(sprite)
 
     while True:
         unique_name = ''
 
-        for i in xrange(0, 4):
+        for i in xrange(0, name_length):
             index = random.randint(0, char_count - 1)
             unique_name += name_chars[index]
 
@@ -110,7 +112,7 @@ def unique_sprite_name(frames):
     return '????'
 
 def rename_sprite(wad, sprite, frames):
-    new_name = unique_sprite_name(frames)
+    new_name = unique_sprite_name(sprite, frames)
 
     replace_in_decorate(wad,
         r'(\s){0}(\s)'.format(sprite),

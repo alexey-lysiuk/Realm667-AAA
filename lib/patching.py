@@ -23,7 +23,6 @@ import string
 
 import doomwad
 from iwad_lumps import sprites_doom_all
-from iwad_actors import actors_all
 
 
 # Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
@@ -143,41 +142,52 @@ def make_unique_sprites(wad):
             _sprites[name] = frames
 
 
-_actors = set(actors_all)
+def remove_actor(wad, name):
+    patterns = (
+        # actor with states
+        r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*',
+        # stateless actor
+        r'actor\s+%s[\s:{].*?}\s*'
+    )
 
-def rename_actor(decorate, actor):
-    suffix = 1
+    # TODO: is it ever possible to do this using ONE regex?
 
-    # generate unique actor name
-    while True:
-        new_name = '{0}~{1}'.format(actor, suffix)
+    for pattern in patterns:
+        actor_regex = re.compile(pattern % name, re.IGNORECASE | re.DOTALL)
+        replace_in_decorate(wad, actor_regex, '')
 
-        if new_name not in _actors:
-            _actors.add(new_name)
-            break
+_actors = set()
 
-        suffix += 1
+_line_comment_pattern = re.compile('//.*?$', re.MULTILINE)
+_block_comment_pattern = re.compile('/\*.*?\*/', re.DOTALL)
 
-    # replace old name
-    replace_pattern = r'(["\s]){0}(["\s])'.format(actor)
-    decorate.data = re.sub(replace_pattern,
-        r'\g<1>{0}\g<2>'.format(new_name), decorate.data, 0, re.IGNORECASE)
+_actor_pattern = re.compile(r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?' \
+    '(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{', re.IGNORECASE)
 
-def make_unique_actors(wad):
-    """ Find actors in DECORATE and rename them if names are already used """
+def remove_duplicate_actors(wad):
+    """ Remove duplicate actors from DECORATE lump
+        Also, as a side effect, remove all comments from the lump """
     decorate = wad.find('DECORATE')
     assert(decorate)
 
-    actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?' \
-                     '(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{'
-    actors = re.findall(actor_pattern, decorate.data, re.IGNORECASE)
+    # remove comments, as actor removal may fail otherwise
+    # consider two actors in the same lump, but one is commented out
+    # for instance, see #272 Sniper Rifle
+    # actually, there is an other way to do this without comment removal
+    # but this will increase complexity even more
+    replace_in_decorate(wad, _line_comment_pattern, '')
+    replace_in_decorate(wad, _block_comment_pattern, '')
+
+    # look for actors
+    actors = _actor_pattern.findall(decorate.data)
 
     for actor in actors:
-        if actor[0] in _actors:
-            #print('Duplicate actor {0} found!'.format(actor[0]))
-            rename_actor(decorate, actor[0])
+        class_name = actor[0].lower()
+
+        if class_name in _actors:
+            remove_actor(wad, class_name)
         else:
-            _actors.add(actor[0])
+            _actors.add(class_name)
 
 
 _lumps = { }
@@ -501,20 +511,8 @@ def apply_patch(id, wad):
     if no_doomednum:
         replace_in_decorate(wad, re_no_doomednum, r'\1')
 
-    make_unique_sprites(wad)
+    #remove_duplicate_actors(wad)
 
-    """
-    Unique actors name patch have at least two issues:
-    1) Actor name and reserved word (property, flag, etc) can be the same
-       Without complete DECORATE parsing it's impossible to distinguish
-       these cases, regular expression in not enough...
-    2) Actors referenced in menu can be renamed
-       It's quite problematic to generate menu automatically,
-       or even to update it according to changes in DECORATE
-    3) Renaming of ammo actors will produce a new ammo type
-       Although it's incorrect as the same ammo can be used by several weapons
-    That's why this patch is disabled
-    """
-##    make_unique_actors(wad)
+    make_unique_sprites(wad)
 
     optimize(wad)

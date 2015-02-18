@@ -54,11 +54,11 @@ def replace_in_lump(name, wad, old, new, optional = False):
     elif not optional:
         print("Error: Cannot find lump {0}".format(name))
 
-def replace_in_decorate(wad, old, new, optional = False):
-    replace_in_lump('DECORATE', wad, old, new, optional)
+def replace_in_decorate(wad, old, new):
+    replace_in_lump('DECORATE', wad, old, new)
 
-def replace_in_gldefs(wad, old, new, optional = False):
-    replace_in_lump('GLDEFS', wad, old, new, optional)
+def replace_in_gldefs(wad, old, new):
+    replace_in_lump('GLDEFS', wad, old, new)
 
 
 def rename_lump(wad, old, new):
@@ -119,11 +119,13 @@ def rename_sprite(wad, sprite, frames):
 
     replace_in_decorate(wad,
         r'(\s){0}(\s)'.format(sprite), replace_pattern)
-    replace_in_gldefs(wad,
-        search_pattern, replace_pattern, optional = True)
     replace_in_lump('ANIMDEFS', wad,
         search_pattern, replace_pattern, optional = True)
     replace_in_lump('TEXTURES', wad,
+        search_pattern, replace_pattern, optional = True)
+
+    for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
+        replace_in_lump(alias, wad,
         search_pattern, replace_pattern, optional = True)
 
     for lump in wad.spritelumps():

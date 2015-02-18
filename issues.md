@@ -22,11 +22,11 @@
 ### Lump names collisions
 |Name|WAD Files|Comments|
 |---|---|---|
-|BATCRASH|Eyes.wad, ImpWarlord.wad||
-|BATDIE|Eyes.wad, ImpWarlord.wad||
-|BATIDLE1|Eyes.wad, ImpWarlord.wad||
-|BATIDLE2|Eyes.wad, ImpWarlord.wad||
-|BATPAIN|Eyes.wad, ImpWarlord.wad||
+|BATCRASH|Eyes.wad, ImpWarlord.wad|The same sound in different format|
+|BATDIE|Eyes.wad, ImpWarlord.wad|The same sound in different format|
+|BATIDLE1|Eyes.wad, ImpWarlord.wad|The same sound in different format|
+|BATIDLE2|Eyes.wad, ImpWarlord.wad|The same sound in different format|
+|BATPAIN|Eyes.wad, ImpWarlord.wad|The same sound in different format|
 |BMSAR2A1|BloodFiend.wad, NightmareDemon.wad||
 |BMSAR2A2|BloodFiend.wad, NightmareDemon.wad||
 |BMSAR2A3|BloodFiend.wad, NightmareDemon.wad||
@@ -55,11 +55,10 @@
 |BMSAR2H8|BloodFiend.wad, NightmareDemon.wad||
 |BMSAR2I0|BloodFiend.wad, NightmareDemon.wad||
 |BOUNCE|40mmGrenadeLauncher.wad, ChainmailEttin.wad, SourceGuardian.wad||
-|BUILD|Phantom.wad, Thor.wad||
+|BUILD|Phantom.wad, Thor.wad|The same sound in different format|
 |COMETEXP|InfernoDemon.wad, Thamuz.wad||
 |DEATH|Gatekeeper.wad, LesserMutant.wad, Maephisto.wad||
 |DFATTACK|ImpWarlord.wad, InfernoDemon.wad||
-|DOOMDEFS|Incubus.wad, PhaseImp.wad||
 |DSBGACT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
 |DSBGDTH1|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
 |DSBGDTH2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
@@ -160,7 +159,7 @@
 |PAIN|Gatekeeper.wad, LesserMutant.wad, Maephisto.wad||
 |SCRIPTS|Hangman.wad, OxygenCanister.wad||
 |SEE|Gatekeeper.wad, LesserMutant.wad||
-|STEP2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, DarkInquisitor.wad||
+|STEP2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, DarkInquisitor.wad|Works fine, lumps are from different namespaces|
 |STRIKE1|Bormereth.wad, Horn Beast.wad, Rictus.wad||
 
 ### Clearing of player classes

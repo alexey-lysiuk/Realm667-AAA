@@ -109,7 +109,7 @@ def find_duplicate_actors(wad, filename):
     actor_defs = re.findall(actor_pattern, decorate.data, re.IGNORECASE)
 
     for actor_def in actor_defs:
-        actor = actor_def[0]
+        actor = actor_def[0].lower()
 
         if actor in actors_wads:
             actors_wads[actor].append(zip_wad)
@@ -207,5 +207,6 @@ print_duplicates(lumps_wads, (
 print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))
 
-#print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
-#print_duplicates(actors_wads, (('!ALL.WAD', actors_all),))
+print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
+print_duplicates(actors_wads,
+    (('!ALL.WAD', [name.lower() for name in actors_all]),))

@@ -191,8 +191,9 @@ _included_names = {
 }
 
 _excluded_names = {
-    'INFO',
+    'CREDIT',  # also fixes conflict with texture from Doom IWADs
     'CREDITS',
+    'INFO',
     '--------',
 }
 
@@ -373,20 +374,12 @@ def apply_patch_577(wad): # Guard Sphere
 def apply_patch_579(wad): # Time Freeze Sphere
     fix_always_activate(wad)
 
-def remove_credit_lump(wad):
-    # remove unused text lump conflicting with Doom IWADs
-    remove_lump(wad, 'CREDIT')
-
 def apply_patch_582(wad): # Super Crossbow
-    remove_credit_lump(wad)
     # fix missing marker
     sprite_end_marker = 'SS_END'
     if not wad.find(sprite_end_marker):
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
-
-def apply_patch_608(wad): # Armor Shard
-    remove_credit_lump(wad)
 
 def apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle

@@ -181,11 +181,13 @@ def make_unique_actors(wad):
 _lumps = { }
 
 _included_names = {
-    'DECORATE',
-    'SNDINFO',
-    'KEYCONF',
+    'ANIMDEFS',
     'DECALDEF',
+    'DECORATE',
     'GLDEFS',
+    'KEYCONF',
+    'SNDINFO',
+    'TEXTURES',
 }
 
 _excluded_names = {

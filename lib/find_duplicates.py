@@ -40,22 +40,25 @@ from iwad_actors import actors_all
 
 
 excluded_lump_names = [
-    'DECORATE',
-    'KEYCONF',
-    'SNDINFO',
+    # lumps
+    'ANIMDEFS',
     'DECALDEF',
+    'DECORATE',
     'GLDEFS',
+    'KEYCONF',
+    'LANGUAGE',
     'LOADACS',
+    'LOCKDEFS',
+    'SNDINFO',
     'TEXTURES',
+
+    # markers
+    'A_START',
+    'A_END',
     'S_START',
     'S_END',
     'SS_START',
     'SS_END',
-    'A_START',
-    'A_END',
-    '--------',
-    'CREDITS',
-    'INFO',
 ]
 
 lumps_wads = { }

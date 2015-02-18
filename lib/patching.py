@@ -194,6 +194,7 @@ _excluded_names = {
     'CREDIT',  # also fixes conflict with texture from Doom IWADs
     'CREDITS',
     'INFO',
+    'UPDATES',
     '--------',
 }
 

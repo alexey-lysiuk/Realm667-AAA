@@ -52,6 +52,12 @@ excluded_lump_names = [
     'SNDINFO',
     'TEXTURES',
 
+    # GLDEFS aliases
+    'DOOMDEFS',
+    'HTICDEFS',
+    'HEXNDEFS',
+    'STRFDEFS',
+
     # markers
     'A_START',
     'A_END',

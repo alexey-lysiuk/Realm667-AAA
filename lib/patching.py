@@ -191,10 +191,11 @@ _included_names = {
 }
 
 _excluded_names = {
-    'CREDIT',  # also fixes conflict with texture from Doom IWADs
-    'CREDITS',
-    'INFO',
-    'UPDATES',
+    'CREDIT',   # informational, but fixes conflict with texture from IWADs
+    'CREDITS',  # informational
+    'INFO',     # informational
+    'UPDATES',  # informational
+    'RELOADIN', # alternative DECORATE lumps
     '--------',
 }
 

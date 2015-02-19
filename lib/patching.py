@@ -110,14 +110,12 @@ def unique_sprite_name(sprite, frames):
     assert(False)
     return '????'
 
-def rename_sprite(wad, sprite, frames):
-    new_name = unique_sprite_name(sprite, frames)
-
-    search_pattern = r'(\s){0}([\w\s"])'.format(sprite)
-    replace_pattern = r'\g<1>{0}\g<2>'.format(new_name)
+def rename_sprite(wad, old, new):
+    search_pattern = r'(\s){0}([\w\s"])'.format(old)
+    replace_pattern = r'\g<1>{0}\g<2>'.format(new)
 
     replace_in_decorate(wad,
-        r'(\s){0}(\s)'.format(sprite), replace_pattern)
+        r'(\s){0}(\s)'.format(old), replace_pattern)
     replace_in_lump('ANIMDEFS', wad,
         search_pattern, replace_pattern, optional = True)
     replace_in_lump('TEXTURES', wad,
@@ -128,8 +126,8 @@ def rename_sprite(wad, sprite, frames):
         search_pattern, replace_pattern, optional = True)
 
     for lump in wad.spritelumps():
-        if lump.name.startswith(sprite):
-            lump.name = new_name + lump.name[4:]
+        if lump.name.startswith(old):
+            lump.name = new + lump.name[4:]
 
 def make_unique_sprites(wad):
     """ Find and rename sprites with the same name but different content
@@ -137,7 +135,8 @@ def make_unique_sprites(wad):
     for name, frames in wad.spritemapping().iteritems():
         if name in _sprites:
             if frames != _sprites[name]:
-                rename_sprite(wad, name, frames)
+                new_name = unique_sprite_name(name, frames)
+                rename_sprite(wad, name, new_name)
         else:
             _sprites[name] = frames
 

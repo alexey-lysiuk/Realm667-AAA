@@ -256,6 +256,8 @@ def apply_patch_59(wad): # Hellstorm Archon
     replace_in_decorate(wad,
         r'([^\w])ArchonComet([^\w])',
         r'\1HellstormArchonComet\2')
+    # remove the same sprite frames saved with different options
+    wad.removesprite('ARCB')
 
 def apply_patch_225(wad): # Minigun
     # fix sound name collision with #235 Uber Minigun

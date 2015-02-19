@@ -563,6 +563,7 @@ repository = (
 
 
 excluded_wads = (
+    (143, 'InfernalSpider (Jumping).wad'),
     (243, 'UnmakerCentered.wad'),
     (258, 'PolyMorph (old version).wad'),
     (717, 'StrifeLandMine.wad'),

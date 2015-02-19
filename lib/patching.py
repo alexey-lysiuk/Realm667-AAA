@@ -77,6 +77,9 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
+# ==============================================================================
+
+
 def gen_sprite_mapping():
     """ Generate dictionary with the same format as WadFile.spritemapping() """
     result = { }
@@ -90,7 +93,7 @@ def gen_sprite_mapping():
 
 _sprites = gen_sprite_mapping()
 
-def unique_sprite_name(sprite, frames):
+def _generate_unique_sprite_name(sprite, frames):
     name_chars = string.ascii_uppercase + string.digits
     char_count = len(name_chars)
 
@@ -108,7 +111,25 @@ def unique_sprite_name(sprite, frames):
             return unique_name
 
     assert(False)
-    return '????'
+    return None
+
+_sprites_renames = { }
+
+def _generate_new_sprite_name(sprite, frames):
+    new_name = None
+
+    if sprite in _sprites_renames:
+        renames = _sprites_renames[sprite]
+
+        for rename in renames:
+            if _sprites[rename] == frames:
+                new_name = rename
+                break
+
+    if not new_name:
+        new_name = _generate_unique_sprite_name(sprite, frames)
+
+    return new_name
 
 def rename_sprite(wad, old, new):
     search_pattern = r'(\s){0}([\w\s"])'.format(old)
@@ -129,16 +150,24 @@ def rename_sprite(wad, old, new):
         if lump.name.startswith(old):
             lump.name = new + lump.name[4:]
 
+    if old in _sprites_renames:
+        _sprites_renames[old].append(new)
+    else:
+        _sprites_renames[old] = [new]
+
 def make_unique_sprites(wad):
     """ Find and rename sprites with the same name but different content
         New names are randomly generated """
     for name, frames in wad.spritemapping().iteritems():
         if name in _sprites:
             if frames != _sprites[name]:
-                new_name = unique_sprite_name(name, frames)
+                new_name = _generate_new_sprite_name(name, frames)
                 rename_sprite(wad, name, new_name)
         else:
             _sprites[name] = frames
+
+
+# ==============================================================================
 
 
 def remove_actor(wad, name):
@@ -189,6 +218,9 @@ def remove_duplicate_actors(wad):
             _actors.add(class_name)
 
 
+# ==============================================================================
+
+
 _lumps = { }
 
 _included_names = {
@@ -234,6 +266,8 @@ def is_lump_needed(lump):
 def optimize(wad):
     wad.filter(is_lump_needed)
 
+
+# ==============================================================================
 
 # Asset-specific patches
 
@@ -412,6 +446,9 @@ def apply_patch_817(wad): # Arbalest of the Ancients
     replace_in_decorate(wad,
         r'([^\w])SuperCrossbow',
         r'\1Arbalest')
+
+
+# ==============================================================================
 
 
 broken_keyconfs = (

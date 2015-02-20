@@ -27,6 +27,7 @@
 
 import os
 import re
+import shutil
 import sys
 import zipfile
 
@@ -34,6 +35,8 @@ self_path = os.path.dirname(__file__)
 os.chdir(self_path)
 
 import doomwad
+from patching import actor_patterns, actor_header_regex, \
+    line_comment_regex, block_comment_regex
 from repo import excluded_wads
 from iwad_lumps import *
 from iwad_actors import actors_all
@@ -69,7 +72,7 @@ excluded_lump_names = [
 
 lumps_wads = { }
 
-def find_duplicate_lumps(wad, filename):
+def find_duplicate_lumps(wad):
     """ Find duplicate lumps in WAD file
         Sprite lumps are not taken into account """
     for namespace in wad.namespaces():
@@ -80,57 +83,64 @@ def find_duplicate_lumps(wad, filename):
             if lump.name in excluded_lump_names:
                 continue
 
-            if lump.name in lumps_wads and filename not in lumps_wads[lump.name]:
-                lumps_wads[lump.name].append(filename)
+            if lump.name in lumps_wads \
+                and wad.filename not in lumps_wads[lump.name]:
+                    lumps_wads[lump.name].append(wad.filename)
             else:
-                lumps_wads[lump.name] = [filename]
+                lumps_wads[lump.name] = [wad.filename]
 
 sprites_wads = { }
 
-def find_duplicate_sprites(wad, filename):
+def find_duplicate_sprites(wad):
     """ Find duplicate sprites in WAD file (4 characters names) """
     for sprite in wad.spritenames():
         if sprite in sprites_wads:
-            sprites_wads[sprite].append(zip_wad)
+            sprites_wads[sprite].append(wad.filename)
         else:
-            sprites_wads[sprite] = [zip_wad]
-
-_line_comment_pattern = re.compile('//.*?$', re.MULTILINE)
-_block_comment_pattern = re.compile('/\*.*?\*/', re.DOTALL)
-
-_actor_pattern = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
-    re.IGNORECASE | re.DOTALL)
+            sprites_wads[sprite] = [wad.filename]
 
 actors_wads = { }
 
-def find_duplicate_actors(wad, filename):
-    """ Find duplicate actors (classes) in WAD file's DECORATE lump """
+def prepare_decorate(wad):
     decorate_lump = wad.find('DECORATE')
 
     if not decorate_lump:
-        print('No DECORATE lump found in {0}'.format(filename))
-        return
+        print('No DECORATE lump found in {0}'.format(wad.filename))
+        return None
 
     # prepare DECORATE by removing comments
     decorate = decorate_lump.data
-    decorate = _line_comment_pattern.sub('', decorate)
-    decorate = _block_comment_pattern.sub('', decorate)
+    decorate = line_comment_regex.sub('', decorate)
+    decorate = block_comment_regex.sub('', decorate)
 
-    actors = _actor_pattern.findall(decorate)
+    return decorate
+
+def find_duplicate_actors(wad):
+    """ Find duplicate actors (classes) in WAD file's DECORATE lump """
+    decorate = prepare_decorate(wad)
+    actors = actor_header_regex.findall(decorate)
 
     for actor in actors:
         actor = actor[1].lower()
 
         if actor in actors_wads:
-            actors_wads[actor].append(zip_wad)
+            actors_wads[actor].append(wad.filename)
         else:
-            actors_wads[actor] = [zip_wad]
+            actors_wads[actor] = [wad.filename]
 
 
 cache_path = '../cache/'
 
 # Analyze cache if True and generated .pk3 if False
 analyze_cache = False
+
+
+def read_wad(zip_file, filename):
+    wad_file = zip_file.open(filename)
+    wad_data = wad_file.read()
+    wad_file.close()
+
+    return doomwad.WadFile(wad_data)
 
 
 # Scan cache or generated .pk3
@@ -165,20 +175,14 @@ for zip_filename in zip_filenames:
 
         # Scan WAD
 
-        wad_file = zip_file.open(zipped_filename)
-        wad_data = wad_file.read()
-        wad_file.close()
+        wad = read_wad(zip_file, zipped_filename)
+        wad.filename = analyze_cache                               \
+            and '[{:04d}] {:s}'.format(asset_id, zipped_filename)  \
+            or  zipped_filename
 
-        wad = doomwad.WadFile(wad_data)
-
-        zip_wad = zipped_filename
-
-        if analyze_cache:
-            zip_wad = '[{:04d}] {:s}'.format(asset_id, zipped_filename)
-
-        find_duplicate_lumps(wad, zip_wad)
-        find_duplicate_sprites(wad, zip_wad)
-        find_duplicate_actors(wad, zip_wad)
+        find_duplicate_lumps(wad)
+        find_duplicate_sprites(wad)
+        find_duplicate_actors(wad)
 
     zip_file.close()
 
@@ -220,3 +224,52 @@ print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))
 print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(actors_wads,
     (('!ALL.WAD', [name.lower() for name in actors_all]),))
+
+
+actor_dump_path = self_path + '/../tmp/actors/'
+
+def dump_actor(actor, filename, content):
+    dump_filename = '{0}{1}_{2}.txt' \
+        .format(actor_dump_path, actor, filename[:-4])
+
+    f = open(dump_filename, 'wb')
+    f.write(content)
+    f.close()
+
+def dump_duplicate_actors():
+    # NOTE: implementation ignores internal ZDoom actors at the moment
+
+    if analyze_cache:
+        return
+
+    try:
+        shutil.rmtree(actor_dump_path)
+        os.makedirs(actor_dump_path)
+    except OSError:
+        pass
+
+    pk3 = zipfile.ZipFile(zip_filenames[0])
+    count = 0
+
+    for actor in actors_wads:
+        wad_names = actors_wads[actor]
+
+        if 1 == len(wad_names):
+            continue
+
+        for wad_name in wad_names:
+            wad = read_wad(pk3, wad_name)
+            decorate = prepare_decorate(wad)
+
+            for pattern in actor_patterns:
+                match = re.search(pattern % actor, decorate, re.IGNORECASE | re.DOTALL)
+
+                if match:
+                    dump_actor(actor, wad_name, match.group())
+                    count += 1
+                    break
+
+    print('\nActors written: {0}'.format(count))
+    pk3.close()
+
+dump_duplicate_actors()

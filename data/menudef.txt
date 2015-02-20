@@ -22,8 +22,8 @@
 
 OptionMenu "Menu_R667AAA_Armory_Doom_AD"
 {
-    StaticText "Doom Weapons"
-    StaticText " "
+    StaticText "Doom Weapons", 1
+    StaticText ""
 
     Command "40mm Grenade Launcher", "summon 40mmGrenadeLauncher"
     Command "AA12 Shotgun", "summon AA12"
@@ -51,8 +51,8 @@ OptionMenu "Menu_R667AAA_Armory_Doom_AD"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_EI"
 {
-    StaticText "Doom Weapons"
-    StaticText " "
+    StaticText "Doom Weapons", 1
+    StaticText ""
 
     Command "EgoSmasher", "summon Egosmasher"
     Command "Electro Gun", "summon ElectroGun"
@@ -76,8 +76,8 @@ OptionMenu "Menu_R667AAA_Armory_Doom_EI"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_KN"
 {
-    StaticText "Doom Weapons"
-    StaticText " "
+    StaticText "Doom Weapons", 1
+    StaticText ""
 
     Command "Karasawa", "summon Karasawa"
     Command "Knife", "summon Knife"
@@ -103,8 +103,8 @@ OptionMenu "Menu_R667AAA_Armory_Doom_KN"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_PR"
 {
-    StaticText "Doom Weapons"
-    StaticText " "
+    StaticText "Doom Weapons", 1
+    StaticText ""
 
     Command "Pipebomb", "summon D2C_Pipebomb"
     Command "Plasma Beam", "summon PlasmaBeam"
@@ -128,8 +128,8 @@ OptionMenu "Menu_R667AAA_Armory_Doom_PR"
 
 OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
 {
-    StaticText "Doom Weapons"
-    StaticText " "
+    StaticText "Doom Weapons", 1
+    StaticText ""
 
     Command "Scatter Pistol", "summon ScatterPistol"
     Command "Shield Gun", "summon ShieldGun"
@@ -158,8 +158,8 @@ OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
 
 OptionMenu "Menu_R667AAA_Armory_HH"
 {
-    StaticText "Heretic/Hexen Weapons"
-    StaticText " "
+    StaticText "Heretic/Hexen Weapons", 1
+    StaticText ""
 
     Command "Apotheosis", "summon Apotheosis"
     Command "Arbalest of the Ancients", "summon Arbalest"
@@ -187,8 +187,8 @@ OptionMenu "Menu_R667AAA_Armory_HH"
 
 OptionMenu "Menu_R667AAA_Armory_Other_AN"
 {
-    StaticText "Other Weapons"
-    StaticText " "
+    StaticText "Other Weapons", 1
+    StaticText ""
 
     Command "Bearkiller", "summon Bearkiller"
     Command "Blaster Rifle", "summon BlasterRifle"
@@ -208,8 +208,8 @@ OptionMenu "Menu_R667AAA_Armory_Other_AN"
 
 OptionMenu "Menu_R667AAA_Armory_Other_PZ"
 {
-    StaticText "Other Weapons"
-    StaticText " "
+    StaticText "Other Weapons", 1
+    StaticText ""
 
     Command "Plasma Gun", "summon PlasmaGun"
     Command "Poly Morph", "summon PolyMorph"
@@ -231,8 +231,8 @@ OptionMenu "Menu_R667AAA_Armory_Other_PZ"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_AD"
 {
-    StaticText "Ammo"
-    StaticText " "
+    StaticText "Ammo", 1
+    StaticText ""
 
     Command "40mm Grenades", "summon 40mmGrenades"
     Command "Box of 40mm Grenade", "summon 40mmGrenadeBox"
@@ -269,8 +269,8 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_AD"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_EL"
 {
-    StaticText "Ammo"
-    StaticText " "
+    StaticText "Ammo", 1
+    StaticText ""
 
     Command "EverIce Chunk", "summon EverIce"
     Command "EverIce Cluster", "summon EverIceHefty"
@@ -300,8 +300,8 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_EL"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_MP"
 {
-    StaticText "Ammo"
-    StaticText " "
+    StaticText "Ammo", 1
+    StaticText ""
 
     Command "M79 Round", "summon M79Ammo"
     Command "Box of M79 Rounds", "summon M79AmmoBox"
@@ -334,8 +334,8 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_MP"
 
 OptionMenu "Menu_R667AAA_Armory_Ammo_RZ"
 {
-    StaticText "Ammo"
-    StaticText " "
+    StaticText "Ammo", 1
+    StaticText ""
 
     Command "Rifle Cartridges", "summon RifleAmmo"
     Command "Box of Rifle Cartridges", "summon RifleBox"
@@ -365,8 +365,8 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_RZ"
 
 OptionMenu "Menu_R667AAA_Armory_Items"
 {
-    StaticText "Items"
-    StaticText " "
+    StaticText "Items", 1
+    StaticText ""
 
     Command "Ammo Satchel", "summon AmmoSatchelR667"
 
@@ -379,28 +379,28 @@ OptionMenu "Menu_R667AAA_Armory_Items"
 
 OptionMenu "Menu_R667AAA_Armory"
 {
-    StaticText "Realm667 - Armory"
-    StaticText " "
+    StaticText "Realm667 - Armory", 1
+    StaticText ""
 
     Submenu "Doom Weapons * A..D", "Menu_R667AAA_Armory_Doom_AD"
     Submenu "Doom Weapons * E..I", "Menu_R667AAA_Armory_Doom_EI"
     Submenu "Doom Weapons * K..N", "Menu_R667AAA_Armory_Doom_KN"
     Submenu "Doom Weapons * P..R", "Menu_R667AAA_Armory_Doom_PR"
     Submenu "Doom Weapons * S..Z", "Menu_R667AAA_Armory_Doom_SZ"
-    StaticText " "
+    StaticText ""
 
     Submenu "Heretic/Hexen Weapons", "Menu_R667AAA_Armory_HH"
-    StaticText " "
+    StaticText ""
 
     Submenu "Other Weapons * A..N", "Menu_R667AAA_Armory_Other_AN"
     Submenu "Other Weapons * P..Z", "Menu_R667AAA_Armory_Other_PZ"
-    StaticText " "
+    StaticText ""
 
     Submenu "Ammo * A..D", "Menu_R667AAA_Armory_Ammo_AD"
     Submenu "Ammo * E..L", "Menu_R667AAA_Armory_Ammo_EL"
     Submenu "Ammo * M..P", "Menu_R667AAA_Armory_Ammo_MP"
     Submenu "Ammo * R..Z", "Menu_R667AAA_Armory_Ammo_RZ"
-    StaticText " "
+    StaticText ""
 
     Submenu "Items", "Menu_R667AAA_Armory_Items"
 }
@@ -410,8 +410,8 @@ OptionMenu "Menu_R667AAA_Armory"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_01"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Afrit", "summon Afrit"
     Command "Agathodemon", "summon Agathodemon"
@@ -439,8 +439,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_01"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_02"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Beheaded Kamikaze", "summon KamikaziGuy"
     Command "Belphegor", "summon BelphegorClone"
@@ -468,8 +468,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_02"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_03"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Cyber Fiend", "summon CyberFiend"
     Command "Cyber Imp", "summon Cyberimp"
@@ -495,8 +495,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_03"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_04"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Enhanced Cacodemon", "summon EnhancedCacodemon"
     Command "Ethereal Soul", "summon ESoul"
@@ -524,8 +524,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_04"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_05"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Gatekeeper", "summon Gatekeeper"
     Command "Giant Bat", "summon GiantBat"
@@ -551,8 +551,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_05"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_06"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Abomination Imp", "summon ImpAbomination"
     Command "Skulltag Imp Variants", "summon STImp"
@@ -578,8 +578,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_06"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_07"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Nightmare", "summon KDiZDNightmare"
     Command "Nightmare Demon", "summon NightmareDemon"
@@ -606,8 +606,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_07"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_08"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Rail Arachnotron", "summon RailArachnotron"
     Command "Rail Bot", "summon RailBot"
@@ -633,8 +633,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_08"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_09"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Smoke Monster", "summon smokemonster"
     Command "Snake Imp", "summon SnakeImp"
@@ -661,8 +661,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_09"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_10"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Floor Tentacle", "summon Tentacle1"
     Command "Ceiling Tentacle", "summon Tentacle2"
@@ -687,8 +687,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_10"
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_11"
 {
-    StaticText "Doom Monsters"
-    StaticText " "
+    StaticText "Doom Monsters", 1
+    StaticText ""
 
     Command "Warlord of Hell", "summon WarlordOfHell"
     Command "Watcher", "summon Watcher"
@@ -715,8 +715,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_11"
 
 OptionMenu "Menu_R667AAA_Beastiary_HH_1"
 {
-    StaticText "Heretic/Hexen Monsters"
-    StaticText " "
+    StaticText "Heretic/Hexen Monsters", 1
+    StaticText ""
 
     Command "Acolyte", "summon Priest"
     Command "Apprentice of D'Sparil", "summon ApprenticeofDsparil"
@@ -742,8 +742,8 @@ OptionMenu "Menu_R667AAA_Beastiary_HH_1"
 
 OptionMenu "Menu_R667AAA_Beastiary_HH_2"
 {
-    StaticText "Heretic/Hexen Monsters"
-    StaticText " "
+    StaticText "Heretic/Hexen Monsters", 1
+    StaticText ""
 
     Command "Evil Knight", "summon EvilKnight"
     Command "Ghoul", "summon Ghoul"
@@ -770,8 +770,8 @@ OptionMenu "Menu_R667AAA_Beastiary_HH_2"
 
 OptionMenu "Menu_R667AAA_Beastiary_HH_3"
 {
-    StaticText "Heretic/Hexen Monsters"
-    StaticText " "
+    StaticText "Heretic/Hexen Monsters", 1
+    StaticText ""
 
     Command "Juggernaut", "summon Juggernaut"
     Command "Knight Archer", "summon ArcherKnight"
@@ -797,8 +797,8 @@ OptionMenu "Menu_R667AAA_Beastiary_HH_3"
 
 OptionMenu "Menu_R667AAA_Beastiary_Strife"
 {
-    StaticText "Strife Monsters"
-    StaticText " "
+    StaticText "Strife Monsters", 1
+    StaticText ""
 
     Command "Black Ops", "summon BlackOpsRandomSpawner"
     Command "Dark Inquisitor", "summon DarkInquisitor"
@@ -807,7 +807,7 @@ OptionMenu "Menu_R667AAA_Beastiary_Strife"
     Command "Mini Sentinel", "summon MiniSentinel"
     Command "Paladin", "summon Paladin"
     Command "Prison Guard", "summon PrisonGuard"
-    StaticText " "
+    StaticText ""
 
     Command "Commando Rebel", "summonfoe CommandoRebel"
     Command "Elite Rebel", "summonfoe EliteRebel"
@@ -820,8 +820,8 @@ OptionMenu "Menu_R667AAA_Beastiary_Strife"
 
 OptionMenu "Menu_R667AAA_Beastiary"
 {
-    StaticText "Realm667 - Beastiary"
-    StaticText " "
+    StaticText "Realm667 - Beastiary", 1
+    StaticText ""
 
     Submenu "Doom Monsters * A..B", "Menu_R667AAA_Beastiary_Doom_01"
     Submenu "Doom Monsters * B..C", "Menu_R667AAA_Beastiary_Doom_02"
@@ -834,12 +834,12 @@ OptionMenu "Menu_R667AAA_Beastiary"
     Submenu "Doom Monsters * S", "Menu_R667AAA_Beastiary_Doom_09"
     Submenu "Doom Monsters * T..V", "Menu_R667AAA_Beastiary_Doom_10"
     Submenu "Doom Monsters * W..Z", "Menu_R667AAA_Beastiary_Doom_11"
-    StaticText " "
+    StaticText ""
 
     Submenu "Heretic/Hexen Monsters * A..D", "Menu_R667AAA_Beastiary_HH_1"
     Submenu "Heretic/Hexen Monsters * E..I", "Menu_R667AAA_Beastiary_HH_2"
     Submenu "Heretic/Hexen Monsters * J..Z", "Menu_R667AAA_Beastiary_HH_3"
-    StaticText " "
+    StaticText ""
 
     Submenu "Strife Monsters", "Menu_R667AAA_Beastiary_Strife"
 }
@@ -849,8 +849,8 @@ OptionMenu "Menu_R667AAA_Beastiary"
 
 OptionMenu "Menu_R667AAA_ItemStore_PowerUps_AF"
 {
-    StaticText "PowerUps and Artifacts"
-    StaticText " "
+    StaticText "PowerUps and Artifacts", 1
+    StaticText ""
 
     Command "Ammo Sphere", "summon AmmoSphere"
     Command "Ankh of Life", "summon ArtiAnkhOfLife"
@@ -875,8 +875,8 @@ OptionMenu "Menu_R667AAA_ItemStore_PowerUps_AF"
 
 OptionMenu "Menu_R667AAA_ItemStore_PowerUps_GR"
 {
-    StaticText "PowerUps and Artifacts"
-    StaticText " "
+    StaticText "PowerUps and Artifacts", 1
+    StaticText ""
 
     Command "Icon of the Raven", "summon ArtiRaven"
     Command "Invisibility Sphere", "summon InvisibilitySphereST"
@@ -903,8 +903,8 @@ OptionMenu "Menu_R667AAA_ItemStore_PowerUps_GR"
 
 OptionMenu "Menu_R667AAA_ItemStore_PowerUps_SZ"
 {
-    StaticText "PowerUps and Artifacts"
-    StaticText " "
+    StaticText "PowerUps and Artifacts", 1
+    StaticText ""
 
     Command "Salvation Sphere", "summon SalvationSphere"
     Command "Scroll of Hellfire", "summon ScrollOfHellfire"
@@ -922,8 +922,8 @@ OptionMenu "Menu_R667AAA_ItemStore_PowerUps_SZ"
 
 OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Doom"
 {
-    StaticText "Doom Keycards and Skull Keys"
-    StaticText " "
+    StaticText "Doom Keycards and Skull Keys", 1
+    StaticText ""
 
     Command "Doom Black Keycard", "summon BlackCard"
     Command "Doom Brown Keycard", "summon BrownCard"
@@ -931,7 +931,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Doom"
     Command "Doom Orange Keycard", "summon OrangeCard"
     Command "Doom Pink Keycard", "summon PinkCard"
     Command "Doom Silver Keycard", "summon SilverCard"
-    StaticText " "
+    StaticText ""
 
     Command "Doom Black Skull Key", "summon BlackSkull"
     Command "Doom Brown Skull Key", "summon BrownSkull"
@@ -939,7 +939,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Doom"
     Command "Doom Orange Skull Key", "summon OrangeSkull"
     Command "Doom Pink Skull Key", "summon PinkSkull"
     Command "Doom Silver Skull Key", "summon SilverSkull"
-    StaticText " "
+    StaticText ""
 
     Command "Doom III Black Keycard", "summon D3BlackCard"
     Command "Doom III Blue Keycard", "summon D3BlueCard"
@@ -954,8 +954,8 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Doom"
 
 OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Other"
 {
-    StaticText "Keys and Puzzle Items"
-    StaticText " "
+    StaticText "Keys and Puzzle Items", 1
+    StaticText ""
 
     Command "Black Cross Key", "summon BlackCrossKey"
     Command "Blue Cross Keys", "summon BlueCrossKey"
@@ -967,7 +967,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Other"
     Command "Red Cross Key", "summon RedCrossKey"
     Command "White Cross Key", "summon WhiteCrossKey"
     Command "Yellow Cross Key", "summon YellowCrossKey"
-    StaticText " "
+    StaticText ""
 
     Command "Blue Skull Orb", "summon BlueSkullOrb"
     Command "Red Skull Orb", "summon RedSkullOrb"
@@ -975,7 +975,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Other"
     Command "Blue Skull Orb Holder", "summon BlueSkullOrbHolder"
     Command "Red Skull Orb Holder", "summon RedSkullOrbHolder"
     Command "Yellow Skull Orb Holder", "summon YellowSkullOrbHolder"
-    StaticText " "
+    StaticText ""
 
     Command "Supply Chest", "summon SupplyChest"
     Command "Supply Chest Key", "summon ChestKey"
@@ -983,8 +983,8 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Other"
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_AE"
 {
-    StaticText "Other Items"
-    StaticText " "
+    StaticText "Other Items", 1
+    StaticText ""
 
     Command "Adrenaline Kit", "summon AdrenalineKit"
     Command "Ammo Belt", "summon AmmoBelt"
@@ -1010,8 +1010,8 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_AE"
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_FO"
 {
-    StaticText "Other Items"
-    StaticText " "
+    StaticText "Other Items", 1
+    StaticText ""
 
     Command "Field Kit", "summon FieldKit"
     Command "Flame Turret", "summon FlameTurret"
@@ -1033,8 +1033,8 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_FO"
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_PZ"
 {
-    StaticText "Other Items"
-    StaticText " "
+    StaticText "Other Items", 1
+    StaticText ""
 
     Command "PDA", "summon PDA"
     Command "Phosphorus Grenade Box", "summon PhosphorusGrenadeBox"
@@ -1060,13 +1060,13 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_PZ"
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_FoodGems"
 {
-    StaticText "Other Items"
-    StaticText " "
+    StaticText "Other Items", 1
+    StaticText ""
 
     Command "Golden Apple", "summon GoldenApple"
     Command "Red Apple", "summon RedApple"
     Command "Silver Apple", "summon SilverApple"
-    StaticText " "
+    StaticText ""
 
     Command "Empty Barrel", "summon EmptyFoodBarrel"
     Command "Meat Barrel", "summon MeatBarrel"
@@ -1075,7 +1075,7 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_FoodGems"
     Command "Small Barrel 3", "summon SmallBarrel3"
     Command "Small Barrel 4", "summon SmallBarrel4"
     Command "Vegetables Barrel", "summon VegieBarrel"
-    StaticText " "
+    StaticText ""
 
     Command "Dark Gems", "summon DarkGem"
     Command "Earth Gems", "summon EarthGem"
@@ -1090,8 +1090,8 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_FoodGems"
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_Potions"
 {
-    StaticText "Other Items"
-    StaticText " "
+    StaticText "Other Items", 1
+    StaticText ""
 
     Command "Small Health Potion", "summon SmallHealthPotion"
     Command "Medium Health Potion", "summon MediumHealthPotion"
@@ -1113,13 +1113,13 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_Potions"
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_Quake"
 {
-    StaticText "Other Items"
-    StaticText " "
+    StaticText "Other Items", 1
+    StaticText ""
 
     Command "Quake Stimpack", "summon Q1Stimpack"
     Command "Quake Medkit", "summon Q1Medkit"
     Command "Quake MegaHealth", "summon Q1MegaHealth"
-    StaticText " "
+    StaticText ""
 
     Command "Quake Green Armor", "summon Q1GreenArmor"
     Command "Quake Yellow Armor", "summon Q1YellowArmor"
@@ -1128,22 +1128,22 @@ OptionMenu "Menu_R667AAA_ItemStore_Other_Quake"
 
 OptionMenu "Menu_R667AAA_ItemStore"
 {
-    StaticText "Realm667 - Item Store"
-    StaticText " "
+    StaticText "Realm667 - Item Store", 1
+    StaticText ""
 
     Submenu "PowerUps and Artifacts * A..F", "Menu_R667AAA_ItemStore_PowerUps_AF"
     Submenu "PowerUps and Artifacts * G..R", "Menu_R667AAA_ItemStore_PowerUps_GR"
     Submenu "PowerUps and Artifacts * S..Z", "Menu_R667AAA_ItemStore_PowerUps_SZ"
-    StaticText " "
+    StaticText ""
 
     Submenu "Doom Keycards and Skull Keys", "Menu_R667AAA_ItemStore_Puzzle_Doom"
     Submenu "Keys and Puzzle Items", "Menu_R667AAA_ItemStore_Puzzle_Other"
-    StaticText " "
+    StaticText ""
 
     Submenu "Other Items * A..E", "Menu_R667AAA_ItemStore_Other_AE"
     Submenu "Other Items * F..O", "Menu_R667AAA_ItemStore_Other_FO"
     Submenu "Other Items * P..Z", "Menu_R667AAA_ItemStore_Other_PZ"
-    StaticText " "
+    StaticText ""
 
     Submenu "Other Items * Food and Gems", "Menu_R667AAA_ItemStore_Other_FoodGems"
     Submenu "Other Items * Potions", "Menu_R667AAA_ItemStore_Other_Potions"

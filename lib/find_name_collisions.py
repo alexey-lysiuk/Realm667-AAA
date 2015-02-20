@@ -35,6 +35,7 @@ self_path = os.path.dirname(__file__)
 os.chdir(self_path)
 
 import doomwad
+from case_insensitive import CaseInsensitiveDict
 from patching import actor_stateful_pattern, actor_stateless_pattern, \
     actor_header_regex, line_comment_regex, block_comment_regex
 from repo import excluded_wads
@@ -99,7 +100,7 @@ def find_duplicate_sprites(wad):
         else:
             sprites_wads[sprite] = [wad.filename]
 
-actors_wads = { }
+actors_wads = CaseInsensitiveDict()
 
 def prepare_decorate(wad):
     decorate_lump = wad.find('DECORATE')
@@ -120,9 +121,7 @@ def find_duplicate_actors(wad):
     decorate = prepare_decorate(wad)
     actors = actor_header_regex.findall(decorate)
 
-    for actor in actors:
-        actor = actor[1].lower()
-
+    for dummy, actor in actors:
         if actor in actors_wads:
             actors_wads[actor].append(wad.filename)
         else:

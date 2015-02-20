@@ -234,7 +234,7 @@ repository = (
     ( 43, 'Ethereal Soul'),
     (908, 'Exterminator'),
     ( 44, 'Fallen'),
-    (688, 'Female Scientist'),
+##    (688, 'Female Scientist'), # the same as in #802 Former Scientists Pack
     (488, 'Female Zombie Pack'),
     (410, 'Flamer Zombie'),
     (415, 'Flesh Spawn'),

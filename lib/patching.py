@@ -189,8 +189,8 @@ _actors = set()
 _line_comment_pattern = re.compile('//.*?$', re.MULTILINE)
 _block_comment_pattern = re.compile('/\*.*?\*/', re.DOTALL)
 
-_actor_pattern = re.compile(r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?' \
-    '(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{', re.IGNORECASE)
+_actor_pattern = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
+    re.IGNORECASE | re.DOTALL)
 
 def remove_duplicate_actors(wad):
     """ Remove duplicate actors from DECORATE lump
@@ -210,7 +210,7 @@ def remove_duplicate_actors(wad):
     actors = _actor_pattern.findall(decorate.data)
 
     for actor in actors:
-        class_name = actor[0].lower()
+        class_name = actor[1].lower()
 
         if class_name in _actors:
             remove_actor(wad, class_name)

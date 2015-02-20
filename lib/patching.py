@@ -23,6 +23,7 @@ import string
 
 import doomwad
 from iwad_lumps import sprites_doom_all
+from case_insensitive import CaseInsensitiveSet
 
 
 # Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
@@ -170,48 +171,75 @@ def make_unique_sprites(wad):
 # ==============================================================================
 
 
-# TODO: is it ever possible to do this using ONE regex?
+line_comment_regex = re.compile('//.*?$', re.MULTILINE)
+block_comment_regex = re.compile('/\*.*?\*/', re.DOTALL)
 
+def strip_decorate_comments(decorate):
+    for regex in (line_comment_regex, block_comment_regex):
+        decorate.data = regex.sub('', decorate.data)
+
+
+_actors = CaseInsensitiveSet()
+
+def rename_actor(decorate, actor):
+    suffix = 1
+
+    # generate unique actor name
+    while True:
+        new_name = '{0}@{1}'.format(actor, suffix)
+
+        if new_name not in _actors:
+            _actors.add(new_name)
+            break
+
+        suffix += 1
+
+    # replace old name
+    replace_pattern = r'(["\s]){0}(["\s])'.format(actor)
+    decorate.data = re.sub(replace_pattern,
+        r'\g<1>{0}\g<2>'.format(new_name), decorate.data, 0, re.IGNORECASE)
+
+
+# TODO: is it ever possible to do this using ONE regex?
 actor_stateful_pattern  = r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*'
 actor_stateless_pattern = r'actor\s+%s[\s:{].*?}\s*'
 
-def remove_actor(wad, name):
+def remove_actor(decorate, name):
     for pattern in (actor_stateful_pattern, actor_stateless_pattern):
-        actor_regex = re.compile(pattern % name, re.IGNORECASE | re.DOTALL)
-        replace_in_decorate(wad, actor_regex, '')
+        decorate.data = re.sub(pattern % name, '',
+            decorate.data, 0, re.IGNORECASE | re.DOTALL)
 
-_actors = set()
-
-line_comment_regex = re.compile('//.*?$', re.MULTILINE)
-block_comment_regex = re.compile('/\*.*?\*/', re.DOTALL)
 
 actor_header_regex = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
     re.IGNORECASE | re.DOTALL)
 
-def remove_duplicate_actors(wad):
-    """ Remove duplicate actors from DECORATE lump
-        Also, as a side effect, remove all comments from the lump """
+_conflicting_actors = CaseInsensitiveSet((
+    '2704Ball',
+    '2704Ball2',
+    'AcolFX2',
+    # TODO...
+),)
+
+def make_unique_actors(wad):
     decorate = wad.find('DECORATE')
     assert(decorate)
 
-    # remove comments, as actor removal may fail otherwise
+    # comments needs to be removed from DECORATE,
+    # as actor renaming and removal may fail otherwise
     # consider two actors in the same lump, but one is commented out
     # for instance, see #272 Sniper Rifle
     # actually, there is an other way to do this without comment removal
     # but this will increase complexity even more
-    replace_in_decorate(wad, line_comment_regex, '')
-    replace_in_decorate(wad, block_comment_regex, '')
+    strip_decorate_comments(decorate)
 
-    # look for actors
-    actors = actor_header_regex.findall(decorate.data)
-
-    for actor in actors:
-        class_name = actor[1].lower()
-
-        if class_name in _actors:
-            remove_actor(wad, class_name)
+    for dummy, actor in actor_header_regex.findall(decorate.data):
+        if actor in _actors:
+            if actor in _conflicting_actors:
+                rename_actor(decorate, actor)
+            else:
+                remove_actor(decorate, actor)
         else:
-            _actors.add(class_name)
+            _actors.add(actor)
 
 
 # ==============================================================================
@@ -519,8 +547,7 @@ def apply_patch(id, wad):
     if no_doomednum:
         replace_in_decorate(wad, re_no_doomednum, r'\1')
 
-    #remove_duplicate_actors(wad)
-
+##    make_unique_actors(wad)
     make_unique_sprites(wad)
 
     optimize(wad)

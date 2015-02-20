@@ -2,6 +2,7 @@
 
 |ID |Name | Issue |
 |---|-----|-------|
+|143|Infernal Spider|DECORATE classes and sprite names confict between Regular and Jumping versions. The latter was excluded|
 |243|Unmaker|DECORATE classes and sprite names confict between Angled and Centered versions. The latter was excluded|
 |258|Poly Morph|DECORATE classes and sprite names confict between New and Old versions. The latter was excluded|
 |236, 266|Flare Gun, Napalm Launcher|The same `actor NapalmDebris` is used by both weapons. Causes _Tried to register class 'NapalmDebris' more than once_ warning|

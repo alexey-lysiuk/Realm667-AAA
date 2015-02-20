@@ -95,21 +95,31 @@ def find_duplicate_sprites(wad, filename):
         else:
             sprites_wads[sprite] = [zip_wad]
 
+_line_comment_pattern = re.compile('//.*?$', re.MULTILINE)
+_block_comment_pattern = re.compile('/\*.*?\*/', re.DOTALL)
+
+_actor_pattern = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
+    re.IGNORECASE | re.DOTALL)
+
 actors_wads = { }
 
 def find_duplicate_actors(wad, filename):
     """ Find duplicate actors (classes) in WAD file's DECORATE lump """
-    decorate = wad.find('DECORATE')
+    decorate_lump = wad.find('DECORATE')
 
-    if not decorate:
+    if not decorate_lump:
         print('No DECORATE lump found in {0}'.format(filename))
         return
 
-    actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?(\s+replace\s+[\w+~.]+)?(\s+\d+)?\s*{'
-    actor_defs = re.findall(actor_pattern, decorate.data, re.IGNORECASE)
+    # prepare DECORATE by removing comments
+    decorate = decorate_lump.data
+    decorate = _line_comment_pattern.sub('', decorate)
+    decorate = _block_comment_pattern.sub('', decorate)
 
-    for actor_def in actor_defs:
-        actor = actor_def[0].lower()
+    actors = _actor_pattern.findall(decorate)
+
+    for actor in actors:
+        actor = actor[1].lower()
 
         if actor in actors_wads:
             actors_wads[actor].append(zip_wad)

@@ -170,26 +170,26 @@ def make_unique_sprites(wad):
 # ==============================================================================
 
 
+# TODO: is it ever possible to do this using ONE regex?
+
+actor_patterns = (
+    # actor with states
+    r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*',
+    # stateless actor
+    r'actor\s+%s[\s:{].*?}\s*'
+)
+
 def remove_actor(wad, name):
-    patterns = (
-        # actor with states
-        r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*',
-        # stateless actor
-        r'actor\s+%s[\s:{].*?}\s*'
-    )
-
-    # TODO: is it ever possible to do this using ONE regex?
-
-    for pattern in patterns:
+    for pattern in actor_patterns:
         actor_regex = re.compile(pattern % name, re.IGNORECASE | re.DOTALL)
         replace_in_decorate(wad, actor_regex, '')
 
 _actors = set()
 
-_line_comment_pattern = re.compile('//.*?$', re.MULTILINE)
-_block_comment_pattern = re.compile('/\*.*?\*/', re.DOTALL)
+line_comment_regex = re.compile('//.*?$', re.MULTILINE)
+block_comment_regex = re.compile('/\*.*?\*/', re.DOTALL)
 
-_actor_pattern = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
+actor_header_regex = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
     re.IGNORECASE | re.DOTALL)
 
 def remove_duplicate_actors(wad):
@@ -203,11 +203,11 @@ def remove_duplicate_actors(wad):
     # for instance, see #272 Sniper Rifle
     # actually, there is an other way to do this without comment removal
     # but this will increase complexity even more
-    replace_in_decorate(wad, _line_comment_pattern, '')
-    replace_in_decorate(wad, _block_comment_pattern, '')
+    replace_in_decorate(wad, line_comment_regex, '')
+    replace_in_decorate(wad, block_comment_regex, '')
 
     # look for actors
-    actors = _actor_pattern.findall(decorate.data)
+    actors = actor_header_regex.findall(decorate.data)
 
     for actor in actors:
         class_name = actor[1].lower()

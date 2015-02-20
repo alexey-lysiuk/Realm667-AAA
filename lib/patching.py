@@ -172,15 +172,11 @@ def make_unique_sprites(wad):
 
 # TODO: is it ever possible to do this using ONE regex?
 
-actor_patterns = (
-    # actor with states
-    r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*',
-    # stateless actor
-    r'actor\s+%s[\s:{].*?}\s*'
-)
+actor_stateful_pattern  = r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*'
+actor_stateless_pattern = r'actor\s+%s[\s:{].*?}\s*'
 
 def remove_actor(wad, name):
-    for pattern in actor_patterns:
+    for pattern in (actor_stateful_pattern, actor_stateless_pattern):
         actor_regex = re.compile(pattern % name, re.IGNORECASE | re.DOTALL)
         replace_in_decorate(wad, actor_regex, '')
 

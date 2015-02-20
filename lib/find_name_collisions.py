@@ -35,8 +35,8 @@ self_path = os.path.dirname(__file__)
 os.chdir(self_path)
 
 import doomwad
-from patching import actor_patterns, actor_header_regex, \
-    line_comment_regex, block_comment_regex
+from patching import actor_stateful_pattern, actor_stateless_pattern, \
+    actor_header_regex, line_comment_regex, block_comment_regex
 from repo import excluded_wads
 from iwad_lumps import *
 from iwad_actors import actors_all
@@ -261,7 +261,7 @@ def dump_duplicate_actors():
             wad = read_wad(pk3, wad_name)
             decorate = prepare_decorate(wad)
 
-            for pattern in actor_patterns:
+            for pattern in (actor_stateless_pattern, actor_stateful_pattern):
                 match = re.search(pattern % actor, decorate, re.IGNORECASE | re.DOTALL)
 
                 if match:

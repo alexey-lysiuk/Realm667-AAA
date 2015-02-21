@@ -313,6 +313,10 @@ def apply_patch_14(wad): # Bat
     # they are the same sprites but with correct alpha channel
     wad.removesprite('BFAM')
 
+def apply_patch_33(wad): # Darkness Rift
+    # fix wrong class name
+    replace_in_decorate(wad, '"Fatty"', '"Fatso"')
+
 def fix_actor_borgnail2(wad):
     # fix wrong class name
     replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')

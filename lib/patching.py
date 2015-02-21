@@ -185,7 +185,7 @@ def rename_actor(decorate, actor):
 
     # generate unique actor name
     while True:
-        new_name = '{0}@{1}'.format(actor, suffix)
+        new_name = '{0}_{1}'.format(actor, suffix)
 
         if new_name not in _actors:
             _actors.add(new_name)
@@ -212,11 +212,17 @@ def remove_actor(decorate, name):
 actor_header_regex = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
     re.IGNORECASE | re.DOTALL)
 
-_conflicting_actors = CaseInsensitiveSet((
-    '2704Ball',
-    '2704Ball2',
-    'AcolFX2',
-    # TODO...
+_duplicate_actors = CaseInsensitiveSet((
+    # ammo, mandatory to remove
+    'Nails',
+    'Darkmana',
+    'Gas',
+    'BigGas'
+    # other actors
+    'NapalmDebris',
+    'PlasmaBolterShot1',
+    'PlasmaBolterShot1Trail',
+    # TODO: extend with other identical actors
 ),)
 
 def make_unique_actors(wad):
@@ -233,10 +239,10 @@ def make_unique_actors(wad):
 
     for dummy, actor in actor_header_regex.findall(decorate.data):
         if actor in _actors:
-            if actor in _conflicting_actors:
-                rename_actor(decorate, actor)
-            else:
+            if actor in _duplicate_actors:
                 remove_actor(decorate, actor)
+            else:
+                rename_actor(decorate, actor)
         else:
             _actors.add(actor)
 
@@ -307,14 +313,6 @@ def apply_patch_14(wad): # Bat
     # they are the same sprites but with correct alpha channel
     wad.removesprite('BFAM')
 
-def apply_patch_59(wad): # Hellstorm Archon
-    # fix class name collision with #12 Archon of Hell
-    replace_in_decorate(wad,
-        r'([^\w])ArchonComet([^\w])',
-        r'\1HellstormArchonComet\2')
-    # remove the same sprite frames saved with different options
-    wad.removesprite('ARCB')
-
 def apply_patch_225(wad): # Minigun
     # fix sound name collision with #235 Uber Minigun
     replace_in_lump('SNDINFO', wad, r'(\s+)DSMINIGN(\s*)', r'\1DSMNGUNF\2')
@@ -325,12 +323,6 @@ def apply_patch_228(wad): # Zombieman Rifle
     replace_in_decorate(wad,
         r'(actor\s+)Rifle(\s*:\s*\w+)',
         r'\1ZombiemanRifle\2')
-
-def apply_patch_230(wad): # Plasma Gun
-    # fix class name collision with #329 Plasma Shotgun
-    replace_in_decorate(wad,
-        r'([^\w])PlasmaTrail([^\w])',
-        r'\1D3PlasmaTrail\2')
 
 def apply_patch_241(wad): # Devastator
     # fix incorrect sprite
@@ -389,30 +381,13 @@ def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
 
-def apply_patch_333(wad): # Freezer Zombie
-    # fix class name collision with #242 Freeze Rifle
-    replace_in_decorate(wad,
-        r'([^\w])FreezeBlastTrail([^\w])',
-        r'\1ZombieFreezeBlastTrail\2')
-
 def apply_patch_372(wad): # Autogun
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
 
 def apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather
+    # cannot be resolved automatically because of optional Power... prefix
     replace_in_decorate(wad, r'NoDrown(\s+)', r'NoDrownTalisman\1')
-
-def apply_patch_496(wad): # Nailgun (MG)
-    # fix class name collision with #560 Nailgun (SG)
-    replace_in_decorate(wad, 'NailBlur', 'NailBlurMG')
-
-def apply_patch_543(wad): # UTNT Pyro-Cannon
-    # fix class name collision with #541 Flamethrower
-    replace_in_decorate(wad, 'DropFire', 'PyroDropFire')
-
-def apply_patch_560(wad): # Nailgun (SG)
-    # fix class name collision with #496 Nailgun (MG)
-    replace_in_decorate(wad, 'NailBlur', 'NailBlurSG')
 
 def fix_always_activate(wad):
     # fix incorrect inventory flag
@@ -546,7 +521,7 @@ def apply_patch(id, wad):
     if no_doomednum:
         replace_in_decorate(wad, re_no_doomednum, r'\1')
 
-##    make_unique_actors(wad)
+    make_unique_actors(wad)
     make_unique_sprites(wad)
 
     optimize(wad)

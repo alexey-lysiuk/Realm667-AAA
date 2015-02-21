@@ -209,7 +209,7 @@ def print_duplicates(mapping, iwads):
     for dup in duplicates:
         print(dup)
 
-print('|Lump|WAD Files|Comments|\n|---|---|---|')
+print('\n|Lump|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(lumps_wads, (
     ('!DOOM.WAD',     lumps_ultdoom ),
     ('!DOOM2.WAD',    lumps_doom2   ),
@@ -268,7 +268,7 @@ def dump_duplicate_actors():
                     count += 1
                     break
 
-    print('\nActors written: {0}'.format(count))
+    print('\nActors written: {0}\n'.format(count))
     pk3.close()
 
 dump_duplicate_actors()

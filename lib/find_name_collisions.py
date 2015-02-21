@@ -225,7 +225,7 @@ print_duplicates(actors_wads,
     (('!ALL.WAD', [name.lower() for name in actors_all]),))
 
 
-actor_dump_path = self_path + '/../tmp/actors/'
+actor_dump_path = '../tmp/actors/'
 
 def dump_actor(actor, filename, content):
     dump_filename = '{0}{1}_{2}.txt' \
@@ -241,11 +241,11 @@ def dump_duplicate_actors():
     if analyze_cache:
         return
 
-    try:
-        shutil.rmtree(actor_dump_path)
-        os.makedirs(actor_dump_path)
-    except OSError:
-        pass
+    try: shutil.rmtree(actor_dump_path)
+    except OSError: pass
+    
+    try: os.makedirs(actor_dump_path)
+    except OSError: pass
 
     pk3 = zipfile.ZipFile(zip_filenames[0])
     count = 0

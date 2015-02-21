@@ -28,7 +28,7 @@
 
 """Read and write Doom WAD files"""
 
-import md5
+import hashlib
 import string
 import struct
 from cStringIO import StringIO
@@ -74,7 +74,7 @@ class Lump(object):
         self.namespace = ''
 
     def hash(self):
-        result = md5.new()
+        result = hashlib.md5()
         result.update(self.data)
         return result.digest()
 

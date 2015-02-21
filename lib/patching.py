@@ -396,6 +396,11 @@ def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
 
+def apply_patch_318(wad): # Moloch
+    # fix usage of missing actor class
+    replace_in_decorate(wad,
+        r'(\w+\s+\w\s+\d\s+A_CustomMissile\s*\(\s*"MolochDeathFire")', r'//\1')
+
 def apply_patch_337(wad): # Nail Borg Commando
     fix_actor_borgnail2(wad)
 

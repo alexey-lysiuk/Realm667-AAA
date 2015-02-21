@@ -313,6 +313,13 @@ def apply_patch_14(wad): # Bat
     # they are the same sprites but with correct alpha channel
     wad.removesprite('BFAM')
 
+def fix_actor_borgnail2(wad):
+    # fix wrong class name
+    replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')
+
+def apply_patch_66(wad): # Nail Borg
+    fix_actor_borgnail2(wad)
+
 def apply_patch_225(wad): # Minigun
     # fix sound name collision with #235 Uber Minigun
     replace_in_lump('SNDINFO', wad, r'(\s+)DSMINIGN(\s*)', r'\1DSMNGUNF\2')
@@ -380,6 +387,9 @@ def apply_patch_308(wad): # Doom III Super Shotgun
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
+
+def apply_patch_337(wad): # Nail Borg Commando
+    fix_actor_borgnail2(wad)
 
 def apply_patch_372(wad): # Autogun
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')

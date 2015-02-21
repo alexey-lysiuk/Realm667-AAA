@@ -58,7 +58,8 @@ def replace_in_decorate(wad, old, new):
     replace_in_lump('DECORATE', wad, old, new)
 
 def replace_in_gldefs(wad, old, new):
-    replace_in_lump('GLDEFS', wad, old, new)
+    for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
+        replace_in_lump(alias, wad, old, new, optional = True)
 
 
 def rename_lump(wad, old, new):
@@ -140,11 +141,8 @@ def rename_sprite(wad, old, new):
     replace_in_lump('ANIMDEFS', wad,
         r'(\s)%s(\w{0,4}[\s"])' % old, replace_pattern,
         optional = True)
-
-    for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
-        replace_in_lump(alias, wad,
-            r'(\s){0}(\w?[\s"])'.format(old), replace_pattern,
-            optional = True)
+    replace_in_gldefs(wad,
+        r'(\s){0}(\w?[\s"])'.format(old), replace_pattern)
 
     for lump in wad.spritelumps():
         if lump.name.startswith(old):
@@ -180,7 +178,7 @@ def strip_decorate_comments(decorate):
 
 _actors = CaseInsensitiveSet()
 
-def rename_actor(decorate, actor):
+def rename_actor(wad, actor):
     suffix = 1
 
     # generate unique actor name
@@ -194,9 +192,11 @@ def rename_actor(decorate, actor):
         suffix += 1
 
     # replace old name
-    replace_pattern = r'(["\s]){0}(["\s])'.format(actor)
-    decorate.data = re.sub(replace_pattern,
-        r'\g<1>{0}\g<2>'.format(new_name), decorate.data, 0, re.IGNORECASE)
+    old_pattern = r'(["\s]){0}(["\s])'.format(actor)
+    new_pattern = r'\g<1>{0}\g<2>'.format(new_name)
+
+    replace_in_decorate(wad, old_pattern, new_pattern)
+    replace_in_gldefs(wad, old_pattern, new_pattern)
 
 
 # TODO: is it ever possible to do this using ONE regex?
@@ -242,7 +242,7 @@ def make_unique_actors(wad):
             if actor in _duplicate_actors:
                 remove_actor(decorate, actor)
             else:
-                rename_actor(decorate, actor)
+                rename_actor(wad, actor)
         else:
             _actors.add(actor)
 

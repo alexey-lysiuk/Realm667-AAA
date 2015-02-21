@@ -133,19 +133,18 @@ def _generate_new_sprite_name(sprite, frames):
     return new_name
 
 def rename_sprite(wad, old, new):
-    search_pattern = r'(\s){0}([\w\s"])'.format(old)
     replace_pattern = r'\g<1>{0}\g<2>'.format(new)
 
     replace_in_decorate(wad,
         r'(\s){0}(\s)'.format(old), replace_pattern)
     replace_in_lump('ANIMDEFS', wad,
-        search_pattern, replace_pattern, optional = True)
-    replace_in_lump('TEXTURES', wad,
-        search_pattern, replace_pattern, optional = True)
+        r'(\s)%s(\w{0,4}[\s"])' % old, replace_pattern,
+        optional = True)
 
     for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
         replace_in_lump(alias, wad,
-        search_pattern, replace_pattern, optional = True)
+            r'(\s){0}(\w?[\s"])'.format(old), replace_pattern,
+            optional = True)
 
     for lump in wad.spritelumps():
         if lump.name.startswith(old):

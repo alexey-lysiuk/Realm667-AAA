@@ -394,6 +394,10 @@ def apply_patch_337(wad): # Nail Borg Commando
 def apply_patch_372(wad): # Autogun
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
 
+def apply_patch_433(wad): # Chiller
+    # fix missing class name
+    replace_in_decorate(wad, '"ChillerFog2"', '"ChillerFog"')
+
 def apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather
     # cannot be resolved automatically because of optional Power... prefix

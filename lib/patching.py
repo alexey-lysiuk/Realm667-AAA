@@ -324,6 +324,10 @@ def fix_actor_borgnail2(wad):
 def apply_patch_66(wad): # Nail Borg
     fix_actor_borgnail2(wad)
 
+def apply_patch_151(wad): # Phantom
+    # fix wrong class name
+    replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
+
 def apply_patch_225(wad): # Minigun
     # fix sound name collision with #235 Uber Minigun
     replace_in_lump('SNDINFO', wad, r'(\s+)DSMINIGN(\s*)', r'\1DSMNGUNF\2')

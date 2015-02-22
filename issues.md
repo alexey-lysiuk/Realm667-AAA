@@ -22,43 +22,16 @@
 |BATIDLE1|Eyes.wad, ImpWarlord.wad|The same sound in different format|
 |BATIDLE2|Eyes.wad, ImpWarlord.wad|The same sound in different format|
 |BATPAIN|Eyes.wad, ImpWarlord.wad|The same sound in different format|
-|BMSAR2A1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2A2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2A3|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2B1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2B2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2B3|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2C1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2C2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2C3|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2D1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2D2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2D3|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2E1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2E2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2E8|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2F1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2F2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2F8|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2G1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2G2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2G8|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2H1|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2H2|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2H3|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2H4|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2H8|BloodFiend.wad, NightmareDemon.wad||
-|BMSAR2I0|BloodFiend.wad, NightmareDemon.wad||
 |BOUNCE|40mmGrenadeLauncher.wad, ChainmailEttin.wad, SourceGuardian.wad||
 |BUILD|Phantom.wad, Thor.wad|The same sound in different format|
 |COMETEXP|InfernoDemon.wad, Thamuz.wad||
 |DEATH|Gatekeeper.wad, LesserMutant.wad, Maephisto.wad||
 |DFATTACK|ImpWarlord.wad, InfernoDemon.wad||
-|DSBGACT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
-|DSBGDTH1|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
-|DSBGDTH2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
-|DSBGSIT1|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
-|DSBGSIT2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
+|DSBGACT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad|The same sound in different format|
+|DSBGDTH1|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad|The same sound in different format|
+|DSBGDTH2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad|The same sound in different format|
+|DSBGSIT1|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad|The same sound in different format|
+|DSBGSIT2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad|The same sound in different format|
 |DSBIGBRN|HellApprentice.WAD, HellHound.wad, Hellsmith.WAD, Sentinel.wad||
 |DSBLOODX|BloodFiend.wad, Ghoul.wad, PlaugeImp.wad||
 |DSBLUR|Acolyte.wad, Disciple.wad, Vampire.wad||
@@ -116,7 +89,7 @@
 |DSNLIMPD|NailBorg.wad, NailBorgCommando.wad||
 |DSNLIMPL|NailBorg.wad, NailBorgCommando.wad||
 |DSPIPEX1|InfernoDemon.wad, Pipebombs.wad, PyroDemon.wad||
-|DSPOPAIN|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad||
+|DSPOPAIN|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, ImpWarlord.wad|The same sound in different format|
 |DSSGTATK|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, PlasmaDemon.wad||
 |DSSGTDTH|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, PlasmaDemon.wad||
 |DSSGTSIT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, PlasmaDemon.wad||
@@ -137,14 +110,14 @@
 |DSTENPN1|CoreTentacles.wad, Wicked.wad||
 |DSTENPN2|CoreTentacles.wad, Wicked.wad||
 |DSTRTPSN|PoisonSoul.wad, TorturedSoul.wad||
-|DSUNMKER|Unmaker.wad, UnMakerZombie.wad||
-|DSUNMKPO|Unmaker.wad, UnMakerZombie.wad||
-|DSVULHIT|Grell.wad, Vulgar.wad||
-|DSZTANK1|ZombieMissileTank.wad, ZombiePlasmaTank.wad||
-|DSZTANK2|ZombieMissileTank.wad, ZombiePlasmaTank.wad||
-|DSZTANKD|ZombieMissileTank.wad, ZombiePlasmaTank.wad||
-|DSZTANKP|ZombieMissileTank.wad, ZombiePlasmaTank.wad||
-|DSZTANKX|ZombieMissileTank.wad, ZombiePlasmaTank.wad||
+|DSUNMKER|Unmaker.wad, UnMakerZombie.wad|The same sound in different format|
+|DSUNMKPO|Unmaker.wad, UnMakerZombie.wad|The same sound in different format|
+|DSVULHIT|Grell.wad, Vulgar.wad|The same sound compressed with different bitrate|
+|DSZTANK1|ZombieMissileTank.wad, ZombiePlasmaTank.wad|The same sound compressed with different bitrate|
+|DSZTANK2|ZombieMissileTank.wad, ZombiePlasmaTank.wad|The same sound compressed with different bitrate|
+|DSZTANKD|ZombieMissileTank.wad, ZombiePlasmaTank.wad|The same sound compressed with different bitrate|
+|DSZTANKP|ZombieMissileTank.wad, ZombiePlasmaTank.wad|The same sound compressed with different bitrate|
+|DSZTANKX|ZombieMissileTank.wad, ZombiePlasmaTank.wad|The same sound compressed with different bitrate|
 |FEMZDHT|femaleplasma.wad, FemaleScientist.wad, FemaleScientist3.wad||
 |FEMZPAIN|femaleplasma.wad, FemaleScientist.wad||
 |FIREBALL|Avatar.wad, InfernoDemon.wad, Phantom.wad, Thor.wad||

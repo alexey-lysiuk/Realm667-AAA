@@ -243,7 +243,7 @@ def dump_duplicate_actors():
 
     try: shutil.rmtree(actor_dump_path)
     except OSError: pass
-    
+
     try: os.makedirs(actor_dump_path)
     except OSError: pass
 
@@ -271,4 +271,4 @@ def dump_duplicate_actors():
     print('\nActors written: {0}\n'.format(count))
     pk3.close()
 
-dump_duplicate_actors()
+#dump_duplicate_actors()

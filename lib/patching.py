@@ -22,7 +22,7 @@ import re
 import string
 
 import doomwad
-from iwad_lumps import sprites_doom_all
+from iwad_lumps import lumps_doom2, sprites_doom_all
 from case_insensitive import CaseInsensitiveSet
 
 
@@ -298,6 +298,94 @@ def optimize(wad):
 
 # ==============================================================================
 
+
+def make_sound_mapping(wad):
+    sndinfo = wad.find('SNDINFO')
+
+    if not sndinfo:
+        return {}
+
+    strip_lump_comments(sndinfo)
+
+    sounds = sndinfo.data.split('\n')
+    result = {}
+
+    for line in sounds:
+        line = line.strip()
+
+        if 0 == len(line) or line.startswith('$'):
+            continue
+
+        try:
+            logical_name, lump_name = line.split()
+
+            lump_name = lump_name.upper()
+            lump = wad.find(lump_name)
+
+            if lump:
+                result[lump_name] = lump.hash()
+        except:
+            pass
+
+    return result
+
+def _generate_unique_lump_name():
+    name_chars = string.ascii_uppercase + string.digits + '_'
+    char_count = len(name_chars)
+
+    while True:
+        unique_name = ''
+
+        for i in xrange(0, 8):
+            index = random.randint(0, char_count - 1)
+            unique_name += name_chars[index]
+
+        if unique_name not in _lumps:
+            return unique_name
+
+    assert(False)
+    return None
+
+_lumps_renames = { }
+
+def rename_sound(wad, name, hash):
+    new_name = None
+
+    if name in _lumps_renames:
+        for rename in _lumps_renames[name]:
+            if rename in _sounds and _sounds[rename] == hash:
+                new_name = rename
+                break
+    else:
+        _lumps_renames[name] = set()
+
+    if not new_name:
+        new_name = _generate_unique_lump_name()
+        _lumps_renames[name].add(new_name)
+        _sounds[new_name] = hash
+
+    rename_lump(wad, name, new_name)
+    replace_in_lump('SNDINFO', wad,
+        r'(\s){0}(\s|$)'.format(name),
+        r'\g<1>{0}\g<2>'.format(new_name))
+
+_sounds = { name: '' for name in lumps_doom2 if name.startswith('DS') }
+
+def make_unique_sounds(wad):
+    wad_sounds = make_sound_mapping(wad)
+
+    for name in wad_sounds:
+        hash = wad_sounds[name]
+
+        if name in _sounds:
+            if hash != _sounds[name]:
+                rename_sound(wad, name, hash)
+        else:
+            _sounds[name] = hash
+
+
+# ==============================================================================
+
 # Asset-specific patches
 
 def apply_patch_10(wad): # Apprentice of D'Sparil
@@ -334,11 +422,6 @@ def apply_patch_70(wad): # Nightmare Demon
 def apply_patch_151(wad): # Phantom
     # fix wrong class name
     replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
-
-def apply_patch_225(wad): # Minigun
-    # fix sound name collision with #235 Uber Minigun
-    replace_in_lump('SNDINFO', wad, r'(\s+)DSMINIGN(\s*)', r'\1DSMNGUNF\2')
-    rename_lump(wad, 'DSMINIGN', 'DSMNGUNF')
 
 def apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle
@@ -557,5 +640,6 @@ def apply_patch(id, wad):
 
     make_unique_actors(wad)
     make_unique_sprites(wad)
+    make_unique_sounds(wad)
 
     optimize(wad)

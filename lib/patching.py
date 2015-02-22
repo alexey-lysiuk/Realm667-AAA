@@ -324,6 +324,13 @@ def fix_actor_borgnail2(wad):
 def apply_patch_66(wad): # Nail Borg
     fix_actor_borgnail2(wad)
 
+def apply_patch_70(wad): # Nightmare Demon
+    # fix brightmap collisions with #17 Blood Fiend
+    for lump in wad:
+        if lump.name.startswith('BMSAR2'):
+            lump.name = 'BMNMDM' + lump.name[6:]
+    replace_in_gldefs(wad, r'(\s)BMSAR2(\w{2}\s)', r'\1BMNMDM\2')
+
 def apply_patch_151(wad): # Phantom
     # fix wrong class name
     replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')

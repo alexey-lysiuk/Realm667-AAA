@@ -79,14 +79,6 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
-line_comment_regex = re.compile('//.*?$', re.MULTILINE)
-block_comment_regex = re.compile('/\*.*?\*/', re.DOTALL)
-
-def strip_lump_comments(lump):
-    for regex in (line_comment_regex, block_comment_regex):
-        lump.data = regex.sub('', lump.data)
-
-
 # ==============================================================================
 
 
@@ -235,7 +227,7 @@ def make_unique_actors(wad):
     # for instance, see #272 Sniper Rifle
     # actually, there is an other way to do this without comment removal
     # but this will increase complexity even more
-    strip_lump_comments(decorate)
+    doomwad.striplumpcomments(decorate)
 
     for dummy, actor in actor_header_regex.findall(decorate.data):
         if actor in _actors:
@@ -305,7 +297,7 @@ def make_sound_mapping(wad):
     if not sndinfo:
         return {}
 
-    strip_lump_comments(sndinfo)
+    doomwad.striplumpcomments(sndinfo)
 
     sounds = sndinfo.data.split('\n')
     result = {}

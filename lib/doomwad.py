@@ -29,6 +29,7 @@
 """Read and write Doom WAD files"""
 
 import hashlib
+import re
 import string
 import struct
 from cStringIO import StringIO
@@ -68,6 +69,16 @@ def issequentialsprite(name):
         # Treat a sprite is a part of the sequence
         # if its name contains one or two valid angle characters
         return angle1 or angle2
+
+# ==============================================================================
+
+line_comment_regex = re.compile('//.*?$', re.MULTILINE)
+block_comment_regex = re.compile('/\*.*?\*/', re.DOTALL)
+
+def striplumpcomments(lump):
+    """ Remove both block and line comments from text lump """
+    for regex in (line_comment_regex, block_comment_regex):
+        lump.data = regex.sub('', lump.data)
 
 # ==============================================================================
 

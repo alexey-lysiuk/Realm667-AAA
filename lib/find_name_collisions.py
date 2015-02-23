@@ -36,8 +36,8 @@ os.chdir(self_path)
 
 import doomwad
 from case_insensitive import CaseInsensitiveDict
-from patching import actor_stateful_pattern, actor_stateless_pattern, \
-    actor_header_regex, line_comment_regex, block_comment_regex
+from patching import (
+    actor_stateful_pattern, actor_stateless_pattern, actor_header_regex)
 from repo import excluded_wads
 from iwad_lumps import *
 from iwad_actors import actors_all
@@ -103,22 +103,22 @@ def find_duplicate_sprites(wad):
 actors_wads = CaseInsensitiveDict()
 
 def prepare_decorate(wad):
-    decorate_lump = wad.find('DECORATE')
+    decorate = wad.find('DECORATE')
 
-    if not decorate_lump:
+    if not decorate:
         print('No DECORATE lump found in {0}'.format(wad.filename))
-        return None
+        return
 
-    # prepare DECORATE by removing comments
-    decorate = decorate_lump.data
-    decorate = line_comment_regex.sub('', decorate)
-    decorate = block_comment_regex.sub('', decorate)
-
-    return decorate
+    doomwad.striplumpcomments(decorate)
+    return decorate.data
 
 def find_duplicate_actors(wad):
     """ Find duplicate actors (classes) in WAD file's DECORATE lump """
     decorate = prepare_decorate(wad)
+
+    if not decorate:
+        return
+
     actors = actor_header_regex.findall(decorate)
 
     for dummy, actor in actors:
@@ -259,6 +259,9 @@ def dump_duplicate_actors():
         for wad_name in wad_names:
             wad = read_wad(pk3, wad_name)
             decorate = prepare_decorate(wad)
+
+            if not decorate:
+                continue
 
             for pattern in (actor_stateless_pattern, actor_stateful_pattern):
                 match = re.search(pattern % actor, decorate, re.IGNORECASE | re.DOTALL)

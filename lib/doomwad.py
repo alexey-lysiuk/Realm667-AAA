@@ -33,6 +33,8 @@ import string
 import struct
 from cStringIO import StringIO
 
+# ==============================================================================
+
 _spriteanglechar = string.digits + string.ascii_uppercase[:7]
 
 _header = struct.Struct("<4sII")
@@ -44,6 +46,8 @@ specnames = set(('THINGS', 'VERTEXES','LINEDEFS', 'SIDEDEFS', 'SEGS',
                  'BEHAVIOR', 'SCRIPTS'))
 
 spritemarker = 'S_START'
+
+# ==============================================================================
 
 def issrpitenamespace(namespace):
     return namespace == spritemarker or namespace[1:] == spritemarker
@@ -65,6 +69,8 @@ def issequentialsprite(name):
         # if its name contains one or two valid angle characters
         return angle1 or angle2
 
+# ==============================================================================
+
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
@@ -77,6 +83,8 @@ class Lump(object):
         result = hashlib.md5()
         result.update(self.data)
         return result.digest()
+
+# ==============================================================================
 
 class WadFile(object):
     def __init__(self, data_or_file):
@@ -139,6 +147,8 @@ class WadFile(object):
                 lump.namespace = namespace
 
             ismap = ismapcur
+
+# ==============================================================================
 
     def writeto(self, file):
         directory = []
@@ -222,6 +232,8 @@ class WadFile(object):
     def __iter__(self):
         return iter(self.lumps)
 
+# ==============================================================================
+
     def namespaces(self):
         """ Return sorted list of namespace names.
             Namespace is named by its start marker.
@@ -258,6 +270,8 @@ class WadFile(object):
 
         return lumps
 
+# ==============================================================================
+
     def spritelumps(self):
         """ Return list of sprite lumps """
         lumps = []
@@ -280,7 +294,7 @@ class WadFile(object):
 
     def spritemapping(self):
         """
-        Return dictionary with sprite/frame mapping with format:
+        Return dictionary with sprite/frame mapping in format:
         { sprite: { frame: hash,
                     frame: hash,
                     ... },
@@ -306,11 +320,6 @@ class WadFile(object):
 
         return result
 
-    def filter(self, function):
-        """ Keep only those lumps which function returns true """
-        self.lumps = filter(function, self)
-        self._reindex()
-
     def removesprite(self, sprite):
         """ Remove sprite lumps by sprite name """
         def should_keep_lump(lump):
@@ -318,6 +327,15 @@ class WadFile(object):
                 or not lump.name.startswith(sprite)
 
         self.filter(should_keep_lump)
+
+# ==============================================================================
+
+    def filter(self, function):
+        """ Keep only those lumps which function returns true """
+        self.lumps = filter(function, self)
+        self._reindex()
+
+# ==============================================================================
 
 parsers = {}
 

@@ -341,12 +341,12 @@ class WadFile(object):
 
 # ==============================================================================
 
-    def soundmapping(wad):
+    def soundmapping(self):
         """ Return dictionary with sound mapping in format:
             { lumpname: hash, lumpname: hash, ... }
             If lump is not present in WAD, hash is None
         """
-        sndinfo = wad.find('SNDINFO')
+        sndinfo = self.find('SNDINFO')
 
         if not sndinfo:
             return {}
@@ -367,7 +367,7 @@ class WadFile(object):
                 logical_name, lump_name = line.split()
 
                 lump_name = lump_name.upper()
-                lump = wad.find(lump_name)
+                lump = self.find(lump_name)
 
                 result[lump_name] = lump and lump.hash() or None
             except:

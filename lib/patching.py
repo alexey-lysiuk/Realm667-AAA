@@ -291,36 +291,6 @@ def optimize(wad):
 # ==============================================================================
 
 
-def make_sound_mapping(wad):
-    sndinfo = wad.find('SNDINFO')
-
-    if not sndinfo:
-        return {}
-
-    doomwad.striplumpcomments(sndinfo)
-
-    sounds = sndinfo.data.split('\n')
-    result = {}
-
-    for line in sounds:
-        line = line.strip()
-
-        if 0 == len(line) or line.startswith('$'):
-            continue
-
-        try:
-            logical_name, lump_name = line.split()
-
-            lump_name = lump_name.upper()
-            lump = wad.find(lump_name)
-
-            if lump:
-                result[lump_name] = lump.hash()
-        except:
-            pass
-
-    return result
-
 def _generate_unique_lump_name():
     name_chars = string.ascii_uppercase + string.digits + '_'
     char_count = len(name_chars)
@@ -338,22 +308,26 @@ def _generate_unique_lump_name():
     assert(False)
     return None
 
-_lumps_renames = { }
+
+# ==============================================================================
+
+
+_sound_renames = { }
 
 def rename_sound(wad, name, hash):
     new_name = None
 
-    if name in _lumps_renames:
-        for rename in _lumps_renames[name]:
+    if name in _sound_renames:
+        for rename in _sound_renames[name]:
             if rename in _sounds and _sounds[rename] == hash:
                 new_name = rename
                 break
     else:
-        _lumps_renames[name] = set()
+        _sound_renames[name] = set()
 
     if not new_name:
         new_name = _generate_unique_lump_name()
-        _lumps_renames[name].add(new_name)
+        _sound_renames[name].add(new_name)
         _sounds[new_name] = hash
 
     rename_lump(wad, name, new_name)
@@ -364,12 +338,12 @@ def rename_sound(wad, name, hash):
 _sounds = { name: '' for name in lumps_doom2 if name.startswith('DS') }
 
 def make_unique_sounds(wad):
-    wad_sounds = make_sound_mapping(wad)
+    wad_sounds = wad.soundmapping()
 
     for name in wad_sounds:
         hash = wad_sounds[name]
 
-        if name in _sounds:
+        if hash and name in _sounds:
             if hash != _sounds[name]:
                 rename_sound(wad, name, hash)
         else:

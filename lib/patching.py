@@ -209,7 +209,7 @@ _duplicate_actors = CaseInsensitiveSet((
     'Nails',
     'Darkmana',
     'Gas',
-    'BigGas'
+    'BigGas',
     # other actors
     'NapalmDebris',
     'PlasmaBolterShot1',

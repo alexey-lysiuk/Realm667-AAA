@@ -41,6 +41,7 @@ from patching import (
 from repo import excluded_wads
 from iwad_lumps import *
 from iwad_actors import actors_all
+from iwad_sndinfo import logical_sounds_all
 
 
 excluded_lump_names = [
@@ -128,6 +129,19 @@ def find_duplicate_actors(wad):
             actors_wads[actor] = [wad.filename]
 
 
+sounds_wads = CaseInsensitiveDict()
+
+def find_duplicate_sounds(wad):
+    """ Find duplicate sounds in WAD file's SNDINFO lump """
+    sounds = wad.soundmapping(doomwad.SoundMapping.LOGICAL_TO_LUMP)
+
+    for sound in sounds:
+        if sound in sounds_wads:
+            sounds_wads[sound].append(wad.filename)
+        else:
+            sounds_wads[sound] = [wad.filename]
+
+
 cache_path = '../cache/'
 
 # Analyze cache if True and generated .pk3 if False
@@ -182,6 +196,7 @@ for zip_filename in zip_filenames:
         find_duplicate_lumps(wad)
         find_duplicate_sprites(wad)
         find_duplicate_actors(wad)
+        find_duplicate_sounds(wad)
 
     zip_file.close()
 
@@ -224,6 +239,9 @@ print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(actors_wads,
     (('!ALL.WAD', [name.lower() for name in actors_all]),))
 
+print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
+print_duplicates(sounds_wads,
+    (('!ALL.WAD', [sound for sound in logical_sounds_all]),))
 
 actor_dump_path = '../tmp/actors/'
 

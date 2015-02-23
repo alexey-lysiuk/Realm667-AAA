@@ -82,6 +82,13 @@ def striplumpcomments(lump):
 
 # ==============================================================================
 
+class SoundMapping:
+    LOGICAL_TO_LUMP = 0
+    LUMP_TO_LOGICAL = 1
+    LUMP_TO_CONTENT = 2
+
+# ==============================================================================
+
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
@@ -341,11 +348,8 @@ class WadFile(object):
 
 # ==============================================================================
 
-    def soundmapping(self):
-        """ Return dictionary with sound mapping in format:
-            { lumpname: hash, lumpname: hash, ... }
-            If lump is not present in WAD, hash is None
-        """
+    def soundmapping(self, mapping_type):
+        """ Return dictionary with sound mapping in various mapping formats """
         sndinfo = self.find('SNDINFO')
 
         if not sndinfo:
@@ -366,10 +370,18 @@ class WadFile(object):
             try:
                 logical_name, lump_name = line.split()
 
+                logical_name = logical_name.lower()
                 lump_name = lump_name.upper()
-                lump = self.find(lump_name)
 
-                result[lump_name] = lump and lump.hash() or None
+                if SoundMapping.LOGICAL_TO_LUMP == mapping_type:
+                    result[logical_name] = lump_name
+                elif SoundMapping.LUMP_TO_LOGICAL == mapping_type:
+                    result[lump_name] = logical_name
+                elif SoundMapping.LUMP_TO_CONTENT == mapping_type:
+                    lump = self.find(lump_name)
+                    result[lump_name] = lump and lump.hash() or None
+                else:
+                    assert(not 'Unsupported sound mapping type')
             except:
                 # ill-formed sound assignment, report error?
                 pass

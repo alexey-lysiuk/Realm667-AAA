@@ -23,6 +23,7 @@ import string
 
 import doomwad
 from iwad_lumps import lumps_doom2, sprites_doom_all
+from iwad_sndinfo import logical_sounds_all, sounds_lumps_all
 from case_insensitive import CaseInsensitiveSet
 
 
@@ -60,6 +61,9 @@ def replace_in_decorate(wad, old, new):
 def replace_in_gldefs(wad, old, new):
     for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
         replace_in_lump(alias, wad, old, new, optional = True)
+
+def replace_in_sndinfo(wad, old, new):
+    replace_in_lump('SNDINFO', wad, old, new)
 
 
 def rename_lump(wad, old, new):
@@ -312,42 +316,74 @@ def _generate_unique_lump_name():
 # ==============================================================================
 
 
-_sound_renames = { }
+# map sound lump names to a hash of lump's content
+_sound_lumps = { name: None for name in sounds_lumps_all }
 
-def rename_sound(wad, name, hash):
+# map old names to a set of new names
+_sound_lump_renames = { }
+
+def rename_sound_lump(wad, name, content_hash):
+    """ Rename sound lump in WAD file and change references to it in SNDINFO """
     new_name = None
 
-    if name in _sound_renames:
-        for rename in _sound_renames[name]:
-            if rename in _sounds and _sounds[rename] == hash:
+    if name in _sound_lump_renames:
+        for rename in _sound_lump_renames[name]:
+            if rename in _sound_lumps and _sound_lumps[rename] == content_hash:
                 new_name = rename
                 break
     else:
-        _sound_renames[name] = set()
+        _sound_lump_renames[name] = set()
 
     if not new_name:
         new_name = _generate_unique_lump_name()
-        _sound_renames[name].add(new_name)
-        _sounds[new_name] = hash
+        _sound_lump_renames[name].add(new_name)
+        _sound_lumps[new_name] = content_hash
 
     rename_lump(wad, name, new_name)
-    replace_in_lump('SNDINFO', wad,
+    replace_in_sndinfo(wad,
         r'(\s){0}(\s|$)'.format(name),
         r'\g<1>{0}\g<2>'.format(new_name))
 
-_sounds = { name: '' for name in lumps_doom2 if name.startswith('DS') }
+rename_sound_lump.mapping_type = doomwad.SoundMapping.LUMP_TO_CONTENT
+rename_sound_lump.global_mapping = _sound_lumps
+
+
+# map logical sound name to a lump name, based on SNDINFO lump content
+_logical_sounds = { name: None for name in logical_sounds_all }
+
+def rename_logical_sound(wad, logical_name, lump_name):
+    """ Rename logical sound in SNDINFO lump and change references to it in DECORATE """
+    new_name = 'r667aaa/' + _generate_unique_lump_name().lower()
+    _logical_sounds[new_name] = lump_name
+
+    replace_in_decorate(wad,
+        '"{0}"'.format(logical_name),
+        '"{0}"'.format(new_name))
+    replace_in_sndinfo(wad,
+        r'(^|\s){0}(\s)'.format(logical_name),
+        r'\g<1>{0}\g<2>'.format(new_name))
+
+    return new_name
+
+rename_logical_sound.mapping_type = doomwad.SoundMapping.LOGICAL_TO_LUMP
+rename_logical_sound.global_mapping = _logical_sounds
+
+
+def _make_unique_sounds_with_mapping(wad, rename_func):
+    mapping = wad.soundmapping(rename_func.mapping_type)
+
+    for key in mapping:
+        value = mapping[key]
+
+        if value and key in rename_func.global_mapping:
+            if value != rename_func.global_mapping[key]:
+                rename_func(wad, key, value)
+        else:
+            rename_func.global_mapping[key] = value
 
 def make_unique_sounds(wad):
-    wad_sounds = wad.soundmapping()
-
-    for name in wad_sounds:
-        hash = wad_sounds[name]
-
-        if hash and name in _sounds:
-            if hash != _sounds[name]:
-                rename_sound(wad, name, hash)
-        else:
-            _sounds[name] = hash
+    _make_unique_sounds_with_mapping(wad, rename_sound_lump)
+    _make_unique_sounds_with_mapping(wad, rename_logical_sound)
 
 
 # ==============================================================================

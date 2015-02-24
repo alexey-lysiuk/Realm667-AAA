@@ -34,19 +34,28 @@ f.close()
 
 content = re.sub(r'//.*?$', '', content, flags=re.MULTILINE)
 content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
-content = re.sub(r'\{.*?\}', '', content, flags=re.DOTALL)
 
 lines = content.split('\n')
 logical_sounds = set()
 sound_lumps = set()
 
 # TODO: avoid copy/paste from doomwad in parsing
+# TODO: add support for multi-line commands (with curly brackets)
 
 for line in lines:
     line = line.strip()
 
-    # ignore empty lines and commands
-    if 0 == len(line) or line.startswith('$'):
+    if 0 == len(line):
+        continue
+
+    if line.startswith('$'):
+        if line.lower().startswith(('$alias', '$random')):
+            try:
+                _, logical, _ = line.split(None, 2)
+                logical_sounds.add("'{0}',\n".format(logical))
+            except:
+                # ill-formed command, report error?
+                pass
         continue
 
     try:

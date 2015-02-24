@@ -401,20 +401,20 @@ def make_unique_sounds(wad):
 
 # Asset-specific patches
 
-def apply_patch_10(wad): # Apprentice of D'Sparil
+def _apply_patch_10(wad): # Apprentice of D'Sparil
     # fix missing marker
     sprite_end_marker = 'S_END'
     if not wad.find(sprite_end_marker):
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
 
-def apply_patch_14(wad): # Bat
+def _apply_patch_14(wad): # Bat
     # remove sprites with broken transparency
     # lumps from #185 Baphomet's Eyes will be used
     # they are the same sprites but with correct alpha channel
     wad.removesprite('BFAM')
 
-def apply_patch_33(wad): # Darkness Rift
+def _apply_patch_33(wad): # Darkness Rift
     # fix wrong class name
     replace_in_decorate(wad, '"Fatty"', '"Fatso"')
 
@@ -429,76 +429,76 @@ def add_dummy_brighmap(wad, name):
         '\x05\xb8\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60\x82')
     wad.append(brightmap)
 
-def apply_patch_40(wad): # Double Chaingunner
+def _apply_patch_40(wad): # Double Chaingunner
     add_dummy_brighmap(wad, 'BMDPOSE5')
 
-def apply_patch_44(wad): # Fallen
+def _apply_patch_44(wad): # Fallen
     add_dummy_brighmap(wad, 'BMFALNM0')
 
-def apply_patch_52(wad): # Hell Apprentice
+def _apply_patch_52(wad): # Hell Apprentice
     remove_unused_sound(wad, 'DSDASH')
 
-def apply_patch_55(wad): # Hell Smith
+def _apply_patch_55(wad): # Hell Smith
     remove_unused_sound(wad, 'DSDASH')
 
 def fix_actor_borgnail2(wad):
     # fix wrong class name
     replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')
 
-def apply_patch_66(wad): # Nail Borg
+def _apply_patch_66(wad): # Nail Borg
     fix_actor_borgnail2(wad)
 
-def apply_patch_70(wad): # Nightmare Demon
+def _apply_patch_70(wad): # Nightmare Demon
     # fix brightmap collisions with #17 Blood Fiend
     for lump in wad:
         if lump.name.startswith('BMSAR2'):
             lump.name = 'BMNMDM' + lump.name[6:]
     replace_in_gldefs(wad, r'(\s)BMSAR2(\w{2}\s)', r'\1BMNMDM\2')
 
-def apply_patch_71(wad): # Plasma Demon
+def _apply_patch_71(wad): # Plasma Demon
     # remove sounds conflicting with Doom IWADs
     remove_unused_sound(wad, 'DSFIRSHT')
     remove_unused_sound(wad, 'DSFIRXPL')
 
-def apply_patch_151(wad): # Phantom
+def _apply_patch_151(wad): # Phantom
     # fix wrong class name
     replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
 
-def apply_patch_191(wad): # Hangman
+def _apply_patch_191(wad): # Hangman
     # remove unused demo map
     wad.filter(lambda lump: 'MAP999' != lump.name       \
                         and 'MAP999' != lump.namespace)
 
-def apply_patch_228(wad): # Zombieman Rifle
+def _apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle
     replace_in_decorate(wad,
         r'(actor\s+)Rifle(\s*:\s*\w+)',
         r'\1ZombiemanRifle\2')
 
-def apply_patch_241(wad): # Devastator
+def _apply_patch_241(wad): # Devastator
     # fix incorrect sprite
     replace_in_decorate(wad, r'(\s)DVST(\s)', r'\1DVGG\2')
 
-def apply_patch_242(wad): # Freeze Rifle
+def _apply_patch_242(wad): # Freeze Rifle
     # fix incorrect sprite
     replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
 
-def apply_patch_266(wad): # Napalm Launcher
+def _apply_patch_266(wad): # Napalm Launcher
     # fix infinite loop in engine caused by wrong state
     replace_in_decorate(wad,
         r'(\s+)GASO(\s+\w\s+)(\d+)(\s+)Loop',
         r'\1GASO\2-1\4stop')
 
-def apply_patch_271(wad): # Saw Thrower
+def _apply_patch_271(wad): # Saw Thrower
     # fix incorrect sprite
     replace_in_decorate(wad,
         r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
 
-def apply_patch_284(wad): # Arachnobaron
+def _apply_patch_284(wad): # Arachnobaron
     add_dummy_brighmap(wad, 'BMARBRB5')
 
-def apply_patch_308(wad): # Doom III Super Shotgun
+def _apply_patch_308(wad): # Doom III Super Shotgun
     # fix sound and sprite name collisions with Doom II Super Shotgun
     replace_in_decorate(wad,
         r'(\w+\s+\w\s+)(\d+\s+)(\w*\s*)A_FireShotgun2',
@@ -530,43 +530,43 @@ def apply_patch_308(wad): # Doom III Super Shotgun
         'doom3ssg/open  SSG3OPEN\n'
         'doom3ssg/close SSG3CLOS\n')
 
-def apply_patch_314(wad): # Revolver PS
+def _apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
 
-def apply_patch_316(wad): # Agaures
+def _apply_patch_316(wad): # Agaures
     add_dummy_brighmap(wad, 'BMAGURG5')
 
-def apply_patch_318(wad): # Moloch
+def _apply_patch_318(wad): # Moloch
     # fix usage of missing actor class
     replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d\s+A_CustomMissile\s*\(\s*"MolochDeathFire")', r'//\1')
 
-def apply_patch_337(wad): # Nail Borg Commando
+def _apply_patch_337(wad): # Nail Borg Commando
     fix_actor_borgnail2(wad)
 
-def apply_patch_372(wad): # Autogun
+def _apply_patch_372(wad): # Autogun
     # fix error in keyword
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
 
-def apply_patch_412(wad): # Power Stimpack
+def _apply_patch_412(wad): # Power Stimpack
     # fix wrong class name
     replace_in_gldefs(wad, r'(\s)PowerStimpack(\s)', r'\1PowerStim\2')
 
-def apply_patch_433(wad): # Chiller
+def _apply_patch_433(wad): # Chiller
     # fix missing class name
     replace_in_decorate(wad, '"ChillerFog2"', '"ChillerFog"')
 
-def apply_patch_485(wad): # Talisman of the Depths
+def _apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather
     # cannot be resolved automatically because of optional Power... prefix
     replace_in_decorate(wad, r'NoDrown(\s+)', r'NoDrownTalisman\1')
 
-def apply_patch_511(wad): # Lightbringer'
+def _apply_patch_511(wad): # Lightbringer'
     # fix wrong class and light names
     replace_in_gldefs(wad, r'(\s)SunProjectile1(\s)', r'\1SunProjectile\2')
 
-def apply_patch_536(wad): # Jackbomb
+def _apply_patch_536(wad): # Jackbomb
     # fix missing class reference
     regex = re.compile(r'object\s+Curse\s+{.*?\s+}\s+}\s*', re.IGNORECASE | re.DOTALL)
     replace_in_gldefs(wad, regex, '')
@@ -577,59 +577,59 @@ def fix_always_activate(wad):
         'Inventory.AlwaysActivate',
         'Inventory.AutoActivate')
 
-def apply_patch_577(wad): # Guard Sphere
+def _apply_patch_577(wad): # Guard Sphere
     fix_always_activate(wad)
 
-def apply_patch_579(wad): # Time Freeze Sphere
+def _apply_patch_579(wad): # Time Freeze Sphere
     fix_always_activate(wad)
 
-def apply_patch_582(wad): # Super Crossbow
+def _apply_patch_582(wad): # Super Crossbow
     # fix missing marker
     sprite_end_marker = 'SS_END'
     if not wad.find(sprite_end_marker):
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
 
-def apply_patch_604(wad): # Dark Inquisitor
+def _apply_patch_604(wad): # Dark Inquisitor
     # fix lump name conflict with Doom IWADs
     rename_sound_lump(wad, 'STEP2', None)
 
-def apply_patch_620(wad): # Chesire Cacodemon
+def _apply_patch_620(wad): # Chesire Cacodemon
     # fix wrong class names
     replace_in_gldefs(wad, r'(\s)CheshBall(\s)', r'\1ChesBallA\2')
 
-def apply_patch_659(wad): # Pulse Rifle UAC
+def _apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle
     replace_in_decorate(wad,
         r'(actor\s+)PulseRifle(\s*:\s*\w+)',
         r'\1PulseRifleUAC\2')
 
-def apply_patch_671(wad): # Food Barrel
+def _apply_patch_671(wad): # Food Barrel
     # fix class name collisions with embedded actors
     replace_in_decorate(wad, 'Meat1', 'MeatBeef')
     replace_in_decorate(wad, 'Meat2', 'MeatCheese')
     replace_in_decorate(wad, 'Meat3', 'MeatFish')
 
-def apply_patch_685(wad): # Ammo Satchels
+def _apply_patch_685(wad): # Ammo Satchels
     # fix class name collision with ammo from Strife
     replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667')
 
-def apply_patch_762(wad): # Model 1887
+def _apply_patch_762(wad): # Model 1887
     # fix wrong end marker
     rename_lump(wad, 'SS_STOP', 'SS_END')
 
-def apply_patch_795(wad): # Missile Pod
+def _apply_patch_795(wad): # Missile Pod
     # fix usage of missing actor class
     replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d\s+A_SpawnItemEx\s*\(\s*"MissileFlameTrail")', r'//\1')
 
-def apply_patch_804(wad): # Light Machinegun
+def _apply_patch_804(wad): # Light Machinegun
     # fix class name collision with #233 Machinegun
     replace_in_decorate(wad,
         r'(actor\s+)Machinegun(\s*:\s*\w+)',
         r'\1LightMachinegun\2')
 
-def apply_patch_817(wad): # Arbalest of the Ancients
+def _apply_patch_817(wad): # Arbalest of the Ancients
     # fix class name collision with #582 Super Crossbow
     replace_in_decorate(wad,
         r'([^\w])SuperCrossbow',
@@ -639,7 +639,7 @@ def apply_patch_817(wad): # Arbalest of the Ancients
 # ==============================================================================
 
 
-broken_keyconfs = (
+_broken_keyconfs = (
     226, # Sawed Off
     235, # Uber Minigun
     240, # Seeker Bazooka
@@ -675,7 +675,7 @@ broken_keyconfs = (
 # Some weapons modify player's pitch but then restore it back
 # These weapons are commented out in the following list
 
-weapons_change_pitch = (
+_weapons_change_pitch = (
     432, # Autogun
 #    0445, # Coachgun
 #    0513, # Smasher
@@ -689,27 +689,27 @@ weapons_change_pitch = (
 )
 
 
-re_no_set_pitch = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)
-re_no_class_replacement = re.compile(r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replaces\s+[\w~.]+', re.IGNORECASE)
-re_no_doomednum = re.compile(r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', re.IGNORECASE)
+_re_no_set_pitch = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)
+_re_no_class_replacement = re.compile(r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replaces\s+[\w~.]+', re.IGNORECASE)
+_re_no_doomednum = re.compile(r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', re.IGNORECASE)
 
 
 def apply_patch(id, wad):
     # Fix weapon slot and player class resetting
-    if id in broken_keyconfs:
+    if id in _broken_keyconfs:
         remove_lump(wad, 'KEYCONF')
 
-    func_name = 'apply_patch_{0}'.format(id)
+    func_name = '_apply_patch_{0}'.format(id)
 
     if func_name in globals():
         globals()[func_name](wad)
 
-    if no_set_pitch and id in weapons_change_pitch:
-        replace_in_decorate(wad, re_no_set_pitch, '')
+    if no_set_pitch and id in _weapons_change_pitch:
+        replace_in_decorate(wad, _re_no_set_pitch, '')
     if no_class_replacement:
-        replace_in_decorate(wad, re_no_class_replacement, r'\1')
+        replace_in_decorate(wad, _re_no_class_replacement, r'\1')
     if no_doomednum:
-        replace_in_decorate(wad, re_no_doomednum, r'\1')
+        replace_in_decorate(wad, _re_no_doomednum, r'\1')
 
     make_unique_actors(wad)
     make_unique_sprites(wad)

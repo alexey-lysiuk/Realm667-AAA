@@ -114,21 +114,15 @@ class CaseInsensitiveDict(collections.MutableMapping):
 
 
 class CaseInsensitiveSet(collections.MutableSet):
-##    def __init__(self, data = None, *args):
+    """
+    A case-insensitive ``set``-like object.
+    """
     def __init__(self, other = None):
         self._dict = CaseInsensitiveDict()
 
         if other is not None:
             for item in other:
                 self.add(item)
-
-##        for arg in args:
-##            self.add(arg)
-
-##    def __init__(self, *args):
-##        self._dict = CaseInsensitiveDict()
-##        for arg in args:
-##            self.add(arg)
 
     def __repr__(self):
         return str(set(self._dict.keys()))

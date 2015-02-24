@@ -22,7 +22,7 @@ import re
 import string
 
 import doomwad
-from iwad_lumps import lumps_doom2, sprites_doom_all
+from iwad_lumps import sprites_all
 from iwad_sndinfo import logical_sounds_all, sounds_lumps_all
 from case_insensitive import CaseInsensitiveSet
 
@@ -102,18 +102,11 @@ def remove_unused_sound(wad, lump_name):
 # ==============================================================================
 
 
-def gen_sprite_mapping():
-    """ Generate dictionary with the same format as WadFile.spritemapping() """
-    result = { }
-
-    for sprite in sprites_doom_all:
-        # add one incorrect frame that will always be different
-        # to avoid any possibility of name collision with IWADs
-        result[sprite] = { '??': '' }
-
-    return result
-
-_sprites = gen_sprite_mapping()
+# the following dictionary in the same format as returned from WadFile.spritemapping()
+# single incorrect frame is added for all sprites,
+# so sprites from IWADs will always be different and
+# any possibility of name collision is avoided
+_sprites = { sprite: { None: None } for sprite in sprites_all }
 
 def _generate_unique_sprite_name(sprite, frames):
     name_chars = string.ascii_uppercase + string.digits

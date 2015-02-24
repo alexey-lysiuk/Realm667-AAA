@@ -74,6 +74,15 @@ def rename_lump(wad, old, new):
     else:
         print("Error: Cannot find lump {0}".format(old))
 
+def add_lump(wad, name, content):
+    lump = wad.find(name)
+
+    if lump:
+        print("Error: Lump {0} is already exist".format(name))
+    else:
+        lump = doomwad.Lump(name, content)
+        wad.append(lump)
+
 def remove_lump(wad, name):
     lump = wad.find(name)
 
@@ -496,18 +505,17 @@ def apply_patch_308(wad): # Doom III Super Shotgun
         r'Stop(\s+)}(\s+)}',
         'Stop\n   Spawn:\n      SG3W A -1\n      Stop\\1}\\2}')
 
-    rename_lump(wad, 'SGN2A0', 'SG3WA0')
+    rename_lump(wad, 'SGN2A0',   'SG3WA0'  )
     rename_lump(wad, 'DSDSHTGN', 'SSG3FIRE')
     rename_lump(wad, 'DSDBLOAD', 'SSG3LOAD')
     rename_lump(wad, 'DSDBOPN',  'SSG3OPEN')
     rename_lump(wad, 'DSDBCLS',  'SSG3CLOS')
 
-    sndinfo = doomwad.Lump('SNDINFO',
+    add_lump(wad, 'SNDINFO',
         'doom3ssg/fire  SSG3FIRE\n'
         'doom3ssg/load  SSG3LOAD\n'
         'doom3ssg/open  SSG3OPEN\n'
         'doom3ssg/close SSG3CLOS\n')
-    wad.append(sndinfo)
 
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite

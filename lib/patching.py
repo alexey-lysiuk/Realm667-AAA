@@ -83,6 +83,13 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
+def remove_unused_sound(wad, lump_name):
+    sndinfo = wad.find('SNDINFO')
+    if sndinfo:
+        if lump_name not in sndinfo.data:
+            remove_lump(wad, lump_name)
+
+
 # ==============================================================================
 
 
@@ -407,6 +414,12 @@ def apply_patch_33(wad): # Darkness Rift
     # fix wrong class name
     replace_in_decorate(wad, '"Fatty"', '"Fatso"')
 
+def apply_patch_52(wad): # Hell Apprentice
+    remove_unused_sound(wad, 'DSDASH')
+
+def apply_patch_55(wad): # Hell Smith
+    remove_unused_sound(wad, 'DSDASH')
+
 def fix_actor_borgnail2(wad):
     # fix wrong class name
     replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')
@@ -421,9 +434,19 @@ def apply_patch_70(wad): # Nightmare Demon
             lump.name = 'BMNMDM' + lump.name[6:]
     replace_in_gldefs(wad, r'(\s)BMSAR2(\w{2}\s)', r'\1BMNMDM\2')
 
+def apply_patch_71(wad): # Plasma Demon
+    # remove sounds conflicting with Doom IWADs
+    remove_unused_sound(wad, 'DSFIRSHT')
+    remove_unused_sound(wad, 'DSFIRXPL')
+
 def apply_patch_151(wad): # Phantom
     # fix wrong class name
     replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
+
+def apply_patch_191(wad): # Hangman
+    # remove unused demo map
+    wad.filter(lambda lump: 'MAP999' != lump.name       \
+                        and 'MAP999' != lump.namespace)
 
 def apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle
@@ -526,6 +549,10 @@ def apply_patch_582(wad): # Super Crossbow
     if not wad.find(sprite_end_marker):
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
+
+def apply_patch_604(wad): # Dark Inquisitor
+    # fix lump name conflict with Doom IWADs
+    rename_sound_lump(wad, 'STEP2', None)
 
 def apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle

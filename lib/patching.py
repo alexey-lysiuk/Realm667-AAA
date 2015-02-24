@@ -522,7 +522,12 @@ def apply_patch_337(wad): # Nail Borg Commando
     fix_actor_borgnail2(wad)
 
 def apply_patch_372(wad): # Autogun
+    # fix error in keyword
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
+
+def apply_patch_412(wad): # Power Stimpack
+    # fix wrong class name
+    replace_in_gldefs(wad, r'(\s)PowerStimpack(\s)', r'\1PowerStim\2')
 
 def apply_patch_433(wad): # Chiller
     # fix missing class name
@@ -532,6 +537,15 @@ def apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather
     # cannot be resolved automatically because of optional Power... prefix
     replace_in_decorate(wad, r'NoDrown(\s+)', r'NoDrownTalisman\1')
+
+def apply_patch_511(wad): # Lightbringer'
+    # fix wrong class and light names
+    replace_in_gldefs(wad, r'(\s)SunProjectile1(\s)', r'\1SunProjectile\2')
+
+def apply_patch_536(wad): # Jackbomb
+    # fix missing class reference
+    regex = re.compile(r'object\s+Curse\s+{.*?\s+}\s+}\s*', re.IGNORECASE | re.DOTALL)
+    replace_in_gldefs(wad, regex, '')
 
 def fix_always_activate(wad):
     # fix incorrect inventory flag
@@ -555,6 +569,10 @@ def apply_patch_582(wad): # Super Crossbow
 def apply_patch_604(wad): # Dark Inquisitor
     # fix lump name conflict with Doom IWADs
     rename_sound_lump(wad, 'STEP2', None)
+
+def apply_patch_620(wad): # Chesire Cacodemon
+    # fix wrong class names
+    replace_in_gldefs(wad, r'(\s)CheshBall(\s)', r'\1ChesBallA\2')
 
 def apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle

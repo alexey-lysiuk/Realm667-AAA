@@ -425,6 +425,23 @@ def apply_patch_33(wad): # Darkness Rift
     # fix wrong class name
     replace_in_decorate(wad, '"Fatty"', '"Fatso"')
 
+def add_dummy_brighmap(wad, name):
+    # fix 'brightmap not found' warning in console
+    brightmap = doomwad.Lump(name,
+        # 16x16 pixels image filled with black in PNG format
+        '\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d\x49\x48\x44\x52'
+        '\x00\x00\x00\x10\x00\x00\x00\x10\x08\x04\x00\x00\x00\xb5\xfa\x37'
+        '\xea\x00\x00\x00\x15\x49\x44\x41\x54\x28\xcf\x63\x64\xf8\xcf\x80'
+        '\x17\x30\x31\x30\x8c\x2a\x18\x39\x0a\x00\x2f\x20\x01\x1f\x24\xfd'
+        '\x05\xb8\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60\x82')
+    wad.append(brightmap)
+
+def apply_patch_40(wad): # Double Chaingunner
+    add_dummy_brighmap(wad, 'BMDPOSE5')
+
+def apply_patch_44(wad): # Fallen
+    add_dummy_brighmap(wad, 'BMFALNM0')
+
 def apply_patch_52(wad): # Hell Apprentice
     remove_unused_sound(wad, 'DSDASH')
 
@@ -485,6 +502,9 @@ def apply_patch_271(wad): # Saw Thrower
         r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
 
+def apply_patch_284(wad): # Arachnobaron
+    add_dummy_brighmap(wad, 'BMARBRB5')
+
 def apply_patch_308(wad): # Doom III Super Shotgun
     # fix sound and sprite name collisions with Doom II Super Shotgun
     replace_in_decorate(wad,
@@ -520,6 +540,9 @@ def apply_patch_308(wad): # Doom III Super Shotgun
 def apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
     replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
+
+def apply_patch_316(wad): # Agaures
+    add_dummy_brighmap(wad, 'BMAGURG5')
 
 def apply_patch_318(wad): # Moloch
     # fix usage of missing actor class

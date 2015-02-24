@@ -14,15 +14,6 @@
 |867|Cross Keys|Various conflicts between three key sets. Only one is kept|
 |897|Familiar Summon|Various conflicts between Scroll and Sphere WADs. Sphere version was excluded|
 
-### Lump names collisions
-|Name|WAD Files|Comments|
-|---|---|---|
-|DSDASH|HellApprentice.WAD, Hellsmith.WAD||
-|DSFIRSHT|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, PlasmaDemon.wad||
-|DSFIRXPL|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, PlasmaDemon.wad||
-|SCRIPTS|Hangman.wad, OxygenCanister.wad|ACS source code, unused by engine|
-|STEP2|!DOOM.WAD, !DOOM2.WAD, !PLUTONIA.WAD, !TNT.WAD, DarkInquisitor.wad|Works fine, lumps are from different namespaces|
-
 ### Clearing of player classes
 |ID|Name|
 |---|----|

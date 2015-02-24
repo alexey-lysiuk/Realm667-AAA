@@ -97,10 +97,23 @@ class Lump(object):
         self.marker = data == "" and name not in specnames
         self.namespace = ''
 
+    @property
+    def data(self):
+        return self._data
+
+    @data.setter
+    def data(self, value):
+        self._data = value
+        self._hash = None
+
     def hash(self):
-        result = hashlib.md5()
-        result.update(self.data)
-        return result.digest()
+        if self._hash:
+            return self._hash
+        else:
+            algo = hashlib.md5()
+            algo.update(self.data)
+            self._hash = algo.digest()
+            return self._hash
 
 # ==============================================================================
 

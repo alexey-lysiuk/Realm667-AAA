@@ -1,8 +1,8 @@
 ## Realm667 - An Awesome Awesomeness
-
+##### Weapons/monsters/powerups collection for (G)ZDoom
 #### About
 
-Attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.  
+This project is an attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.  
 Check `issues.md` file for the list of known issues.
 
 #### How to build

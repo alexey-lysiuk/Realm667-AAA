@@ -363,8 +363,20 @@ class WadFile(object):
         for line in sounds:
             line = line.strip()
 
-            # ignore empty lines and commands
-            if 0 == len(line) or line.startswith('$'):
+            if 0 == len(line):
+                continue
+
+            if line.startswith('$'):
+                if SoundMapping.LOGICAL_TO_LUMP == mapping_type:
+                    line = line.lower()
+
+                    if line.startswith(('$alias', '$random')):
+                        try:
+                            _, logical, value = line.split(None, 2)
+                            result[logical] = value
+                        except:
+                            # ill-formed command, report error?
+                            pass
                 continue
 
             try:

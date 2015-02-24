@@ -230,10 +230,12 @@ print_duplicates(lumps_wads, (
     ('!DOOM2.WAD',    lumps_doom2   ),
     ('!TNT.WAD',      lumps_tnt     ),
     ('!PLUTONIA.WAD', lumps_plutonia),
+    ('!HERETIC.WAD',  lumps_heretic ),
+    ('!HEXEN.WAD',    lumps_hexen   ),
 ))
 
 print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_doom_all),))
+print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_all),))
 
 print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(actors_wads,

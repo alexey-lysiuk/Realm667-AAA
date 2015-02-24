@@ -21,6 +21,7 @@
 import cStringIO
 import os, sys
 import random
+import time
 import traceback
 import urllib2
 import zipfile
@@ -74,6 +75,8 @@ def make_wad_filename(original_filename):
 
 def main():
     prepare()
+
+    start_time = time.clock()
 
     # TODO: add error handling
     output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
@@ -154,6 +157,9 @@ def main():
     add_lump(output_file, 'menudef.txt')
 
     output_file.close()
+
+    build_time = time.clock() - start_time
+    print('Completed in {0:.3f} seconds'.format(build_time))
 
 if __name__ == '__main__':
     main()

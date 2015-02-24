@@ -152,6 +152,8 @@ def rename_sprite(wad, old, new):
         r'(\s){0}(\s)'.format(old), replace_pattern)
     replace_in_lump('ANIMDEFS', wad,
         search_pattern, replace_pattern, optional = True)
+    replace_in_lump('DECALDEF', wad,
+        search_pattern, replace_pattern, optional = True)
     replace_in_gldefs(wad,
         search_pattern, replace_pattern)
 

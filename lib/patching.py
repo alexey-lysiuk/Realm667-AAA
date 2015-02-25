@@ -37,9 +37,23 @@ no_class_replacement = True
 no_doomednum = True
 
 
-# TODO:
-# [?] Optimize DECORATE lump: remove comments and extra line breaks
-# Verbose messages about changes done by patching
+# ==============================================================================
+
+
+VERBOSITY_NONE = 0
+VERBOSITY_LOW  = 1
+VERBOSITY_HIGH = 2
+
+
+verbosity_level = VERBOSITY_NONE
+
+
+def _verbose_print(level, message):
+    if verbosity_level >= level:
+        print(' * {0}'.format(message))
+
+
+# ==============================================================================
 
 
 def replace_in_lump(name, wad, old, new, optional = False):
@@ -71,23 +85,32 @@ def rename_lump(wad, old, new):
 
     if lump:
         lump.name = new
+
+        _verbose_print(VERBOSITY_LOW,
+            'Lump {0} was renamed to {1}'.format(old, new))
     else:
-        print("Error: Cannot find lump {0}".format(old))
+        print('Error: Cannot find lump {0}'.format(old))
 
 def add_lump(wad, name, content):
     lump = wad.find(name)
 
     if lump:
-        print("Error: Lump {0} is already exist".format(name))
+        print('Error: Lump {0} is already exist'.format(name))
     else:
         lump = doomwad.Lump(name, content)
         wad.append(lump)
+
+        _verbose_print(VERBOSITY_LOW,
+            'Lump {0} was added'.format(name))
 
 def remove_lump(wad, name):
     lump = wad.find(name)
 
     if lump:
         wad.removelump(lump)
+
+        _verbose_print(VERBOSITY_LOW,
+            'Lump {0} was deleted'.format(name))
     else:
         print("Error: Cannot find lump {0}".format(name))
 
@@ -168,6 +191,9 @@ def rename_sprite(wad, old, new):
     else:
         _sprites_renames[old] = [new]
 
+    _verbose_print(VERBOSITY_LOW,
+        'Sprite {0} was renamed to {1}'.format(old, new))
+
 def make_unique_sprites(wad):
     """ Find and rename sprites with the same name but different content
         New names are randomly generated """
@@ -205,6 +231,9 @@ def rename_actor(wad, actor):
     replace_in_decorate(wad, old_pattern, new_pattern)
     replace_in_gldefs(wad, old_pattern, new_pattern)
 
+    _verbose_print(VERBOSITY_LOW,
+        'Actor class {0} was renamed to {1}'.format(actor, new_name))
+
 
 # TODO: is it ever possible to do this using ONE regex?
 actor_stateful_pattern  = r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*'
@@ -215,6 +244,8 @@ def remove_actor(decorate, name):
         decorate.data = re.sub(pattern % name, '',
             decorate.data, 0, re.IGNORECASE | re.DOTALL)
 
+    _verbose_print(VERBOSITY_LOW,
+        'Actor class {0} was deleted'.format(name))
 
 actor_header_regex = re.compile(r'(\s|^)actor\s+([\w+~.]+).*?{',
     re.IGNORECASE | re.DOTALL)
@@ -282,6 +313,8 @@ def is_lump_needed(lump):
     name = lump.name
 
     if name in _excluded_names:
+        _verbose_print(VERBOSITY_HIGH,
+            'Unwanted lump {0} was deleted'.format(name))
         return False
 
     if lump.marker or name in _included_names:
@@ -291,6 +324,8 @@ def is_lump_needed(lump):
 
     if name in _lumps:
         if hash in _lumps[name]:
+            _verbose_print(VERBOSITY_HIGH,
+                'Duplicate lump {0} was deleted'.format(name))
             return False
         else:
             _lumps[name].add(hash)
@@ -373,6 +408,9 @@ def rename_logical_sound(wad, logical_name, lump_name):
     replace_in_sndinfo(wad,
         r'(^|\s){0}(\s)'.format(logical_name),
         r'\g<1>{0}\g<2>'.format(new_name))
+
+    _verbose_print(VERBOSITY_LOW,
+        'Logical sound {0} was renamed to {1}'.format(logical_name, new_name))
 
     return new_name
 
@@ -703,6 +741,8 @@ def apply_patch(id, wad):
 
     if func_name in globals():
         globals()[func_name](wad)
+
+        _verbose_print(VERBOSITY_HIGH, 'Asset-specific patch applied')
 
     if no_set_pitch and id in _weapons_change_pitch:
         replace_in_decorate(wad, _re_no_set_pitch, '')

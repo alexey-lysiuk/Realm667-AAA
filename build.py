@@ -18,6 +18,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import argparse
 import cStringIO
 import os, sys
 import random
@@ -40,6 +41,28 @@ output_filename = 'realm667-aaa.pk3'
 
 url_download = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
 
+
+def configure():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],
+        help="set output verbosity level")
+    parser.add_argument("--allow_set_pitch",
+        help="allow A_SetPitch() calls in DECORATE",
+        action="store_true")
+    parser.add_argument("--allow_class_replacement",
+        help="allow class replacement in DECORATE",
+        action="store_true")
+    parser.add_argument("--allow_doomednum",
+        help="allow editor number (doomednum) assignment in DECORATE",
+        action="store_true")
+
+    args = parser.parse_args()
+
+    patching.verbosity_level = args.verbosity
+    patching.allow_set_pitch = args.allow_set_pitch
+    patching.allow_class_replacement = args.allow_class_replacement
+    patching.allow_doomednum = args.allow_doomednum
 
 def prepare():
     random.seed(31337)
@@ -74,6 +97,7 @@ def make_wad_filename(original_filename):
     return wad_name
 
 def main():
+    configure()
     prepare()
 
     start_time = time.clock()

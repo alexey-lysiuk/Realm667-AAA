@@ -27,14 +27,15 @@ from iwad_sndinfo import logical_sounds_all, sounds_lumps_all
 from case_insensitive import CaseInsensitiveSet
 
 
-# Disable A_SetPitch() calls in DECORATE, suitable for playing without mouselook
-no_set_pitch = True
+# Allow A_SetPitch() calls in DECORATE,
+# suitable for playing with mouselook enabled
+allow_set_pitch = False
 
-# Disallow class replacement in DECORATE
-no_class_replacement = True
+# Allow class replacement in DECORATE
+allow_class_replacement = False
 
-# Disallow editor number (doomednum) assignment in DECORATE
-no_doomednum = True
+# Allow editor number (doomednum) assignment in DECORATE
+allow_doomednum = False
 
 
 # ==============================================================================
@@ -744,11 +745,11 @@ def apply_patch(id, wad):
 
         _verbose_print(VERBOSITY_HIGH, 'Asset-specific patch applied')
 
-    if no_set_pitch and id in _weapons_change_pitch:
+    if not allow_set_pitch and id in _weapons_change_pitch:
         replace_in_decorate(wad, _re_no_set_pitch, '')
-    if no_class_replacement:
+    if not allow_class_replacement:
         replace_in_decorate(wad, _re_no_class_replacement, r'\1')
-    if no_doomednum:
+    if not allow_doomednum:
         replace_in_decorate(wad, _re_no_doomednum, r'\1')
 
     make_unique_actors(wad)

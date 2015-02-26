@@ -733,7 +733,37 @@ _re_no_class_replacement = re.compile(r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replac
 _re_no_doomednum = re.compile(r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', re.IGNORECASE)
 
 
+# Dump all DECORATES before and after patching to two files
+_dump_decorates = False
+
+if _dump_decorates:
+    import os
+
+    try:
+        os.mkdir('tmp')
+    except OSError:
+        pass
+
+    _original_decos_file = open('tmp/original_decorates.txt', 'wb')
+    _processed_decos_file = open('tmp/processed_decorates.txt', 'wb')
+
+def dump_decorate(id, wad, tofile):
+    if not tofile:
+        return
+
+    decorate = wad.find('DECORATE')
+    assert(decorate)
+
+    tofile.write('\n// #{0}: {1}\n\n'.format(id, wad.filename))
+    tofile.write(decorate.data)
+    tofile.flush()
+##    os.fsync(tofile.fileno())
+
+
 def apply_patch(id, wad):
+    if _dump_decorates:
+        dump_decorate(id, wad, _original_decos_file)
+
     # Fix weapon slot and player class resetting
     if id in _broken_keyconfs:
         remove_lump(wad, 'KEYCONF')
@@ -757,3 +787,6 @@ def apply_patch(id, wad):
     make_unique_sounds(wad)
 
     optimize(wad)
+
+    if _dump_decorates:
+        dump_decorate(id, wad, _processed_decos_file)

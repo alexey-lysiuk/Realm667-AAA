@@ -8,6 +8,10 @@ defaultbind J menu_r667aaa_beastiary
 alias menu_r667aaa_itemstore "openmenu Menu_R667AAA_ItemStore"
 defaultbind N menu_r667aaa_itemstore
 
+alias r667aaa_exec "%1 %2"
+alias r667aaa_last "r667aaa_exec $r667aaa_summon $r667aaa_class"
+alias r667aaa "r667aaa_class %1; r667aaa_last; closemenu"
+
 addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
 addmenukey "Armory" menu_r667aaa_armory
 addmenukey "Beastiary" menu_r667aaa_beastiary

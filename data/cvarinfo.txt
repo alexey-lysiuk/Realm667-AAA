@@ -1,0 +1,2 @@
+user string r667aaa_class  = "actor";
+user string r667aaa_summon = "summon";

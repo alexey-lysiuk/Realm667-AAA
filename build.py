@@ -177,6 +177,7 @@ def main():
 
         cached_file.close()
 
+    add_lump(output_file, 'cvarinfo.txt')
     add_lump(output_file, 'keyconf.txt')
     add_lump(output_file, 'menudef.txt')
 

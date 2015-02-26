@@ -47,6 +47,8 @@ def configure():
 
     parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],
         help="set output verbosity level")
+    parser.add_argument("--profiling",
+        help="enable Python performance profiling", action="store_true")
     parser.add_argument("--allow_set_pitch",
         help="allow A_SetPitch() calls in DECORATE",
         action="store_true")
@@ -63,6 +65,9 @@ def configure():
     patching.allow_set_pitch = args.allow_set_pitch
     patching.allow_class_replacement = args.allow_class_replacement
     patching.allow_doomednum = args.allow_doomednum
+
+    global enable_profiling
+    enable_profiling = args.profiling
 
 def prepare():
     random.seed(31337)
@@ -100,7 +105,13 @@ def main():
     configure()
     prepare()
 
-    start_time = time.clock()
+    if enable_profiling:
+        import cProfile
+
+        profiler = cProfile.Profile()
+        profiler.enable()
+    else:
+        start_time = time.clock()
 
     # TODO: add error handling
     output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
@@ -183,8 +194,20 @@ def main():
 
     output_file.close()
 
-    build_time = time.clock() - start_time
-    print('Completed in {0:.3f} seconds'.format(build_time))
+    if enable_profiling:
+        profiler.disable()
+
+        import pstats
+
+        profiling_stream = cStringIO.StringIO()
+        ps = pstats.Stats(profiler, stream=profiling_stream).sort_stats('cumulative')
+        ps.print_stats()
+
+        print('\n')
+        print(profiling_stream.getvalue())
+    else:
+        build_time = time.clock() - start_time
+        print('Completed in {0:.3f} seconds'.format(build_time))
 
 if __name__ == '__main__':
     main()

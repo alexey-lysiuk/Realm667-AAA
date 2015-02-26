@@ -14,6 +14,7 @@ The script will download and cache all resources during the first run. Generatio
 
 Load `realm667-aaa.pk3` in the recent development build of (G)ZDoom.  
 Open **Realm667 - Armory** menu ('H' button by default) to summon weapons.  
-Open **Realm667 - Beastiary** menu ('J' button by default) to summon monsters.  
+Open **Realm667 - Beastiary** menu ('J' button by default) to summon monsters. Here you can change your affiliation with monsters.  
 Open **Realm667 - Item Store** menu ('N' button by default) to summon power-up, keys and other inventory items.  
+Use 'U' button (by default) to summon the last summoned actor again.
 The key bindings can be changed in **Customize Controls** menu. Look for **Realm667 - An Awesome Awesomeness** at the bottom of the controls list.

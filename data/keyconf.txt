@@ -11,11 +11,13 @@ defaultbind N menu_r667aaa_itemstore
 alias r667aaa_exec "%1 %2"
 alias r667aaa_last "r667aaa_exec $r667aaa_summon $r667aaa_class"
 alias r667aaa "r667aaa_class %1; r667aaa_last; closemenu"
+defaultbind U r667aaa_last
 
 addkeysection "Realm667 - An Awesome Awesomeness" R667AAA
 addmenukey "Armory" menu_r667aaa_armory
 addmenukey "Beastiary" menu_r667aaa_beastiary
 addmenukey "Item Store" menu_r667aaa_itemstore
+addmenukey "Summon Last Actor" r667aaa_last
 
 weaponsection R667AAA_Doom
 

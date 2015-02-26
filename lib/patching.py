@@ -175,7 +175,7 @@ def rename_sprite(wad, old, new):
     replace_pattern = r'\g<1>{0}\g<2>'.format(new)
 
     replace_in_decorate(wad,
-        search_pattern, replace_pattern)
+        r'([\s"])%s([\s"]|\w{2}[\s"])' % old, replace_pattern)
     replace_in_lump('ANIMDEFS', wad,
         search_pattern, replace_pattern, optional = True)
     replace_in_lump('DECALDEF', wad,

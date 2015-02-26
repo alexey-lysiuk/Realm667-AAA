@@ -241,9 +241,9 @@ print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(actors_wads,
     (('!ALL.WAD', [name.lower() for name in actors_all]),))
 
-print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(sounds_wads,
-    (('!ALL.WAD', [sound for sound in logical_sounds_all]),))
+#print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
+#print_duplicates(sounds_wads,
+#    (('!ALL.WAD', [sound for sound in logical_sounds_all]),))
 
 actor_dump_path = '../tmp/actors/'
 

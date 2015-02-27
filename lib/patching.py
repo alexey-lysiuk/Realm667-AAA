@@ -529,6 +529,7 @@ def _apply_patch_191(wad): # Hangman
     # remove unused demo map
     wad.filter(lambda lump: 'MAP999' != lump.name       \
                         and 'MAP999' != lump.namespace)
+    remove_lump(wad, 'MAPINFO')
 
 def _apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle

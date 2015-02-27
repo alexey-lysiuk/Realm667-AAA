@@ -16,39 +16,9 @@
 ### Lump names collisions
 |Lump|WAD Files|Comments|
 |---|---|---|
-|ARTACT1|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|BOUNCE2|!HEXEN.WAD, DuneWarrior.wad||
-|BURN|!HERETIC.WAD, Lavademon.wad||
-|CENT1|!HEXEN.WAD, ChainmailEttin.wad||
-|CENT2|!HEXEN.WAD, ChainmailEttin.wad||
-|CNTDTH1|!HEXEN.WAD, ChainmailEttin.wad||
-|FIRED2|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|FIRED3|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|FIRED5|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|FIREDHIT|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|FLECH4|!HEXEN.WAD, Small Blood Container.wad||
-|FROSTY2|!HEXEN.WAD, IceLich.wad||
-|GNTPOW|!HERETIC.WAD, !HEXEN.WAD, LighteningRod.wad||
-|HMHIT1A|!HEXEN.WAD, ChainmailEttin.wad||
-|IMPACT3|!HEXEN.WAD, Rictus.wad||
-|IMPFIRE2|!HEXEN.WAD, Rictus.wad||
-|MAGE4|!HEXEN.WAD, BloodLich.wad||
-|MAGEBALL|!HEXEN.WAD, BloodLich.wad||
-|MAPINFO|!HEXEN.WAD, Hangman.wad||
-|PUNCHMIS|!HEXEN.WAD, ChainmailEttin.wad||
-|PUP4|!HEXEN.WAD, ChainmailEttin.wad||
-|RAITH1B|!HEXEN.WAD, BloodLich.wad||
-|RAITH3|!HEXEN.WAD, BloodLich.wad||
-|RAITH4A|!HEXEN.WAD, BloodLich.wad||
-|RAITH5A|!HEXEN.WAD, BloodLich.wad||
-|SHARDS1B|!HEXEN.WAD, IceLich.wad||
-|SORRISE|!HERETIC.WAD, ApprenticeOfDsparil.wad||
-|SPAWN3|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|SPIT6|!HEXEN.WAD, FamiliarSummon (Scroll).wad||
-|STEP|!HEXEN.WAD, InfernoDemon.wad||
-|STRIKE1|!HEXEN.WAD, Rictus.wad||
-|SWORD2|!HEXEN.WAD, Skeleton.wad||
-|WOOSH3|!HEXEN.WAD, Horn Beast.wad||
+|BURN|!HERETIC.WAD, Lavademon.wad|The same sound|
+|GNTPOW|!HERETIC.WAD, !HEXEN.WAD, LighteningRod.wad|The same sound|
+|SORRISE|!HERETIC.WAD, ApprenticeOfDsparil.wad|The same sound|
 
 ### Clearing of player classes
 |ID|Name|

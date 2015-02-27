@@ -171,11 +171,28 @@ def _generate_new_sprite_name(sprite, frames):
     return new_name
 
 def rename_sprite(wad, old, new):
-    search_pattern = r'([\s"])%s(\w{0,4}[\s"])' % old
+    search_pattern = r'(\s"?)%s("?\s+"?[\[\]\w\\]+"?\s+-?\d)' % old
     replace_pattern = r'\g<1>{0}\g<2>'.format(new)
 
-    replace_in_decorate(wad,
-        r'([\s"])%s([\s"]|\w{2}[\s"])' % old, replace_pattern)
+    decorate = wad.find('DECORATE')
+    assert(decorate)
+
+    decorate.data = re.sub(search_pattern, replace_pattern,
+        decorate.data, 0, re.IGNORECASE)
+
+    search_pattern = r'Inventory.Icon\s+"?(%s\w{0,4})"?[\s}]' % old
+
+    for icon in re.findall(search_pattern, decorate.data, re.IGNORECASE):
+        icon_lump = wad.find(icon)
+
+        search_pattern = r'(Inventory.Icon\s+"?)%s(\w{0,4}"?[\s}])' % old
+
+        if icon_lump and doomwad.issrpitenamespace(icon_lump.namespace):
+            decorate.data = re.sub(search_pattern, replace_pattern,
+                decorate.data, 0, re.IGNORECASE)
+
+    search_pattern = r'([\s"])%s(\w{0,4}[\s"])' % old
+
     replace_in_lump('ANIMDEFS', wad,
         search_pattern, replace_pattern, optional = True)
     replace_in_lump('DECALDEF', wad,

@@ -18,7 +18,7 @@
 |---|---|---|
 |187|KnightArcher.wad|ArcherKnight|
 |252|TeslaCannon.wad|Bolts|
-|321|Scimitar.wad|ScimShot1|
+|321|Scimitar.wad|ScimShot1, ScimShot2|
 |417|SentryGun.wad|SentryBox|
 |539|BloodLich|BloodLich, FireBreath, BloodLichFireball, Cursed|
 These actors are modified incorrectly during patching, precisely by sprite renaming.

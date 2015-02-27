@@ -512,9 +512,14 @@ def _apply_patch_70(wad): # Nightmare Demon
     replace_in_gldefs(wad, r'(\s)BMSAR2(\w{2}\s)', r'\1BMNMDM\2')
 
 def _apply_patch_71(wad): # Plasma Demon
-    # remove sounds conflicting with Doom IWADs
-    remove_unused_sound(wad, 'DSFIRSHT')
-    remove_unused_sound(wad, 'DSFIRXPL')
+    # resolve sound lumps conflicts with Doom IWADs
+    sndinfo = wad.find('SNDINFO')
+    if sndinfo:
+        sndinfo.data += 'blueball/attack DSFIRSHT\n' \
+                        'blueball/shotx  DSFIRXPL\n'
+        replace_in_decorate(wad,
+            r'(Sound\s")imp(/\w+")',
+            r'\1blueball\2')
 
 def _apply_patch_151(wad): # Phantom
     # fix wrong class name

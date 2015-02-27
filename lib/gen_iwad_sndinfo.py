@@ -23,52 +23,54 @@ import sys
 
 
 if len(sys.argv) < 2:
-    print('Usage: {0} sndinfo.txt'.format(__file__))
+    print('Usage: {0} sndinfo.txt ...'.format(__file__))
     exit(1)
 
-# Parse sndinfo.txt
-
-f = open(sys.argv[1])
-content = f.read()
-f.close()
-
-content = re.sub(r'(//|;).*?$', '', content, flags=re.MULTILINE)
-content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
-
-lines = content.split('\n')
 logical_sounds = set()
 sound_lumps = set()
 
-# TODO: avoid copy/paste from doomwad in parsing
-# TODO: add support for multi-line commands (with curly brackets)
+for filename in sys.argv[1:]:
+    # Parse sndinfo.txt
 
-for line in lines:
-    line = line.strip()
+    f = open(filename)
+    content = f.read()
+    f.close()
 
-    if 0 == len(line):
-        continue
+    content = re.sub(r'(//|;).*?$', '', content, flags=re.MULTILINE)
+    content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
 
-    if line.startswith('$'):
-        if line.lower().startswith(('$alias', '$random')):
-            try:
-                _, logical, _ = line.split(None, 2)
-                logical_sounds.add("'{0}',\n".format(logical))
-            except:
-                # ill-formed command, report error?
-                pass
-        continue
+    lines = content.split('\n')
 
-    try:
-        logical_name, lump_name = line.split()
+    # TODO: avoid copy/paste from doomwad in parsing
+    # TODO: add support for multi-line commands (with curly brackets)
 
-        logical_name = logical_name.lower()
-        lump_name = lump_name.upper()
+    for line in lines:
+        line = line.strip()
 
-        logical_sounds.add("'{0}',\n".format(logical_name))
-        sound_lumps.add("'{0}',\n".format(lump_name))
-    except:
-        # ill-formed sound assignment, report error?
-        pass
+        if 0 == len(line):
+            continue
+
+        if line.startswith('$'):
+            if line.lower().startswith(('$alias', '$random')):
+                try:
+                    _, logical, _ = line.split(None, 2)
+                    logical_sounds.add("'{0}',\n".format(logical))
+                except:
+                    # ill-formed command, report error?
+                    pass
+            continue
+
+        try:
+            logical_name, lump_name = line.split()
+
+            logical_name = logical_name.lower()
+            lump_name = lump_name.upper()
+
+            logical_sounds.add("'{0}',\n".format(logical_name))
+            sound_lumps.add("'{0}',\n".format(lump_name))
+        except:
+            # ill-formed sound assignment, report error?
+            pass
 
 # Create header
 

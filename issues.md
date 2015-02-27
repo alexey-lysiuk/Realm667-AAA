@@ -13,16 +13,6 @@
 |867|Cross Keys|Various conflicts between three key sets. Only one is kept|
 |897|Familiar Summon|Various conflicts between Scroll and Sphere WADs. Sphere version was excluded|
 
-### Actor classes affected by patching
-|ID|WAD Files|Actor Classes|
-|---|---|---|
-|187|KnightArcher.wad|ArcherKnight|
-|252|TeslaCannon.wad|Bolts|
-|321|Scimitar.wad|ScimShot1, ScimShot2|
-|417|SentryGun.wad|SentryBox|
-|539|BloodLich|BloodLich, FireBreath, BloodLichFireball, Cursed|
-These actors are modified incorrectly during patching, precisely by sprite renaming.
-
 ### Lump names collisions
 |Lump|WAD Files|Comments|
 |---|---|---|

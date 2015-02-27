@@ -32,7 +32,7 @@ f = open(sys.argv[1])
 content = f.read()
 f.close()
 
-content = re.sub(r'//.*?$', '', content, flags=re.MULTILINE)
+content = re.sub(r'(//|;).*?$', '', content, flags=re.MULTILINE)
 content = re.sub(r'/\*.*?\*/', '', content, flags=re.DOTALL)
 
 lines = content.split('\n')

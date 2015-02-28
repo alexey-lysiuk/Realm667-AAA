@@ -45,19 +45,22 @@ url_download = 'http://realm667.com/index.php/en/component/docman/?task=doc_down
 def configure():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2],
-        help="set output verbosity level")
-    parser.add_argument("--profiling",
-        help="enable Python performance profiling", action="store_true")
-    parser.add_argument("--allow_set_pitch",
-        help="allow A_SetPitch() calls in DECORATE",
-        action="store_true")
-    parser.add_argument("--allow_class_replacement",
-        help="allow class replacement in DECORATE",
-        action="store_true")
-    parser.add_argument("--allow_doomednum",
-        help="allow editor number (doomednum) assignment in DECORATE",
-        action="store_true")
+    # Generic arguments
+    parser.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
+        help='set output verbosity level')
+    parser.add_argument('--profiling',
+        help='enable Python performance profiling', action='store_true')
+
+    # Patching-related arguments
+    parser.add_argument('--allow-set-pitch',
+        help='allow A_SetPitch() calls in DECORATE',
+        action='store_true')
+    parser.add_argument('--allow-class-replacement',
+        help='allow class replacement in DECORATE',
+        action='store_true')
+    parser.add_argument('--allow-doomednum',
+        help='allow editor number (DoomEdNum) assignment in DECORATE',
+        action='store_true')
 
     args = parser.parse_args()
 

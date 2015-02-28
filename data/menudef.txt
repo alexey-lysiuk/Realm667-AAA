@@ -392,8 +392,8 @@ OptionMenu "Menu_R667AAA_Armory"
 OptionString "Option_R667AAA_Friendly"
 {
     "summon",       "As Is"
-    "summonfriend", "Always"
-    "summonfoe",    "Never"
+    "summonfriend", "Friend"
+    "summonfoe",    "Foe"
 }
 
 OptionMenu "Menu_R667AAA_Beastiary_Doom_01"
@@ -811,7 +811,7 @@ OptionMenu "Menu_R667AAA_Beastiary"
     StaticText "Realm667 - Beastiary", 1
     StaticText ""
 
-    Option "Summon Friendly", "r667aaa_summon", "Option_R667AAA_Friendly"
+    Option "Affiliation/Friendliness", "r667aaa_summon", "Option_R667AAA_Friendly"
     StaticText ""
 
     Submenu "Doom Monsters * A..B", "Menu_R667AAA_Beastiary_Doom_01"

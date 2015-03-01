@@ -16,10 +16,7 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-repository = (
-    # Armory
-
-    # Doom Style
+_armory_doom = (
     (342, '40mm Grenade Launcher'),
     (585, 'AA12 Shotgun'),
     (260, 'Action MachineGun'),
@@ -117,8 +114,9 @@ repository = (
     (274, 'Western Shotgun'),
     (765, 'Winchester Yellowboy'),
     (228, 'Zombieman Rifle'),
+)
 
-    # Heretic / Hexen Style
+_armory_heretic_hexen = (
     (327, 'Apotheosis'),
     (817, 'Arbalest of the Ancients'),
     (323, 'Blood Scepter'),
@@ -141,8 +139,9 @@ repository = (
     (638, 'Thunder Fork'),
     (510, 'Vile Staff'),
     (473, 'Wand of Embers'),
+)
 
-    # Other Sources / Styles
+_armory_other = (
     (697, 'Bearkiller'),
     (253, 'Blaster Rifle'),
     (241, 'Devastator'),
@@ -154,7 +153,7 @@ repository = (
     (263, 'Hunter Shotgun'),
     (536, 'Jackbomb'),
     (238, 'M60'),
-    #(249, 'MagnetSaw'),  # TODO: support .pk3
+#    (249, 'MagnetSaw'),  # TODO: support .pk3
     (266, 'Napalm Launcher'),
     (267, 'Necrovision MG40'),
     (230, 'Plasma Gun'),
@@ -171,10 +170,10 @@ repository = (
     (878, 'Swarm Plasma Gun'),
     (252, 'Tesla Cannon'),
     (283, 'TommyGun'),
+)
 
-    # Beastiary
 
-    # Doom Style
+_beastiary_doom = (
     (  7, 'Afrit'),
     (  8, 'Agathodemon'),
     (316, 'Agaures'),
@@ -372,8 +371,9 @@ repository = (
 ##    (730, 'Zombie Scientist'), # the same as in #802 Former Scientists Pack
     (107, 'ZombieTank'),
     (554, 'ZSpecOps'),
+)
 
-    # Heretic / Hexen Style
+_beastiary_heretic_hexen = (
     (  6, 'Acolyte'),
     ( 10, 'Apprentice of D\'Sparil'),
     ( 13, 'Avatar'),
@@ -428,8 +428,9 @@ repository = (
     (355, 'Vampire'),
     (103, 'Wraith'),
     (607, 'Zardaz'),
+)
 
-    # Strife Style
+_beastiary_strife = (
     (657, 'Black Ops'),
     (604, 'Dark Inquisitor'),
     (863, 'Elite Guard'),
@@ -438,10 +439,10 @@ repository = (
     (338, 'Paladin'),
     (637, 'Prison Guard'),
     (909, 'Rebels Pack'),
+)
 
-    # Item Store
 
-    # PowerUps and Artifacts
+_itemstore_powerup_artifacts = (
     (391, 'AmmoSphere'),
     (827, 'Ankh of Life'),
     (392, 'Armor Sphere'),
@@ -492,15 +493,17 @@ repository = (
     (673, 'Tome of the Forsaken'),
     (414, 'Tome of the Unholy'),
     (580, 'Turbo Sphere'),
+)
 
-    # Keys and Puzzle Items
+_itemstore_keys_puzzle = (
     (867, 'Cross Keys'),
     (710, 'Doom 3 Keycards'),
     (825, 'Skull Orbs'),
     (826, 'Supply Chest Key'),
     (558, 'Various Doom Keys'),
+)
 
-    # Other Items
+_itemstore_other = (
     (490, 'Adrenaline Kit'),
     (375, 'Ammo Belt'),
     (437, 'Armor Set'),
@@ -560,6 +563,19 @@ repository = (
     (489, 'Tech Armor'),
     (831, 'Vitality Serum'),
 )
+
+
+# the following notation allows simple repository customization
+repository = []
+repository.extend(_armory_doom)
+repository.extend(_armory_heretic_hexen)
+repository.extend(_armory_other)
+repository.extend(_beastiary_doom)
+repository.extend(_beastiary_heretic_hexen)
+repository.extend(_beastiary_strife)
+repository.extend(_itemstore_powerup_artifacts)
+repository.extend(_itemstore_keys_puzzle)
+repository.extend(_itemstore_other)
 
 
 excluded_wads = (

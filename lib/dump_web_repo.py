@@ -137,6 +137,12 @@ urls = [
     make_url('item-store', 'powerups-a-artifacts'),
     make_url('item-store', 'keys-a-puzzle'),
     make_url('item-store', 'others'),
+
+    make_url('prop-stop', 'technical'),
+    make_url('prop-stop', 'vegetation'),
+    make_url('prop-stop', 'light-sources'),
+    make_url('prop-stop', 'gore-a-corpses'),
+    make_url('prop-stop', 'hell-a-magic'),
 ]
 
 # Fetch asset descriptions from repository

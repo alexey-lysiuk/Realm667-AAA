@@ -81,9 +81,7 @@ def fetch_repository(url):
 # Configuration
 
 url_website = 'http://realm667.com'
-
 url_index_template = '?start={0}'
-indices_per_page = 30
 
 
 # Prepare
@@ -96,6 +94,8 @@ except OSError:
     pass
 
 os.chdir(path_tmp)
+
+# Gather URLs to fetch from
 
 html_main = urllib2.urlopen(url_website).read()
 pattern_repo = r'<a href="([\w./-]+)">Repository</a>'
@@ -137,8 +137,13 @@ urls = [
 for url in urls:
     index = 0
 
-    while fetch_repository((url + url_index_template).format(index)) > 0:
-        index += indices_per_page
+    while True:
+        fetched_count = fetch_repository((url + url_index_template).format(index))
+
+        if 0 == fetched_count:
+            break
+
+        index += fetched_count
 
 # Save gathered asset descriptions
 

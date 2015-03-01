@@ -611,6 +611,10 @@ def _apply_patch_372(wad): # Autogun
     # fix error in keyword
     replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
 
+def _apply_patch_405(wad): # Impaled Rocket Guy
+    # fix wrong sprite name
+    rename_lump(wad, 'IMRGA1', 'IMRGA0')
+
 def _apply_patch_412(wad): # Power Stimpack
     # fix wrong class name
     replace_in_gldefs(wad, r'(\s)PowerStimpack(\s)', r'\1PowerStim\2')
@@ -659,6 +663,13 @@ def _apply_patch_604(wad): # Dark Inquisitor
 def _apply_patch_620(wad): # Chesire Cacodemon
     # fix wrong class names
     replace_in_gldefs(wad, r'(\s)CheshBall(\s)', r'\1ChesBallA\2')
+
+def _apply_patch_647(wad): # Light Column Variations
+    # fix class name collisions embedded actors
+    replace_in_decorate(wad, 'TallGreenColumn', 'TallGreenColumnR667')
+    replace_in_decorate(wad, 'ShortGreenColumn', 'ShortGreenColumnR667')
+    replace_in_decorate(wad, 'TallRedColumn', 'TallRedColumnR667')
+    replace_in_decorate(wad, 'ShortRedColumn', 'ShortRedColumnR667')
 
 def _apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle

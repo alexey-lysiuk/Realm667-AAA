@@ -173,6 +173,9 @@ _armory_other = (
 )
 
 
+# ==============================================================================
+
+
 _beastiary_doom = (
     (  7, 'Afrit'),
     (  8, 'Agathodemon'),
@@ -442,6 +445,9 @@ _beastiary_strife = (
 )
 
 
+# ==============================================================================
+
+
 _itemstore_powerup_artifacts = (
     (391, 'AmmoSphere'),
     (827, 'Ankh of Life'),
@@ -565,23 +571,212 @@ _itemstore_other = (
 )
 
 
+# ==============================================================================
+
+
+_propstop_technical = (
+    (873, 'Specimen Tank'),
+    (851, 'Glass Tech Pillars'),
+    (834, 'Junk Piles'),
+    (780, 'Czech Hedgehog'),
+    (782, 'Plasma Globe'),
+    (736, 'Oil Drum'),
+    (714, 'UAC Holograms'),
+    (348, 'Brown Metal Barrel'),
+    (352, 'Grey Metal Barrel'),
+    (351, 'Empty Nukage Barrel'),
+    (349, 'Chair'),
+    (347, 'Broken Lamp'),
+    (364, 'Zapper'),
+    (411, 'Radioactive Barrel'),
+    (421, 'Switchable Tech Lamp'),
+    (449, 'Box'),
+    (450, 'Beach Umbrella'),
+    (458, 'Marine Stuff'),
+    (467, 'Trash Cans'),
+    (476, 'Tech Gizmos'),
+    (503, 'Doom Doll'),
+    (526, 'Tech Barrels'),
+    (529, 'Toilet'),
+    (648, 'Lab Glass Pack'),
+    (650, 'Pipe Pack'),
+    (646, 'Food Pieces'),
+    (772, 'Necrodome Barrels'),
+    (773, 'Sea Mine'),
+)
+
+_propstop_vegetation = (
+    (917, 'Bushes'),
+    (676, 'Cacti'),
+    (644, 'Cactus'),
+    (832, 'Dead/Swamp Trees'),
+    (672, 'Garden Trees'),
+    (627, 'Glowing Mushrooms'),
+#    (792, 'Hell Trees'), # TODO: support .pk3
+    (610, 'Ice Stalagmites'),
+    (632, 'Limestone Cave Formations'),
+    (649, 'Liquid Fountains'),
+    (613, 'Mushrooms'),
+    (771, 'Necrodome Rocks'),
+    (678, 'Palm Trees'),
+    (797, 'Palm Trees (burnt)'),
+    (466, 'Phobos Rocks'),
+    (587, 'Root Pack'),
+    (624, 'Seaweed'),
+    (527, 'Skull Tree'),
+    (679, 'Small Trees and Bushes'),
+    (528, 'Stalagmites and Stalactite'),
+    (562, 'Winter Tree Spawner'),
+)
+
+_propstop_light_sources = (
+    (819, 'Black Torch'),
+    (784, 'Bronze Lamps'),
+#    (801, 'Candle Color Variations'), # TODO: .rar file
+    (586, 'Ceiling Lamp'),
+    (517, 'Chandelier Pack'),
+    (715, 'Doom64 Lamps'),
+    (699, 'Doom64 Torches'),
+    (871, 'Fire Bowl'),
+    (820, 'Firewood'),
+    (821, 'Golden Eagle Statue'),
+    (357, 'Grey Lamp'),
+    (549, 'Lamps'),
+    (611, 'Lava Cauldron'),
+    (647, 'Light Column Variations'),
+    (920, 'Marble Brazier'),
+    (563, 'Roof Lights'),
+    (614, 'Serpent Braziers'),
+    (398, 'Skull Lamp'),
+    (615, 'Stone Torch'),
+    (887, 'Strife Columns'),
+    (716, 'Strobe Lights'),
+    (459, 'Torch Variations'),
+    (700, 'Doom Wall Torches'),
+    (363, 'Yellow Lamp'),
+)
+
+_propstop_gore_corpses = (
+    (353, 'Bloody Chain (PSX Doom)'),
+    (365, 'Bloody Heads'),
+    (619, 'Bone Pile'),
+    (789, 'Bound Marines'),
+    (356, 'Brown Scientist Carcass'),
+    (643, 'Burning Corpses'),
+    (544, 'Burning Corpse'),
+    (918, 'Corpse Pile'),
+    (443, 'Cow Skulls'),
+    (545, 'Crucified Corpses'),
+    (519, 'Cyberdemon Gore'),
+    (530, 'Daisy Scenes'),
+    (595, 'Dead Corvus'),
+    (461, 'Dead General'),
+    (701, 'Dead Scientists'),
+    (350, 'Demonic Arm'),
+    (546, 'Devilish Bust'),
+    (854, 'Gore Decorations'),
+    (446, 'Gore Pack'),
+    (358, 'Half Cut Soldier Carcass'),
+    (464, 'Hanged Bloody Skeleton'),
+    (359, 'Hanged Imps'),
+    (455, 'Hanged Marines'),
+    (431, 'Hanged Player'),
+    (584, 'Hanging Corpse Pack'),
+    (729, 'Hanging Duke'),
+    (785, 'Hanging Marine Meat'),
+    (531, 'Hanging Marines'),
+    (781, 'Hanging Marines 2'),
+    (919, 'Hanging Wizard Corpse'),
+    (360, 'Head Sticks'),
+    (366, 'Imp Stick'),
+    (547, 'Impaled Corpses'),
+    (906, 'Impaled Dog Heads'),
+    (504, 'Impaled Marines'),
+    (405, 'Impaled Rocket Guy'),
+    (822, 'Impaled Scientists'),
+    (441, 'Marine Corpses'),
+    (538, 'Marine Victim'),
+    (440, 'Monster Head'),
+    (681, 'Radioactive Corpses'),
+    (361, 'Shirtless Beheaded Marine'),
+    (362, 'Shirtless Marine Carcass'),
+    (818, 'Shootable Impaled Humans'),
+    (420, 'Sitting Corpses'),
+    (463, 'Skeleton'),
+    (564, 'Skewered Corpses'),
+    (786, 'Skulltag Gore'),
+    (525, 'Torn Corpse'),
+    (424, 'Tortured Baron'),
+    (548, 'Upside Down Corpses'),
+    (727, 'WolfensteinGore'),
+)
+
+_propstop_hell_magic = (
+    (660, 'Ancient Hell Pillars'),
+    (345, 'Bible'),
+    (346, 'Bloody Chalice'),
+    (677, 'Ceramic Potery'),
+    (728, 'CrimsonBanner'),
+    (882, 'Crow'),
+    (616, 'D\'Sparil Statue'),
+    (583, 'Doom Statues'),
+    (462, 'Evil Eye Variations'),
+    (734, 'Fire Pillars (Doom)'),
+    (735, 'Fire Pillars (Hexen)'),
+    (645, 'Flesh Pillar'),
+    (905, 'Flesh Pods'),
+    (617, 'Gold Stand Gizmos'),
+    (474, 'Hell Gizmos'),
+    (418, 'Hell Growth'),
+    (475, 'Heretic Gizmos'),
+    (698, 'Marble Columns'),
+    (883, 'Marble Urn'),
+    (833, 'Necrodome Tombstones'),
+    (737, 'Pillar Gizmos'),
+    (856, 'Rune Skull Pillars'),
+    (651, 'Skull Candle'),
+    (872, 'Small Key Gizmos'),
+    (680, 'Stone Heads'),
+    (702, 'Strife Bloody Columns'),
+    (354, 'Tentacle Barrier'),
+    (861, 'Warrior Statue'),
+)
+
+
+# ==============================================================================
+
+
 # the following notation allows simple repository customization
 repository = []
+
 repository.extend(_armory_doom)
 repository.extend(_armory_heretic_hexen)
 repository.extend(_armory_other)
+
 repository.extend(_beastiary_doom)
 repository.extend(_beastiary_heretic_hexen)
 repository.extend(_beastiary_strife)
+
 repository.extend(_itemstore_powerup_artifacts)
 repository.extend(_itemstore_keys_puzzle)
 repository.extend(_itemstore_other)
+
+repository.extend(_propstop_technical)
+repository.extend(_propstop_vegetation)
+repository.extend(_propstop_light_sources)
+repository.extend(_propstop_gore_corpses)
+repository.extend(_propstop_hell_magic)
+
+
+# ==============================================================================
 
 
 excluded_wads = (
     (143, 'InfernalSpider (Jumping).wad'),
     (243, 'UnmakerCentered.wad'),
     (258, 'PolyMorph (old version).wad'),
+    (645, 'FleshPillarTestMap01.wad'),
+    (716, 'StrobeTest.wad'),
     (717, 'StrifeLandMine.wad'),
     (816, 'CryoPal.wad'),
     (825, 'SkullOrbsDemoMap.wad'),

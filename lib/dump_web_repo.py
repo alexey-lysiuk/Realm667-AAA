@@ -23,8 +23,15 @@ import re
 import urllib2
 
 
-pattern_summon = re.compile(r'Summon:\s*(</strong>|</b>)\s*(&nbsp;\s*)?([^\s][\w\s\[\],-\.\(\)\'/]+)(<strong>|<b>|<br />)', re.UNICODE)
-pattern_id_name = re.compile(r'gid=(\d+)(&amp;(?:gt;=&amp;)?Itemid=)?"(\s+class="doclink")?(\s+target="_self")?>\s*([^\s][\w\s\[\],-\.\(\)\']+)\s*</a>', re.UNICODE)
+pattern_summon = re.compile(
+    r'Summon:\s*(?:</strong>|</b>)\s*(?:&nbsp;\s*)?'
+    r'(\S[\w\s\[\],-.()\'/&;"]+)'
+    r'(?:<strong>|<b>|<br />)', re.UNICODE)
+pattern_id_name = re.compile(
+    r'gid=(\d+)'
+    r'(?:&amp;(?:gt;=&amp;)?Itemid=)?"(?:\s+class="doclink")?(?:\s+target="_self")?>(?:<span class="doclink">)?\s*'
+    r'(\S[\w\s\[\],-.()\'/&;"]+)'
+    r'\s*(?:</span>)?</a>', re.UNICODE)
 
 repository = []
 
@@ -52,7 +59,7 @@ def fetch_repository(url):
         if not match:
             break
 
-        summon = match.group(3).strip(' \r\n')
+        summon = match.group(1).strip(' \r\n')
 
         match = pattern_id_name.search(html, match.end())
 
@@ -60,7 +67,7 @@ def fetch_repository(url):
             break
 
         id = match.group(1).rjust(3)
-        name = match.group(5).strip()
+        name = match.group(2).strip()
 
         if name.lower().endswith('.zip'):
             name = name[:-4]

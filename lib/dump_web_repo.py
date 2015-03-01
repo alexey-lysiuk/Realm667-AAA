@@ -24,7 +24,7 @@ import urllib2
 
 
 pattern_summon = re.compile(r'Summon:\s*(</strong>|</b>)\s*(&nbsp;\s*)?([^\s][\w\s\[\],-\.\(\)\'/]+)(<strong>|<b>|<br />)', re.UNICODE)
-pattern_id_name = re.compile(r'gid=(\d+)(&amp;gt;=)?"(\s+class="doclink")?(\s+target="_self")?>\s*([^\s][\w\s\[\],-\.\(\)\']+)\s*</a>', re.UNICODE)
+pattern_id_name = re.compile(r'gid=(\d+)(&amp;(?:gt;=&amp;)?Itemid=)?"(\s+class="doclink")?(\s+target="_self")?>\s*([^\s][\w\s\[\],-\.\(\)\']+)\s*</a>', re.UNICODE)
 
 repository = []
 
@@ -80,34 +80,7 @@ def fetch_repository(url):
 
 # Configuration
 
-url_website      = 'http://realm667.com/index.php/en/'
-url_armory       = url_website + 'armory-mainmenu-157-97317/'
-url_beastiary    = url_website + 'beastiary-mainmenu-136-69621/'
-url_item_shop    = url_website + 'item-store-mainmenu-169-61042/'
-
-url_armory_doom  = url_armory + 'doom-style-mainmenu-158-94349'
-url_armory_hh    = url_armory + 'heretic-hexen-style-mainmenu-159-20295'
-url_armory_other = url_armory + 'other-sources-styles-mainmenu-160-29963'
-
-url_beast_doom   = url_beastiary + 'doom-style-mainmenu-105-73113'
-url_beast_hh     = url_beastiary + 'heretic-hexen-style-mainmenu-137-49102'
-url_beast_strife = url_beastiary + 'strife-style-mainmenu-173-3492'
-
-url_item_powerup = url_item_shop + 'powerups-a-artifacts-mainmenu-170-4162'
-url_item_puzzle  = url_item_shop + 'keys-a-puzzle-mainmenu-171-21592'
-url_item_other   = url_item_shop + 'others-mainmenu-172-93727'
-
-urls = [
-    url_armory_doom,
-    url_armory_hh,
-    url_armory_other,
-    url_beast_doom,
-    url_beast_hh,
-    url_beast_strife,
-    url_item_powerup,
-    url_item_puzzle,
-    url_item_other,
-]
+url_website = 'http://realm667.com'
 
 url_index_template = '?start={0}'
 indices_per_page = 30
@@ -123,6 +96,41 @@ except OSError:
     pass
 
 os.chdir(path_tmp)
+
+html_main = urllib2.urlopen(url_website).read()
+pattern_repo = r'<a href="([\w./-]+)">Repository</a>'
+match_repo = re.search(pattern_repo, html_main, re.IGNORECASE)
+
+if not match_repo:
+    print('Error: Failed to fetch repository URL')
+    exit(1)
+
+url_repo = '{0}{1}'.format(url_website, match_repo.group(1))
+html_repo = urllib2.urlopen(url_repo).read()
+
+def make_url(category, subcategory):
+    pattern = r'href="([\w./-]+%s[\w./-]+%s[\w./-]+)"' % (category, subcategory)
+    match = re.search(pattern, html_repo)
+
+    if not match:
+        print('Error: Failed to fetch URL for {0} - {1}'.format(category, subcategory))
+        exit(1)
+
+    return url_website + match.group(1)
+
+urls = [
+    make_url('armory', 'doom-style'),
+    make_url('armory', 'heretic-hexen-style'),
+    make_url('armory', 'other-sources-styles'),
+
+    make_url('beastiary', 'doom-style'),
+    make_url('beastiary', 'heretic-hexen-style'),
+    make_url('beastiary', 'strife-style'),
+
+    make_url('item-store', 'powerups-a-artifacts'),
+    make_url('item-store', 'keys-a-puzzle'),
+    make_url('item-store', 'others'),
+]
 
 # Fetch asset descriptions from repository
 

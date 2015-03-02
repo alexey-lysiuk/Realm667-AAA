@@ -749,23 +749,23 @@ _propstop_hell_magic = (
 # the following notation allows simple repository customization
 repository = []
 
-repository.extend(_armory_doom)
-repository.extend(_armory_heretic_hexen)
-repository.extend(_armory_other)
+repository += _armory_doom
+repository += _armory_heretic_hexen
+repository += _armory_other
 
-repository.extend(_beastiary_doom)
-repository.extend(_beastiary_heretic_hexen)
-repository.extend(_beastiary_strife)
+repository += _beastiary_doom
+repository += _beastiary_heretic_hexen
+repository += _beastiary_strife
 
-repository.extend(_itemstore_powerup_artifacts)
-repository.extend(_itemstore_keys_puzzle)
-repository.extend(_itemstore_other)
+repository += _itemstore_powerup_artifacts
+repository += _itemstore_keys_puzzle
+repository += _itemstore_other
 
-repository.extend(_propstop_technical)
-repository.extend(_propstop_vegetation)
-repository.extend(_propstop_light_sources)
-repository.extend(_propstop_gore_corpses)
-repository.extend(_propstop_hell_magic)
+repository += _propstop_technical
+repository += _propstop_vegetation
+repository += _propstop_light_sources
+repository += _propstop_gore_corpses
+repository += _propstop_hell_magic
 
 
 # ==============================================================================

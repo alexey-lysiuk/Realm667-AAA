@@ -1142,7 +1142,7 @@ OptionMenu "Menu_R667AAA_ItemStore"
 }
 
 
-OptionMenu "Menu_R667AAA_PropStop_FoodOffice"
+OptionMenu "Menu_R667AAA_PropStop_Technical_1"
 {
     StaticText "Realm667 - Food and Office", 1
     StaticText ""
@@ -1171,7 +1171,7 @@ OptionMenu "Menu_R667AAA_PropStop_FoodOffice"
     Command "Filthy Waste Bin", "r667aaa WasteBinFilthy"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_Flasks"
+OptionMenu "Menu_R667AAA_PropStop_Technical_2"
 {
     StaticText "Realm667 - Flasks and Glasses", 1
     StaticText ""
@@ -1197,7 +1197,7 @@ OptionMenu "Menu_R667AAA_PropStop_Flasks"
     Command "Glass", "r667aaa glass"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_Technical_Barrels"
+OptionMenu "Menu_R667AAA_PropStop_Technical_3"
 {
     StaticText "Realm667 - Barrels and Tanks", 1
     StaticText ""
@@ -1221,7 +1221,7 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_Barrels"
     Command "Broken Specimen Tank", "r667aaa TankBroken"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_Technical_Pillars"
+OptionMenu "Menu_R667AAA_PropStop_Technical_4"
 {
     StaticText "Realm667 - Pillars and Pipes", 1
     StaticText ""
@@ -1248,7 +1248,7 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_Pillars"
     Command "Pipe 5", "r667aaa HPipe5"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_Technical_Other"
+OptionMenu "Menu_R667AAA_PropStop_Technical_5"
 {
     StaticText "Realm667 - Other Technical Props", 1
     StaticText ""
@@ -1436,11 +1436,11 @@ OptionMenu "Menu_R667AAA_PropStop"
 	StaticText "Realm667 - Prop Stop", 1
     StaticText ""
 
-	Submenu "Food and Office", "Menu_R667AAA_PropStop_FoodOffice"
-    Submenu "Flasks and Glasses", "Menu_R667AAA_PropStop_Flasks"
-	Submenu "Barrels and Tanks", "Menu_R667AAA_PropStop_Technical_Barrels"
-	Submenu "Pillars and Pipes", "Menu_R667AAA_PropStop_Technical_Pillars"
-	Submenu "Other Technical Props", "Menu_R667AAA_PropStop_Technical_Other"
+	Submenu "Food and Office", "Menu_R667AAA_PropStop_Technical_1"
+    Submenu "Flasks and Glasses", "Menu_R667AAA_PropStop_Technical_2"
+	Submenu "Barrels and Tanks", "Menu_R667AAA_PropStop_Technical_3"
+	Submenu "Pillars and Pipes", "Menu_R667AAA_PropStop_Technical_4"
+	Submenu "Other Technical", "Menu_R667AAA_PropStop_Technical_5"
     StaticText ""
 
 	Submenu "Vegetation Props", "Menu_R667AAA_PropStop_Vegetation"

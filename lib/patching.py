@@ -215,7 +215,17 @@ def rename_sprite(wad, old, new):
 def make_unique_sprites(wad):
     """ Find and rename sprites with the same name but different content
         New names are randomly generated """
+
+    # very special case:
+    # if keep_sprites attribute exists in wad instance,
+    # ignore possible sprite name collision and keep the name unchanged
+    # for example, when sprite from IWAD is extended with frames from PWAD
+    keep_sprites = hasattr(wad, 'keep_sprites') and wad.keep_sprites or ()
+
     for name, frames in wad.spritemapping().iteritems():
+        if name in keep_sprites:
+            continue
+
         if name in _sprites:
             if frames != _sprites[name]:
                 new_name = _generate_new_sprite_name(name, frames)
@@ -618,6 +628,11 @@ def _apply_patch_405(wad): # Impaled Rocket Guy
 def _apply_patch_412(wad): # Power Stimpack
     # fix wrong class name
     replace_in_gldefs(wad, r'(\s)PowerStimpack(\s)', r'\1PowerStim\2')
+
+def _apply_patch_421(wad): # Switchable Tech Lamp
+    # extend sprite from Doom II and Final Doom IWADs
+    if wad.find('TLMPE0'):
+        wad.keep_sprites = ('TLMP')
 
 def _apply_patch_433(wad): # Chiller
     # fix missing class name

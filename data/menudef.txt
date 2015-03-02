@@ -1142,19 +1142,11 @@ OptionMenu "Menu_R667AAA_ItemStore"
 }
 
 
-OptionMenu "Menu_R667AAA_PropStop_Technical_1"
+OptionMenu "Menu_R667AAA_PropStop_FoodOffice"
 {
-    StaticText "Realm667 - Technical Props", 1
+    StaticText "Realm667 - Food and Office", 1
     StaticText ""
 
-    Command "Beach Umbrella", "r667aaa Umbrella"
-    Command "Box", "r667aaa Box1"
-    Command "Broken Lamp", "r667aaa BrokenLamp"
-    Command "Brown Metal Barrel", "r667aaa BrownMetalBarrel"
-    Command "Chair", "r667aaa Chair"
-    Command "Czech Hedgehog", "r667aaa Hedgehog"
-    Command "Doom Doll", "r667aaa DoomDoll"
-    Command "Empty Nukage Barrel", "r667aaa EmptyNukageBarrel"
     Command "Bottle 1", "r667aaa bottle1"
     Command "Bottle 2", "r667aaa bottle2"
     Command "Burger 1", "r667aaa burger1"
@@ -1166,18 +1158,24 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_1"
     Command "Food Delivery Box", "r667aaa dbox"
     Command "Fries 1", "r667aaa fries1"
     Command "Fries 2", "r667aaa fries2"
-    Command "Glass", "r667aaa glass"
-}
-
-OptionMenu "Menu_R667AAA_PropStop_Technical_2"
-{
-    StaticText "Realm667 - Technical Props", 1
     StaticText ""
 
-	Command "Glass Tech Pillar", "r667aaa GTechPillar"
-    Command "Short Glass Tech Pillar", "r667aaa GTechPillarShort"
-    Command "Light Glass Tech Pillar", "r667aaa GTechPillarLight"
-    Command "Light Short Glass Tech Pillar", "r667aaa GTechPillarLightShort"
+    Command "Box", "r667aaa Box1"
+    Command "Broken Lamp", "r667aaa BrokenLamp"
+    Command "Chair", "r667aaa Chair"
+    Command "Doom Doll", "r667aaa DoomDoll"
+    Command "Plasma Globe", "r667aaa PlasmaGlobe"
+    Command "Toilet", "r667aaa Toilet1"
+    Command "Trash Can", "r667aaa TrashCan1"
+    Command "Waste Bin", "r667aaa WasteBin"
+    Command "Filthy Waste Bin", "r667aaa WasteBinFilthy"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_Flasks"
+{
+    StaticText "Realm667 - Flasks and Glasses", 1
+    StaticText ""
+
     Command "Blue Flask A", "r667aaa flaskblueA"
     Command "Blue Flask B", "r667aaa flaskblueB"
     Command "Blue Glass", "r667aaa glassblue"
@@ -1196,16 +1194,73 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_2"
     Command "Yellow Flask A", "r667aaa flaskyellowA"
     Command "Yellow Flask B", "r667aaa flaskyellowB"
     Command "Yellow Glass", "r667aaa glassyellow"
+    Command "Glass", "r667aaa glass"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_Technical_3"
+OptionMenu "Menu_R667AAA_PropStop_Technical_Barrels"
 {
-    StaticText "Realm667 - Technical Props", 1
+    StaticText "Realm667 - Barrels and Tanks", 1
     StaticText ""
 
+    Command "Brown Metal Barrel", "r667aaa BrownMetalBarrel"
+    Command "Empty Nukage Barrel", "r667aaa EmptyNukageBarrel"
     Command "Grey Metal Barrel", "r667aaa GreyMetalBarrel"
+    Command "Necrodome Atomic Barrel", "r667aaa NecroAtomicBarrel"
+    Command "Necrodome Bio Barrel", "r667aaa NecroBioBarrel"
+    Command "Radioactive Barrel", "r667aaa RadioactiveBarrel"
+    Command "Empty Radioactive Barrel", "r667aaa EmptyBarrel"
+    Command "Sound Radioactive Barrel", "r667aaa SoundBarrel"
+    Command "Green Tech Barrel", "r667aaa TechBarrelGreen"
+    Command "Grey Tech Barrel", "r667aaa TechBarrelGrey"
+    Command "Tan Tech Barrel", "r667aaa TechBarrelTan"
+    Command "Oil Drum", "r667aaa oildrum"
+    StaticText ""
+
+    Command "Specimen Tank", "r667aaa TankCreature"
+    Command "Empty Specimen Tank", "r667aaa TankNotCreature"
+    Command "Broken Specimen Tank", "r667aaa TankBroken"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_Technical_Pillars"
+{
+    StaticText "Realm667 - Pillars and Pipes", 1
+    StaticText ""
+
+    Command "Glass Tech Pillar", "r667aaa GTechPillar"
+    Command "Short Glass Tech Pillar", "r667aaa GTechPillarShort"
+    Command "Light Glass Tech Pillar", "r667aaa GTechPillarLight"
+    Command "Light Short Glass Tech Pillar", "r667aaa GTechPillarLightShort"
+    Command "Switchable Tech Lamp", "r667aaa TechLampOff"
+    StaticText ""
+
+    Command "Blue Key Tech Gizmo", "r667aaa BlueKeyGizmo"
+    Command "Blue Skull Tech Gizmo", "r667aaa BlueSkullGizmo"
+    Command "Red Key Tech Gizmo", "r667aaa RedKeyGizmo"
+    Command "Red Skull Tech Gizmo", "r667aaa RedSkullGizmo"
+    Command "Yellow Key Tech Gizmo", "r667aaa YellowKeyGizmo"
+    Command "Yellow Skull Tech Gizmo", "r667aaa YellowSkullGizmo"
+    StaticText ""
+
+    Command "Pipe 1", "r667aaa HPipe1"
+    Command "Pipe 2", "r667aaa HPipe2"
+    Command "Pipe 3", "r667aaa HPipe3"
+    Command "Pipe 4", "r667aaa HPipe4"
+    Command "Pipe 5", "r667aaa HPipe5"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_Technical_Other"
+{
+    StaticText "Realm667 - Other Technical Props", 1
+    StaticText ""
+
+    Command "Beach Umbrella", "r667aaa Umbrella"
+    Command "Czech Hedgehog", "r667aaa Hedgehog"
     Command "Junk Pile 1", "r667aaa JunkPile1"
     Command "Junk Pile 2", "r667aaa JunkPile2"
+    Command "Sea Mine", "r667aaa SeaMine"
+    Command "Zapper", "r667aaa Zapper"
+    StaticText ""
+
     Command "Marine Boots", "r667aaa Boots"
     Command "Marine Helm A", "r667aaa HelmA"
     Command "Marine Helm B", "r667aaa HelmB"
@@ -1213,50 +1268,14 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_3"
     Command "Marine Helm D", "r667aaa HelmD"
     Command "Marine Uniform A", "r667aaa UniformA"
     Command "Marine Uniform B", "r667aaa UniformB"
-    Command "Necrodome Atomic Barrel", "r667aaa NecroAtomicBarrel"
-    Command "Necrodome Bio Barrel", "r667aaa NecroBioBarrel"
-    Command "Oil Drum", "r667aaa oildrum"
-    Command "Pipe 1", "r667aaa HPipe1"
-    Command "Pipe 2", "r667aaa HPipe2"
-    Command "Pipe 3", "r667aaa HPipe3"
-    Command "Pipe 4", "r667aaa HPipe4"
-    Command "Pipe 5", "r667aaa HPipe5"
-    Command "Plasma Globe", "r667aaa PlasmaGlobe"
-    Command "Radioactive Barrel", "r667aaa RadioactiveBarrel"
-    Command "Empty Radioactive Barrel", "r667aaa EmptyBarrel"
-    Command "Sound Radioactive Barrel", "r667aaa SoundBarrel"
-}
-
-OptionMenu "Menu_R667AAA_PropStop_Technical_4"
-{
-    StaticText "Realm667 - Technical Props", 1
     StaticText ""
 
-    Command "Sea Mine", "r667aaa SeaMine"
-    Command "Specimen Tank 1", "r667aaa TankCreature"
-    Command "Specimen Tank 2", "r667aaa TankNotCreature"
-    Command "Broken Specimen Tank", "r667aaa TankBroken"
-    Command "Switchable Tech Lamp", "r667aaa TechLampOff"
-    Command "Green Tech Barrel", "r667aaa TechBarrelGreen"
-    Command "Grey Tech Barrel", "r667aaa TechBarrelGrey"
-    Command "Tan Tech Barrel", "r667aaa TechBarrelTan"
-    Command "Blue Key Tech Gizmo", "r667aaa BlueKeyGizmo"
-    Command "Blue Skull Tech Gizmo", "r667aaa BlueSkullGizmo"
-    Command "Red Key Tech Gizmo", "r667aaa RedKeyGizmo"
-    Command "Red Skull Tech Gizmo", "r667aaa RedSkullGizmo"
-    Command "Yellow Key Tech Gizmo", "r667aaa YellowKeyGizmo"
-    Command "Yellow Skull Tech Gizmo", "r667aaa YellowSkullGizmo"
-    Command "Toilet", "r667aaa Toilet1"
-    Command "Trash Can", "r667aaa TrashCan1"
-    Command "Waste Bin", "r667aaa WasteBin"
-    Command "Filthy Waste Bin", "r667aaa WasteBinFilthy"
     Command "UAC Hologram 1", "r667aaa UACHolo1"
     Command "UAC Hologram 2", "r667aaa UACHolo2"
     Command "UAC Hologram 3", "r667aaa UACHolo3"
     Command "UAC Hologram 4", "r667aaa UACHolo4"
     Command "UAC Hologram 5", "r667aaa UACHolo5"
     Command "UAC Hologram 6", "r667aaa UACHolo6"
-    Command "Zapper", "r667aaa Zapper"
 }
 
 OptionMenu "Menu_R667AAA_PropStop_Vegetation"
@@ -1417,10 +1436,13 @@ OptionMenu "Menu_R667AAA_PropStop"
 	StaticText "Realm667 - Prop Stop", 1
     StaticText ""
 
-	Submenu "Technical Props 1", "Menu_R667AAA_PropStop_Technical_1"
-	Submenu "Technical Props 2", "Menu_R667AAA_PropStop_Technical_2"
-	Submenu "Technical Props 3", "Menu_R667AAA_PropStop_Technical_3"
-	Submenu "Technical Props 4", "Menu_R667AAA_PropStop_Technical_4"
+	Submenu "Food and Office", "Menu_R667AAA_PropStop_FoodOffice"
+    Submenu "Flasks and Glasses", "Menu_R667AAA_PropStop_Flasks"
+	Submenu "Barrels and Tanks", "Menu_R667AAA_PropStop_Technical_Barrels"
+	Submenu "Pillars and Pipes", "Menu_R667AAA_PropStop_Technical_Pillars"
+	Submenu "Other Technical Props", "Menu_R667AAA_PropStop_Technical_Other"
+    StaticText ""
+
 	Submenu "Vegetation Props", "Menu_R667AAA_PropStop_Vegetation"
 	Submenu "Light Sources", "Menu_R667AAA_PropStop_LightSources"
 	Submenu "Gore and Corpses", "Menu_R667AAA_PropStop_GoreCorpses"

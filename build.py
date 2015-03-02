@@ -22,6 +22,7 @@ import argparse
 import cStringIO
 import os, sys
 import random
+import time
 import traceback
 import urllib2
 import zipfile
@@ -112,6 +113,8 @@ def main():
 
         profiler = cProfile.Profile()
         profiler.enable()
+    else:
+        start_time = time.clock()
 
     # TODO: add error handling
     output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
@@ -206,8 +209,7 @@ def main():
         print('\n')
         print(profiling_stream.getvalue())
     else:
-        times = os.times()
-        build_time = times[0] + times[1]
+        build_time = time.clock() - start_time
         print('Completed in {0:.3f} seconds'.format(build_time))
 
 if __name__ == '__main__':

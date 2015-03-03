@@ -680,11 +680,8 @@ def _apply_patch_620(wad): # Chesire Cacodemon
     replace_in_gldefs(wad, r'(\s)CheshBall(\s)', r'\1ChesBallA\2')
 
 def _apply_patch_647(wad): # Light Column Variations
-    # fix class name collisions embedded actors
-    replace_in_decorate(wad, 'TallGreenColumn', 'TallGreenColumnR667')
-    replace_in_decorate(wad, 'ShortGreenColumn', 'ShortGreenColumnR667')
-    replace_in_decorate(wad, 'TallRedColumn', 'TallRedColumnR667')
-    replace_in_decorate(wad, 'ShortRedColumn', 'ShortRedColumnR667')
+    # fix class name collisions with embedded actors
+    replace_in_decorate(wad, r'(\s+)(\w+Column\s+)', r'\1Light\2')
 
 def _apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle

@@ -1447,34 +1447,149 @@ OptionMenu "Menu_R667AAA_PropStop_Vegetation_6"
     Command "Small Ice Stalagmite 2", "r667aaa IceStalagmiteSmall2"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_LightSources"
+OptionString "Option_R667AAA_D64Torch_Size"
+{
+    "Short", "Short"
+    "Tall",  "Tall"
+}
+
+OptionString "Option_R667AAA_D64Torch_Color"
+{
+    "Blue",   "\chBlue"
+    "Cyan",   "\cvCyan"
+    "Green",  "\cdGreen"
+    "Purple", "\ctPurple"
+    "Red",    "\cgRed"
+    "White",  "\cjWhite"
+    "Yellow", "\ckYellow"
+}
+
+OptionString "Option_R667AAA_D64Torch_StandColor"
+{
+    "Gold",   "\cfGold"
+    "Silver", "\cuSilver"
+    "Bronze", "\ciBronze"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_LightSources_1"
 {
     StaticText "Realm667 - Light Sources", 1
     StaticText ""
 
+    Command "Black Candle Chandelier", "r667aaa BlackCandleChandelier"
     Command "Black Torch", "r667aaa BlackTorch"
-    Command "Bronze Lamps", "r667aaa BronzeColumn[1-3]"
+    Command "Bronze Lamp 1", "r667aaa BronzeColumn1"
+    Command "Bronze Lamp 2", "r667aaa BronzeColumn2"
+    Command "Bronze Lamp 3", "r667aaa BronzeColumn3"
 //    Command "Candle Color Variations", "r667aaa ..." // TODO
-    Command "Ceiling Lamp", "r667aaa Lamp, LampBlocking"
-    Command "Chandelier Pack", "r667aaa Chandelier1Switchable-Chandelier4Switchable, Chandelier1Off-Chandelier4Off, Chandelier1On-Chandelier4On"
-    Command "Doom64 Lamps", "r667aaa D64Lamp(1,2,3,4)"
-    Command "Doom64 Torches", "r667aaa D64[Short, Tall][Blue, Cyan, Green, Purple, Red, White, Yellow]Torch[Bronze, Gold, Silver]Stand"
+    Command "Ceiling Lamp", "r667aaa Lamp"
+    Command "Chandelier 1", "r667aaa Chandelier1Switchable"
+    Command "Chandelier 2", "r667aaa Chandelier2Switchable"
+    Command "Chandelier 3", "r667aaa Chandelier3Switchable"
+    Command "Chandelier 4", "r667aaa Chandelier4Switchable"
+    Command "Doom64 Lamp 1", "r667aaa D64Lamp1"
+    Command "Doom64 Lamp 2", "r667aaa D64Lamp2"
+    Command "Doom64 Lamp 3", "r667aaa D64Lamp3"
+    Command "Doom64 Lamp 4", "r667aaa D64Lamp4"
+    Command "Doom64 Torch", "r667aaa_d64torch $r667aaa_d64torch_size $r667aaa_d64torch_color $r667aaa_d64torch_standcolor"
+    Option "Torch Size", "r667aaa_d64torch_size", "Option_R667AAA_D64Torch_Size"
+    Option "Torch Color", "r667aaa_d64torch_color", "Option_R667AAA_D64Torch_Color"
+    Option "Torch Stand Color", "r667aaa_d64torch_standcolor", "Option_R667AAA_D64Torch_StandColor"
     Command "Fire Bowl", "r667aaa FireBowl"
-    Command "Firewood", "r667aaa CleanLog, CutLog, CharredLog, BurningLog, EmberLog"
-    Command "Golden Eagle Statue", "r667aaa GoldenEagle1, GoldenEagle2, GoldenEagle3"
+}
+
+OptionString "Option_R667AAA_LightColumn_Size"
+{
+    "Short", "Short"
+    "",      "Medium"
+    "Tall",  "Tall"
+}
+
+OptionString "Option_R667AAA_LightColumn_Color"
+{
+    "Blue",   "\chBlue"
+    "Cyan",   "\cvCyan"
+    "Green",  "\cdGreen"
+    "Orange", "\ciOrange"
+    "Purple", "\ctPurple"
+    "Red",    "\cgRed"
+    "White",  "\cjWhite"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_LightSources_2"
+{
+    StaticText "Realm667 - Light Sources", 1
+    StaticText ""
+
+    Command "Clean Log Firewood", "r667aaa CleanLog"
+    Command "Cut Log Firewood", "r667aaa CutLog"
+    Command "Charred Log Firewood", "r667aaa CharredLog"
+    Command "Burning Log Firewood", "r667aaa BurningLog"
+    Command "Ember Log Firewood", "r667aaa EmberLog"
+
+    Command "Golden Eagle Statue 1", "r667aaa GoldenEagle1"
+    Command "Golden Eagle Statue 2", "r667aaa GoldenEagle2"
+    Command "Golden Eagle Statue 3", "r667aaa GoldenEagle3"
+
     Command "Grey Lamp", "r667aaa GreyLamp"
-    Command "Lamps", "r667aaa tlamp[1-10]"
-    Command "Lava Cauldron", "r667aaa LavaCauldron, LavaCauldronSpitter"
-    Command "Light Column Variations", "r667aaa [color]Column, Short[color]Column, Tall[color]Column"
+    Command "Lamp 1", "r667aaa TLamp1"
+    Command "Lamp 2", "r667aaa TLamp2"
+    Command "Lamp 3", "r667aaa TLamp3"
+
+    Command "Lava Cauldron", "r667aaa LavaCauldron"
+    Command "Lava Cauldron Spitter", "r667aaa LavaCauldronSpitter"
+
+    Command "Light Column", "r667aaa_lightcolumn $r667aaa_lightcolumn_size $r667aaa_lightcolumn_color"
+    Option "Column Size", "r667aaa_lightcolumn_size", "Option_R667AAA_LightColumn_Size"
+    Option "Column Color", "r667aaa_lightcolumn_color", "Option_R667AAA_LightColumn_Color"
+
     Command "Marble Brazier", "r667aaa MarbleBrazier"
-    Command "Roof Lights", "r667aaa TechLanternBig, TechLanternSmall, BlackCandleChandelier"
-    Command "Serpent Braziers", "r667aaa SerpentBrazier&quot;Bronze/Green/Gold&quot;"
+    Command "Bronze Serpent Braziers", "r667aaa SerpentBrazierBronze"
+    Command "Green Serpent Braziers", "r667aaa SerpentBrazierGreen"
+    Command "Gold Serpent Braziers", "r667aaa SerpentBrazierGold"
+}
+
+OptionString "Option_R667AAA_StrifeColumn_Color"
+{
+    "Green",       "\cdGreen"
+    "Yellow",      "\ckYellow"
+    "Cyan",        "\cvCyan"
+    "Teal",        "\cpTeal"
+    "Red",         "\cgRed"
+    "YellowGreen", "\cqYellow Green"
+    "Blue",        "\chBlue"
+    "Brown",       "\ceBrown"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_LightSources_3"
+{
+    StaticText "Realm667 - Light Sources", 1
+    StaticText ""
+
     Command "Skull Lamp", "r667aaa SkullLamp"
     Command "Stone Torch", "r667aaa StoneTorch"
-    Command "Strife Columns", "r667aaa [Green, Yellow, Cyan, Teal, Red, YellowGreen, Blue, Brown]StrifeColumn"
-    Command "Strobe Lights", "r667aaa strobelight[red/green/blue/yellow]"
-    Command "Torch Variations", "r667aaa YellowTorch, WhiteTorch, PurpleTorch, ShortYellowTorch, ShortWhiteTorch, ShortPurpleTorch"
-    Command "Doom Wall Torches", "r667aaa [Blue/Red/Green]WallTorch"
+
+    Command "Strife Column", "r667aaa_strifecolumn $r667aaa_strifecolumn_color"
+    Option "Column Color", "r667aaa_strifecolumn_color", "Option_R667AAA_StrifeColumn_Color"
+
+    Command "Blue Strobe Light", "r667aaa StrobeLightBlue"
+    Command "Green Strobe Light", "r667aaa StrobeLightGreen"
+    Command "Red Strobe Light", "r667aaa StrobeLightRed"
+    Command "Yellow Strobe Light", "r667aaa StrobeLightYellow"
+
+    Command "Big Tech Lantern", "r667aaa TechLanternBig"
+    Command "Small Tech Lantern", "r667aaa TechLanternSmall"
+
+    Command "Purple Torch", "r667aaa PurpleTorch"
+    Command "Yellow Torch", "r667aaa YellowTorch"
+    Command "White Torch", "r667aaa WhiteTorch"
+    Command "Short Purple Torch", "r667aaa ShortPurpleTorch"
+    Command "Short Yellow Torch", "r667aaa ShortYellowTorch"
+    Command "Short White Torch", "r667aaa ShortWhiteTorch"
+
+    Command "Blue Wall Torch", "r667aaa BlueWallTorch"
+    Command "Green Wall Torch", "r667aaa GreenWallTorch"
+    Command "Red Wall Torch", "r667aaa RedWallTorch"
     Command "Yellow Lamp", "r667aaa YellowLamp"
 }
 
@@ -1574,17 +1689,17 @@ OptionMenu "Menu_R667AAA_PropStop_HellMagic"
 
 OptionMenu "Menu_R667AAA_PropStop"
 {
-	StaticText "Realm667 - Prop Stop", 1
+    StaticText "Realm667 - Prop Stop", 1
     StaticText ""
 
-	Submenu "Food and Office", "Menu_R667AAA_PropStop_Technical_1"
+    Submenu "Food and Office", "Menu_R667AAA_PropStop_Technical_1"
     Submenu "Flasks and Glasses", "Menu_R667AAA_PropStop_Technical_2"
-	Submenu "Barrels and Tanks", "Menu_R667AAA_PropStop_Technical_3"
-	Submenu "Pillars and Pipes", "Menu_R667AAA_PropStop_Technical_4"
-	Submenu "Other Technical", "Menu_R667AAA_PropStop_Technical_5"
+    Submenu "Barrels and Tanks", "Menu_R667AAA_PropStop_Technical_3"
+    Submenu "Pillars and Pipes", "Menu_R667AAA_PropStop_Technical_4"
+    Submenu "Other Technical", "Menu_R667AAA_PropStop_Technical_5"
     StaticText ""
 
-	Submenu "Bushes and Trees * A..H", "Menu_R667AAA_PropStop_Vegetation_1"
+    Submenu "Bushes and Trees * A..H", "Menu_R667AAA_PropStop_Vegetation_1"
     Submenu "Bushes and Trees * I..R", "Menu_R667AAA_PropStop_Vegetation_2"
     Submenu "Bushes and Trees * S..Z", "Menu_R667AAA_PropStop_Vegetation_3"
     Submenu "Limestones and Rocks", "Menu_R667AAA_PropStop_Vegetation_4"
@@ -1592,7 +1707,11 @@ OptionMenu "Menu_R667AAA_PropStop"
     Submenu "Other Vegetation", "Menu_R667AAA_PropStop_Vegetation_6"
     StaticText ""
 
-	Submenu "Light Sources", "Menu_R667AAA_PropStop_LightSources"
-	Submenu "Gore and Corpses", "Menu_R667AAA_PropStop_GoreCorpses"
-	Submenu "Hell and Magic", "Menu_R667AAA_PropStop_HellMagic"
+    Submenu "Light Sources * A..F", "Menu_R667AAA_PropStop_LightSources_1"
+    Submenu "Light Sources * F..S", "Menu_R667AAA_PropStop_LightSources_2"
+    Submenu "Light Sources * S..Z", "Menu_R667AAA_PropStop_LightSources_3"
+    StaticText ""
+
+    Submenu "Gore and Corpses", "Menu_R667AAA_PropStop_GoreCorpses"
+    Submenu "Hell and Magic", "Menu_R667AAA_PropStop_HellMagic"
 }

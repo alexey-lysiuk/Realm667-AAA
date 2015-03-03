@@ -142,3 +142,9 @@ addslotdefault 6 TeslaCannon
 addslotdefault 9 PyroCannon
 
 addslotdefault 0 Jackbomb
+
+
+// Prop Stop - Light Sources
+alias r667aaa_d64torch "r667aaa D64%1%2Torch%3Stand"
+alias r667aaa_lightcolumn "r667aaa Light%1%2Column"
+alias r667aaa_strifecolumn "r667aaa %1StrifeColumn"

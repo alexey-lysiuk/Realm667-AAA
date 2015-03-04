@@ -8,3 +8,9 @@ user noarchive string r667aaa_d64torch_standcolor = "Gold";
 user noarchive string r667aaa_lightcolumn_size    = "Short";
 user noarchive string r667aaa_lightcolumn_color   = "Blue";
 user noarchive string r667aaa_strifecolumn_color  = "Green";
+
+// Prop Stop - Gore and Corpses
+user noarchive string r667aaa_devilishbust_kind;
+user noarchive int    r667aaa_devilishbust_head = 1;
+user noarchive int    r667aaa_cowskull_kind     = 1;
+user noarchive int    r667aaa_cowskull_teeth    = 1;

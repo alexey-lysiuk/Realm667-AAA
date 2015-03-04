@@ -1593,63 +1593,238 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_3"
     Command "Yellow Lamp", "r667aaa YellowLamp"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_GoreCorpses"
+OptionValue "Option_R667AAA_CowSkulls_Kind"
+{
+    1, "Head 1"
+    2, "Head 2"
+    3, "Head 3"
+    4, "Head 4"
+    5, "Head 5"
+}
+
+OptionValue "Option_R667AAA_CowSkulls_Teeth"
+{
+    1, "Yes"
+    2, "No"
+}
+
+OptionString "Option_R667AAA_DevilishBust_Kind"
+{
+    "Pillar1", "Pillar 1"
+    "Pillar2", "Pillar 2"
+    "",        "Bust"
+}
+
+OptionValue "Option_R667AAA_DevilishBust_Head"
+{
+    1, "Head 1"
+    2, "Head 2"
+    3, "Head 3"
+    4, "Head 4"
+    5, "Head 5"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_1"
 {
     StaticText "Realm667 - Gore and Corpses", 1
     StaticText ""
 
     Command "Bloody Chain (PSX Doom)", "r667aaa PSXBloodyChain"
-    Command "Bloody Heads", "r667aaa Head1,Head2,Head3,Head4"
+    Command "Bloody Head 1", "r667aaa Head1"
+    Command "Bloody Head 2", "r667aaa Head2"
+    Command "Bloody Head 3", "r667aaa Head3"
+    Command "Bloody Head 4", "r667aaa Head4"
     Command "Bone Pile", "r667aaa BonePile"
-    Command "Bound Marines", "r667aaa BoundPlayer1/2, BoundPlayerShootable1/2"
+    Command "Bound Marine 1", "r667aaa BoundPlayer1"
+    Command "Bound Marine 2", "r667aaa BoundPlayer2"
+    Command "Shootable Bound Marine 1", "r667aaa BoundPlayerShootable1"
+    Command "Shootable Bound Marine 2", "r667aaa BoundPlayerShootable2"
     Command "Brown Scientist Carcass", "r667aaa CarcassBrownScientist"
-    Command "Burning Corpses", "r667aaa BurningCorpse1, BurningCorpse2"
-    Command "Burning Corpse", "r667aaa ZCorpseBurning"
+    Command "Burning Corpse 1", "r667aaa BurningCorpse1"
+    Command "Burning Corpse 2", "r667aaa BurningCorpse2"
+    Command "Burning Corpse 3", "r667aaa ZCorpseBurning"
     Command "Corpse Pile", "r667aaa CorpsePile"
-    Command "Cow Skulls", "r667aaa Cow1Skull1 - Cow1Skull5, Cow2Skull1 - Cow2Skull5"
-    Command "Crucified Corpses", "r667aaa ZCorpseCrucified, ZCorpseCrucifiedBloody, ZCorpseCrucifiedSword"
-    Command "Cyberdemon Gore", "r667aaa TorturedCyber, CyberArm, RocketArm, FleshLeg, CyberLeg"
-    Command "Daisy Scenes", "r667aaa DaisyTree, DaisyHead, DaisyStick"
-    Command "Dead Corvus", "r667aaa DeadCorvus, DeadCorvus2"
+
+    Command "Cow Skull:", "r667aaa_cowskull $r667aaa_cowskull_teeth $r667aaa_cowskull_kind"
+    Option "Skull Kind", "r667aaa_cowskull_kind", "Option_R667AAA_CowSkulls_Kind"
+    Option "Skull Teeth", "r667aaa_cowskull_teeth", "Option_R667AAA_CowSkulls_Teeth"
+
+    Command "Crucified Corpse 1", "r667aaa ZCorpseCrucified"
+    Command "Crucified Corpse 2", "r667aaa ZCorpseCrucifiedBloody"
+    Command "Crucified Corpse 3", "r667aaa ZCorpseCrucifiedSword"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_2"
+{
+    StaticText "Realm667 - Gore and Corpses", 1
+    StaticText ""
+
+    Command "Cyberdemon Cyber Arm", "r667aaa CyberArm"
+    Command "Cyberdemon Rocket Arm", "r667aaa RocketArm"
+    Command "Cyberdemon Cyber Leg", "r667aaa CyberLeg"
+    Command "Cyberdemon Flesh Leg ", "r667aaa FleshLeg"
+    Command "Tortured Cyberdemon", "r667aaa TorturedCyber"
+
+    Command "Daisy Head", "r667aaa Daisyshead"
+    Command "Daisy Stick", "r667aaa Daisystick"
+    Command "Daisy Tree", "r667aaa Daisytree"
+    Command "Dead Corvus 1", "r667aaa DeadCorvus"
+    Command "Dead Corvus 2", "r667aaa DeadCorvus2"
     Command "Dead General", "r667aaa DeadGeneral"
-    Command "Dead Scientists", "r667aaa DeadMaleScientist, DeadFemaleScientist"
+    Command "Dead Male Scientist", "r667aaa DeadMaleScientist"
+    Command "Dead Female Scientist", "r667aaa DeadFemaleScientist"
     Command "Demonic Arm", "r667aaa DemonicArm"
-    Command "Devilish Bust", "r667aaa Bust[1-5], Bust[1-5]Pillar[1-2]"
-    Command "Gore Decorations", "r667aaa BaronArm, DemonLeg, FatsoArmGore, Pileoguts, RockHead"
-    Command "Gore Pack", "r667aaa Bone1-2, BrainMush, GoreChunk1-3, EyeBall, Organ1-2, RibCage, SpinalCord, Organs, Torso"
+
+    Command "Devilish Bust:", "r667aaa_devilishbust $r667aaa_devilishbust_head $r667aaa_devilishbust_kind"
+    Option "Bust Kind", "r667aaa_devilishbust_kind", "Option_R667AAA_DevilishBust_Kind"
+    Option "Bust Head", "r667aaa_devilishbust_head", "Option_R667AAA_DevilishBust_Head"
+
+    Command "Gore Decoration 1", "r667aaa BaronArm"
+    Command "Gore Decoration 2", "r667aaa DemonLeg"
+    Command "Gore Decoration 3", "r667aaa FatsoArmGore"
+    Command "Gore Decoration 4", "r667aaa Pileoguts"
+    Command "Gore Decoration 5", "r667aaa RockHead"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_3"
+{
+    StaticText "Realm667 - Gore and Corpses", 1
+    StaticText ""
+
+    Command "Gore 1", "r667aaa Bone1"
+    Command "Gore 2", "r667aaa Bone2"
+    Command "Gore 3", "r667aaa BrainMush"
+    Command "Gore 4", "r667aaa GoreChunk1"
+    Command "Gore 5", "r667aaa GoreChunk2"
+    Command "Gore 6", "r667aaa GoreChunk3"
+    Command "Gore 7", "r667aaa EyeBall"
+    Command "Gore 8", "r667aaa Organ1"
+    Command "Gore 9", "r667aaa Organ2"
+    Command "Gore 10", "r667aaa RibCage"
+    Command "Gore 11", "r667aaa SpinalCord"
+    Command "Gore 12", "r667aaa Organs"
+    Command "Gore 13", "r667aaa Torso"
+
     Command "Half Cut Soldier Carcass", "r667aaa CarcassSoldierHalfCut"
     Command "Hanged Bloody Skeleton", "r667aaa HangedBloodySkeleton"
-    Command "Hanged Imps", "r667aaa HangedImp1-4"
-    Command "Hanged Marines", "r667aaa HangedMarine1-3, HangedMarineBlocking1-3"
+    Command "Hanged Imp 1", "r667aaa HangedImp1"
+    Command "Hanged Imp 2", "r667aaa HangedImp2"
+    Command "Hanged Imp 3", "r667aaa HangedImp3"
+    Command "Hanged Imp 4", "r667aaa HangedImp4"
+    Command "Hanged Marine 1", "r667aaa HangedMarine1"
+    Command "Hanged Marine 2", "r667aaa HangedMarine2"
+    Command "Hanged Marine 3", "r667aaa HangedMarine3"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_4"
+{
+    StaticText "Realm667 - Gore and Corpses", 1
+    StaticText ""
+
     Command "Hanged Player", "r667aaa HangedPlayer"
-    Command "Hanging Corpse Pack", "r667aaa Meat6 - 10"
-    Command "HangingDuke", "r667aaa HangingDuke, HangingDuke2"
-    Command "Hanging Marine Meat", "r667aaa CTHangMarineLimb/Torso"
-    Command "Hanging Marines", "r667aaa LiveHangingMarine, DeadHangingMarine, MostlyDeadHangingMarine"
-    Command "Hanging Marines 2", "r667aaa CTHangPlayer1/2"
+    Command "Hanging Corpse 1", "r667aaa Meat6"
+    Command "Hanging Corpse 2", "r667aaa Meat7"
+    Command "Hanging Corpse 3", "r667aaa Meat8"
+    Command "Hanging Corpse 4", "r667aaa Meat9"
+    Command "Hanging Corpse 5", "r667aaa Meat10"
+    Command "Hanging Duke 1", "r667aaa HangingDuke"
+    Command "Hanging Duke 2", "r667aaa HangingDuke2"
+    Command "Hanging Marine Limb", "r667aaa CTHangMarineLimb"
+    Command "Hanging Marine Torso", "r667aaa CTHangMarineTorso"
+    Command "Hanging Marine 1", "r667aaa LiveHangingMarineBlocking"
+    Command "Hanging Marine 2", "r667aaa DeadHangingMarineBlocking"
+    Command "Hanging Marine 3", "r667aaa MostlyDeadHangingMarineBlocking"
+    Command "Hanging Marine 4", "r667aaa CTHangPlayer1"
+    Command "Hanging Marine 5", "r667aaa CTHangPlayer2"
     Command "Hanging Wizard Corpse", "r667aaa HangingWizard"
-    Command "Head Sticks", "r667aaa [Doom],[Imp],[Trooper],[Cyber]HeadStick"
+    Command "Cyber Head Stick", "r667aaa CyberHeadStick"
+    Command "Doom Head Stick", "r667aaa DoomHeadStick"
+    Command "Imp Head Stick", "r667aaa ImpHeadStick"
+    Command "Trooper Head Stick", "r667aaa TrooperHeadStick"
     Command "Imp Stick", "r667aaa ImpStick"
-    Command "Impaled Corpses", "r667aaa ZCorpseImpaled1 - 5"
-    Command "Impaled Dog Heads", "r667aaa ImpaledDogHead1,&nbsp;ImpaledDogHead2, ImpaledDogHeads"
-    Command "Impaled Marines", "r667aaa CarcassImpaledMarine, CarcassImpaledMarine2"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_5"
+{
+    StaticText "Realm667 - Gore and Corpses", 1
+    StaticText ""
+
+    Command "Impaled Corpse 1", "r667aaa ZCorpseImpaled1"
+    Command "Impaled Corpse 2", "r667aaa ZCorpseImpaled2"
+    Command "Impaled Corpse 3", "r667aaa ZCorpseImpaled3"
+    Command "Impaled Corpse 4", "r667aaa ZCorpseImpaled4"
+    Command "Impaled Corpse 5", "r667aaa ZCorpseImpaled5"
+    Command "Impaled Dog Head 1", "r667aaa ImpaledDogHead2"
+    Command "Impaled Dog Head 2", "r667aaa ImpaledDogHead1"
+    Command "Impaled Dog Heads", "r667aaa ImpaledDogHeads"
+    Command "Live Impaled Human 1", "r667aaa LiveStick1"
+    Command "Live Impaled Human 2", "r667aaa LiveStick2"
+    Command "Dead Impaled Human 1", "r667aaa Deadstick1"
+    Command "Dead Impaled Human 2", "r667aaa DeadStick2"
+    Command "Impaled Marine 1", "r667aaa CarcassImpaledMarine"
+    Command "Impaled Marine 2", "r667aaa CarcassImpaledMarine2"
     Command "Impaled Rocket Guy", "r667aaa ImpaledRocketGuy"
-    Command "Impaled Scientists", "r667aaa ImpaledScientist, ImpaledFScientist"
-    Command "Marine Corpses", "r667aaa Corp01, Corp02, Corp03, Corp04, Corp05, Corp06"
+    Command "Impaled Male Scientist", "r667aaa ImpaledScientist"
+    Command "Impaled Female Scientist", "r667aaa ImpaledFScientist"
+    Command "Marine Corpse 1", "r667aaa Corp01"
+    Command "Marine Corpse 2", "r667aaa Corp02"
+    Command "Marine Corpse 3", "r667aaa Corp03"
+    Command "Marine Corpse 4", "r667aaa Corp04"
+    Command "Marine Corpse 5", "r667aaa Corp05"
+    Command "Marine Corpse 6", "r667aaa Corp06"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_6"
+{
+    StaticText "Realm667 - Gore and Corpses", 1
+    StaticText ""
+
     Command "Marine Victim", "r667aaa MarineVictim"
     Command "Monster Head", "r667aaa MonsterHead"
-    Command "Radioactive Corpses", "r667aaa RadioactiveCorpse1-4"
+    Command "Radioactive Corpse 1", "r667aaa RadioactiveCorpse1"
+    Command "Radioactive Corpse 2", "r667aaa RadioactiveCorpse2"
+    Command "Radioactive Corpse 3", "r667aaa RadioactiveCorpse3"
+    Command "Radioactive Corpse 4", "r667aaa RadioactiveCorpse4"
     Command "Shirtless Beheaded Marine", "r667aaa CarcassShirtlessBeheaded"
     Command "Shirtless Marine Carcass", "r667aaa CarcassShirtlessMarine"
-    Command "Shootable Impaled Humans", "r667aaa LiveStick1, Deadstick1, LiveStick2, DeadStick2"
-    Command "Sitting Corpses", "r667aaa CarcassSittingMarine, CarcassSittingMaintenance"
+    Command "Sitting Marine Corpse", "r667aaa CarcassSittingMarine"
+    Command "Sitting Maintenance Corpse", "r667aaa CarcassSittingMaintenance"
+
+    Command "Skulltag Gore 1", "r667aaa ImpalingSpike"
+    Command "Skulltag Gore 2", "r667aaa ImpalingSpike2"
+    Command "Skulltag Gore 3", "r667aaa ImpalingSpike3"
+    Command "Skulltag Gore 4", "r667aaa ImpalingSpike4"
+    Command "Skulltag Gore 5", "r667aaa ImpalingSpike5"
+    Command "Skulltag Gore 6", "r667aaa ImpalingSpike6"
+    Command "Skulltag Gore 7", "r667aaa ImpalingSpike7"
+    Command "Skulltag Gore 8", "r667aaa ImpalingSpike8"
+    Command "Skulltag Gore 9", "r667aaa ImpalingSpike9"
+    Command "Skulltag Gore 10", "r667aaa ImpalingSpike10"
+    Command "Skulltag Gore 11", "r667aaa ImpalingSpike11"
+    Command "Skulltag Gore 12", "r667aaa MarineHelmetGibs"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_7"
+{
+    StaticText "Realm667 - Gore and Corpses", 1
+    StaticText ""
+
     Command "Skeleton", "r667aaa Skeleton"
-    Command "Skewered Corpses", "r667aaa ChestSkewered1 - 3"
-    Command "Skulltag Gore", "r667aaa ImpalingSpike, ImpalingSpike2-11,"
+    Command "Skewered Corpse 1", "r667aaa ChestSkewered1"
+    Command "Skewered Corpse 2", "r667aaa ChestSkewered2"
+    Command "Skewered Corpse 3", "r667aaa ChestSkewered3"
+
     Command "Torn Corpse", "r667aaa TornCorpse"
     Command "Tortured Baron", "r667aaa TorturedBaron"
-    Command "Upside Down Corpses", "r667aaa ZCorpseUpsideDown1 - 5"
-    Command "WolfensteinGore", "r667aaa BonePiles, CowStick, PoleSkulls, BloodandBones"
+    Command "Upside Down Corpse 1", "r667aaa ZCorpseUpsideDown1"
+    Command "Upside Down Corpse 2", "r667aaa ZCorpseUpsideDown2"
+    Command "Upside Down Corpse 3", "r667aaa ZCorpseUpsideDown3"
+    Command "Upside Down Corpse 4", "r667aaa ZCorpseUpsideDown4"
+    Command "Upside Down Corpse 5", "r667aaa ZCorpseUpsideDown5"
+    Command "Wolfenstein Bone Piles", "r667aaa BonePiles"
+    Command "Wolfenstein Cow Stick", "r667aaa CowStick"
+    Command "Wolfenstein Pole Skulls", "r667aaa PoleSkulls"
+    Command "Wolfenstein Blood/Bones", "r667aaa BloodandBones"
 }
 
 OptionMenu "Menu_R667AAA_PropStop_HellMagic"
@@ -1712,6 +1887,14 @@ OptionMenu "Menu_R667AAA_PropStop"
     Submenu "Light Sources * S..Z", "Menu_R667AAA_PropStop_LightSources_3"
     StaticText ""
 
-    Submenu "Gore and Corpses", "Menu_R667AAA_PropStop_GoreCorpses"
+    Submenu "Gore and Corpses * A..C", "Menu_R667AAA_PropStop_GoreCorpses_1"
+    Submenu "Gore and Corpses * C..G", "Menu_R667AAA_PropStop_GoreCorpses_2"
+    Submenu "Gore and Corpses * G..H", "Menu_R667AAA_PropStop_GoreCorpses_3"
+    Submenu "Gore and Corpses * H..I", "Menu_R667AAA_PropStop_GoreCorpses_4"
+    Submenu "Gore and Corpses * I..M", "Menu_R667AAA_PropStop_GoreCorpses_5"
+    Submenu "Gore and Corpses * M..S", "Menu_R667AAA_PropStop_GoreCorpses_6"
+    Submenu "Gore and Corpses * S..Z", "Menu_R667AAA_PropStop_GoreCorpses_7"
+    StaticText ""
+
     Submenu "Hell and Magic", "Menu_R667AAA_PropStop_HellMagic"
 }

@@ -329,7 +329,6 @@ _included_names = {
 }
 
 _excluded_names = {
-    'CREDIT',   # informational, but fixes conflict with texture from IWADs
     'CREDITS',  # informational
     'INFO',     # informational
     'UPDATES',  # informational
@@ -809,6 +808,11 @@ def dump_decorate(id, wad, tofile):
 def apply_patch(id, wad):
     if _dump_decorates:
         dump_decorate(id, wad, _original_decos_file)
+
+    # fix conflict with texture from IWADs
+    credit_lump = wad.find('CREDIT')
+    if credit_lump:
+        credit_lump.name = 'CREDITS'
 
     # Fix weapon slot and player class resetting
     if id in _broken_keyconfs:

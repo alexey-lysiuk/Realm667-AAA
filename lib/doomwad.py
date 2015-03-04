@@ -166,12 +166,17 @@ class WadFile(object):
 
             if lump.marker:
                 if lump.name.endswith('_END'):
+                    # end marker found, reset namespace
                     namespace = ''
-                else:
-                    namespace =  lump.name
+                elif '' == namespace or lump.name.endswith('_START'):
+                    # some other marker found,
+                    # use it as namespace start if it's top-level
+                    # or if it's explicitly named so
+                    namespace = lump.name
                 ismap = False
             else:
                 if not ismapcur and ismap:
+                    # end of map found, reset namespace
                     namespace = ''
                     ismap = False
 

@@ -712,11 +712,10 @@ _propstop_gore_corpses = (
 )
 
 _propstop_hell_magic = (
-    (660, 'Ancient Hell Pillars'),
+    (728, 'Banners'),
     (345, 'Bible'),
     (346, 'Bloody Chalice'),
     (677, 'Ceramic Potery'),
-    (728, 'CrimsonBanner'),
     (882, 'Crow'),
     (616, 'D\'Sparil Statue'),
     (583, 'Doom Statues'),
@@ -728,6 +727,7 @@ _propstop_hell_magic = (
     (617, 'Gold Stand Gizmos'),
     (474, 'Hell Gizmos'),
     (418, 'Hell Growth'),
+    (660, 'Hell Pillars'),
     (475, 'Heretic Gizmos'),
     (698, 'Marble Columns'),
     (883, 'Marble Urn'),

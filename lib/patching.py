@@ -332,6 +332,7 @@ _excluded_names = {
     'CREDITS',  # informational
     'INFO',     # informational
     'UPDATES',  # informational
+    'README',   # informational
     'RELOADIN', # alternative DECORATE lumps
     '--------',
 }

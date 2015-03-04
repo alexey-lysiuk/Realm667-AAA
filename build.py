@@ -88,7 +88,23 @@ def prepare():
         pass
 
 def add_lump(zip, filename):
-    zip.write('{0}/data/{1}'.format(self_path, filename), filename)
+    filepath = '{0}/data/{1}'.format(self_path, filename)
+
+    if filename.lower().endswith('.txt'):
+        # Optimize text lump
+        with open(filepath) as f:
+            lines = f.readlines()
+
+        def keep_line(line):
+            line = line.strip()
+            return len(line) > 0 and not line.startswith('//')
+
+        lines = filter(keep_line, lines)
+        lines = map(lambda line: line.strip(), lines)
+
+        zip.writestr(filename, '\n'.join(lines))
+    else:
+        zip.write(filepath, filename)
 
 
 wad_filenames = set()

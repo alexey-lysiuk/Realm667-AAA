@@ -152,6 +152,55 @@ def shutdown_profiling():
         print('Completed in {0:.3f} seconds'.format(build_time))
 
 
+def load_and_cache(gid):
+    filename = 'cache/{:04d}.zip'.format(gid)
+    cached_file = None
+
+    try:
+        cached_file = zipfile.ZipFile(filename, 'r')
+
+    except Exception:
+        try:
+            url = url_download.format(gid)
+            response = urllib2.urlopen(url)
+            data = response.read()
+
+            with open(filename, 'wb') as cached_file:
+                cached_file.write(data)
+
+            cached_file = zipfile.ZipFile(filename, 'r')
+
+        except Exception:
+            print('Error: Failed to load ZIP file')
+            traceback.print_exc()
+
+    return cached_file
+
+def store_asset(gid, filename, cached_file, output_file):
+    wad_file = cached_file.open(filename)
+    wad_data = wad_file.read()
+    wad_file.close()
+
+    if filename.lower().endswith('.pk3'):
+        wad_data = pk3_to_wad(wad_data)
+        filename = filename[:-4] + '.wad'
+
+    wad = doomwad.WadFile(wad_data)
+    wad.filename = filename
+
+    if not wad.find('DECORATE'):
+        print('Warning: No DECORATE lump found in file {0}, '
+            'skipping...'.format(filename))
+        return
+
+    patching.apply_patch(gid, wad)
+
+    wad_data = cStringIO.StringIO()
+    wad.writeto(wad_data)
+
+    output_file.writestr(make_wad_filename(filename), wad_data.getvalue())
+
+
 def main():
     configure()
     prepare()
@@ -167,27 +216,9 @@ def main():
 
         print('Processing #{:04d}: {:s}...'.format(gid, name))
 
-        cached_filename = 'cache/{:04d}.zip'.format(gid)
-        cached_file = None
-
-        try:
-            cached_file = zipfile.ZipFile(cached_filename, 'r')
-
-        except Exception:
-            try:
-                url = url_download.format(gid)
-                response = urllib2.urlopen(url)
-                data = response.read()
-
-                with open(cached_filename, 'wb') as cached_file:
-                    cached_file.write(data)
-
-                cached_file = zipfile.ZipFile(cached_filename, 'r')
-
-            except Exception:
-                print('Error: Failed to process resource .ZIP file')
-                traceback.print_exc()
-                continue
+        cached_file = load_and_cache(gid)
+        if not cached_file:
+            continue
 
         wad_filenames = []
 
@@ -200,35 +231,15 @@ def main():
                 try: wad_filenames.remove(excluded_wad[1])
                 except: pass
 
-        if 0 == len(wad_filenames):
-            cached_file.close()
-
+        if not wad_filenames:
             print('Error: Neither WAD nor PK3 files found')
+
+            cached_file.close()
             continue
 
         for filename in wad_filenames:
             try:
-                wad_file = cached_file.open(filename)
-                wad_data = wad_file.read()
-                wad_file.close()
-
-                if filename.lower().endswith('.pk3'):
-                    wad_data = pk3_to_wad(wad_data)
-                    filename = filename[:-4] + '.wad'
-
-                wad = doomwad.WadFile(wad_data)
-                wad.filename = filename
-
-                if not wad.find('DECORATE'):
-                    print('Warning: No DECORATE lump found in file {0}, skipping...'.format(filename))
-                    continue
-
-                patching.apply_patch(gid, wad)
-
-                wad_data = cStringIO.StringIO()
-                wad.writeto(wad_data)
-
-                output_file.writestr(make_wad_filename(filename), wad_data.getvalue())
+                store_asset(gid, filename, cached_file, output_file)
 
             except Exception as ex:
                 print('Error: Failed to add {0}'.format(filename))

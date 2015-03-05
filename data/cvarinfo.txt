@@ -6,6 +6,10 @@ user noarchive string r667aaa_techgizmo_color     = "Blue";
 user noarchive string r667aaa_techgizmo_gizmokind = "Fire";
 user noarchive string r667aaa_techgizmo_keykind   = "Key";
 
+// Prop Stop - Vegetation
+user noarchive string r667aaa_helltree_kind      = "HellTreeScorch";
+user noarchive int    r667aaa_helltree_variation = 1;
+
 // Prop Stop - Light Sources
 user noarchive string r667aaa_d64torch_size       = "Short";
 user noarchive string r667aaa_d64torch_color      = "Blue";

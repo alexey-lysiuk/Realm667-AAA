@@ -182,7 +182,7 @@ OptionMenu "Menu_R667AAA_Armory_Other_AN"
     Command "Hunter Shotgun", "r667aaa HunterShotgun"
     Command "Jackbomb", "r667aaa Jackbomb"
     Command "M60", "r667aaa M60"
-//    Command "MagnetSaw", "r667aaa Magnetsaw"  // TODO
+    Command "MagnetSaw", "r667aaa Magnetsaw"
     Command "Napalm Launcher", "r667aaa NapalmLauncher"
     Command "Necrovision MG40", "r667aaa NecroVisionMG40"
 }
@@ -1295,6 +1295,20 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_5"
     Command "UAC Hologram 6", "r667aaa UACHolo6"
 }
 
+OptionString "Option_R667AAA_HellTree_Kind"
+{
+    "HellTreeScorch", "Scorched Tree"
+    "HellTreeBurn",   "Burned Tree"
+    "FleshTree",      "Flesh Tree"
+}
+
+OptionValue "Option_R667AAA_HellTree_Variation"
+{
+    1, "Variant 1"
+    2, "Variant 2"
+    3, "Variant 3"
+}
+
 OptionMenu "Menu_R667AAA_PropStop_Vegetation_1"
 {
     StaticText "Realm667 - Vegetation Props", 1
@@ -1318,7 +1332,10 @@ OptionMenu "Menu_R667AAA_PropStop_Vegetation_1"
     Command "Garden Bush 1", "r667aaa Gardenbush1"
     Command "Garden Bush 2", "r667aaa Gardenbush2"
     Command "Garden Bush 3", "r667aaa Gardenbush3"
-//    Command "Hell Trees", "r667aaa ..." // TODO
+    Command "Hell Tree:", "r667aaa_helltree $r667aaa_helltree_kind $r667aaa_helltree_variation"
+    Option "Kind", "r667aaa_helltree_kind", "Option_R667AAA_HellTree_Kind"
+    Option "Variation", "r667aaa_helltree_variation", "Option_R667AAA_HellTree_Variation"
+    Command "Ordinary Hell Tree", "r667aaa HellTree"
 }
 
 OptionMenu "Menu_R667AAA_PropStop_Vegetation_2"

@@ -153,7 +153,7 @@ _armory_other = (
     (263, 'Hunter Shotgun'),
     (536, 'Jackbomb'),
     (238, 'M60'),
-#    (249, 'MagnetSaw'),  # TODO: support .pk3
+    (249, 'Magnet Saw'),
     (266, 'Napalm Launcher'),
     (267, 'Necrovision MG40'),
     (230, 'Plasma Gun'),
@@ -612,7 +612,7 @@ _propstop_vegetation = (
     (832, 'Dead/Swamp Trees'),
     (672, 'Garden Trees'),
     (627, 'Glowing Mushrooms'),
-#    (792, 'Hell Trees'), # TODO: support .pk3
+    (792, 'Hell Trees'),
     (610, 'Ice Stalagmites'),
     (632, 'Limestone Cave Formations'),
     (649, 'Liquid Fountains'),

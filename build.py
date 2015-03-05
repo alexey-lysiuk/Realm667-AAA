@@ -32,6 +32,7 @@ sys.path.append(self_path + '/lib')
 
 import doomwad
 import patching
+from pk3_to_wad import pk3_to_wad
 
 from repo import repository, excluded_wads
 
@@ -166,7 +167,7 @@ def main():
         wad_filenames = []
 
         for zipped_filename in cached_file.namelist():
-            if zipped_filename.lower().endswith('.wad'):
+            if zipped_filename.lower().endswith(('.wad', '.pk3')):
                 wad_filenames.append(zipped_filename)
 
         for excluded_wad in excluded_wads:
@@ -177,7 +178,7 @@ def main():
         if 0 == len(wad_filenames):
             cached_file.close()
 
-            print('Error: no WAD files found')
+            print('Error: Neither WAD nor PK3 files found')
             continue
 
         for filename in wad_filenames:
@@ -185,6 +186,10 @@ def main():
                 wad_file = cached_file.open(filename)
                 wad_data = wad_file.read()
                 wad_file.close()
+
+                if filename.lower().endswith('.pk3'):
+                    wad_data = pk3_to_wad(wad_data)
+                    filename = filename[:-4] + '.wad'
 
                 wad = doomwad.WadFile(wad_data)
                 wad.filename = filename

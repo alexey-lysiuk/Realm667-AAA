@@ -1827,39 +1827,374 @@ OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_7"
     Command "Wolfenstein Blood/Bones", "r667aaa BloodandBones"
 }
 
-OptionMenu "Menu_R667AAA_PropStop_HellMagic"
+OptionString Option_R667AAA_Banner_Color
+{
+    "Crimson", "\cgCrimson"
+    "Violet",  "\ctViolet"
+    "Green",   "\cdGreen"
+    "Blue",    "\chBlue"
+}
+
+OptionValue "Option_R667AAA_Vase_Kind"
+{
+    1, "Vase 1"
+    2, "Vase 2"
+    3, "Vase 3"
+    4, "Vase 4"
+    5, "Vase 5"
+    6, "Vase 6"
+}
+
+OptionValue "Option_R667AAA_BreakVase_Kind"
+{
+    1, "Breakable Vase 1"
+    2, "Breakable Vase 2"
+    3, "Breakable Vase 3"
+    4, "Breakable Vase 4"
+}
+
+OptionString "Option_R667AAA_Crow_Kind"
+{
+    "Wander", "Wanders"
+    "Still",  "Stationary"
+}
+
+OptionValue "Option_R667AAA_Crow_ProximityFlee"
+{
+    1, "Yes"
+    3, "No"
+}
+
+OptionValue "Option_R667AAA_Crow_WeaponSoundReaction"
+{
+    0, "Yes"
+    1, "No"
+}
+
+OptionString "Option_R667AAA_Crow_Facing"
+{
+    "L", "Left"
+    "R", "Right"
+}
+
+OptionValue "Option_R667AAA_DoomStatue_Color"
+{
+     1, "\cdGreen"
+     3, "\cgRed"
+     5, "\cuGrey"
+     7, "\cqGreen/Grey"
+     9, "\cmBlack"
+    11, "\crDeep Red"
+    13, "\ciOrange"
+    15, "\cuMauve"
+    17, "\chBlue"
+    19, "\cbTan"
+    21, "\ctPink"
+    23, "\ckYellow"
+}
+
+OptionValue "Option_R667AAA_DoomStatue_Facing"
+{
+    0, "Right"
+    1, "Left"
+}
+
+OptionString "Option_R667AAA_EvilEye_Color"
+{
+    "Black",  "\cmBlack"
+    "Blue",   "\chBlue"
+    "Gray",   "\cuGray"
+    "Purple", "\ctPurple"
+    "Red",    "\cgRed"
+    "Yellow", "\ckYellow"
+}
+
+OptionString "Option_R667AAA_FleshForm_Kind"
+{
+    "FleshPillar",   "Flesh Pillar"
+    "FleshDangling", "Flesh Dangling"
+    "FleshPod",      "Flesh Pod"
+}
+
+OptionString "Option_R667AAA_FleshForm_Color"
+{
+    "Pink", "\caPink"
+    "Tan",  "\cbTan"
+}
+
+OptionString "Option_R667AAA_GoldStand_Color"
+{
+    "Blue",   "\chBlue"
+    "Green",  "\cdGreen"
+    "Red",    "\cgRed"
+    "Yellow", "\ckYellow"
+}
+
+OptionString "Option_R667AAA_HellGizmo_Kind"
+{
+    "Key",   "Key"
+    "Skull", "Skull"
+}
+
+OptionString "Option_R667AAA_HellGizmo_Color"
+{
+    "Blue",   "\chBlue"
+    "Red",    "\cgRed"
+    "Yellow", "\ckYellow"
+}
+
+OptionString "Option_R667AAA_HellPillar_Kind"
+{
+    "Ancient", "Ancient"
+    "Temple",  "Temple"
+}
+
+OptionString "Option_R667AAA_HellPillar_Color"
+{
+    "Blue",  "\chBlue"
+    "Green", "\cdGreen"
+    "Red",   "\cgRed"
+}
+
+OptionString "Option_R667AAA_MarbleColumn_Kind"
+{
+    "Fluted", "Fluted"
+    "Heart",  "Heart"
+    "Medium", "Smooth"
+    "Skull",  "Skull"
+    "Spiral", "Spiral"
+    "Small",  "Small"
+    "Smooth", "Smooth"
+    "Vine",   "Vine"
+}
+
+OptionString "Option_R667AAA_MarbleColumn_Color"
+{
+    "Black",   "\cmBlack"
+    "Blue",    "\chBlue"
+    "DarkRed", "\crDark Red"
+    "Green",   "\cdGreen"
+    "Grey",    "\cuGrey"
+    "Mauve",   "\cuMauve"
+    "Orange",  "\ciOrange"
+    "Red",     "\cgRed"
+    "Tan",     "\cbTan"
+    "Bicolor", "\cqGreen/Grey"
+}
+
+OptionString "Option_R667AAA_MarbleUrn_Color"
+{
+    "Black", "\cmBlack"
+    "Blue",  "\chBlue"
+    "",      "\cdGreen"
+    "Grey",  "\cuGrey"
+    "Red",   "\cgRed"
+    "Tan",   "\cbTan"
+}
+
+OptionValue "Option_R667AAA_Tombstone_Kind"
+{
+    1, "Tombstone 1"
+    2, "Tombstone 2"
+    3, "Tombstone 3"
+    4, "Tombstone 4"
+    5, "Tombstone 5"
+}
+
+OptionString "Option_R667AAA_PillarGizmo_SphereColor"
+{
+    "Blue",   "\chBlue"
+    "Green",  "\cdGreen"
+    "Red",    "\cgRed"
+    "Yellow", "\ckYellow"
+}
+
+OptionString "Option_R667AAA_PillarGizmo_StandColor"
+{
+    "Blue",  "\chBlue"
+    "Gold",  "\cfGold"
+    "Green", "\cdGreen"
+    "Red",   "\cgRed"
+}
+
+OptionString "Option_R667AAA_RuneSkull_Kind"
+{
+     "2", "Pillar 2"
+     "3", "Pillar 3"
+     "4", "Pillar 4"
+     "5", "Pillar 5"
+     "6", "Pillar 6"
+     "7", "Pillar 7"
+     "8", "Pillar 8"
+     "9", "Pillar 9"
+    "10", "Pillar 10"
+      "", "Pillar 1"
+}
+
+OptionString "Option_R667AAA_RuneSkull_Color"
+{
+    "B",  "\chBlue"
+    "BR", "\ceBrown"
+    "G",  "\cdGreen"
+}
+
+OptionString "Option_R667AAA_SmallKey_Kind"
+{
+    "Empty",  "Empty"
+    "Blue",   "\chBlue"
+    "Green",  "\cdGreen"
+    "Red",    "\cgRed"
+    "Yellow", "\ckYellow"
+}
+
+OptionValue "Option_R667AAA_StoneHead_Kind"
+{
+    1, "Stone Head 1"
+    2, "Stone Head 2"
+    3, "Stone Head 3"
+    4, "Stone Head 4"
+    5, "Stone Head 5"
+}
+
+OptionString "Option_R667AAA_StrifeColumn_Kind"
+{
+    "Strife", "Regular"
+    "Bloody", "Bloody"
+}
+
+OptionString "Option_R667AAA_StrifeColumn_Size"
+{
+    "Column",    "Tall"
+    "Pillar",    "Medium"
+    "lowPillar", "Small"
+}
+
+OptionString "Option_R667AAA_WarriorStatue_Kind"
+{
+    "Gold",  "Gold"
+    "Iron",  "Iron"
+    "Stone", "Stone"
+}
+
+OptionString "Option_R667AAA_WarriorStatue_Facing"
+{
+    "2", "Right"
+    "",  "Left"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_HellMagic_1"
 {
     StaticText "Realm667 - Hell and Magic", 1
     StaticText ""
 
-    Command "Ancient Hell Pillars", "r667aaa TemplePillar[Color], HellPillar[Color]"
+    Command "Banner:", "r667aaa_banner $r667aaa_banner_color"
+    Option "Banner Color", "r667aaa_banner_color", "Option_R667AAA_Banner_Color"
+
     Command "Bible", "r667aaa Bible"
     Command "Bloody Chalice", "r667aaa BloodyChalice"
-    Command "Ceramic Potery", "r667aaa BreakableVase[1-4], Vase[1-6]"
-    Command "CrimsonBanner", "r667aaa CrimsonBanner"
-    Command "Crow", "r667aaa CrowWander1L/1R/2L/2R/3L/3R/4L/4R, CrowStill1L/1R/2L/2R/3L/3R/4L/4R"
+
+    Command "Ceramic Pottery:", "r667aaa_vase $r667aaa_vase_kind"
+    Option "Pottery Kind", "r667aaa_vase_kind", "Option_R667AAA_Vase_Kind"
+
+    Command "Ceramic Pottery:", "r667aaa_breakvase $r667aaa_breakvase_kind"
+    Option "Pottery Kind", "r667aaa_breakvase_kind", "Option_R667AAA_BreakVase_Kind"
+
+    Command "Crow:", "r667aaa_crow $r667aaa_crow_kind $r667aaa_crow_proxflee $r667aaa_crow_weapsreaction $r667aaa_crow_facing"
+    Option "Crow Kind", "r667aaa_crow_kind", "Option_R667AAA_Crow_Kind"
+    Option "Crow Facing", "r667aaa_crow_facing", "Option_R667AAA_Crow_Facing"
+    Option "Proximity Flee", "r667aaa_crow_proxflee", "Option_R667AAA_Crow_ProximityFlee"
+    Option "Weapon Sound Reaction", "r667aaa_crow_weapsreaction", "Option_R667AAA_Crow_WeaponSoundReaction"
+
     Command "D'Sparil Statue", "r667aaa DSparilStatue"
-    Command "Doom Statues", "r667aaa DoomStatue1 - DoomStatue24"
-    Command "Evil Eye Variations", "r667aaa BlackEvilEye, GrayEvilEye, PurpleEvilEye, YellowEvilEye, RedEvilEye, BlueEvilEye"
-    Command "Fire Pillars (Doom)", "r667aaa RedFirePillar, GreenFirePillar"
-    Command "Fire Pillars (Hexen)", "r667aaa RustedFirePillar, IceFirePillar, SerpentFire"
-    Command "Flesh Pillar", "r667aaa FleshPillar[Color], FleshDangling[Color]"
-    Command "Flesh Pods", "r667aaa FleshPodTan, FleshPodPink"
-    Command "Gold Stand Gizmos", "r667aaa GoldStandGizmo&quot;Yellow/Blue/Green/Red&quot;"
-    Command "Hell Gizmos", "r667aaa BlueKeyGizmo, BlueSkullGizmo, RedKeyGizmo, RedSkullGizmo, YellowKeyGizmo, YellowSkullGizmo"
+
+    Command "Doom Statue:", "r667aaa_doomstatue $r667aaa_doomstatue_color $r667aaa_doomstatue_facing"
+    Option "Statue Color", "r667aaa_doomstatue_color", "Option_R667AAA_DoomStatue_Color"
+    Option "Statue Facing", "r667aaa_doomstatue_facing", "Option_R667AAA_DoomStatue_Facing"
+
+    Command "Evil Eye:", "r667aaa_evileye $r667aaa_evileye_color"
+    Option "Sign Color", "r667aaa_evileye_color", "Option_R667AAA_EvilEye_Color"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_HellMagic_2"
+{
+    StaticText "Realm667 - Hell and Magic", 1
+    StaticText ""
+
+    Command "Red Fire Pillar", "r667aaa RedFirePillar"
+    Command "Green Fire Pillar", "r667aaa GreenFirePillar"
+    Command "Ice Fire Pillar", "r667aaa IceFirePillar"
+    Command "Rusted Fire Pillar", "r667aaa RustedFirePillar"
+    Command "Serpent Fire Pillar", "r667aaa SerpentFire"
+
+    Command "Flesh Formation:", "r667aaa_fleshform $r667aaa_fleshform_kind $r667aaa_fleshform_color"
+    Option "Kind", "r667aaa_fleshform_kind", "Option_R667AAA_FleshForm_Kind"
+    Option "Color", "r667aaa_fleshform_color", "Option_R667AAA_FleshForm_Color"
+
+    Command "Gold Stand Gizmo:", "r667aaa_goldstand $r667aaa_goldstand_color"
+    Option "Sphere Color", "r667aaa_goldstand_color", "Option_R667AAA_GoldStand_Color"
+
+    Command "Hell Gizmo:", "r667aaa_hellgizmo $r667aaa_hellgizmo_color $r667aaa_hellgizmo_kind"
+    Option "Item Kind", "r667aaa_hellgizmo_kind", "Option_R667AAA_HellGizmo_Kind"
+    Option "Sphere Color", "r667aaa_hellgizmo_color", "Option_R667AAA_HellGizmo_Color"
+
     Command "Hell Growth", "r667aaa HellGrowth"
-    Command "Heretic Gizmos", "r667aaa GizmoBlue, GizmoGreen, GizmoYellow"
-    Command "MarbleColumns", "r667aaa [Type][Color]Column, where [Type] can be Fluted, Smooth, Medium, Small, Skull, Heart, Vine, or Spiral, and [Color] can be Green, Red, Blue, Tan, Grey, Bicolor, Black, DarkRed, Orange, or Mauve."
-    Command "Marble Urn", "r667aaa MarbleUrn, MarbleUrn[Grey, Red, Black, Tan, Blue]"
-    Command "Necrodome Tombstones", "r667aaa NTomb1-5"
-    Command "Pillar Gizmos", "r667aaa [Red, Blue, Gold, Green]Pillar[Red, Blue, Yellow, Green]"
-    Command "Rune Skull Pillars", "r667aaa RuneSkullPillar(BR(1-10)/B(1-10)/G(1-10))"
+
+    Command "Hell Pillar:", "r667aaa_hellpillar $r667aaa_hellpillar_kind $r667aaa_hellpillar_color"
+    Option "Crow Kind", "r667aaa_hellpillar_kind", "Option_R667AAA_HellPillar_Kind"
+    Option "Crow Facing", "r667aaa_hellpillar_color", "Option_R667AAA_HellPillar_Color"
+
+    Command "Blue Heretic Gizmo", "r667aaa GizmoBlue"
+    Command "Green Heretic Gizmo", "r667aaa GizmoGreen"
+    Command "Yellow Heretic Gizmo", "r667aaa GizmoYellow"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_HellMagic_3"
+{
+    StaticText "Realm667 - Hell and Magic", 1
+    StaticText ""
+
+    Command "Marble Column:", "r667aaa_marblecolumn $r667aaa_marblecolumn_kind $r667aaa_marblecolumn_color"
+    Option "Column Kind", "r667aaa_marblecolumn_kind", "Option_R667AAA_MarbleColumn_Kind"
+    Option "Column Color", "r667aaa_marblecolumn_color", "Option_R667AAA_MarbleColumn_Color"
+
+    Command "Marble Urn:", "r667aaa_marbleurn $r667aaa_marbleurn_color"
+    Option "Column Color", "r667aaa_marbleurn_color", "Option_R667AAA_MarbleUrn_Color"
+
+    Command "Necrodome Tombstone:", "r667aaa_tombstone $r667aaa_tombstone_kind"
+    Option "Kind", "r667aaa_tombstone_kind", "Option_R667AAA_Tombstone_Kind"
+
+    Command "Pillar Gizmo:", "r667aaa_pillargizmo $r667aaa_pillargizmo_standcolor $r667aaa_pillargizmo_spherecolor"
+    Option "Sphere Color", "r667aaa_pillargizmo_spherecolor", "Option_R667AAA_PillarGizmo_SphereColor"
+    Option "Stand Color", "r667aaa_pillargizmo_standcolor", "Option_R667AAA_PillarGizmo_StandColor"
+
+    Command "Rune Skull Pillar:", "r667aaa_runeskull $r667aaa_runeskull_color $r667aaa_runeskull_kind"
+    Option "Pillar Kind", "r667aaa_runeskull_kind", "Option_R667AAA_RuneSkull_Kind"
+    Option "Pillar Color", "r667aaa_runeskull_color", "Option_R667AAA_RuneSkull_Color"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_HellMagic_4"
+{
+    StaticText "Realm667 - Hell and Magic", 1
+    StaticText ""
+
     Command "Skull Candle", "r667aaa skullcandle"
-    Command "Small Key Gizmos", "r667aaa SmallEmptyGizmo, SmallRedGizmo, SmallGreenGizmo, SmallBlueGizmo, SmallYellowGizmo"
-    Command "Stone Heads", "r667aaa bighead[1-5]"
-    Command "Strife Bloody Columns", "r667aaa StrifeColumn, BloodyColumn, StrifePillar, BloodyPillar, StrifeLowPillar, BloodyLowPillar"
-    Command "Tentacle Barrier", "r667aaa TentacleBarrier, RaisingTentacleBarrier"
-    Command "Warrior Statue", "r667aaa WarriorStatueGold, WarriorStatueGold2, WarriorStatueStone, WarriorStatueStone2, WarriorStatueIron, WarriorStatueIron2"
+
+    Command "Small Key Gizmo:", "r667aaa_smallkey $r667aaa_smallkey_kind"
+    Option "Key Kind", "r667aaa_smallkey_kind", "Option_R667AAA_SmallKey_Kind"
+
+    Command "Stone Head:", "r667aaa_stonehead $r667aaa_stonehead_kind"
+    Option "Kind", "r667aaa_stonehead_kind", "Option_R667AAA_StoneHead_Kind"
+
+    Command "Strife Column:", "r667aaa_strifecolumn $r667aaa_strifecolumn_kind $r667aaa_strifecolumn_size"
+    Option "Kind", "r667aaa_strifecolumn_kind", "Option_R667AAA_StrifeColumn_Kind"
+    Option "Size", "r667aaa_strifecolumn_size", "Option_R667AAA_StrifeColumn_Size"
+
+    Command "Tentacle Barrier", "r667aaa TentacleBarrier"
+    Command "Raising Tentacle Barrier", "r667aaa RaisingTentacleBarrier"
+
+    Command "Warrior Statue:", "r667aaa_warriorstatue $r667aaa_warriorstatue_kind $r667aaa_warriorstatue_facing"
+    Option "Statue Kind", "r667aaa_warriorstatue_kind", "Option_R667AAA_WarriorStatue_Kind"
+    Option "Statue Facing", "r667aaa_warriorstatue_facing", "Option_R667AAA_WarriorStatue_Facing"
 }
 
 OptionMenu "Menu_R667AAA_PropStop"
@@ -1887,6 +2222,14 @@ OptionMenu "Menu_R667AAA_PropStop"
     Submenu "Light Sources * S..Z", "Menu_R667AAA_PropStop_LightSources_3"
     StaticText ""
 
+    Submenu "Page 2 >", "Menu_R667AAA_PropStop_2"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_2"
+{
+    StaticText "Realm667 - Prop Stop", 1
+    StaticText ""
+
     Submenu "Gore and Corpses * A..C", "Menu_R667AAA_PropStop_GoreCorpses_1"
     Submenu "Gore and Corpses * C..G", "Menu_R667AAA_PropStop_GoreCorpses_2"
     Submenu "Gore and Corpses * G..H", "Menu_R667AAA_PropStop_GoreCorpses_3"
@@ -1896,5 +2239,11 @@ OptionMenu "Menu_R667AAA_PropStop"
     Submenu "Gore and Corpses * S..Z", "Menu_R667AAA_PropStop_GoreCorpses_7"
     StaticText ""
 
-    Submenu "Hell and Magic", "Menu_R667AAA_PropStop_HellMagic"
+    Submenu "Hell and Magic * A..E", "Menu_R667AAA_PropStop_HellMagic_1"
+    Submenu "Hell and Magic * F..L", "Menu_R667AAA_PropStop_HellMagic_2"
+    Submenu "Hell and Magic * M..R", "Menu_R667AAA_PropStop_HellMagic_3"
+    Submenu "Hell and Magic * S..Z", "Menu_R667AAA_PropStop_HellMagic_4"
+    StaticText ""
+
+    Submenu "< Page 1", "Menu_R667AAA_PropStop"
 }

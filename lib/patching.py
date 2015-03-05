@@ -638,6 +638,14 @@ def _apply_patch_433(wad): # Chiller
     # fix missing class name
     replace_in_decorate(wad, '"ChillerFog2"', '"ChillerFog"')
 
+def _apply_patch_474(wad): # Hell Gizmos
+    # fix class name collisions with #476 Tech Gizmos
+    # do not rely on automatic conflict resolution,
+    # as these actors are explicitly referenced from menu
+    replace_in_decorate(wad,
+        r'(\sBlue|Red|Yellow)(Key|Skull)Gizmo(\s)',
+        r'\1\2HellGizmo\3')
+
 def _apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather
     # cannot be resolved automatically because of optional Power... prefix

@@ -162,12 +162,12 @@ def main():
     output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
 
     for item in repository:
-        id   = item[0]
+        gid  = item[0]
         name = item[1]
 
-        print('Processing #{:04d}: {:s}...'.format(id, name))
+        print('Processing #{:04d}: {:s}...'.format(gid, name))
 
-        cached_filename = 'cache/{:04d}.zip'.format(id)
+        cached_filename = 'cache/{:04d}.zip'.format(gid)
         cached_file = None
 
         try:
@@ -175,7 +175,7 @@ def main():
 
         except Exception:
             try:
-                url = url_download.format(id)
+                url = url_download.format(gid)
                 response = urllib2.urlopen(url)
                 data = response.read()
 
@@ -196,7 +196,7 @@ def main():
                 wad_filenames.append(zipped_filename)
 
         for excluded_wad in excluded_wads:
-            if id == excluded_wad[0]:
+            if gid == excluded_wad[0]:
                 try: wad_filenames.remove(excluded_wad[1])
                 except: pass
 
@@ -223,7 +223,7 @@ def main():
                     print('Warning: No DECORATE lump found in file {0}, skipping...'.format(filename))
                     continue
 
-                patching.apply_patch(id, wad)
+                patching.apply_patch(gid, wad)
 
                 wad_data = cStringIO.StringIO()
                 wad.writeto(wad_data)

@@ -49,7 +49,7 @@ def configure():
     # Generic arguments
     parser.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
         help='set output verbosity level')
-    parser.add_argument('--profiling',
+    parser.add_argument('-p', '--profiling',
         help='enable Python performance profiling', action='store_true')
 
     # Patching-related arguments
@@ -121,17 +121,42 @@ def make_wad_filename(original_filename):
 
     return wad_name
 
+
+def init_profiling():
+    if enable_profiling:
+        import cProfile
+
+        global _profiler
+        _profiler = cProfile.Profile()
+        _profiler.enable()
+    else:
+        global _start_time
+        _start_time = time.clock()
+
+def shutdown_profiling():
+    if enable_profiling:
+        global _profiler
+        _profiler.disable()
+
+        import pstats
+
+        profiling_stream = cStringIO.StringIO()
+        ps = pstats.Stats(_profiler, stream=profiling_stream).sort_stats('cumulative')
+        ps.print_stats()
+
+        print('\n')
+        print(profiling_stream.getvalue())
+    else:
+        global _start_time
+        build_time = time.clock() - _start_time
+        print('Completed in {0:.3f} seconds'.format(build_time))
+
+
 def main():
     configure()
     prepare()
 
-    if enable_profiling:
-        import cProfile
-
-        profiler = cProfile.Profile()
-        profiler.enable()
-    else:
-        start_time = time.clock()
+    init_profiling()
 
     # TODO: add error handling
     output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
@@ -218,20 +243,7 @@ def main():
 
     output_file.close()
 
-    if enable_profiling:
-        profiler.disable()
-
-        import pstats
-
-        profiling_stream = cStringIO.StringIO()
-        ps = pstats.Stats(profiler, stream=profiling_stream).sort_stats('cumulative')
-        ps.print_stats()
-
-        print('\n')
-        print(profiling_stream.getvalue())
-    else:
-        build_time = time.clock() - start_time
-        print('Completed in {0:.3f} seconds'.format(build_time))
+    shutdown_profiling()
 
 if __name__ == '__main__':
     main()

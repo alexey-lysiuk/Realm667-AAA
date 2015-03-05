@@ -1221,6 +1221,25 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_3"
     Command "Broken Specimen Tank", "r667aaa TankBroken"
 }
 
+OptionString "Option_R667AAA_TechGizmo_Color"
+{
+    "Blue",   "\chBlue"
+    "Red",    "\cgRed"
+    "Yellow", "\ckYellow"
+}
+
+OptionString "Option_R667AAA_TechGizmo_GizmoKind"
+{
+     "Fire",   "Fire"
+     "Sphere", "Sphere"
+}
+
+OptionString "Option_R667AAA_TechGizmo_KeyKind"
+{
+    "Key",   "Key"
+    "Skull", "Skull"
+}
+
 OptionMenu "Menu_R667AAA_PropStop_Technical_4"
 {
     StaticText "Realm667 - Pillars and Pipes", 1
@@ -1233,12 +1252,10 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_4"
     Command "Switchable Tech Lamp", "r667aaa TechLampOff"
     StaticText ""
 
-    Command "Blue Key Tech Gizmo", "r667aaa BlueKeyGizmo"
-    Command "Blue Skull Tech Gizmo", "r667aaa BlueSkullGizmo"
-    Command "Red Key Tech Gizmo", "r667aaa RedKeyGizmo"
-    Command "Red Skull Tech Gizmo", "r667aaa RedSkullGizmo"
-    Command "Yellow Key Tech Gizmo", "r667aaa YellowKeyGizmo"
-    Command "Yellow Skull Tech Gizmo", "r667aaa YellowSkullGizmo"
+    Command "Tech Gizmo:", "r667aaa_techgizmo $r667aaa_techgizmo_color $r667aaa_techgizmo_keykind $r667aaa_techgizmo_gizmokind"
+    Option "Color", "r667aaa_techgizmo_color", "Option_R667AAA_TechGizmo_Color"
+    Option "Gizmo Kind", "r667aaa_techgizmo_gizmokind", "Option_R667AAA_TechGizmo_GizmoKind"
+    Option "Key Kind", "r667aaa_techgizmo_keykind", "Option_R667AAA_TechGizmo_KeyKind"
     StaticText ""
 
     Command "Pipe 1", "r667aaa HPipe1"

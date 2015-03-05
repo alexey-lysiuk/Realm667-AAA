@@ -118,7 +118,13 @@ class Lump(object):
 # ==============================================================================
 
 class WadFile(object):
-    def __init__(self, data_or_file):
+    def __init__(self, data_or_file = None):
+        if not data_or_file:
+            self.sig = 'PWAD'
+            self.lumps = []
+            self.filename = ''
+            return
+
         if hasattr(data_or_file, 'read') and \
                 hasattr(data_or_file, 'seek'):
             file = data_or_file

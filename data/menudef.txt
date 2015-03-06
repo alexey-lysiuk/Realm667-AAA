@@ -2168,13 +2168,13 @@ OptionValue "Option_R667AAA_StoneHead_Kind"
     5, "Stone Head 5"
 }
 
-OptionString "Option_R667AAA_StrifeColumn_Kind"
+OptionString "Option_R667AAA_StrifeBloodyColumn_Kind"
 {
     "Strife", "Regular"
     "Bloody", "Bloody"
 }
 
-OptionString "Option_R667AAA_StrifeColumn_Size"
+OptionString "Option_R667AAA_StrifeBloodyColumn_Size"
 {
     "Column",    "Tall"
     "Pillar",    "Medium"
@@ -2297,9 +2297,9 @@ OptionMenu "Menu_R667AAA_PropStop_HellMagic_4"
     Command "Stone Head:", "r667aaa_stonehead $r667aaa_stonehead_kind"
     Option "Kind", "r667aaa_stonehead_kind", "Option_R667AAA_StoneHead_Kind"
 
-    Command "Strife Column:", "r667aaa_strifecolumn $r667aaa_strifecolumn_kind $r667aaa_strifecolumn_size"
-    Option "Kind", "r667aaa_strifecolumn_kind", "Option_R667AAA_StrifeColumn_Kind"
-    Option "Size", "r667aaa_strifecolumn_size", "Option_R667AAA_StrifeColumn_Size"
+    Command "Strife Bloody Column:", "r667aaa_strifebloodycolumn $r667aaa_strifebloodycolumn_kind $r667aaa_strifebloodycolumn_size"
+    Option "Kind", "r667aaa_strifebloodycolumn_kind", "Option_R667AAA_StrifeBloodyColumn_Kind"
+    Option "Size", "r667aaa_strifebloodycolumn_size", "Option_R667AAA_StrifeBloodyColumn_Size"
 
     Command "Tentacle Barrier", "r667aaa TentacleBarrier"
     Command "Raising Tentacle Barrier", "r667aaa RaisingTentacleBarrier"

@@ -253,7 +253,7 @@ def rename_actor(wad, actor):
         suffix += 1
 
     # replace old name
-    old_pattern = r'(["\s]){0}(["\s])'.format(actor)
+    old_pattern = r'(["\s]){0}(["\s:])'.format(actor)
     new_pattern = r'\g<1>{0}\g<2>'.format(new_name)
 
     replace_in_decorate(wad, old_pattern, new_pattern)

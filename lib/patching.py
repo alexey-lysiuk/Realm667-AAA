@@ -332,9 +332,10 @@ _excluded_names = {
     'CREDITS',  # informational
     'DOCUMENT', # informational
     'INFO',     # informational
-    'UPDATES',  # informational
+    'MAPINFO',  # not needed, maps are removed during optimization
     'README',   # informational
     'RELOADIN', # alternative DECORATE lumps
+    'UPDATES',  # informational
     '--------',
 }
 
@@ -364,6 +365,17 @@ def is_lump_needed(lump):
         return True
 
 def optimize(wad):
+    # remove map lumps
+    while True:
+        things_lump = wad.find('THINGS')
+        if not things_lump:
+            break
+
+        map_name = things_lump.namespace
+        wad.filter(lambda lump: map_name != lump.name       \
+                            and map_name != lump.namespace)
+
+    # remove other unwanted lumps
     wad.filter(is_lump_needed)
 
 
@@ -535,12 +547,6 @@ def _apply_patch_71(wad): # Plasma Demon
 def _apply_patch_151(wad): # Phantom
     # fix wrong class name
     replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
-
-def _apply_patch_191(wad): # Hangman
-    # remove unused demo map
-    wad.filter(lambda lump: 'MAP999' != lump.name       \
-                        and 'MAP999' != lump.namespace)
-    remove_lump(wad, 'MAPINFO')
 
 def _apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle

@@ -5,8 +5,6 @@
 |243|Unmaker|Various conficts between Angled and Centered versions. The latter was excluded|
 |258|Poly Morph|Various conficts between New and Old versions. The latter was excluded|
 |510|Vile Staff|The weapon doesn't spawn projectile nor cause any damage. Is it broken?|
-|511|Lightbringer|Missing actor reference in `GLDEFS`. Causes _Warning: dynamic lights attached to non-existent actor SunProjectile1_ warning|
-|536|Jackbomb|Missing actor references in `GLDEFS`. Causes multiple _Warning: dynamic lights attached to non-existent actor ..._ warnings|
 |717|LandMine Layer|Various conficts between WADs for Doom and for Strife. Strife version was excluded|
 |816|CryoBow|Custom palette is used, stored in separate WAD file. It's excluded from generated .pk3|
 |827|Ankh of Life|Various conflicts between Map Duration and Upgradeable version. The latter was excluded|

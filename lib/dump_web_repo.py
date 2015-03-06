@@ -143,6 +143,10 @@ urls = [
     make_url('prop-stop', 'light-sources'),
     make_url('prop-stop', 'gore-a-corpses'),
     make_url('prop-stop', 'hell-a-magic'),
+
+    make_url('sfx-shoppe', 'elemental-effects'),
+    make_url('sfx-shoppe', 'particle-spawners'),
+    make_url('sfx-shoppe', 'weather-generators'),
 ]
 
 # Fetch asset descriptions from repository

@@ -330,6 +330,7 @@ _included_names = {
 
 _excluded_names = {
     'CREDITS',  # informational
+    'DOCUMENT', # informational
     'INFO',     # informational
     'UPDATES',  # informational
     'README',   # informational

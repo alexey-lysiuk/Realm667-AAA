@@ -30,6 +30,8 @@ import zipfile
 self_path = os.path.dirname(__file__)
 sys.path.append(self_path + '/lib')
 
+import rarfile
+
 import doomwad
 import patching
 from pk3_to_wad import pk3_to_wad
@@ -87,6 +89,10 @@ def prepare():
     except OSError:
         # TODO: report error
         pass
+
+    # TODO: make this cross-platform
+    rarfile.UNRAR_TOOL = '{0}/bin/unrar'.format(self_path)
+
 
 def add_lump(zip, filename):
     filepath = '{0}/data/{1}'.format(self_path, filename)
@@ -152,26 +158,61 @@ def shutdown_profiling():
         print('Completed in {0:.3f} seconds'.format(build_time))
 
 
-def load_and_cache(gid):
-    filename = 'cache/{:04d}.zip'.format(gid)
-    cached_file = None
+_ARCHIVE_ZIP = 'zip'
+_ARCHIVE_RAR = 'rar'
+
+def cached_filename(gid, archive_format):
+    return 'cache/{:04d}.{:s}'.format(gid, archive_format)
+
+def load_cached(gid, archive_format, fatal = True):
+    filename = cached_filename(gid, archive_format)
+
+    if _ARCHIVE_ZIP == archive_format:
+        archiver = zipfile.ZipFile
+    elif _ARCHIVE_RAR == archive_format:
+        archiver = rarfile.RarFile
+    else:
+        assert False, 'Unsupported archiver'
+        return
 
     try:
-        cached_file = zipfile.ZipFile(filename, 'r')
+        return archiver(filename)
+    except:
+        if fatal:
+            raise
 
-    except Exception:
+def load_and_cache(gid):
+    # Try to load archive file from cache
+    cached_file = load_cached(gid, _ARCHIVE_ZIP, fatal = False)
+
+    if not cached_file:
+        cached_file = load_cached(gid, _ARCHIVE_RAR, fatal = False)
+
+    if not cached_file:
         try:
+            # Download archive file with given ID
             url = url_download.format(gid)
             response = urllib2.urlopen(url)
             data = response.read()
 
+            # Detect format of archive file
+            if data.startswith('PK\003\004'):
+                archive_format = _ARCHIVE_ZIP
+            elif data.startswith('Rar!'):
+                archive_format = _ARCHIVE_RAR
+            else:
+                print('Error: Unsupported archive format')
+                return
+
+            # Save archive file to cache
+            filename = cached_filename(gid, archive_format)
             with open(filename, 'wb') as cached_file:
                 cached_file.write(data)
 
-            cached_file = zipfile.ZipFile(filename, 'r')
+            cached_file = load_cached(gid, archive_format)
 
         except Exception:
-            print('Error: Failed to load ZIP file')
+            print('Error: Failed to load archive file')
             traceback.print_exc()
 
     return cached_file

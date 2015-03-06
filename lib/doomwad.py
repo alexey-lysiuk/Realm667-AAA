@@ -89,6 +89,8 @@ class SoundMapping:
 
 # ==============================================================================
 
+_map_lumpname_regex = re.compile(r'^(E\dM\d|MAP\d\d)$')
+
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
@@ -96,6 +98,9 @@ class Lump(object):
         self.index = index
         self.marker = data == "" and name not in specnames
         self.namespace = ''
+
+        if not self.marker and _map_lumpname_regex.match(self.name):
+            self.marker = True
 
     def __repr__(self):
         return "Lump('{0}', {1})".format(self.name, len(self.data))

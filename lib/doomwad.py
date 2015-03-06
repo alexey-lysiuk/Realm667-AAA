@@ -97,6 +97,9 @@ class Lump(object):
         self.marker = data == "" and name not in specnames
         self.namespace = ''
 
+    def __repr__(self):
+        return "Lump('{0}', {1})".format(self.name, len(self.data))
+
     @property
     def data(self):
         return self._data
@@ -162,6 +165,9 @@ class WadFile(object):
 
         self.lumps = lumps
         self._assignnamespaces()
+
+    def __repr__(self):
+        return "WadFile({0})".format(self.lumps)
 
     def _assignnamespaces(self):
         namespace = ''

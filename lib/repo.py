@@ -746,6 +746,47 @@ _propstop_hell_magic = (
 # ==============================================================================
 
 
+_sfx_shoppe_elementalfx = (
+    (335, 'Bubble Boiling'),
+    (306, 'CloudSpawner'),
+    (847, 'Doom Terrain Splashes'),
+    (278, 'Ember Spawner'),
+    (280, 'Fire'),
+    (791, 'Fog Spawner'),
+    (708, 'Lavaball Spawner'),
+    (279, 'Spark Spawner'),
+    (276, 'Steam'),
+    (303, 'T667ThunderFX'),
+    (665, 'Terminator Portal'),
+    (904, 'Toxic Clouds'),
+    (667, 'Bubbles'),
+)
+
+_sfx_shoppe_particles = (
+    (668, 'Casing Spawners'),
+    (662, 'Forcefield Laserbeams'),
+    (925, 'Fountain of Rejuvenation'),
+    (664, 'SparkleFX'),
+    (889, 'Pond Frogs'),
+    (663, 'PowerRing Pads'),
+    (703, 'Scurrying Rats'),
+    (721, 'Soul Spawner'),
+    (277, 'Sparkle Spawner'),
+    (197, 'Stronghold PowerPad'),
+    (799, 'Swarm Spawner'),
+    (870, 'Teleport Smoke Spawner'),
+)
+
+_sfx_shoppe_weather = (
+    (666, 'Ash Spawner'),
+    (707, 'Cinder Spawner'),
+    (275, 'Rain Simple'),
+    (198, 'Snow Simple'),
+)
+
+# ==============================================================================
+
+
 # the following notation allows simple repository customization
 repository = []
 
@@ -767,6 +808,10 @@ repository += _propstop_light_sources
 repository += _propstop_gore_corpses
 repository += _propstop_hell_magic
 
+repository += _sfx_shoppe_elementalfx
+repository += _sfx_shoppe_particles
+repository += _sfx_shoppe_weather
+
 
 # ==============================================================================
 
@@ -776,13 +821,21 @@ excluded_wads = (
     (243, 'UnmakerCentered.wad'),
     (258, 'PolyMorph (old version).wad'),
     (645, 'FleshPillarTestMap01.wad'),
+    (662, 'Demo.wad'),
+    (663, 'Demo.wad'),
+    (664, 'Demo.wad'),
+    (667, 'BubbleTestMap.wad'),
+    (703, 'ratTest.wad'),
     (716, 'StrobeTest.wad'),
     (717, 'StrifeLandMine.wad'),
+    (721, 'testmap01.wad'),
+    (799, 'Swarm Test.wad'),
     (816, 'CryoPal.wad'),
     (825, 'SkullOrbsDemoMap.wad'),
     (826, 'SupplyChestKeyDemoMap.wad'),
     (827, 'AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
     (867, 'Crosses.wad'),                  # or 'Crosses2.wad'
     (867, 'Crosses3.wad'),
-    (897, 'FamiliarSummon (Sphere).wad')   # or 'FamiliarSummon (Scroll).wad'
+    (897, 'FamiliarSummon (Sphere).wad'),  # or 'FamiliarSummon (Scroll).wad'
+    (925, 'demomaps.wad'),
 )

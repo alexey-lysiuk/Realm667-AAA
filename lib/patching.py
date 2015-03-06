@@ -728,6 +728,10 @@ def _apply_patch_795(wad): # Missile Pod
     replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d\s+A_SpawnItemEx\s*\(\s*"MissileFlameTrail")', r'//\1')
 
+def _apply_patch_801(wad): # Candle Color Variations
+    # fix wrong sprite name
+    rename_lump(wad, 'CNUNA0', 'CNBKA0')
+
 def _apply_patch_804(wad): # Light Machinegun
     # fix class name collision with #233 Machinegun
     replace_in_decorate(wad,

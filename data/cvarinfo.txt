@@ -11,6 +11,12 @@ user noarchive string r667aaa_helltree_kind      = "HellTreeScorch";
 user noarchive int    r667aaa_helltree_variation = 1;
 
 // Prop Stop - Light Sources
+user noarchive string r667aaa_candle_color        = "Unlit";
+user noarchive string r667aaa_candelabra_color    = "Unlit";
+user noarchive string r667aaa_colorcandelabra_standcolor = "Blue";
+user noarchive string r667aaa_colorcandelabra_firecolor  = "Yellow";
+user noarchive string r667aaa_ravencandelabra_standcolor = "Black";
+user noarchive string r667aaa_ravencandelabra_firecolor  = "Yellow";
 user noarchive string r667aaa_d64torch_size       = "Short";
 user noarchive string r667aaa_d64torch_color      = "Blue";
 user noarchive string r667aaa_d64torch_standcolor = "Gold";

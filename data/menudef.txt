@@ -1481,6 +1481,63 @@ OptionMenu "Menu_R667AAA_PropStop_Vegetation_6"
     Command "Small Ice Stalagmite 2", "r667aaa IceStalagmiteSmall2"
 }
 
+OptionString "Option_R667AAA_Candle_Color"
+{
+    "Unlit",  "Unlit"
+    "Blue",   "\chBlue"
+    "Red",    "\cgRed"
+    "White",  "\cjWhite"
+    "Green",  "\cdGreen"
+    "Orange", "\ciOrange"
+    "Maroon", "\crMaroon"
+    "Brown",  "\ceBrown"
+}
+
+OptionString "Option_R667AAA_ColorCandelabra_StandColor"
+{
+    "Blue",   "\chBlue"
+    "Red",    "\cgRed"
+    "White",  "\cjWhite"
+    "Green",  "\cdGreen"
+    "Black",  "\cmBlack"
+    "Orange", "\ciOrange"
+    "Maroon", "\crMaroon"
+    "Brown",  "\ceBrown"
+}
+
+OptionString "Option_R667AAA_ColorCandelabra_FireColor"
+{
+    "Yellow", "\ckYellow"
+    "Blue",   "\chBlue"
+    "Red",    "\cgRed"
+    "White",  "\cjWhite"
+    "Green",  "\cdGreen"
+    "Unlit",  "Unlit"
+    "Orange", "\ciOrange"
+    "Maroon", "\crMaroon"
+    "Brown",  "\ceBrown"
+}
+
+OptionString "Option_R667AAA_RavenCandelabra_StandColor"
+{
+    "Black",  "\cmBlack"
+    "Green",  "\cdGreen"
+    "Blue",   "\chBlue"
+    "Yellow", "\ckYellow"
+    "Red",    "\cgRed"
+    "Brown",  "\ceBrown"
+}
+
+OptionString "Option_R667AAA_RavenCandelabra_FireColor"
+{
+    "Yellow", "\ckYellow"
+    "Unlit",  "Unlit"
+    "Red",    "\cgRed"
+    "Blue",   "\chBlue"
+    "White",  "\cjWhite"
+    "Green",  "\cdGreen"
+}
+
 OptionString "Option_R667AAA_D64Torch_Size"
 {
     "Short", "Short"
@@ -1515,21 +1572,26 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_1"
     Command "Bronze Lamp 1", "r667aaa BronzeColumn1"
     Command "Bronze Lamp 2", "r667aaa BronzeColumn2"
     Command "Bronze Lamp 3", "r667aaa BronzeColumn3"
-//    Command "Candle Color Variations", "r667aaa ..." // TODO
+
+    Command "Candle:", "r667aaa_candle $r667aaa_candle_color"
+    Option "Fire Color", "r667aaa_candle_color", "Option_R667AAA_Candle_Color"
+
+    Command "Candelabra:", "r667aaa_candelabra $r667aaa_candelabra_color"
+    Option "Fire Color", "r667aaa_candelabra_color", "Option_R667AAA_Candle_Color"
+
+    Command "Colored Candelabra:", "r667aaa_colorcandelabra $r667aaa_colorcandelabra_standcolor $r667aaa_colorcandelabra_firecolor"
+    Option "Stand Color", "r667aaa_colorcandelabra_standcolor", "Option_R667AAA_ColorCandelabra_StandColor"
+    Option "Fire Color", "r667aaa_colorcandelabra_firecolor", "Option_R667AAA_ColorCandelabra_FireColor"
+
+    Command "Raven Candelabra:", "r667aaa_ravencandelabra $r667aaa_ravencandelabra_standcolor $r667aaa_ravencandelabra_firecolor"
+    Option "Stand Color", "r667aaa_ravencandelabra_standcolor", "Option_R667AAA_RavenCandelabra_StandColor"
+    Option "Fire Color", "r667aaa_ravencandelabra_firecolor", "Option_R667AAA_RavenCandelabra_FireColor"
+
     Command "Ceiling Lamp", "r667aaa Lamp"
     Command "Chandelier 1", "r667aaa Chandelier1Switchable"
     Command "Chandelier 2", "r667aaa Chandelier2Switchable"
     Command "Chandelier 3", "r667aaa Chandelier3Switchable"
     Command "Chandelier 4", "r667aaa Chandelier4Switchable"
-    Command "Doom64 Lamp 1", "r667aaa D64Lamp1"
-    Command "Doom64 Lamp 2", "r667aaa D64Lamp2"
-    Command "Doom64 Lamp 3", "r667aaa D64Lamp3"
-    Command "Doom64 Lamp 4", "r667aaa D64Lamp4"
-    Command "Doom64 Torch", "r667aaa_d64torch $r667aaa_d64torch_size $r667aaa_d64torch_color $r667aaa_d64torch_standcolor"
-    Option "Torch Size", "r667aaa_d64torch_size", "Option_R667AAA_D64Torch_Size"
-    Option "Torch Color", "r667aaa_d64torch_color", "Option_R667AAA_D64Torch_Color"
-    Option "Torch Stand Color", "r667aaa_d64torch_standcolor", "Option_R667AAA_D64Torch_StandColor"
-    Command "Fire Bowl", "r667aaa FireBowl"
 }
 
 OptionString "Option_R667AAA_LightColumn_Size"
@@ -1555,6 +1617,16 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_2"
     StaticText "Realm667 - Light Sources", 1
     StaticText ""
 
+    Command "Doom64 Lamp 1", "r667aaa D64Lamp1"
+    Command "Doom64 Lamp 2", "r667aaa D64Lamp2"
+    Command "Doom64 Lamp 3", "r667aaa D64Lamp3"
+    Command "Doom64 Lamp 4", "r667aaa D64Lamp4"
+    Command "Doom64 Torch", "r667aaa_d64torch $r667aaa_d64torch_size $r667aaa_d64torch_color $r667aaa_d64torch_standcolor"
+    Option "Torch Size", "r667aaa_d64torch_size", "Option_R667AAA_D64Torch_Size"
+    Option "Torch Color", "r667aaa_d64torch_color", "Option_R667AAA_D64Torch_Color"
+    Option "Torch Stand Color", "r667aaa_d64torch_standcolor", "Option_R667AAA_D64Torch_StandColor"
+    Command "Fire Bowl", "r667aaa FireBowl"
+
     Command "Clean Log Firewood", "r667aaa CleanLog"
     Command "Cut Log Firewood", "r667aaa CutLog"
     Command "Charred Log Firewood", "r667aaa CharredLog"
@@ -1569,18 +1641,6 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_2"
     Command "Lamp 1", "r667aaa TLamp1"
     Command "Lamp 2", "r667aaa TLamp2"
     Command "Lamp 3", "r667aaa TLamp3"
-
-    Command "Lava Cauldron", "r667aaa LavaCauldron"
-    Command "Lava Cauldron Spitter", "r667aaa LavaCauldronSpitter"
-
-    Command "Light Column", "r667aaa_lightcolumn $r667aaa_lightcolumn_size $r667aaa_lightcolumn_color"
-    Option "Column Size", "r667aaa_lightcolumn_size", "Option_R667AAA_LightColumn_Size"
-    Option "Column Color", "r667aaa_lightcolumn_color", "Option_R667AAA_LightColumn_Color"
-
-    Command "Marble Brazier", "r667aaa MarbleBrazier"
-    Command "Bronze Serpent Braziers", "r667aaa SerpentBrazierBronze"
-    Command "Green Serpent Braziers", "r667aaa SerpentBrazierGreen"
-    Command "Gold Serpent Braziers", "r667aaa SerpentBrazierGold"
 }
 
 OptionString "Option_R667AAA_StrifeColumn_Color"
@@ -1600,11 +1660,29 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_3"
     StaticText "Realm667 - Light Sources", 1
     StaticText ""
 
+    Command "Lava Cauldron", "r667aaa LavaCauldron"
+    Command "Lava Cauldron Spitter", "r667aaa LavaCauldronSpitter"
+
+    Command "Light Column", "r667aaa_lightcolumn $r667aaa_lightcolumn_size $r667aaa_lightcolumn_color"
+    Option "Column Size", "r667aaa_lightcolumn_size", "Option_R667AAA_LightColumn_Size"
+    Option "Column Color", "r667aaa_lightcolumn_color", "Option_R667AAA_LightColumn_Color"
+
+    Command "Marble Brazier", "r667aaa MarbleBrazier"
+    Command "Bronze Serpent Braziers", "r667aaa SerpentBrazierBronze"
+    Command "Green Serpent Braziers", "r667aaa SerpentBrazierGreen"
+    Command "Gold Serpent Braziers", "r667aaa SerpentBrazierGold"
+
     Command "Skull Lamp", "r667aaa SkullLamp"
     Command "Stone Torch", "r667aaa StoneTorch"
 
     Command "Strife Column", "r667aaa_strifecolumn $r667aaa_strifecolumn_color"
     Option "Column Color", "r667aaa_strifecolumn_color", "Option_R667AAA_StrifeColumn_Color"
+}
+
+OptionMenu "Menu_R667AAA_PropStop_LightSources_4"
+{
+    StaticText "Realm667 - Light Sources", 1
+    StaticText ""
 
     Command "Blue Strobe Light", "r667aaa StrobeLightBlue"
     Command "Green Strobe Light", "r667aaa StrobeLightGreen"
@@ -2251,9 +2329,10 @@ OptionMenu "Menu_R667AAA_PropStop"
     Submenu "Other Vegetation", "Menu_R667AAA_PropStop_Vegetation_6"
     StaticText ""
 
-    Submenu "Light Sources * A..F", "Menu_R667AAA_PropStop_LightSources_1"
-    Submenu "Light Sources * F..S", "Menu_R667AAA_PropStop_LightSources_2"
-    Submenu "Light Sources * S..Z", "Menu_R667AAA_PropStop_LightSources_3"
+    Submenu "Light Sources * A..C", "Menu_R667AAA_PropStop_LightSources_1"
+    Submenu "Light Sources * D..L", "Menu_R667AAA_PropStop_LightSources_2"
+    Submenu "Light Sources * L..S", "Menu_R667AAA_PropStop_LightSources_3"
+    Submenu "Light Sources * S..Z", "Menu_R667AAA_PropStop_LightSources_4"
     StaticText ""
 
     Submenu "Page 2 >", "Menu_R667AAA_PropStop_2"

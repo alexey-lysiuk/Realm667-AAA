@@ -153,6 +153,10 @@ alias r667aaa_techgizmo "r667aaa %1%2%3Gizmo"
 alias r667aaa_helltree "r667aaa %1%2"
 
 // Prop Stop - Light Sources
+alias r667aaa_candle "r667aaa %1candle"
+alias r667aaa_candelabra "r667aaa candelabra%1"
+alias r667aaa_colorcandelabra "r667aaa %1Candelabra%2"
+alias r667aaa_ravencandelabra "r667aaa %1RavenCandelabra%2"
 alias r667aaa_d64torch "r667aaa D64%1%2Torch%3Stand"
 alias r667aaa_lightcolumn "r667aaa Light%1%2Column"
 alias r667aaa_strifecolumn "r667aaa %1StrifeColumn"

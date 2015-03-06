@@ -632,7 +632,7 @@ _propstop_vegetation = (
 _propstop_light_sources = (
     (819, 'Black Torch'),
     (784, 'Bronze Lamps'),
-#    (801, 'Candle Color Variations'), # TODO: .rar file
+    (801, 'Candle Color Variations'),
     (586, 'Ceiling Lamp'),
     (517, 'Chandelier Pack'),
     (715, 'Doom64 Lamps'),

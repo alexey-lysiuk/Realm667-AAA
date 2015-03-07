@@ -1963,24 +1963,3 @@ def check_returncode(p, out):
         msg = "%s [%d]" % (exc.__doc__, p.returncode)
 
     raise exc(msg)
-
-#
-# Check if unrar works
-#
-
-try:
-    # does UNRAR_TOOL work?
-    custom_check([UNRAR_TOOL], True)
-except RarCannotExec:
-    try:
-        # does ALT_TOOL work?
-        custom_check([ALT_TOOL] + list(ALT_CHECK_ARGS), True)
-        # replace config
-        UNRAR_TOOL = ALT_TOOL
-        OPEN_ARGS = ALT_OPEN_ARGS
-        EXTRACT_ARGS = ALT_EXTRACT_ARGS
-        TEST_ARGS = ALT_TEST_ARGS
-    except RarCannotExec:
-        # no usable tool, only uncompressed archives work
-        pass
-

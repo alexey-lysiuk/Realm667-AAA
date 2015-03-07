@@ -51,6 +51,8 @@ def configure():
     # Generic arguments
     parser.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
         help='set output verbosity level')
+    parser.add_argument('--disable-optimization',
+        help='disable WAD files optimization', action='store_true')
     parser.add_argument('-p', '--profiling',
         help='enable Python performance profiling', action='store_true')
 
@@ -71,6 +73,7 @@ def configure():
     patching.allow_set_pitch = args.allow_set_pitch
     patching.allow_class_replacement = args.allow_class_replacement
     patching.allow_doomednum = args.allow_doomednum
+    patching.enable_optimization = not args.disable_optimization
 
     global enable_profiling
     enable_profiling = args.profiling

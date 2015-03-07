@@ -37,6 +37,10 @@ allow_class_replacement = False
 # Allow editor number (doomednum) assignment in DECORATE
 allow_doomednum = False
 
+# Enable various WAD files optimizations,
+# like removal of unused, duplicate and map lumps
+enable_optimization = True
+
 
 # ==============================================================================
 
@@ -868,7 +872,8 @@ def apply_patch(id, wad):
     make_unique_sprites(wad)
     make_unique_sounds(wad)
 
-    optimize(wad)
+    if enable_optimization:
+        optimize(wad)
 
     if _dump_decorates:
         dump_decorate(id, wad, _processed_decos_file)

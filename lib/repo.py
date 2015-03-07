@@ -808,9 +808,9 @@ repository += _propstop_light_sources
 repository += _propstop_gore_corpses
 repository += _propstop_hell_magic
 
-repository += _sfx_shoppe_elementalfx
-repository += _sfx_shoppe_particles
-repository += _sfx_shoppe_weather
+# repository += _sfx_shoppe_elementalfx
+# repository += _sfx_shoppe_particles
+# repository += _sfx_shoppe_weather
 
 
 # ==============================================================================

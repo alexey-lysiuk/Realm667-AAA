@@ -127,6 +127,25 @@ def remove_unused_sound(wad, lump_name):
             remove_lump(wad, lump_name)
 
 
+def optimize_text(text):
+    lines = text.split('\n')
+
+    def keep_line(line):
+        line = line.strip()
+        return len(line) > 0 and not line.startswith('//')
+
+    lines = filter(keep_line, lines)
+    lines = map(lambda line: line.strip(), lines)
+
+    return '\n'.join(lines)
+
+def optimize_text_lump(wad, name):
+    lump = wad.find(name)
+
+    if lump:
+        lump.data = optimize_text(lump.data)
+
+
 # ==============================================================================
 
 
@@ -381,6 +400,11 @@ def optimize(wad):
 
     # remove other unwanted lumps
     wad.filter(is_lump_needed)
+
+    # optimize common text lumps
+    optimize_text_lump(wad, 'DECORATE')
+    optimize_text_lump(wad, 'GLDEFS')
+    optimize_text_lump(wad, 'SNDINFO')
 
 
 # ==============================================================================

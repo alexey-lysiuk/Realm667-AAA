@@ -102,16 +102,10 @@ def add_lump(zip, filename):
     if filename.lower().endswith('.txt'):
         # Optimize text lump
         with open(filepath) as f:
-            lines = f.readlines()
+            original = f.read()
 
-        def keep_line(line):
-            line = line.strip()
-            return len(line) > 0 and not line.startswith('//')
-
-        lines = filter(keep_line, lines)
-        lines = map(lambda line: line.strip(), lines)
-
-        zip.writestr(filename, '\n'.join(lines))
+        optimized = patching.optimize_text(original)
+        zip.writestr(filename, optimized)
     else:
         zip.write(filepath, filename)
 

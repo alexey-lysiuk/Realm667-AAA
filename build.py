@@ -90,8 +90,7 @@ def prepare():
         # TODO: report error
         pass
 
-    # TODO: make this cross-platform
-    rarfile.UNRAR_TOOL = '{0}/bin/unrar'.format(self_path)
+    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}'.format(self_path, sys.platform)
 
 
 def add_lump(zip, filename):

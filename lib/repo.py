@@ -826,6 +826,7 @@ excluded_wads = (
     (664, 'Demo.wad'),
     (667, 'BubbleTestMap.wad'),
     (703, 'ratTest.wad'),
+    (711, 'BrightBook.pk3'), # TODO: merge brightmaps with asset WAD
     (716, 'StrobeTest.wad'),
     (717, 'StrifeLandMine.wad'),
     (721, 'testmap01.wad'),

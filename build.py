@@ -152,7 +152,6 @@ def shutdown_profiling():
         print('\n')
         print(profiling_stream.getvalue())
     else:
-        global _start_time
         build_time = time.clock() - _start_time
         print('Completed in {0:.3f} seconds'.format(build_time))
 
@@ -210,7 +209,7 @@ def load_and_cache(gid):
 
             cached_file = load_cached(gid, archive_format)
 
-        except Exception:
+        except:
             print('Error: Failed to load archive file')
             traceback.print_exc()
 

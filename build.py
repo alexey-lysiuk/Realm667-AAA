@@ -116,7 +116,7 @@ def add_lump(zip, filename):
 
 wad_filenames = set()
 
-def make_wad_filename(original_filename):
+def unique_wad_filename(original_filename):
     wad_name = os.path.basename(original_filename)
 
     while wad_name in wad_filenames:
@@ -218,16 +218,18 @@ def load_and_cache(gid):
     return cached_file
 
 def store_asset(gid, filename, cached_file, output_file):
-    wad_file = cached_file.open(filename)
-    wad_data = wad_file.read()
-    wad_file.close()
+    with cached_file.open(filename) as wad_file:
+        wad_data = wad_file.read()
 
     if filename.lower().endswith('.pk3'):
+        # convert .pk3 to .wad
         wad_data = pk3_to_wad(wad_data)
-        filename = filename[:-4] + '.wad'
+        wad_filename = filename[:-4] + '.wad'
+    else:
+        wad_filename = filename
 
     wad = doomwad.WadFile(wad_data)
-    wad.filename = filename
+    wad.filename = wad_filename
 
     if not wad.find('DECORATE'):
         print('Warning: No DECORATE lump found in file {0}, '
@@ -239,7 +241,8 @@ def store_asset(gid, filename, cached_file, output_file):
     wad_data = cStringIO.StringIO()
     wad.writeto(wad_data)
 
-    output_file.writestr(make_wad_filename(filename), wad_data.getvalue())
+    wad_filename = unique_wad_filename(wad_filename)
+    output_file.writestr(wad_filename, wad_data.getvalue())
 
 
 def main():

@@ -153,7 +153,7 @@ def _generate_unique_sprite_name(sprite, frames):
             _sprites[unique_name] = frames
             return unique_name
 
-    assert(False)
+    assert False
     return None
 
 _sprites_renames = { }
@@ -179,7 +179,7 @@ def rename_sprite(wad, old, new):
     replace_pattern = r'\g<1>{0}\g<2>'.format(new)
 
     decorate = wad.find('DECORATE')
-    assert(decorate)
+    assert decorate
 
     decorate.data = re.sub(search_pattern, replace_pattern,
         decorate.data, 0, re.IGNORECASE)
@@ -297,7 +297,7 @@ _duplicate_actors = CaseInsensitiveSet((
 
 def make_unique_actors(wad):
     decorate = wad.find('DECORATE')
-    assert(decorate)
+    assert decorate
 
     # comments needs to be removed from DECORATE,
     # as actor renaming and removal may fail otherwise
@@ -400,7 +400,7 @@ def _generate_unique_lump_name():
         if unique_name not in _lumps:
             return unique_name
 
-    assert(False)
+    assert False
     return None
 
 
@@ -833,7 +833,7 @@ def dump_decorate(id, wad, tofile):
         return
 
     decorate = wad.find('DECORATE')
-    assert(decorate)
+    assert decorate
 
     tofile.write('\n// #{0}: {1}\n\n'.format(id, wad.filename))
     tofile.write(decorate.data)

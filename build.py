@@ -116,16 +116,16 @@ def add_lump(zip, filename):
         zip.write(filepath, filename)
 
 
-wad_filenames = set()
+_wad_filenames = set()
 
 def unique_wad_filename(original_filename):
     wad_name = os.path.basename(original_filename)
 
-    while wad_name in wad_filenames:
+    while wad_name in _wad_filenames:
         name, ext = wad_name.rsplit('.', 1)
         wad_name  = '{0}@.{1}'.format(name, ext)
 
-    wad_filenames.add(wad_name)
+    _wad_filenames.add(wad_name)
 
     return wad_name
 

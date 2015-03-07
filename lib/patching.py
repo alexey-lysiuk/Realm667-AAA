@@ -676,7 +676,7 @@ def _apply_patch_511(wad): # Lightbringer'
 
 def _apply_patch_536(wad): # Jackbomb
     # fix missing class reference
-    regex = re.compile(r'object\s+Curse\s+{.*?\s+}\s+}\s*', re.IGNORECASE | re.DOTALL)
+    regex = re.compile(r'object\s+Curse\s+\{.*?\s+\}\s+}\s*', re.IGNORECASE | re.DOTALL)
     replace_in_gldefs(wad, regex, '')
 
 def fix_always_activate(wad):

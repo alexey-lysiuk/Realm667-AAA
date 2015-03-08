@@ -82,12 +82,6 @@ def prepare():
     random.seed(31337)
 
     try:
-        os.remove(output_filename)
-    except OSError:
-        # TODO: report error
-        pass
-
-    try:
         os.mkdir('cache')
     except OSError:
         # TODO: report error
@@ -247,7 +241,7 @@ def main():
     init_profiling()
 
     # TODO: add error handling
-    output_file = zipfile.ZipFile(output_filename, 'a', zipfile.ZIP_DEFLATED)
+    output_file = zipfile.ZipFile(output_filename, 'w', zipfile.ZIP_DEFLATED)
 
     for item in repository:
         gid  = item[0]

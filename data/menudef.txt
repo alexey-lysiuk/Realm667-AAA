@@ -2327,6 +2327,56 @@ OptionMenu "Menu_R667AAA_PropStop_HellMagic_4"
     Option "Statue Facing", "r667aaa_warriorstatue_facing", "Option_R667AAA_WarriorStatue_Facing"
 }
 
+OptionMenu "Menu_R667AAA_SFXShoppe_ElementalEffects"
+{
+    StaticText "Realm667 - Elemental Effects", 1
+    StaticText ""
+
+    Command "Bubble Boiling", "summon Boiling[Color]Spawner"
+    Command "CloudSpawner", "summon CloudSpawner"
+    Command "Doom Terrain Splashes", "summon N/A"
+    Command "Ember Spawner", "summon EmberSpawner"
+    Command "Fire", "summon FireSpawner"
+    Command "Fog Spawner", "summon FogCloud_Generator"
+    Command "Lavaball Spawner", "summon lavaballSpawner"
+    Command "Spark Spawner", "summon [Color]SparkSpawner"
+    Command "Steam", "summon SteamSpawner"
+    Command "T667ThunderFX", "summon Thunder_Generator[color]"
+    Command "Terminator Portal", "summon TPortal, TPortalPermanent, TPortalTemporary"
+    Command "Toxic Clouds", "summon [color]Cloud[size]"
+    Command "Bubbles", "summon Bubble, BubbleSpawner"
+}
+
+OptionMenu "Menu_R667AAA_SFXShoppe_ParticleSpawners"
+{
+    StaticText "Realm667 - Particle Spawners", 1
+    StaticText ""
+
+    Command "Casing Spawners", "summon CasingSpawner"
+    Command "Forcefield Laserbeams", "summon LaserBeam_[Color]_[Direction]"
+    Command "Fountain of Rejuvenation", "summon RejuvenationFountain_[Doom/Heretic/Hexen/Strife]"
+    Command "SparkleFX", "summon [Color]SparkleSpawner"
+    Command "Pond Frogs", "summon Pond_Frog"
+    Command "PowerRing Pads", "summon [Color]CirclePad"
+    Command "Scurrying Rats", "summon RatSpawner"
+    Command "Soul Spawner", "summon DamnedSoul, DamnedSoulSpawner"
+    Command "Sparkle Spawner", "summon [Color]PowerPad"
+    Command "Stronghold PowerPad", "summon [Color]PowerPad"
+    Command "Swarm Spawner", "summon Body_Swarm, Bodiless_Swarm"
+    Command "Teleport Smoke Spawner", "summon FX_TeleSmoke"
+}
+
+OptionMenu "Menu_R667AAA_SFXShoppe_WeatherGenerators"
+{
+    StaticText "Realm667 - Weather Generators", 1
+    StaticText ""
+
+    Command "Ash Spawner", "summon AshSpawner"
+    Command "Cinder Spawner", "summon CinderSpawner"
+    Command "Rain Simple", "summon RainSpawner"
+    Command "Snow Simple", "summon SnowSpawner"
+}
+
 OptionMenu "Menu_R667AAA_PropStop"
 {
     StaticText "Realm667 - Prop Stop", 1
@@ -2374,6 +2424,14 @@ OptionMenu "Menu_R667AAA_PropStop_2"
     Submenu "Hell and Magic * F..L", "Menu_R667AAA_PropStop_HellMagic_2"
     Submenu "Hell and Magic * M..R", "Menu_R667AAA_PropStop_HellMagic_3"
     Submenu "Hell and Magic * S..Z", "Menu_R667AAA_PropStop_HellMagic_4"
+    StaticText ""
+
+    StaticText "Realm667 - SFX Shoppe", 1
+    StaticText ""
+
+    Submenu "Elemental Effects", "Menu_R667AAA_SFXShoppe_ElementalEffects"
+    Submenu "Particle Spawners", "Menu_R667AAA_SFXShoppe_ParticleSpawners"
+    Submenu "Weather Generators", "Menu_R667AAA_SFXShoppe_WeatherGenerators"
     StaticText ""
 
     Submenu "< Page 1", "Menu_R667AAA_PropStop"

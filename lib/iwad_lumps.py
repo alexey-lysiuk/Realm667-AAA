@@ -5574,6 +5574,10 @@ lumps_heretic = (
 'WLLWTFL3',
 )
 
+# For ZDoom-specific renames check
+#  * Conflicting sprite names at http://zdoom.org/wiki/Sprites
+#  * FWadCollection::RenameSprites() at https://github.com/rheit/zdoom/blob/master/src/w_wad.cpp
+
 sprites_heretic = (
 'ACLO',
 'AKYY',
@@ -5605,7 +5609,7 @@ sprites_heretic = (
 'BEAK',
 'BEAS',
 'BKYY',
-'BLOD',
+'BLUD', # ZDoom, originally 'BLOD'
 'BLSR',
 'BRPL',
 'BSKL',
@@ -5645,7 +5649,7 @@ sprites_heretic = (
 'GAUN',
 'GWND',
 'HCOR',
-'HEAD',
+'LICH', # ZDoom, originally 'HEAD'
 'HROD',
 'IMPX',
 'INVS',
@@ -6912,6 +6916,10 @@ lumps_hexen = (
 'WALL501',
 )
 
+# For ZDoom-specific renames check
+#  * Conflicting sprite names at http://zdoom.org/wiki/Sprites
+#  * FWadCollection::RenameSprites() at https://github.com/rheit/zdoom/blob/master/src/w_wad.cpp
+
 sprites_hexen = (
 'ABAT',
 'ABGM',
@@ -6930,10 +6938,10 @@ sprites_hexen = (
 'AGR3',
 'AGR4',
 'AMWP',
-'ARM1',
-'ARM2',
-'ARM3',
-'ARM4',
+'AR_1', # ZDoom, originally 'ARM1'
+'AR_2', # ZDoom, originally 'ARM2'
+'AR_3', # ZDoom, originally 'ARM3'
+'AR_4', # ZDoom, originally 'ARM4'
 'ARRW',
 'ARTIATLP',
 'ARTIBGEM',
@@ -6955,7 +6963,7 @@ sprites_hexen = (
 'ARTIGMB2',
 'ARTIGMG2',
 'ARTIHRAD',
-'ARTIINVU',
+'ARTIDEFN', # ZDoom, originally 'ARTIINVU'
 'ARTIMWEP',
 'ARTIPORK',
 'ARTIPSBG',
@@ -6971,7 +6979,7 @@ sprites_hexen = (
 'ASK2',
 'ASKU',
 'ATLP',
-'BARL',
+'ZBAR', # ZDoom, originally 'BARL'
 'BBLL',
 'BCKT',
 'BDPL',
@@ -6979,7 +6987,7 @@ sprites_hexen = (
 'BDSH',
 'BISH',
 'BLAD',
-'BLOD',
+'BLUD', # ZDoom, originally 'BLOD'
 'BLST',
 'BMAN',
 'BNR1',
@@ -6987,7 +6995,7 @@ sprites_hexen = (
 'BRAC',
 'BRTR',
 'BSKL',
-'CAND',
+'BCAN', # ZDoom, originally 'CAND'
 'CDLR',
 'CDRN',
 'CENT',
@@ -7032,7 +7040,7 @@ sprites_hexen = (
 'DRAG',
 'DRFX',
 'EGGC',
-'EGGM',
+'PRKM', # ZDoom, originally 'EGGM'
 'ETTB',
 'ETTN',
 'FAXE',
@@ -7063,7 +7071,7 @@ sprites_hexen = (
 'GAR7',
 'GAR8',
 'GAR9',
-'GIBS',
+'POL5', # ZDoom, originally 'GIBS'
 'GMPD',
 'HRAD',
 'ICEC',
@@ -7078,7 +7086,7 @@ sprites_hexen = (
 'ICT3',
 'ICT4',
 'ICWS',
-'INVU',
+'DEFN', # ZDoom, originally 'INVU'
 'IRON',
 'KEY1',
 'KEY2',
@@ -7144,7 +7152,7 @@ sprites_hexen = (
 'RKBK',
 'RKBL',
 'RKBS',
-'ROCK',
+'ROKK', # ZDoom, originally 'ROCK'
 'SBFX',
 'SBMB',
 'SBMG',
@@ -7189,7 +7197,7 @@ sprites_hexen = (
 'STT5',
 'STTW',
 'STWN',
-'SUIT',
+'ZSUI', # ZDoom, originally 'SUIT'
 'SUMN',
 'SWMV',
 'TELE',
@@ -7205,8 +7213,8 @@ sprites_hexen = (
 'TMS7',
 'TRCH',
 'TRDT',
-'TRE1',
-'TRE2',
+'ZTRE', # ZDoom, originally 'TRE1'
+'TRES', # ZDoom, originally 'TRE2'
 'TRE3',
 'TRE4',
 'TRE5',
@@ -7227,7 +7235,7 @@ sprites_hexen = (
 'TST9',
 'TWTR',
 'VASE',
-'WATR',
+'HWAT', # ZDoom, originally 'WATR'
 'WCFM',
 'WCH1',
 'WCH2',

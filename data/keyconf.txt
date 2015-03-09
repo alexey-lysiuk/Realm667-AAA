@@ -29,9 +29,10 @@ defaultbind N menu_r667aaa_itemstore
 alias menu_r667aaa_propstop "openmenu Menu_R667AAA_PropStop"
 defaultbind B menu_r667aaa_propstop
 
-alias r667aaa_exec "%1 %2"
-alias r667aaa_last "r667aaa_exec $r667aaa_summon $r667aaa_class"
-alias r667aaa "r667aaa_class %1; r667aaa_last; closemenu"
+alias r667aaa_summon_helper "%1 $r667aaa_class 0 0 0 $r667aaa_arg1 $r667aaa_arg2 $r667aaa_arg3 $r667aaa_arg4 $r667aaa_arg5"
+alias r667aaa_last "r667aaa_summon_helper $r667aaa_summon"
+alias r667aaa_args "r667aaa_class %1; r667aaa_arg1 %2; r667aaa_arg2 %3; r667aaa_arg3 %4; r667aaa_arg4 %5; r667aaa_arg5 %6; r667aaa_last; closemenu"
+alias r667aaa "r667aaa_args %1 0 0 0 0 0"
 defaultbind U r667aaa_last
 
 addkeysection "Realm667 - An Awesome Awesomeness" R667AAA

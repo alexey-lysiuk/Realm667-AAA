@@ -749,7 +749,7 @@ _propstop_hell_magic = (
 _sfx_shoppe_elementalfx = (
     (335, 'Bubble Boiling'),
     (306, 'Clouds'),
-    (847, 'Doom Terrain Splashes'),
+#    (847, 'Doom Terrain Splashes'), # no standalone actors
     (278, 'Ember'),
     (280, 'Fire'),
     (791, 'Fog'),

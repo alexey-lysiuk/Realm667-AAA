@@ -748,30 +748,30 @@ _propstop_hell_magic = (
 
 _sfx_shoppe_elementalfx = (
     (335, 'Bubble Boiling'),
-    (306, 'CloudSpawner'),
+    (306, 'Clouds'),
     (847, 'Doom Terrain Splashes'),
-    (278, 'Ember Spawner'),
+    (278, 'Ember'),
     (280, 'Fire'),
-    (791, 'Fog Spawner'),
-    (708, 'Lavaball Spawner'),
-    (279, 'Spark Spawner'),
+    (791, 'Fog'),
+    (708, 'Lavaball'),
+    (279, 'Sparks'),
     (276, 'Steam'),
-    (303, 'T667ThunderFX'),
-    (665, 'Terminator Portal'),
+    (303, 'Thunder FX'),
+    (665, 'Thunder Portal'),
     (904, 'Toxic Clouds'),
-    (667, 'Bubbles'),
+    (667, 'Underwater Bubbles'),
 )
 
 _sfx_shoppe_particles = (
     (668, 'Casing Spawners'),
     (662, 'Forcefield Laserbeams'),
     (925, 'Fountain of Rejuvenation'),
-    (664, 'SparkleFX'),
+    (664, 'Magic Sparkle'),
     (889, 'Pond Frogs'),
     (663, 'PowerRing Pads'),
     (703, 'Scurrying Rats'),
-    (721, 'Soul Spawner'),
-    (277, 'Sparkle Spawner'),
+    (721, 'Soul Spawners'),
+    (277, 'Sparkle Spawners'),
     (197, 'Stronghold PowerPad'),
     (799, 'Swarm Spawner'),
     (870, 'Teleport Smoke Spawner'),
@@ -779,7 +779,7 @@ _sfx_shoppe_particles = (
 
 _sfx_shoppe_weather = (
     (666, 'Ash Spawner'),
-    (707, 'Cinder Spawner'),
+    (707, 'Cinder'),
     (275, 'Rain Simple'),
     (198, 'Snow Simple'),
 )

@@ -26,8 +26,10 @@ import traceback
 import urllib2
 import zipfile
 
-self_path = os.path.dirname(__file__)
-sys.path.append(self_path + '/lib')
+_self_path = os.path.dirname(__file__)
+if not _self_path:
+    _self_path = '.'
+sys.path.append(_self_path + '/lib')
 
 import rarfile
 import doomwad
@@ -50,7 +52,7 @@ def configure():
     except OSError:
         pass
 
-    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}'.format(self_path, sys.platform)
+    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}'.format(_self_path, sys.platform)
 
     parser = argparse.ArgumentParser()
 
@@ -199,7 +201,7 @@ def store_asset(gid, filename, cached_file, packager):
 
 
 def store_lump(filename, packager):
-    filepath = '{0}/data/{1}'.format(self_path, filename)
+    filepath = '{0}/data/{1}'.format(_self_path, filename)
 
     if filename.lower().endswith('.txt'):
         # Optimize text lump

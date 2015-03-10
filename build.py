@@ -62,7 +62,7 @@ def configure():
     parser.add_argument('--disable-optimization',
         help='disable WAD files optimization', action='store_true')
     parser.add_argument('-c', '--compression', type=str,
-        choices = ['none', 'default'],
+        choices = ['none', 'default', 'pk3', '7zpk3', 'pk7'],
         help='set output file compression')
     parser.add_argument('-p', '--profiling',
         help='enable Python performance profiling', action='store_true')
@@ -219,9 +219,17 @@ def store_lump(filename, packager):
 
 def select_packager(compression):
     packagers = {
+        # uncompressed output file
+        'none':    packaging.UncompressedZipPackager,
+
+        # compressed with Python's internal zlib
         None:      packaging.DefaultZipPackager,
         'default': packaging.DefaultZipPackager,
-        'none':    packaging.UncompressedZipPackager,
+        'pk3':     packaging.DefaultZipPackager,
+
+        # compressed with external 7-Zip tool
+        '7zpk3':   packaging.SevenZipPK3Packager,
+        'pk7':     packaging.SevenZipPK7Packager,
     }
 
     assert compression in packagers

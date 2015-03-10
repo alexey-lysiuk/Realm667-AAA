@@ -1,5 +1,6 @@
 .idea/
 cache/
 tmp/
-realm667-aaa.pk3
+/*.pk3
+/*.pk7
 *.pyc

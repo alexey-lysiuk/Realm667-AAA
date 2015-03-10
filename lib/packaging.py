@@ -16,6 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
 import zipfile
 
 
@@ -46,3 +51,69 @@ class DefaultZipPackager(_InternalZipPackager):
 class UncompressedZipPackager(_InternalZipPackager):
     def __init__(self):
         _InternalZipPackager.__init__(self, zipfile.ZIP_STORED)
+
+
+# ==============================================================================
+
+
+class _SevenZipPackager(object):
+    def __init__(self, extention, args):
+        exe_path = '{}/../bin/7za.{}'.format(
+            os.path.dirname(__file__), sys.platform)
+        exe_path = os.path.abspath(exe_path)
+
+        output_filename = '../../{}{}'.format(_FILENAME_PATTERN, extention)
+
+        self._args = [exe_path, 'a', output_filename]
+        self._args += args
+        self._args.append('*')
+
+        try:
+            os.mkdir('tmp')
+        except OSError:
+            pass
+
+        self._work_dir = tempfile.mkdtemp(prefix = '', dir = 'tmp')
+
+        try:
+            os.remove(output_filename)
+        except OSError:
+            pass
+
+    def _work_filename(self, arcname):
+        return '{}/{}'.format(self._work_dir, arcname)
+
+    def write(self, filename, arcname):
+        shutil.copy(filename, self._work_filename(arcname))
+
+    def writestr(self, arcname, data):
+        with open(self._work_filename(arcname), 'wb') as f:
+            f.write(data)
+
+    def close(self):
+        print('Compressing package...')
+
+        current_dir = os.getcwd()
+        os.chdir(self._work_dir)
+
+        proc = subprocess.Popen(self._args)
+        proc.communicate()
+
+        if 0 == proc.returncode:
+            print('')
+        else:
+            print('\nError: External packager failed')
+
+        os.chdir(current_dir)
+
+        shutil.rmtree(self._work_dir, ignore_errors = True)
+
+
+class SevenZipPK3Packager(_SevenZipPackager):
+    def __init__(self):
+        _SevenZipPackager.__init__(self, 'pk3', ('-y', '-tzip', '-mx=9'))
+
+
+class SevenZipPK7Packager(_SevenZipPackager):
+    def __init__(self):
+        _SevenZipPackager.__init__(self, 'pk7', ('-y', '-t7z', '-mx=9', '-ms=off'))

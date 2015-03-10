@@ -22,7 +22,6 @@ import argparse
 import cStringIO
 import os, sys
 import random
-import time
 import traceback
 import urllib2
 import zipfile
@@ -34,6 +33,7 @@ import rarfile
 
 import doomwad
 import patching
+import profiling
 from pk3_to_wad import pk3_to_wad
 
 from repo import repository, excluded_wads
@@ -116,35 +116,6 @@ def unique_wad_filename(original_filename):
     _wad_filenames.add(wad_name)
 
     return wad_name
-
-
-def init_profiling():
-    if enable_profiling:
-        import cProfile
-
-        global _profiler
-        _profiler = cProfile.Profile()
-        _profiler.enable()
-    else:
-        global _start_time
-        _start_time = time.clock()
-
-def shutdown_profiling():
-    if enable_profiling:
-        global _profiler
-        _profiler.disable()
-
-        import pstats
-
-        profiling_stream = cStringIO.StringIO()
-        ps = pstats.Stats(_profiler, stream=profiling_stream).sort_stats('cumulative')
-        ps.print_stats()
-
-        print('\n')
-        print(profiling_stream.getvalue())
-    else:
-        build_time = time.clock() - _start_time
-        print('Completed in {0:.3f} seconds'.format(build_time))
 
 
 _ARCHIVE_ZIP = 'zip'
@@ -238,7 +209,7 @@ def main():
     configure()
     prepare()
 
-    init_profiling()
+    profiler = profiling.Profiler(enable_profiling)
 
     # TODO: add error handling
     output_file = zipfile.ZipFile(output_filename, 'w', zipfile.ZIP_DEFLATED)
@@ -287,7 +258,7 @@ def main():
 
     output_file.close()
 
-    shutdown_profiling()
+    profiler.close()
 
 if __name__ == '__main__':
     main()

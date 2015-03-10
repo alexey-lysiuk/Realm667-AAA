@@ -6,8 +6,10 @@
 |258|Poly Morph|Various conficts between New and Old versions. The latter was excluded|
 |510|Vile Staff|The weapon doesn't spawn projectile nor cause any damage. Is it broken?|
 |717|LandMine Layer|Various conficts between WADs for Doom and for Strife. Strife version was excluded|
+|767|Strife Pistol|Strife weapon, excluded|
 |816|CryoBow|Custom palette is used, stored in separate WAD file. It's excluded from generated .pk3|
 |827|Ankh of Life|Various conflicts between Map Duration and Upgradeable version. The latter was excluded|
+|847|Doom Terrain Splashes|No standalone actors, excluded|
 |867|Cross Keys|Various conflicts between three key sets. Only one is kept|
 |897|Familiar Summon|Various conflicts between Scroll and Sphere WADs. Sphere version was excluded|
 

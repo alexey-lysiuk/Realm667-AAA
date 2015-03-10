@@ -130,12 +130,9 @@ def remove_unused_sound(wad, lump_name):
 def optimize_text(text):
     lines = text.split('\n')
 
-    def keep_line(line):
-        line = line.strip()
-        return len(line) > 0 and not line.startswith('//')
-
-    lines = filter(keep_line, lines)
-    lines = map(lambda line: line.strip(), lines)
+    lines = [line.strip() for line in lines]
+    lines = [re.sub('\s+', ' ', line) for line in lines
+        if line and not line.startswith('//')]
 
     return '\n'.join(lines)
 

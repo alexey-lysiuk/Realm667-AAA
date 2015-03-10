@@ -31,6 +31,7 @@ sys.path.append(self_path + '/lib')
 
 import rarfile
 import doomwad
+import packaging
 import patching
 import profiling
 from pk3_to_wad import pk3_to_wad
@@ -166,7 +167,7 @@ def unique_wad_filename(original_filename):
     return wad_name
 
 
-def store_asset(gid, filename, cached_file, output_file):
+def store_asset(gid, filename, cached_file, packager):
     with cached_file.open(filename) as wad_file:
         wad_data = wad_file.read()
 
@@ -191,10 +192,10 @@ def store_asset(gid, filename, cached_file, output_file):
     wad.writeto(wad_data)
 
     wad_filename = unique_wad_filename(wad_filename)
-    output_file.writestr(wad_filename, wad_data.getvalue())
+    packager.writestr(wad_filename, wad_data.getvalue())
 
 
-def store_lump(filename, output_file):
+def store_lump(filename, packager):
     filepath = '{0}/data/{1}'.format(self_path, filename)
 
     if filename.lower().endswith('.txt'):
@@ -203,9 +204,9 @@ def store_lump(filename, output_file):
             original = f.read()
 
         optimized = patching.optimize_text(original)
-        output_file.writestr(filename, optimized)
+        packager.writestr(filename, optimized)
     else:
-        output_file.write(filepath, filename)
+        packager.write(filepath, filename)
 
 
 # ==============================================================================
@@ -214,7 +215,7 @@ def store_lump(filename, output_file):
 def build(args):
     profiler = profiling.Profiler(args.profiling)
 
-    output_file = zipfile.ZipFile('realm667-aaa.pk3', 'w', zipfile.ZIP_DEFLATED)
+    packager = packaging.DefaultZipPackager()
 
     for item in repository:
         gid  = item[0]
@@ -245,7 +246,7 @@ def build(args):
 
         for filename in wad_filenames:
             try:
-                store_asset(gid, filename, cached_file, output_file)
+                store_asset(gid, filename, cached_file, packager)
 
             except Exception as ex:
                 print('Error: Failed to add {0}'.format(filename))
@@ -254,11 +255,11 @@ def build(args):
 
         cached_file.close()
 
-    store_lump('cvarinfo.txt', output_file)
-    store_lump('keyconf.txt',  output_file)
-    store_lump('menudef.txt',  output_file)
+    store_lump('cvarinfo.txt', packager)
+    store_lump('keyconf.txt',  packager)
+    store_lump('menudef.txt',  packager)
 
-    output_file.close()
+    packager.close()
 
     profiler.close()
 

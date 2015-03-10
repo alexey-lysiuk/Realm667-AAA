@@ -30,22 +30,27 @@ self_path = os.path.dirname(__file__)
 sys.path.append(self_path + '/lib')
 
 import rarfile
-
 import doomwad
 import patching
 import profiling
 from pk3_to_wad import pk3_to_wad
-
 from repo import repository, excluded_wads
 
-# Configuration
 
-output_filename = 'realm667-aaa.pk3'
-
-url_download = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
+# ==============================================================================
 
 
 def configure():
+    # hard-coded seed helps to have predictable generated names
+    random.seed(31337)
+
+    try:
+        os.mkdir('cache')
+    except OSError:
+        pass
+
+    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}'.format(self_path, sys.platform)
+
     parser = argparse.ArgumentParser()
 
     # Generic arguments
@@ -75,47 +80,10 @@ def configure():
     patching.allow_doomednum = args.allow_doomednum
     patching.enable_optimization = not args.disable_optimization
 
-    global enable_profiling
-    enable_profiling = args.profiling
-
-def prepare():
-    random.seed(31337)
-
-    try:
-        os.mkdir('cache')
-    except OSError:
-        # TODO: report error
-        pass
-
-    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}'.format(self_path, sys.platform)
+    return args
 
 
-def add_lump(zip, filename):
-    filepath = '{0}/data/{1}'.format(self_path, filename)
-
-    if filename.lower().endswith('.txt'):
-        # Optimize text lump
-        with open(filepath) as f:
-            original = f.read()
-
-        optimized = patching.optimize_text(original)
-        zip.writestr(filename, optimized)
-    else:
-        zip.write(filepath, filename)
-
-
-_wad_filenames = set()
-
-def unique_wad_filename(original_filename):
-    wad_name = os.path.basename(original_filename)
-
-    while wad_name in _wad_filenames:
-        name, ext = wad_name.rsplit('.', 1)
-        wad_name  = '{0}@.{1}'.format(name, ext)
-
-    _wad_filenames.add(wad_name)
-
-    return wad_name
+# ==============================================================================
 
 
 _ARCHIVE_ZIP = 'zip'
@@ -141,6 +109,9 @@ def load_cached(gid, archive_format, fatal = True):
         if fatal:
             raise
 
+
+_URL_PATTERN = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
+
 def load_and_cache(gid):
     # Try to load archive file from cache
     cached_file = load_cached(gid, _ARCHIVE_ZIP, fatal = False)
@@ -151,7 +122,7 @@ def load_and_cache(gid):
     if not cached_file:
         try:
             # Download archive file with given ID
-            url = url_download.format(gid)
+            url = _URL_PATTERN.format(gid)
             response = urllib2.urlopen(url)
             data = response.read()
 
@@ -176,6 +147,24 @@ def load_and_cache(gid):
             traceback.print_exc()
 
     return cached_file
+
+
+# ==============================================================================
+
+
+_wad_filenames = set()
+
+def unique_wad_filename(original_filename):
+    wad_name = os.path.basename(original_filename)
+
+    while wad_name in _wad_filenames:
+        name, ext = wad_name.rsplit('.', 1)
+        wad_name  = '{0}@.{1}'.format(name, ext)
+
+    _wad_filenames.add(wad_name)
+
+    return wad_name
+
 
 def store_asset(gid, filename, cached_file, output_file):
     with cached_file.open(filename) as wad_file:
@@ -205,14 +194,27 @@ def store_asset(gid, filename, cached_file, output_file):
     output_file.writestr(wad_filename, wad_data.getvalue())
 
 
-def main():
-    configure()
-    prepare()
+def store_lump(filename, output_file):
+    filepath = '{0}/data/{1}'.format(self_path, filename)
 
-    profiler = profiling.Profiler(enable_profiling)
+    if filename.lower().endswith('.txt'):
+        # Optimize text lump
+        with open(filepath) as f:
+            original = f.read()
 
-    # TODO: add error handling
-    output_file = zipfile.ZipFile(output_filename, 'w', zipfile.ZIP_DEFLATED)
+        optimized = patching.optimize_text(original)
+        output_file.writestr(filename, optimized)
+    else:
+        output_file.write(filepath, filename)
+
+
+# ==============================================================================
+
+
+def build(args):
+    profiler = profiling.Profiler(args.profiling)
+
+    output_file = zipfile.ZipFile('realm667-aaa.pk3', 'w', zipfile.ZIP_DEFLATED)
 
     for item in repository:
         gid  = item[0]
@@ -252,13 +254,14 @@ def main():
 
         cached_file.close()
 
-    add_lump(output_file, 'cvarinfo.txt')
-    add_lump(output_file, 'keyconf.txt')
-    add_lump(output_file, 'menudef.txt')
+    store_lump('cvarinfo.txt', output_file)
+    store_lump('keyconf.txt',  output_file)
+    store_lump('menudef.txt',  output_file)
 
     output_file.close()
 
     profiler.close()
 
+
 if __name__ == '__main__':
-    main()
+    build(configure())

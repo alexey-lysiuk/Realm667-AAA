@@ -59,6 +59,9 @@ def configure():
         help='set output verbosity level')
     parser.add_argument('--disable-optimization',
         help='disable WAD files optimization', action='store_true')
+    parser.add_argument('-c', '--compression', type=str,
+        choices = ['none', 'default'],
+        help='set output file compression')
     parser.add_argument('-p', '--profiling',
         help='enable Python performance profiling', action='store_true')
 
@@ -212,10 +215,20 @@ def store_lump(filename, packager):
 # ==============================================================================
 
 
+def select_packager(compression):
+    packagers = {
+        None:      packaging.DefaultZipPackager,
+        'default': packaging.DefaultZipPackager,
+        'none':    packaging.UncompressedZipPackager,
+    }
+
+    assert compression in packagers
+    return packagers[compression]()
+
+
 def build(args):
     profiler = profiling.Profiler(args.profiling)
-
-    packager = packaging.DefaultZipPackager()
+    packager = select_packager(args.compression)
 
     for item in repository:
         gid  = item[0]
@@ -260,7 +273,6 @@ def build(args):
     store_lump('menudef.txt',  packager)
 
     packager.close()
-
     profiler.close()
 
 

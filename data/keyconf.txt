@@ -206,3 +206,9 @@ alias r667aaa_smallkey "r667aaa Small%1Gizmo"
 alias r667aaa_stonehead "r667aaa BigHead%1"
 alias r667aaa_strifebloodycolumn "r667aaa %1%2"
 alias r667aaa_warriorstatue "r667aaa WarriorStatue%1%2"
+
+// SFX Shoppe - Elemental Effects
+alias r667aaa_bubbleboiling "r667aaa_args Boiling%1Spawner 48 1 0 1 0"
+alias r667aaa_sparks "r667aaa_args %1SparkSpawner 0 16 0 0 0"
+alias r667aaa_thunderfx "r667aaa Thunder_Generator%1"
+alias r667aaa_toxiccloud "r667aaa %1Cloud%2"

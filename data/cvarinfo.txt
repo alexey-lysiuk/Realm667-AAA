@@ -87,3 +87,10 @@ user noarchive string r667aaa_strifebloodycolumn_kind = "Strife";
 user noarchive string r667aaa_strifebloodycolumn_size = "Column";
 user noarchive string r667aaa_warriorstatue_kind      = "Gold";
 user noarchive string r667aaa_warriorstatue_facing;
+
+// SFX Shoppe - Elemental Effects
+user noarchive string r667aaa_bubbleboiling_color = "Orange";
+user noarchive string r667aaa_sparks_color        = "White";
+user noarchive string r667aaa_thunderfx_color     = "White";
+user noarchive string r667aaa_toxiccloud_color    = "Brown";
+user noarchive string r667aaa_toxiccloud_size     = "Small";

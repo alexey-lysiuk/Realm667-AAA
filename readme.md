@@ -8,7 +8,14 @@ Check `issues.md` file for the list of known issues.
 #### How to build
 
 You need Python 2.7 to run `build.py` script. It will create `realm667-aaa.pk3` in the repository's root directory.  
-The script will download and cache all resources during the first run. Generation process will be much faster next time.
+The script will download and cache all resources during the first run. Generation process will be much faster next time.  
+Also, you can clone [an accompanied repository](https://github.com/alexey-lysiuk/Realm667-AAA-Cache) into `cache` directory to avoid downloading. In this case, the whole process will look like:
+```
+git clone https://github.com/alexey-lysiuk/Realm667-AAA.git
+cd Realm667-AAA
+git clone https://github.com/alexey-lysiuk/Realm667-AAA-Cache.git cache
+python build.py
+```
 
 #### How to play
 

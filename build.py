@@ -47,6 +47,11 @@ def configure():
     # hard-coded seed helps to have predictable generated names
     random.seed(31337)
 
+    # set current directory to directory containing this script
+    # in order to make build process portable and self-contained,
+    # and to do not store anything in current or user's home/temp directories
+    os.chdir(_self_path)
+
     try:
         os.mkdir('cache')
     except OSError:

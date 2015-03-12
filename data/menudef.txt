@@ -2432,10 +2432,10 @@ OptionMenu "Menu_R667AAA_SFXShoppe_WeatherGenerators"
     StaticText "Realm667 - Weather Generators", 1
     StaticText ""
 
-    Command "Ash Spawner", "r667aaa AshSpawner"
-    Command "Cinder", "r667aaa CinderSpawner"
-    Command "Rain Simple", "r667aaa RainSpawner"
-    Command "Snow Simple", "r667aaa SnowSpawner"
+    Command "Ash Spawner", "r667aaa_args AshSpawner 16 32 1 5 0"
+    Command "Cinder", "r667aaa_args CinderSpawner 16 32 1 5 0"
+    Command "Rain Simple", "r667aaa_args RainSpawner 32 0 0 1 0"
+    Command "Snow Simple", "r667aaa_args SnowSpawner 32 0 1 0 0"
 }
 
 OptionMenu "Menu_R667AAA_PropStop"

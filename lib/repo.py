@@ -824,6 +824,7 @@ excluded_wads = (
     (662, 'Demo.wad'),
     (663, 'Demo.wad'),
     (664, 'Demo.wad'),
+    (664, 'SparkleFX_heretic.wad'), # or SparkleFX_doom.wad
     (667, 'BubbleTestMap.wad'),
     (703, 'ratTest.wad'),
     (711, 'BrightBook.pk3'), # TODO: merge brightmaps with asset WAD

@@ -746,6 +746,12 @@ def _apply_patch_659(wad): # Pulse Rifle UAC
         r'(actor\s+)PulseRifle(\s*:\s*\w+)',
         r'\1PulseRifleUAC\2')
 
+def _apply_patch_664(wad): # Magic Sparkle
+    # fix class name collision with #277 Sparkle Spawners
+    replace_in_decorate(wad,
+        r'([\s:]\w+)SparkleSpawner(\s|:)',
+        r'\1MagicSparkle\2')
+
 def _apply_patch_671(wad): # Food Barrel
     # fix class name collisions with embedded actors
     replace_in_decorate(wad, 'Meat1', 'MeatBeef')

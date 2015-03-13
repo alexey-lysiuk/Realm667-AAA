@@ -25,6 +25,7 @@ import doomwad
 from iwad_lumps import sprites_all
 from iwad_sndinfo import logical_sounds_all, sounds_lumps_all
 from case_insensitive import CaseInsensitiveSet
+from doompic import doompic_to_png
 
 
 # Allow A_SetPitch() calls in DECORATE,
@@ -40,6 +41,10 @@ allow_doomednum = False
 # Enable various WAD files optimizations,
 # like removal of unused, duplicate and map lumps
 enable_optimization = True
+
+# Convert sprites to PNG format
+png_sprites = False
+png_sprites_compression = -1
 
 
 # ==============================================================================
@@ -895,6 +900,12 @@ def apply_patch(id, wad):
 
     if enable_optimization:
         optimize(wad)
+
+    if png_sprites:
+        for sprite in wad.spritelumps():
+            if sprite.data.startswith('\x89PNG'):
+                continue
+            sprite.data = doompic_to_png(sprite.data, png_sprites_compression)
 
     if _dump_decorates:
         dump_decorate(id, wad, _processed_decos_file)

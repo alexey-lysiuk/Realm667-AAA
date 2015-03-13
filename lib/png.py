@@ -598,6 +598,10 @@ class Writer:
         # :todo: fix for bitdepth < 8
         self.psize = (self.bitdepth/8) * self.planes
 
+        # > alexey.lysiuk: support for custom chunks
+        self.custom_chunks = dict()
+        # < alexey.lysiuk: support for custom chunks
+
     def make_palette(self):
         """Create the byte sequences for a ``PLTE`` and if necessary a
         ``tRNS`` chunk.  Returned as a pair (*p*, *t*).  *t* will be
@@ -671,6 +675,13 @@ class Writer:
                     struct.pack("!2I5B", self.width, self.height,
                                 self.bitdepth, self.color_type,
                                 0, 0, self.interlace))
+
+        # > alexey.lysiuk: support for custom chunks
+        for chunkname, chunkdata in self.custom_chunks.iteritems():
+            if 4 != len(chunkname):
+                raise ValueError('Invalid chunk name %s', chunkname)
+            write_chunk(outfile, chunkname, chunkdata)
+        # < alexey.lysiuk: support for custom chunks
 
         # See :chunk:order
         # http://www.w3.org/TR/PNG/#11gAMA

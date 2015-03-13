@@ -82,6 +82,12 @@ def configure():
     parser.add_argument('--allow-doomednum',
         help='allow editor number (DoomEdNum) assignment in DECORATE',
         action='store_true')
+    parser.add_argument('--png-sprites',
+        help='convert all sprites to PNG format',
+        action='store_true')
+    parser.add_argument('--png-sprites-compression',
+        type=int, choices=[value for value in range(-1, 10)],
+        help='set compression level for sprites in PNG format')
 
     args = parser.parse_args()
 
@@ -90,6 +96,8 @@ def configure():
     patching.allow_class_replacement = args.allow_class_replacement
     patching.allow_doomednum = args.allow_doomednum
     patching.enable_optimization = not args.disable_optimization
+    patching.png_sprites = args.png_sprites
+    patching.png_sprites_compression = args.png_sprites_compression
 
     return args
 

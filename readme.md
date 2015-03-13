@@ -3,7 +3,7 @@
 #### About
 
 This project is an attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.  
-Do not expect that all assets will work with any game, use Doom II for maximum compatibility. Also, check `issues.md` file for the list of known issues.
+Almost all actors (weapons, monsters, powerups, props, effects) are included.
 
 #### How to play
 
@@ -17,6 +17,8 @@ Open **Realm667 - Item Store** menu ('N' button by default) to summon power-up, 
 Open **Realm667 - Prop Stop / SFX Shoppe** menu ('B' button by default) to summon various decorations and effects (on the second page).  
 Use 'U' button (by default) to summon the last summoned actor again.
 The key bindings can be changed in **Customize Controls** menu. Look for **Realm667 - An Awesome Awesomeness** at the bottom of the controls list.
+
+**Note:** Do not expect that all assets will work in any game supported by (G)ZDoom. Use Doom II for maximum compatibility. Also, check `issues.md` file for the list of known issues.
 
 
 #### How to build

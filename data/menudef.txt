@@ -2408,22 +2408,89 @@ OptionMenu "Menu_R667AAA_SFXShoppe_ElementalEffects"
     Command "Underwater Bubbles", "r667aaa BubbleSpawner"
 }
 
+OptionString "Option_R667AAA_Laserbeam_Color"
+{
+    "Green",  "\cdGreen"
+    "Blue",   "\chBlue"
+    "White",  "\cjWhite"
+    "Red",    "\cgRed"
+    "Orange", "\ciOrange"
+}
+
+OptionString "Option_R667AAA_Laserbeam_Direction"
+{
+    "Horizontal", "Horizontal"
+    "Vertical",   "Vertical"
+}
+
+OptionString "Option_R667AAA_CirclePad_Color"
+{
+    "Green",  "\cdGreen"
+    "Blue",   "\chBlue"
+    "White",  "\cjWhite"
+    "Red",    "\cgRed"
+    "Orange", "\ciOrange"
+}
+
+OptionString "Option_R667AAA_MagicSparkle_Color"
+{
+    "Green",  "\cdGreen"
+    "Blue",   "\chBlue"
+    "White",  "\cjWhite"
+    "Red",    "\cgRed"
+    "Orange", "\ciOrange"
+}
+
+OptionString "Option_R667AAA_SparkleSpawner_Color"
+{
+    "White",  "\cjWhite"
+    "Blue",   "\chBlue"
+    "Green",  "\cdGreen"
+    "Red",    "\cgRed"
+    "Orange", "\ciOrange"
+    "Purple", "\ctPurple"
+}
+
+OptionString "Option_R667AAA_PowerPad_Color"
+{
+    "White",  "\cjWhite"
+    "Blue",   "\chBlue"
+    "Green",  "\cdGreen"
+    "Red",    "\cgRed"
+    "Orange", "\ciOrange"
+}
+
 OptionMenu "Menu_R667AAA_SFXShoppe_ParticleSpawners"
 {
     StaticText "Realm667 - Particle Spawners", 1
     StaticText ""
 
-    Command "Casing Spawners", "r667aaa CasingSpawner"
-    Command "Forcefield Laserbeams", "r667aaa LaserBeam_[Color]_[Direction]"
-    Command "Fountain of Rejuvenation", "r667aaa RejuvenationFountain_[Doom/Heretic/Hexen/Strife]"
-    Command "Magic Sparkle", "r667aaa [Color]SparkleSpawner"
+    Command "Casing Spawners", "r667aaa_args CasingSpawner 8 32 1 0 0"
+
+    Command "Forcefield Laserbeam:", "r667aaa_laserbeam $r667aaa_laserbeam_color $r667aaa_laserbeam_direction"
+    Option "Color", "r667aaa_laserbeam_color", "Option_R667AAA_Laserbeam_Color"
+    Option "Direction", "r667aaa_laserbeam_direction", "Option_R667AAA_Laserbeam_Direction"
+
+    Command "Fountain of Rejuvenation", "r667aaa RejuvenationFountain_Doom"
+    Command "Magic Sparkle:", "r667aaa_magicsparkle $r667aaa_magicsparkle_color"
+    Option "Color", "r667aaa_magicsparkle_color", "Option_R667AAA_MagicSparkle_Color"
+
     Command "Pond Frogs", "r667aaa Pond_Frog"
-    Command "PowerRing Pads", "r667aaa [Color]CirclePad"
+
+    Command "PowerRing Pad:", "r667aaa_circlepad $r667aaa_circlepad_color"
+    Option "Color", "r667aaa_circlepad_color", "Option_R667AAA_CirclePad_Color"
+
     Command "Scurrying Rats", "r667aaa RatSpawner"
-    Command "Soul Spawner", "r667aaa DamnedSoul, DamnedSoulSpawner"
-    Command "Sparkle Spawners", "r667aaa [Color]PowerPad"
-    Command "Stronghold PowerPad", "r667aaa [Color]PowerPad"
-    Command "Swarm Spawner", "r667aaa Body_Swarm, Bodiless_Swarm"
+    Command "Soul Spawner", "r667aaa_args DamnedSoulSpawner 0 64 128 1"
+
+    Command "Sparkle Spawner:", "r667aaa_sparklespawner $r667aaa_sparklespawner_color"
+    Option "Color", "r667aaa_sparklespawner_color", "Option_R667AAA_SparkleSpawner_Color"
+
+    Command "Stronghold PowerPad:", "r667aaa_powerpad $r667aaa_powerpad_color"
+    Option "Color", "r667aaa_powerpad_color", "Option_R667AAA_PowerPad_Color"
+
+    Command "Body Swarm", "r667aaa Body_Swarm"
+    Command "Bodiless Swarm", "r667aaa Bodiless_Swarm"
     Command "Teleport Smoke Spawner", "r667aaa FX_TeleSmoke"
 }
 

@@ -94,3 +94,11 @@ user noarchive string r667aaa_sparks_color        = "White";
 user noarchive string r667aaa_thunderfx_color     = "White";
 user noarchive string r667aaa_toxiccloud_color    = "Brown";
 user noarchive string r667aaa_toxiccloud_size     = "Small";
+
+// SFX Shoppe - Particle Spawners
+user noarchive string r667aaa_laserbeam_color      = "Green";
+user noarchive string r667aaa_laserbeam_direction  = "Horizontal";
+user noarchive string r667aaa_magicsparkle_color   = "Green";
+user noarchive string r667aaa_circlepad_color      = "Green";
+user noarchive string r667aaa_sparklespawner_color = "White";
+user noarchive string r667aaa_powerpad_color       = "White";

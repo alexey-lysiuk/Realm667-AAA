@@ -212,3 +212,10 @@ alias r667aaa_bubbleboiling "r667aaa_args Boiling%1Spawner 48 1 0 1 0"
 alias r667aaa_sparks "r667aaa_args %1SparkSpawner 0 16 0 0 0"
 alias r667aaa_thunderfx "r667aaa Thunder_Generator%1"
 alias r667aaa_toxiccloud "r667aaa %1Cloud%2"
+
+// SFX Shoppe - Particle Spawners
+alias r667aaa_laserbeam "r667aaa LaserBeam_%1_%2"
+alias r667aaa_magicsparkle "r667aaa_args %1MagicSparkle 1 64 0 0 0"
+alias r667aaa_circlepad "r667aaa_args %1CirclePad 0 1 32 0 0"
+alias r667aaa_sparklespawner "r667aaa_args %1SparkleSpawner 32 1 0 0 0"
+alias r667aaa_powerpad "r667aaa_args %1PowerPad 32 0 0 0 0"

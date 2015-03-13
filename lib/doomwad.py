@@ -172,7 +172,7 @@ class WadFile(object):
         self._assignnamespaces()
 
     def __repr__(self):
-        return "WadFile({0})".format(self.lumps)
+        return "WadFile('{}', {})".format(self.filename, self.lumps)
 
     def _assignnamespaces(self):
         namespace = ''

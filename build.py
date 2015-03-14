@@ -146,7 +146,7 @@ def load_and_cache(gid):
             data = response.read()
 
             # Detect format of archive file
-            if data.startswith('PK\003\004'):
+            if data.startswith('PK\003\004') or data.startswith('PK00'):
                 archive_format = _ARCHIVE_ZIP
             elif data.startswith('Rar!'):
                 archive_format = _ARCHIVE_RAR

@@ -7,7 +7,7 @@ Almost all actors (weapons, monsters, powerups, props, effects) are included.
 
 #### How to play
 
-Load `realm667-aaa.pk3` in the recent development build of (G)ZDoom:  
+Load `realm667-aaa.pk3` in the recent build of ZDoom ([Windows](http://devbuilds.drdteam.org/zdoom/) / [OS X](http://devbuilds.drdteam.org/zdoom-mac/)) or GZDoom ([Windows](http://devbuilds.drdteam.org/gzdoom/) / [OS X](https://github.com/alexey-lysiuk/gzdoom/releases)):  
 `zdoom -iwad doom2 -file realm667-aaa.pk3`  
 There is no restriction on IWAD, but most of assets are designed to work with Doom II.  
   

@@ -20,6 +20,7 @@
 
 import os
 import re
+import sys
 import urllib2
 
 
@@ -93,7 +94,7 @@ url_index_template = '?start={0}'
 
 # Prepare
 
-path_tmp = os.path.dirname(__file__) + '/../tmp'
+path_tmp = (sys.path[0] if sys.path[0] else '.') + '/../tmp'
 
 try:
     os.mkdir(path_tmp)

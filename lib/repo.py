@@ -599,6 +599,7 @@ _propstop_technical = (
     (421, 'Switchable Tech Lamp'),
     (526, 'Tech Barrels'),
     (476, 'Tech Gizmos'),
+    (783, 'Tech Gizmos (v2)'),
     (529, 'Toilet'),
     (467, 'Trash Cans'),
     (714, 'UAC Holograms'),

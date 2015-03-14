@@ -1276,6 +1276,11 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_4"
     Option "Key Kind", "r667aaa_techgizmo_keykind", "Option_R667AAA_TechGizmo_KeyKind"
     StaticText ""
 
+    Command "Blue Key Tech Gizmo", "r667aaa BlueKeyGizmo"
+    Command "Red Key Tech Gizmo", "r667aaa RedKeyGizmo"
+    Command "Yellow Key Tech Gizmo", "r667aaa YellowKeyGizmo"
+    StaticText ""
+
     Command "Pipe 1", "r667aaa HPipe1"
     Command "Pipe 2", "r667aaa HPipe2"
     Command "Pipe 3", "r667aaa HPipe3"

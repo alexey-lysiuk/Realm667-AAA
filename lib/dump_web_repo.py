@@ -22,6 +22,7 @@ import os
 import re
 import sys
 import urllib2
+from HTMLParser import HTMLParser
 
 
 pattern_summon = re.compile(
@@ -37,6 +38,33 @@ pattern_id_name = re.compile(
 repository = []
 
 
+class TestHTMLParser(HTMLParser):
+    def __init__(self):
+        HTMLParser.__init__(self)
+        self._parsing_download = 0
+        self._link = None
+
+    def handle_starttag(self, tag, attrs):
+        if self._parsing_download:
+            if 'a' == tag:
+                for attr in attrs:
+                    if 'href' == attr[0]:
+                        self._link = attr[1]
+        elif 'span' == tag and ('class', 'download') in attrs:
+            self._parsing_download += 1
+
+    def handle_endtag(self, tag):
+        if self._parsing_download and 'span' == tag:
+            self._parsing_download -= 1
+
+    def handle_data(self, data):
+        if self._link:
+            if data:
+                gid = re.search(r'&gid=(\d+)', self._link).group(1)
+                print("    ({}, '{}'),".format(gid.rjust(3), data.strip()))
+            self._link = None
+
+
 def fetch_repository(url):
     print('Fetching {0}'.format(url))
 
@@ -50,6 +78,9 @@ def fetch_repository(url):
 ##    f = open('test.html', 'r')
 ##    html = f.read()
 ##    f.close()
+
+##    parser = TestHTMLParser()
+##    parser.feed(html)
 
     pos = 0
     count = 0

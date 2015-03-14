@@ -708,7 +708,7 @@ _propstop_gore_corpses = (
     (525, 'Torn Corpse'),
     (424, 'Tortured Baron'),
     (548, 'Upside Down Corpses'),
-    (727, 'WolfensteinGore'),
+    (727, 'Wolfenstein Gore'),
 )
 
 _propstop_hell_magic = (

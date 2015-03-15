@@ -38,7 +38,6 @@ import doomwad
 from case_insensitive import CaseInsensitiveDict
 from patching import (
     actor_stateful_pattern, actor_stateless_pattern, actor_header_regex)
-from repo import excluded_wads
 from iwad_lumps import *
 from iwad_actors import actors_all
 from iwad_sndinfo import logical_sounds_all
@@ -142,12 +141,6 @@ def find_duplicate_sounds(wad):
             sounds_wads[sound] = [wad.filename]
 
 
-cache_path = '../cache/'
-
-# Analyze cache if True and generated .pk3 if False
-analyze_cache = False
-
-
 def read_wad(zip_file, filename):
     wad_file = zip_file.open(filename)
     wad_data = wad_file.read()
@@ -156,49 +149,24 @@ def read_wad(zip_file, filename):
     return doomwad.WadFile(wad_data)
 
 
-# Scan cache or generated .pk3
+# Scan generated .pk3
 
-zip_filenames = analyze_cache and os.listdir(cache_path) or ['../realm667-aaa.pk3']
+pk3_filename = sys.path[0] + '/../realm667-aaa.pk3'
+pk3_file = zipfile.ZipFile(pk3_filename)
 
-for zip_filename in zip_filenames:
-    zip_file = None
+for zipped_filename in pk3_file.namelist():
+    if not zipped_filename.lower().endswith('.wad'):
+        continue
 
-    if analyze_cache:
-        zip_file = zipfile.ZipFile(cache_path + zip_filename)
-        asset_id = int(zip_filename.replace('.zip', ''))
-    else:
-        zip_file = zipfile.ZipFile(zip_filename)
+    wad = read_wad(pk3_file, zipped_filename)
+    wad.filename = zipped_filename
 
-    for zipped_filename in zip_file.namelist():
-        if not zipped_filename.lower().endswith('.wad'):
-            continue
+    find_duplicate_lumps(wad)
+    find_duplicate_sprites(wad)
+    find_duplicate_actors(wad)
+    find_duplicate_sounds(wad)
 
-        # Check WAD for being excluded
-
-        if analyze_cache:
-            excluded = False
-
-            for excluded_wad in excluded_wads:
-                if id == excluded_wad[0] and zipped_filename == excluded_wad[1]:
-                    excluded = True
-                    break
-
-            if excluded:
-                continue
-
-        # Scan WAD
-
-        wad = read_wad(zip_file, zipped_filename)
-        wad.filename = analyze_cache                               \
-            and '[{:04d}] {:s}'.format(asset_id, zipped_filename)  \
-            or  zipped_filename
-
-        find_duplicate_lumps(wad)
-        find_duplicate_sprites(wad)
-        find_duplicate_actors(wad)
-        find_duplicate_sounds(wad)
-
-    zip_file.close()
+pk3_file.close()
 
 # Print names collisions
 
@@ -241,9 +209,10 @@ print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(actors_wads,
     (('!ALL.WAD', [name.lower() for name in actors_all]),))
 
-#print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
-#print_duplicates(sounds_wads,
-#    (('!ALL.WAD', [sound for sound in logical_sounds_all]),))
+if False:
+    print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
+    print_duplicates(sounds_wads,
+       (('!ALL.WAD', [sound for sound in logical_sounds_all]),))
 
 actor_dump_path = '../tmp/actors/'
 
@@ -258,16 +227,13 @@ def dump_actor(actor, filename, content):
 def dump_duplicate_actors():
     # NOTE: implementation ignores internal ZDoom actors at the moment
 
-    if analyze_cache:
-        return
-
     try: shutil.rmtree(actor_dump_path)
     except OSError: pass
 
     try: os.makedirs(actor_dump_path)
     except OSError: pass
 
-    pk3 = zipfile.ZipFile(zip_filenames[0])
+    pk3_file = zipfile.ZipFile(pk3_filename)
     count = 0
 
     for actor in actors_wads:
@@ -277,7 +243,7 @@ def dump_duplicate_actors():
             continue
 
         for wad_name in wad_names:
-            wad = read_wad(pk3, wad_name)
+            wad = read_wad(pk3_file, wad_name)
             decorate = prepare_decorate(wad)
 
             if not decorate:
@@ -292,6 +258,7 @@ def dump_duplicate_actors():
                     break
 
     print('\nActors written: {0}\n'.format(count))
-    pk3.close()
+    pk3_file.close()
 
-#dump_duplicate_actors()
+if False:
+    dump_duplicate_actors()

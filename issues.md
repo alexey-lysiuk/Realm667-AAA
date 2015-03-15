@@ -17,9 +17,10 @@
 ### Lump names collisions
 |Lump|WAD Files|Comments|
 |---|---|---|
-|BURN|!HERETIC.WAD, Lavademon.wad|The same sound|
-|GNTPOW|!HERETIC.WAD, !HEXEN.WAD, LighteningRod.wad|The same sound|
-|SORRISE|!HERETIC.WAD, ApprenticeOfDsparil.wad|The same sound|
+|BURN|HERETIC.WAD, Lavademon.wad|The same sound|
+|GNTPOW|HERETIC.WAD, HEXEN.WAD, LighteningRod.wad|The same sound|
+|SORRISE|HERETIC.WAD, ApprenticeOfDsparil.wad|The same sound|
+|TLMPE0|DOO2.WAD, TNT.WAD, PLUTONIA.WAD, Switchable Tech Lamp.wad|Intentional extension of sprite from Doom II and Final Doom IWADs|
 
 ### Clearing of player classes
 |ID|Name|

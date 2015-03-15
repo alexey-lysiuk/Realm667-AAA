@@ -260,14 +260,14 @@ def build(args):
         if gid < 0:
             # excluded asset
             if args.verbosity > 0:
-                print('Skipping #{:04d}: {:s}...'.format(-gid, name))
+                print('Skipping #{:03d} {:s}...'.format(-gid, name))
             continue
         elif 0 == gid:
             # category name
             print('\nProcessing {}...'.format(name))
             continue
 
-        print('Processing #{:04d}: {:s}...'.format(gid, name))
+        print('Processing #{:03d} {:s}...'.format(gid, name))
 
         cached_file = load_and_cache(gid)
         if not cached_file:

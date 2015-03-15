@@ -32,6 +32,10 @@ for item in repository:
     else:
         comment = ''
 
-    link = '[{0:d}](https://github.com/alexey-lysiuk/Realm667-AAA-Cache/raw/master/{0:04d}.zip)'.format(gid)
+    if 0 == gid:
+        name = '**{}**'.format(name)
+        link = ''
+    else:
+        link = '[{0:d}](https://github.com/alexey-lysiuk/Realm667-AAA-Cache/raw/master/{0:04d}.zip)'.format(gid)
 
     print('|{}|{}|{}|'.format(link, name, comment))

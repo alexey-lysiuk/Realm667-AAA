@@ -271,13 +271,12 @@ def build(args):
         wad_filenames = []
 
         for zipped_filename in cached_file.namelist():
-            if zipped_filename.lower().endswith(('.wad', '.pk3')):
-                wad_filenames.append(zipped_filename)
+            is_asset_file = zipped_filename.lower().endswith(('.wad', '.pk3')) \
+                and (gid not in excluded_wads
+                    or zipped_filename not in excluded_wads[gid])
 
-        for excluded_wad in excluded_wads:
-            if gid == excluded_wad[0]:
-                try: wad_filenames.remove(excluded_wad[1])
-                except: pass
+            if is_asset_file:
+                wad_filenames.append(zipped_filename)
 
         if not wad_filenames:
             print('Error: Neither WAD nor PK3 files found')

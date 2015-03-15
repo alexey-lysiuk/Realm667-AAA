@@ -16,6 +16,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import case_insensitive
+
 # negative ID means that the given asset is excluded
 
 _armory_doom = (
@@ -819,28 +821,29 @@ repository += _sfx_shoppe_weather
 # ==============================================================================
 
 
-excluded_wads = (
-    (143, 'InfernalSpider (Jumping).wad'),
-    (243, 'UnmakerCentered.wad'),
-    (258, 'PolyMorph (old version).wad'),
-    (645, 'FleshPillarTestMap01.wad'),
-    (662, 'Demo.wad'),
-    (663, 'Demo.wad'),
-    (664, 'Demo.wad'),
-    (664, 'SparkleFX_heretic.wad'), # or SparkleFX_doom.wad
-    (667, 'BubbleTestMap.wad'),
-    (703, 'ratTest.wad'),
-    (711, 'BrightBook.pk3'), # TODO: merge brightmaps with asset WAD
-    (716, 'StrobeTest.wad'),
-    (717, 'StrifeLandMine.wad'),
-    (721, 'testmap01.wad'),
-    (799, 'Swarm Test.wad'),
-    (816, 'CryoPal.wad'),
-    (825, 'SkullOrbsDemoMap.wad'),
-    (826, 'SupplyChestKeyDemoMap.wad'),
-    (827, 'AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
-    (867, 'Crosses.wad'),                  # or 'Crosses2.wad'
-    (867, 'Crosses3.wad'),
-    (897, 'FamiliarSummon (Sphere).wad'),  # or 'FamiliarSummon (Scroll).wad'
-    (925, 'demomaps.wad'),
-)
+def _cis(*args):
+    return case_insensitive.CaseInsensitiveSet(args)
+
+excluded_wads = {
+    143: _cis('InfernalSpider (Jumping).wad'),
+    243: _cis('UnmakerCentered.wad'),
+    258: _cis('PolyMorph (old version).wad'),
+    645: _cis('FleshPillarTestMap01.wad'),
+    662: _cis('Demo.wad'),
+    663: _cis('Demo.wad'),
+    664: _cis('Demo.wad', 'SparkleFX_heretic.wad'), # or SparkleFX_doom.wad
+    667: _cis('BubbleTestMap.wad'),
+    703: _cis('ratTest.wad'),
+    711: _cis('BrightBook.pk3'), # TODO: merge brightmaps with asset WAD
+    716: _cis('StrobeTest.wad'),
+    717: _cis('StrifeLandMine.wad'),
+    721: _cis('testmap01.wad'),
+    799: _cis('Swarm Test.wad'),
+    816: _cis('CryoPal.wad'),
+    825: _cis('SkullOrbsDemoMap.wad'),
+    826: _cis('SupplyChestKeyDemoMap.wad'),
+    827: _cis('AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
+    867: _cis('Crosses.wad', 'Crosses3.wad'),  # or 'Crosses2.wad'
+    897: _cis('FamiliarSummon (Sphere).wad'),  # or 'FamiliarSummon (Scroll).wad'
+    925: _cis('demomaps.wad'),
+}

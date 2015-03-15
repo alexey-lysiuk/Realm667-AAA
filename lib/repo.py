@@ -18,9 +18,11 @@
 
 import case_insensitive
 
+# zero ID designates a category name
 # negative ID means that the given asset is excluded
 
 _armory_doom = (
+    (  0, 'Armory: Doom Style'),
     (342, '40mm Grenade Launcher'),
     (585, 'AA12 Shotgun'),
     (260, 'Action MachineGun'),
@@ -121,6 +123,7 @@ _armory_doom = (
 )
 
 _armory_heretic_hexen = (
+    (  0, 'Armory: Heretic / Hexen Style'),
     (327, 'Apotheosis'),
     (817, 'Arbalest of the Ancients'),
     (323, 'Blood Scepter'),
@@ -146,6 +149,7 @@ _armory_heretic_hexen = (
 )
 
 _armory_other = (
+    (  0, 'Armory: Other Sources / Styles'),
     (697, 'Bearkiller'),
     (253, 'Blaster Rifle'),
     (241, 'Devastator'),
@@ -181,6 +185,7 @@ _armory_other = (
 
 
 _beastiary_doom = (
+    (  0, 'Beastiary: Doom Style'),
     (  7, 'Afrit'),
     (  8, 'Agathodemon'),
     (316, 'Agaures'),
@@ -381,6 +386,7 @@ _beastiary_doom = (
 )
 
 _beastiary_heretic_hexen = (
+    (  0, 'Beastiary: Heretic / Hexen Style'),
     (  6, 'Acolyte'),
     ( 10, 'Apprentice of D\'Sparil'),
     ( 13, 'Avatar'),
@@ -438,6 +444,7 @@ _beastiary_heretic_hexen = (
 )
 
 _beastiary_strife = (
+    (  0, 'Beastiary: Strife Style'),
     (657, 'Black Ops'),
     (604, 'Dark Inquisitor'),
     (863, 'Elite Guard'),
@@ -453,6 +460,7 @@ _beastiary_strife = (
 
 
 _itemstore_powerup_artifacts = (
+    (  0, 'Item Store: PowerUps & Artifacts'),
     (391, 'AmmoSphere'),
     (827, 'Ankh of Life'),
     (392, 'Armor Sphere'),
@@ -506,6 +514,7 @@ _itemstore_powerup_artifacts = (
 )
 
 _itemstore_keys_puzzle = (
+    (  0, 'Item Store: Keys & Puzzle'),
     (867, 'Cross Keys'),
     (710, 'Doom 3 Keycards'),
     (825, 'Skull Orbs'),
@@ -514,6 +523,7 @@ _itemstore_keys_puzzle = (
 )
 
 _itemstore_other = (
+    (  0, 'Item Store: Others'),
     (490, 'Adrenaline Kit'),
     (375, 'Ammo Belt'),
     (437, 'Armor Set'),
@@ -579,6 +589,7 @@ _itemstore_other = (
 
 
 _propstop_technical = (
+    (  0, 'Prop Stop: Technical'),
     (450, 'Beach Umbrella'),
     (449, 'Box'),
     (347, 'Broken Lamp'),
@@ -611,6 +622,7 @@ _propstop_technical = (
 )
 
 _propstop_vegetation = (
+    (  0, 'Prop Stop: Vegetation'),
     (917, 'Bushes'),
     (676, 'Cacti'),
     (644, 'Cactus'),
@@ -635,6 +647,7 @@ _propstop_vegetation = (
 )
 
 _propstop_light_sources = (
+    (  0, 'Prop Stop: Light Sources'),
     (819, 'Black Torch'),
     (784, 'Bronze Lamps'),
     (801, 'Candle Color Variations'),
@@ -662,6 +675,7 @@ _propstop_light_sources = (
 )
 
 _propstop_gore_corpses = (
+    (  0, 'Prop Stop: Gore & Corpses'),
     (353, 'Bloody Chain (PSX Doom)'),
     (365, 'Bloody Heads'),
     (619, 'Bone Pile'),
@@ -717,6 +731,7 @@ _propstop_gore_corpses = (
 )
 
 _propstop_hell_magic = (
+    (  0, 'Prop Stop: Hell & Magic'),
     (728, 'Banners'),
     (345, 'Bible'),
     (346, 'Bloody Chalice'),
@@ -752,6 +767,7 @@ _propstop_hell_magic = (
 
 
 _sfx_shoppe_elementalfx = (
+    (  0, 'SFX Shoppe: Elemental Effects'),
     (335, 'Bubble Boiling'),
     (306, 'Clouds'),
     (-847, 'Doom Terrain Splashes'), # no standalone actors
@@ -768,6 +784,7 @@ _sfx_shoppe_elementalfx = (
 )
 
 _sfx_shoppe_particles = (
+    (  0, 'SFX Shoppe: Particle Spawners'),
     (668, 'Casing Spawners'),
     (662, 'Forcefield Laserbeams'),
     (925, 'Fountain of Rejuvenation'),
@@ -783,6 +800,7 @@ _sfx_shoppe_particles = (
 )
 
 _sfx_shoppe_weather = (
+    (  0, 'SFX Shoppe: Weather Generators'),
     (666, 'Ash Spawner'),
     (707, 'Cinder'),
     (275, 'Rain Simple'),

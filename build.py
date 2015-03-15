@@ -258,8 +258,13 @@ def build(args):
         name = item[1]
 
         if gid < 0:
+            # excluded asset
             if args.verbosity > 0:
                 print('Skipping #{:04d}: {:s}...'.format(-gid, name))
+            continue
+        elif 0 == gid:
+            # category name
+            print('\nProcessing {}...'.format(name))
             continue
 
         print('Processing #{:04d}: {:s}...'.format(gid, name))
@@ -298,6 +303,8 @@ def build(args):
     store_lump('cvarinfo.txt', packager)
     store_lump('keyconf.txt',  packager)
     store_lump('menudef.txt',  packager)
+
+    print('')
 
     packager.close()
     profiler.close()

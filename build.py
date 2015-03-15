@@ -257,6 +257,11 @@ def build(args):
         gid  = item[0]
         name = item[1]
 
+        if gid < 0:
+            if args.verbosity > 0:
+                print('Skipping #{:04d}: {:s}...'.format(-gid, name))
+            continue
+
         print('Processing #{:04d}: {:s}...'.format(gid, name))
 
         cached_file = load_and_cache(gid)

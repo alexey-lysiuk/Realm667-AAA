@@ -16,6 +16,8 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+# negative ID means that the given asset is excluded
+
 _armory_doom = (
     (342, '40mm Grenade Launcher'),
     (585, 'AA12 Shotgun'),
@@ -101,7 +103,7 @@ _armory_doom = (
     (272, 'Sniper Rifle'),
     (250, 'SPAS-12'),
     (876, 'Spray Cannon'),
-##    (767, 'Strife Pistol'), # TODO
+    (-767, 'Strife Pistol'), # Strife weapon
     (568, 'Stunner Rifle'),
     (402, 'Super Shotgun (KDiZD)'),
     (273, 'Swat Shotgun'),
@@ -236,7 +238,7 @@ _beastiary_doom = (
     ( 43, 'Ethereal Soul'),
     (908, 'Exterminator'),
     ( 44, 'Fallen'),
-##    (688, 'Female Scientist'), # the same as in #802 Former Scientists Pack
+    (-688, 'Female Scientist'), # the same as in #802 Former Scientists Pack
     (488, 'Female Zombie Pack'),
     (410, 'Flamer Zombie'),
     (415, 'Flesh Spawn'),
@@ -371,7 +373,7 @@ _beastiary_doom = (
     (911, 'Zombie Missile Tank'),
     (341, 'Zombie Plasma Tank'),
     (106, 'Zombie Railgunner'),
-##    (730, 'Zombie Scientist'), # the same as in #802 Former Scientists Pack
+    (-730, 'Zombie Scientist'), # the same as in #802 Former Scientists Pack
     (107, 'ZombieTank'),
     (554, 'ZSpecOps'),
 )
@@ -750,7 +752,7 @@ _propstop_hell_magic = (
 _sfx_shoppe_elementalfx = (
     (335, 'Bubble Boiling'),
     (306, 'Clouds'),
-#    (847, 'Doom Terrain Splashes'), # no standalone actors
+    (-847, 'Doom Terrain Splashes'), # no standalone actors
     (278, 'Ember'),
     (280, 'Fire'),
     (791, 'Fog'),

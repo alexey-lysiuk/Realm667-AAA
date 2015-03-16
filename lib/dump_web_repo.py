@@ -25,24 +25,17 @@ import urllib2
 from HTMLParser import HTMLParser
 
 
-pattern_summon = re.compile(
-    r'Summon:\s*(?:</strong>|</b>)\s*(?:&nbsp;\s*)?'
-    r'(\S[\w\s\[\],-.()\'/&;"]+)'
-    r'(?:<strong>|<b>|<br />)', re.UNICODE)
-pattern_id_name = re.compile(
-    r'gid=(\d+)'
-    r'(?:&amp;(?:gt;=&amp;)?Itemid=)?"(?:\s+class="doclink")?(?:\s+target="_self")?>(?:<span class="doclink">)?\s*'
-    r'(\S[\w\s\[\],-.()\'/&;"]+)'
-    r'\s*(?:</span>)?</a>', re.UNICODE)
-
-repository = []
-
-
-class TestHTMLParser(HTMLParser):
+class WebRepoHTMLParser(HTMLParser):
     def __init__(self):
         HTMLParser.__init__(self)
         self._parsing_span = 0
         self._link = None
+        self._summon_found = False
+        self._class_names = None
+        self.items = []
+        # number of entries, it's not always equal to len(self.items)
+        # one entry can contain several items, i.e. more than one archives with WADs
+        self.entries_count = 0
 
     def handle_starttag(self, tag, attrs):
         if self._parsing_span:
@@ -65,19 +58,29 @@ class TestHTMLParser(HTMLParser):
             self._parsing_span -= 1
 
     def handle_data(self, data):
-        if self._link:
-            name = data.strip()
+        data = data.strip()
 
-            if name.lower().endswith('.zip'):
-                name = name[:-4]
+        if self._summon_found:
+            self._summon_found = False
+            self._class_names = data
+            self.entries_count += 1
+        elif 'Summon:' == data:
+            self._summon_found = True
+            self._class_names = None
+        elif self._link:
+            if data.lower().endswith('.zip'):
+                data = data[:-4]
 
-            if name:
+            if data:
                 match = re.search(r'&gid=(\d+)', self._link)
                 if match:
                     gid = match.group(1).rjust(3)
-                    print("    ({}, '{}'),".format(gid, name))
+                    self.items.append((gid, data, self._class_names))
 
             self._link = None
+
+
+repository = []
 
 
 def fetch_repository(url):
@@ -94,42 +97,17 @@ def fetch_repository(url):
 ##    html = f.read()
 ##    f.close()
 
-##    parser = TestHTMLParser()
-##    parser.feed(html)
+    parser = WebRepoHTMLParser()
+    parser.feed(html)
 
-    pos = 0
-    count = 0
+    if parser.entries_count > 0:
+        repository.extend(parser.items)
 
-    while True:
-        match = pattern_summon.search(html, pos)
+        separator = '--- {0} entries / {1} items ---'.format(
+            parser.entries_count, len(parser.items))
+        repository.append((-1, separator, '---'))
 
-        if not match:
-            break
-
-        summon = match.group(1).strip(' \r\n')
-
-        match = pattern_id_name.search(html, match.end())
-
-        if not match:
-            break
-
-        id = match.group(1).rjust(3)
-        name = match.group(2).strip()
-
-        if name.lower().endswith('.zip'):
-            name = name[:-4]
-
-        repository.append((id, name, summon))
-
-        pos = match.end()
-
-        count += 1
-
-    if count:
-        separator = '--- {0} items ---'.format(count)
-        repository.append((-1, separator, separator))
-
-    return count
+    return parser.entries_count
 
 
 # Configuration
@@ -215,7 +193,7 @@ file_menu = open('menudef.txt', 'w')
 file_repo = open('repository.py', 'w')
 
 for item in repository:
-    line_menu = '    Command "{0}", "summon {1}"\n'.format(item[1], item[2])
+    line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])
     file_menu.write(line_menu)
 
     line_repo = "    ({0}, '{1}'),\n".format(item[0], item[1])

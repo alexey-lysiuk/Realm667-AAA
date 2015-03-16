@@ -41,27 +41,42 @@ repository = []
 class TestHTMLParser(HTMLParser):
     def __init__(self):
         HTMLParser.__init__(self)
-        self._parsing_download = 0
+        self._parsing_span = 0
         self._link = None
 
     def handle_starttag(self, tag, attrs):
-        if self._parsing_download:
+        if self._parsing_span:
             if 'a' == tag:
                 for attr in attrs:
                     if 'href' == attr[0]:
                         self._link = attr[1]
-        elif 'span' == tag and ('class', 'download') in attrs:
-            self._parsing_download += 1
+
+        if 'span' == tag:
+            if self._parsing_span:
+                self._parsing_span += 1
+
+            for attr in attrs:
+                if 'class' == attr[0] and 'download' in attr[1]:
+                    self._parsing_span = 1  # no nested download spans
+                    break
 
     def handle_endtag(self, tag):
-        if self._parsing_download and 'span' == tag:
-            self._parsing_download -= 1
+        if self._parsing_span and 'span' == tag:
+            self._parsing_span -= 1
 
     def handle_data(self, data):
         if self._link:
-            if data:
-                gid = re.search(r'&gid=(\d+)', self._link).group(1)
-                print("    ({}, '{}'),".format(gid.rjust(3), data.strip()))
+            name = data.strip()
+
+            if name.lower().endswith('.zip'):
+                name = name[:-4]
+
+            if name:
+                match = re.search(r'&gid=(\d+)', self._link)
+                if match:
+                    gid = match.group(1).rjust(3)
+                    print("    ({}, '{}'),".format(gid, name))
+
             self._link = None
 
 

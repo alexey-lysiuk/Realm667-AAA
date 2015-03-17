@@ -72,6 +72,11 @@ def configure():
     parser.add_argument('-p', '--profiling',
         help='enable Python performance profiling', action='store_true')
 
+    # Operational mode arguments
+    parser.add_argument('--check-repo-update',
+        help='look for new assets in web repository instead of '
+        ' building a package', action='store_true')
+
     # Patching-related arguments
     parser.add_argument('--allow-set-pitch',
         help='allow A_SetPitch() calls in DECORATE',
@@ -310,5 +315,39 @@ def build(args):
     profiler.close()
 
 
+# ==============================================================================
+
+
+def check_repo_update():
+    import web_repo
+    remote_repo = web_repo.fetch_repository()
+
+    def name_by_id(gid):
+        for item in remote_repo:
+            if gid == item[0]:
+                return item[1]
+
+    local_ids = {abs(gid) for gid, _ in repository if 0 != gid}
+    remote_ids = {gid for gid, _, _ in remote_repo if gid > 0}
+
+    new_ids = remote_ids - local_ids
+
+    if new_ids:
+        print('\nNew IDs found in web repostiory:')
+
+        for gid in new_ids:
+            print('#{:03d} {:s}'.format(gid, name_by_id(gid)))
+    else:
+        print('\nWeb repostiory has no new assets.')
+
+
+# ==============================================================================
+
+
 if __name__ == '__main__':
-    build(configure())
+    args = configure()
+
+    if args.check_repo_update:
+        check_repo_update()
+    else:
+        build(args)

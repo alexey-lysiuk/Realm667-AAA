@@ -25,6 +25,9 @@ import urllib2
 from HTMLParser import HTMLParser
 
 
+# ==============================================================================
+
+
 class WebRepoHTMLParser(HTMLParser):
     def __init__(self):
         HTMLParser.__init__(self)
@@ -80,106 +83,81 @@ class WebRepoHTMLParser(HTMLParser):
             self._link = None
 
 
-# Configuration
-
-url_website = 'http://realm667.com'
-url_index_template = '?start={0}'
+# ==============================================================================
 
 
-# Prepare
+_TEMP_PATH = (sys.path[0] if sys.path[0] else '.') + '/../tmp/'
 
-path_tmp = (sys.path[0] if sys.path[0] else '.') + '/../tmp'
 
-try:
-    os.mkdir(path_tmp)
-except OSError:
-    pass
+_DONT_USE_DUMP = 0
+_WRITE_TO_DUMP = 1
+_READ_FROM_DUMP = 2
 
-os.chdir(path_tmp)
+_dump_mode = _DONT_USE_DUMP
 
-# Gather URLs to fetch from
-
-DONT_USE_DUMP = 0
-WRITE_TO_DUMP = 1
-READ_FROM_DUMP = 2
-
-dump_mode = DONT_USE_DUMP
-
-if DONT_USE_DUMP == dump_mode:
-    html_dump = None
-else:
+if _DONT_USE_DUMP != _dump_mode:
     import shelve
 
-    flags = 'r' if READ_FROM_DUMP == dump_mode else 'c'
-    html_dump = shelve.open('html_dump', flags)
 
-def fetch_html(url):
-    if READ_FROM_DUMP != dump_mode:
-        data = urllib2.urlopen(url).read()
+def _fetch_html(url):
+    print('Fetching {0}'.format(url))
 
-    if WRITE_TO_DUMP == dump_mode:
+    if _DONT_USE_DUMP == _dump_mode:
+        html_dump = None
+    else:
+        html_dump = shelve.open(_TEMP_PATH + 'html_dump')
+
+    if _READ_FROM_DUMP == _dump_mode:
+        try:
+            data = html_dump[url]
+            html_dump.close()      # is this really needed?
+            return data
+        except KeyError:
+            pass
+
+    data = urllib2.urlopen(url).read()
+
+    if html_dump is not None:
         html_dump[url] = data
-    elif READ_FROM_DUMP == dump_mode:
-        data = html_dump[url]
+        html_dump.close()
 
     return data
 
-html_main = fetch_html(url_website)
-pattern_repo = r'<a href="([\w./-]+)">Repository</a>'
-match_repo = re.search(pattern_repo, html_main, re.IGNORECASE)
 
-if not match_repo:
-    print('Error: Failed to fetch repository URL')
-    exit(1)
+# ==============================================================================
 
-url_repo = '{0}{1}'.format(url_website, match_repo.group(1))
-html_repo = fetch_html(url_repo)
 
-def make_url(category, subcategory):
-    pattern = r'href="([\w./-]+%s[\w./-]+%s[\w./-]+)"' % (category, subcategory)
-    match = re.search(pattern, html_repo)
+_CONTENT = (
+    ('armory', 'doom-style'),
+    ('armory', 'heretic-hexen-style'),
+    ('armory', 'other-sources-styles'),
 
-    if not match:
-        print('Error: Failed to fetch URL for {0} - {1}'.format(category, subcategory))
-        exit(1)
+    ('beastiary', 'doom-style'),
+    ('beastiary', 'heretic-hexen-style'),
+    ('beastiary', 'strife-style'),
 
-    return url_website + match.group(1)
+    ('item-store', 'powerups-a-artifacts'),
+    ('item-store', 'keys-a-puzzle'),
+    ('item-store', 'others'),
 
-urls = [
-    make_url('armory', 'doom-style'),
-    make_url('armory', 'heretic-hexen-style'),
-    make_url('armory', 'other-sources-styles'),
+    ('prop-stop', 'technical'),
+    ('prop-stop', 'vegetation'),
+    ('prop-stop', 'light-sources'),
+    ('prop-stop', 'gore-a-corpses'),
+    ('prop-stop', 'hell-a-magic'),
 
-    make_url('beastiary', 'doom-style'),
-    make_url('beastiary', 'heretic-hexen-style'),
-    make_url('beastiary', 'strife-style'),
+    ('sfx-shoppe', 'elemental-effects'),
+    ('sfx-shoppe', 'particle-spawners'),
+    ('sfx-shoppe', 'weather-generators'),
+)
 
-    make_url('item-store', 'powerups-a-artifacts'),
-    make_url('item-store', 'keys-a-puzzle'),
-    make_url('item-store', 'others'),
+_URL_WEBSITE = 'http://realm667.com'
+_URL_INDEX_TEMPLATE = '?start={0}'
 
-    make_url('prop-stop', 'technical'),
-    make_url('prop-stop', 'vegetation'),
-    make_url('prop-stop', 'light-sources'),
-    make_url('prop-stop', 'gore-a-corpses'),
-    make_url('prop-stop', 'hell-a-magic'),
 
-    make_url('sfx-shoppe', 'elemental-effects'),
-    make_url('sfx-shoppe', 'particle-spawners'),
-    make_url('sfx-shoppe', 'weather-generators'),
-]
-
-# Fetch asset descriptions from repository
-
-repository = []
-
-def fetch_repository(url):
-    print('Fetching {0}'.format(url))
-
-    html = fetch_html(url)
-
+def _process_html(data, repository):
     parser = WebRepoHTMLParser()
-    parser.feed(html)
+    parser.feed(data)
 
     if parser.entries_count > 0:
         repository.extend(parser.items)
@@ -190,31 +168,57 @@ def fetch_repository(url):
 
     return parser.entries_count
 
-for url in urls:
-    index = 0
 
-    while True:
-        fetched_count = fetch_repository((url + url_index_template).format(index))
+def fetch_repository():
+    html_main = _fetch_html(_URL_WEBSITE)
+    pattern_repo = r'<a href="([\w./-]+)">Repository</a>'
+    match_repo = re.search(pattern_repo, html_main, re.IGNORECASE)
 
-        if 0 == fetched_count:
-            break
+    if not match_repo:
+        return []
 
-        index += fetched_count
+    url_repo = '{0}{1}'.format(_URL_WEBSITE, match_repo.group(1))
+    html_repo = _fetch_html(url_repo)
 
-# Save gathered asset descriptions
+    repository = []
 
-file_menu = open('menudef.txt', 'w')
-file_repo = open('repository.py', 'w')
+    for category in _CONTENT:
+        pattern = r'href="([\w./-]+%s[\w./-]+%s[\w./-]+)"' % category
+        match = re.search(pattern, html_repo)
 
-for item in repository:
-    line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])
-    file_menu.write(line_menu)
+        if not match:
+            continue
 
-    line_repo = "    ({0}, '{1}'),\n".format(item[0], item[1])
-    file_repo.write(line_repo)
+        url_template = _URL_WEBSITE + match.group(1) + _URL_INDEX_TEMPLATE
+        index = 0
 
-file_repo.close()
-file_menu.close()
+        while True:
+            data = _fetch_html(url_template.format(index))
+            fetched_count = _process_html(data, repository)
 
-if html_dump:
-    html_dump.close()
+            if 0 == fetched_count:
+                break
+
+            index += fetched_count
+
+    return repository
+
+
+# ==============================================================================
+
+
+if __name__ == '__main__':
+    repository = fetch_repository()
+
+    file_menu = open(_TEMP_PATH + 'menudef.txt', 'w')
+    file_repo = open(_TEMP_PATH + 'repository.py', 'w')
+
+    for item in repository:
+        line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])
+        file_menu.write(line_menu)
+
+        line_repo = "    ({0}, '{1}'),\n".format(item[0], item[1])
+        file_repo.write(line_repo)
+
+    file_repo.close()
+    file_menu.close()

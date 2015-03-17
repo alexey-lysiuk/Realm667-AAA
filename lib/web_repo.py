@@ -23,6 +23,8 @@ import sys
 import urllib2
 from HTMLParser import HTMLParser
 
+import utils
+
 
 # ==============================================================================
 
@@ -85,9 +87,6 @@ class WebRepoHTMLParser(HTMLParser):
 # ==============================================================================
 
 
-_TEMP_PATH = (sys.path[0] if sys.path[0] else '.') + '/../tmp/'
-
-
 _DONT_USE_DUMP = 0
 _WRITE_TO_DUMP = 1
 _READ_FROM_DUMP = 2
@@ -104,7 +103,7 @@ def _fetch_html(url):
     if _DONT_USE_DUMP == _dump_mode:
         html_dump = None
     else:
-        html_dump = shelve.open(_TEMP_PATH + 'html_dump')
+        html_dump = shelve.open(utils.temp_path() + 'html_dump')
 
     if _READ_FROM_DUMP == _dump_mode:
         try:
@@ -209,8 +208,8 @@ def fetch_repository():
 if __name__ == '__main__':
     repository = fetch_repository()
 
-    file_menu = open(_TEMP_PATH + 'menudef.txt', 'w')
-    file_repo = open(_TEMP_PATH + 'repository.py', 'w')
+    file_menu = open(utils.temp_path() + 'menudef.txt', 'w')
+    file_repo = open(utils.temp_path() + 'repository.py', 'w')
 
     for item in repository:
         line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])

@@ -80,9 +80,6 @@ class WebRepoHTMLParser(HTMLParser):
             self._link = None
 
 
-repository = []
-
-
 # Configuration
 
 url_website = 'http://realm667.com'
@@ -102,7 +99,32 @@ os.chdir(path_tmp)
 
 # Gather URLs to fetch from
 
-html_main = urllib2.urlopen(url_website).read()
+DONT_USE_DUMP = 0
+WRITE_TO_DUMP = 1
+READ_FROM_DUMP = 2
+
+dump_mode = DONT_USE_DUMP
+
+if DONT_USE_DUMP == dump_mode:
+    html_dump = None
+else:
+    import shelve
+
+    flags = 'r' if READ_FROM_DUMP == dump_mode else 'c'
+    html_dump = shelve.open('html_dump', flags)
+
+def fetch_html(url):
+    if READ_FROM_DUMP != dump_mode:
+        data = urllib2.urlopen(url).read()
+
+    if WRITE_TO_DUMP == dump_mode:
+        html_dump[url] = data
+    elif READ_FROM_DUMP == dump_mode:
+        data = html_dump[url]
+
+    return data
+
+html_main = fetch_html(url_website)
 pattern_repo = r'<a href="([\w./-]+)">Repository</a>'
 match_repo = re.search(pattern_repo, html_main, re.IGNORECASE)
 
@@ -111,7 +133,7 @@ if not match_repo:
     exit(1)
 
 url_repo = '{0}{1}'.format(url_website, match_repo.group(1))
-html_repo = urllib2.urlopen(url_repo).read()
+html_repo = fetch_html(url_repo)
 
 def make_url(category, subcategory):
     pattern = r'href="([\w./-]+%s[\w./-]+%s[\w./-]+)"' % (category, subcategory)
@@ -149,30 +171,12 @@ urls = [
 
 # Fetch asset descriptions from repository
 
-DONT_USE_DUMP = 0
-WRITE_TO_DUMP = 1
-READ_FROM_DUMP = 2
-
-dump_mode = DONT_USE_DUMP
-
-if DONT_USE_DUMP != dump_mode:
-    import shelve
-
-    flags = 'r' if READ_FROM_DUMP == dump_mode else 'c'
-    html_dump = shelve.open('html_dump', flags)
-
+repository = []
 
 def fetch_repository(url):
     print('Fetching {0}'.format(url))
 
-    if READ_FROM_DUMP != dump_mode:
-        response = urllib2.urlopen(url)
-        html = response.read()
-
-    if WRITE_TO_DUMP == dump_mode:
-        html_dump[url] = html
-    elif READ_FROM_DUMP == dump_mode:
-        html = html_dump[url]
+    html = fetch_html(url)
 
     parser = WebRepoHTMLParser()
     parser.feed(html)

@@ -83,33 +83,6 @@ class WebRepoHTMLParser(HTMLParser):
 repository = []
 
 
-def fetch_repository(url):
-    print('Fetching {0}'.format(url))
-
-    response = urllib2.urlopen(url)
-    html = response.read()
-
-##    f = open('test.html', 'w')
-##    f.write(html)
-##    f.close
-
-##    f = open('test.html', 'r')
-##    html = f.read()
-##    f.close()
-
-    parser = WebRepoHTMLParser()
-    parser.feed(html)
-
-    if parser.entries_count > 0:
-        repository.extend(parser.items)
-
-        separator = '--- {0} entries / {1} items ---'.format(
-            parser.entries_count, len(parser.items))
-        repository.append((-1, separator, '---'))
-
-    return parser.entries_count
-
-
 # Configuration
 
 url_website = 'http://realm667.com'
@@ -176,6 +149,43 @@ urls = [
 
 # Fetch asset descriptions from repository
 
+DONT_USE_DUMP = 0
+WRITE_TO_DUMP = 1
+READ_FROM_DUMP = 2
+
+dump_mode = DONT_USE_DUMP
+
+if DONT_USE_DUMP != dump_mode:
+    import shelve
+
+    flags = 'r' if READ_FROM_DUMP == dump_mode else 'c'
+    html_dump = shelve.open('html_dump', flags)
+
+
+def fetch_repository(url):
+    print('Fetching {0}'.format(url))
+
+    if READ_FROM_DUMP != dump_mode:
+        response = urllib2.urlopen(url)
+        html = response.read()
+
+    if WRITE_TO_DUMP == dump_mode:
+        html_dump[url] = html
+    elif READ_FROM_DUMP == dump_mode:
+        html = html_dump[url]
+
+    parser = WebRepoHTMLParser()
+    parser.feed(html)
+
+    if parser.entries_count > 0:
+        repository.extend(parser.items)
+
+        separator = '--- {0} entries / {1} items ---'.format(
+            parser.entries_count, len(parser.items))
+        repository.append((-1, separator, '---'))
+
+    return parser.entries_count
+
 for url in urls:
     index = 0
 
@@ -201,3 +211,6 @@ for item in repository:
 
 file_repo.close()
 file_menu.close()
+
+if html_dump:
+    html_dump.close()

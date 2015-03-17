@@ -168,6 +168,10 @@ def _process_html(data, repository):
 
 
 def fetch_repository():
+    """
+        Fetch web repository content and return it as a list of 3-tuples:
+        [int] asset id, [str] asset name, [str] actor class name(s)
+    """
     html_main = _fetch_html(_URL_WEBSITE)
     pattern_repo = r'<a href="([\w./-]+)">Repository</a>'
     match_repo = re.search(pattern_repo, html_main, re.IGNORECASE)

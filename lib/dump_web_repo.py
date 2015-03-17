@@ -77,7 +77,7 @@ class WebRepoHTMLParser(HTMLParser):
             if data:
                 match = re.search(r'&gid=(\d+)', self._link)
                 if match:
-                    gid = match.group(1).rjust(3)
+                    gid = int(match.group(1).rjust(3))
                     self.items.append((gid, data, self._class_names))
 
             self._link = None
@@ -217,7 +217,7 @@ if __name__ == '__main__':
         line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])
         file_menu.write(line_menu)
 
-        line_repo = "    ({0}, '{1}'),\n".format(item[0], item[1])
+        line_repo = "    ({:3d}, '{}'),\n".format(item[0], item[1])
         file_repo.write(line_repo)
 
     file_repo.close()

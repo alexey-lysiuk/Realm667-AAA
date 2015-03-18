@@ -43,6 +43,9 @@ from repo import repository, excluded_wads
 # ==============================================================================
 
 
+_CACHE_DIRNAME = 'cache/'
+
+
 def configure():
     # hard-coded seed helps to have predictable generated names
     random.seed(31337)
@@ -53,7 +56,7 @@ def configure():
     os.chdir(_self_path)
 
     try:
-        os.mkdir('cache')
+        os.mkdir(_CACHE_DIRNAME)
     except OSError:
         pass
 
@@ -76,6 +79,9 @@ def configure():
     parser.add_argument('--check-repo-update',
         help='look for new assets in web repository instead of '
         ' building a package', action='store_true')
+    parser.add_argument('--clean-asset-cache',
+        help='delete cached assets instead of building a package',
+        action='store_true')
 
     # Patching-related arguments
     parser.add_argument('--allow-set-pitch',
@@ -114,7 +120,7 @@ _ARCHIVE_ZIP = 'zip'
 _ARCHIVE_RAR = 'rar'
 
 def cached_filename(gid, archive_format):
-    return 'cache/{:04d}.{:s}'.format(gid, archive_format)
+    return '{:s}{:04d}.{:s}'.format(_CACHE_DIRNAME, gid, archive_format)
 
 def load_cached(gid, archive_format, fatal = True):
     filename = cached_filename(gid, archive_format)
@@ -344,10 +350,28 @@ def check_repo_update():
 # ==============================================================================
 
 
+def clean_cache():
+    # do not remove whole directory as it may contain other files, e.g.
+    # when cache was created by cloning git repository with assets
+
+    cache_extensions = ('.' + _ARCHIVE_ZIP, '.' + _ARCHIVE_RAR)
+
+    for filename in os.listdir(_CACHE_DIRNAME):
+        if filename.lower().endswith(cache_extensions):
+            os.remove(_CACHE_DIRNAME + filename)
+
+    print('\nAssets cache cleared.')
+
+
+# ==============================================================================
+
+
 if __name__ == '__main__':
     args = configure()
 
     if args.check_repo_update:
         check_repo_update()
+    elif args.clean_asset_cache:
+        clean_cache()
     else:
         build(args)

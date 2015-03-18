@@ -270,6 +270,8 @@ def build(args):
 
         if gid < 0:
             # excluded asset
+            load_and_cache(-gid)
+
             if args.verbosity > 0:
                 print('Skipping #{:03d} {:s}...'.format(-gid, name))
             continue

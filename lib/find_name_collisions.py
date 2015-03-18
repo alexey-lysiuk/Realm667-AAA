@@ -200,6 +200,7 @@ print_duplicates(lumps_wads, (
     ('!PLUTONIA.WAD', lumps_plutonia),
     ('!HERETIC.WAD',  lumps_heretic ),
     ('!HEXEN.WAD',    lumps_hexen   ),
+    ('!STRIFE1.WAD',  lumps_strife  ),
 ))
 
 print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')

@@ -7,7 +7,7 @@ Almost all actors (weapons, monsters, powerups, props, effects) are included.
 
 #### How to play
 
-Load `realm667-aaa.pk3` in the recent build of ZDoom ([Windows](http://devbuilds.drdteam.org/zdoom/) / [OS X](http://devbuilds.drdteam.org/zdoom-mac/)) or GZDoom ([Windows](http://devbuilds.drdteam.org/gzdoom/) / [OS X](https://github.com/alexey-lysiuk/gzdoom/releases)):  
+Load `realm667-aaa.pk3` (or `realm667-aaa.pk7`, if available) in the recent build of ZDoom ([Windows](http://devbuilds.drdteam.org/zdoom/) / [OS X](http://devbuilds.drdteam.org/zdoom-mac/)) or GZDoom ([Windows](http://devbuilds.drdteam.org/gzdoom/) / [OS X](https://github.com/alexey-lysiuk/gzdoom/releases)):  
 `zdoom -iwad doom2 -file realm667-aaa.pk3`  
 There is no restriction on IWAD, but most of assets are designed to work with Doom II.  
   
@@ -23,7 +23,7 @@ The key bindings can be changed in **Customize Controls** menu. Look for **Realm
 
 #### How to build
 
-You need Python 2.7 to run `build.py` script. It will create `realm667-aaa.pk3` in the repository's root directory.  
+You need Python 2.7 to run `build.py` script. It will create `realm667-aaa.pk3` (or `realm667-aaa.pk7`, depending on command line options) in the repository's root directory.  
 The script will download and cache all resources during the first run. Generation process will be much faster next time.  
   
 Also, you can clone [an accompanied repository](https://github.com/alexey-lysiuk/Realm667-AAA-Cache) into `cache` directory to avoid downloading. In this case, the whole process will look like:

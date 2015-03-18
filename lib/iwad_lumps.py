@@ -8847,6 +8847,10 @@ lumps_strife = (
 'STAL15',
 )
 
+# For ZDoom-specific renames check
+#  * Conflicting sprite names at http://zdoom.org/wiki/Sprites
+#  * FWadCollection::RenameSprites() at https://github.com/rheit/zdoom/blob/master/src/w_wad.cpp
+
 sprites_strife = (
 'AFED',
 'AGRD',
@@ -8856,15 +8860,15 @@ sprites_strife = (
 'ANVL',
 'APOW',
 'AQID',
-'ARM1',
-'ARM2',
+'ARM3', # ZDoom, originally 'ARM1'
+'ARM4', # ZDoom, originally 'ARM2'
 'ARMR',
 'AROW',
 'ARWP',
 'ASPR',
 'BALL',
-'BAR1',
-'BARL',
+'BARC', # ZDoom, originally 'BAR1'
+'BBAR', # ZDoom, originally 'BARL'
 'BART',
 'BARW',
 'BASE',
@@ -8875,9 +8879,9 @@ sprites_strife = (
 'BFLM',
 'BKPK',
 'BLIT',
-'BLOD',
+'BLUD', # ZDoom, originally 'BLOD'
 'BLSF',
-'BLST',
+'MAUL', # ZDoom, originally 'BLST'
 'BLTK',
 'BNG2',
 'BNG3',
@@ -8901,7 +8905,7 @@ sprites_strife = (
 'CHAP',
 'CHST',
 'CLBR',
-'CNDL',
+'KNDL', # ZDoom, originally 'CNDL'
 'COIN',
 'COMM',
 'COUP',
@@ -8965,7 +8969,7 @@ sprites_strife = (
 'LITG',
 'LITS',
 'LMPC',
-'LOGG',
+'LOGW', # ZDoom, originally 'LOGG'
 'LOGS',
 'LTRH',
 'MASK',
@@ -8974,7 +8978,7 @@ sprites_strife = (
 'MEAT',
 'MICR',
 'MINE',
-'MISL',
+'SMIS', # ZDoom, originally 'MISL'
 'MISS',
 'MLDR',
 'MMIS',
@@ -9004,11 +9008,11 @@ sprites_strife = (
 'PEAS',
 'PGRD',
 'PLAY',
-'PMAP',
+'SMAP', # ZDoom, originally 'PMAP'
 'PMUP',
 'PNCH',
 'PODD',
-'POT1',
+'MPOT', # ZDoom, originally 'POT1'
 'POW1',
 'POW2',
 'POW3',
@@ -9058,14 +9062,14 @@ sprites_strife = (
 'SEWR',
 'SHD1',
 'SHRB',
-'SHRD',
+'SHAR', # ZDoom, originally 'SHRD'
 'SHT1',
-'SHT2',
+'MPUF', # ZDoom, originally 'SHT2'
 'SIGF',
 'SIGH',
 'SIGL',
 'SPDL',
-'SPID',
+'STLK', # ZDoom, originally 'SPID'
 'SPLH',
 'SPRY',
 'STAK',
@@ -9081,7 +9085,7 @@ sprites_strife = (
 'TEND',
 'TFOG',
 'THIT',
-'TLMP',
+'TECH', # ZDoom, originally 'TLMP'
 'TNK1',
 'TNK2',
 'TNK3',
@@ -9093,8 +9097,8 @@ sprites_strife = (
 'TORP',
 'TPAS',
 'TRAY',
-'TRCH',
-'TRE1',
+'TRHL', # ZDoom, originally 'TRCH'
+'TRET', # ZDoom, originally 'TRE1'
 'TREE',
 'TRGT',
 'TRHO',
@@ -9105,7 +9109,7 @@ sprites_strife = (
 'TWAV',
 'UBAM',
 'UNIF',
-'VASE',
+'VAZE', # ZDoom, originally 'VASE'
 'WARE',
 'WATR',
 'WAVE',

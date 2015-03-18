@@ -68,11 +68,6 @@ class _SevenZipPackager(object):
         self._args += args
         self._args.append('*')
 
-        try:
-            os.mkdir('tmp')
-        except OSError:
-            pass
-
         self._work_dir = tempfile.mkdtemp(prefix = '', dir = 'tmp')
 
         try:

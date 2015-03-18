@@ -334,7 +334,7 @@ def check_repo_update():
                 return item[1]
 
     local_ids = {abs(gid) for gid, _ in repository if 0 != gid}
-    remote_ids = {gid for gid, _, _ in remote_repo if gid > 0}
+    remote_ids = {gid for gid, _, _ in remote_repo}
 
     new_ids = remote_ids - local_ids
 

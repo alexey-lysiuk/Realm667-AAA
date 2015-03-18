@@ -153,21 +153,21 @@ _URL_WEBSITE = 'http://realm667.com'
 _URL_INDEX_TEMPLATE = '?start={0}'
 
 
-def _process_html(data, repository):
+def _process_html(data, repository, page_separators):
     parser = WebRepoHTMLParser()
     parser.feed(data)
 
-    if parser.entries_count > 0:
-        repository.extend(parser.items)
+    repository.extend(parser.items)
 
+    if page_separators and parser.entries_count > 0:
         separator = '--- {0} entries / {1} items ---'.format(
             parser.entries_count, len(parser.items))
-        repository.append((-1, separator, '---'))
+        repository.append((0, separator, '---'))
 
     return parser.entries_count
 
 
-def fetch_repository():
+def fetch_repository(page_separators=False):
     """
         Fetch web repository content and return it as a list of 3-tuples:
         [int] asset id, [str] asset name, [str] actor class name(s)
@@ -196,7 +196,7 @@ def fetch_repository():
 
         while True:
             data = _fetch_html(url_template.format(index))
-            fetched_count = _process_html(data, repository)
+            fetched_count = _process_html(data, repository, page_separators)
 
             if 0 == fetched_count:
                 break
@@ -210,7 +210,7 @@ def fetch_repository():
 
 
 if __name__ == '__main__':
-    repository = fetch_repository()
+    repository = fetch_repository(page_separators=True)
 
     file_menu = open(utils.temp_path() + 'menudef.txt', 'w')
     file_repo = open(utils.temp_path() + 'repository.py', 'w')

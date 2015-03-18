@@ -23,6 +23,8 @@ import sys
 import tempfile
 import zipfile
 
+import utils
+
 
 _FILENAME_PATTERN = 'realm667-aaa.'
 
@@ -68,7 +70,7 @@ class _SevenZipPackager(object):
         self._args += args
         self._args.append('*')
 
-        self._work_dir = tempfile.mkdtemp(prefix = '', dir = 'tmp')
+        self._work_dir = tempfile.mkdtemp(prefix='', dir=utils.temp_path())
 
         try:
             os.remove(output_filename)

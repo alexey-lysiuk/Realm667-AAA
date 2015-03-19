@@ -26,11 +26,6 @@ import traceback
 import urllib2
 import zipfile
 
-_self_path = os.path.dirname(__file__)
-if not _self_path:
-    _self_path = '.'
-sys.path.append(_self_path + '/lib')
-
 import rarfile
 import doomwad
 import packaging
@@ -50,17 +45,21 @@ def configure():
     # hard-coded seed helps to have predictable generated names
     random.seed(31337)
 
-    # set current directory to directory containing this script
+    # set current directory to project's root directory
     # in order to make build process portable and self-contained,
     # and to do not store anything in current or user's home/temp directories
-    os.chdir(_self_path)
+    work_path = os.path.dirname(__file__)
+    work_path += '/..' if work_path else '..'
+    work_path = os.path.abspath(work_path) + '/'
+    os.chdir(work_path)
 
     try:
         os.mkdir(_CACHE_DIRNAME)
     except OSError:
         pass
 
-    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}'.format(_self_path, sys.platform)
+    exe_ext = '.exe' if 'win32' == sys.platform else ''
+    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}{}'.format(work_path, sys.platform, exe_ext)
 
     parser = argparse.ArgumentParser()
 
@@ -225,7 +224,7 @@ def store_asset(gid, filename, cached_file, packager):
 
 
 def store_lump(filename, packager):
-    filepath = '{0}/data/{1}'.format(_self_path, filename)
+    filepath = 'data/' + filename
 
     if filename.lower().endswith('.txt'):
         # Optimize text lump
@@ -368,7 +367,7 @@ def clean_cache():
 # ==============================================================================
 
 
-if __name__ == '__main__':
+def main():
     args = configure()
 
     if args.check_repo_update:
@@ -377,3 +376,7 @@ if __name__ == '__main__':
         clean_cache()
     else:
         build(args)
+
+
+if __name__ == '__main__':
+    main()

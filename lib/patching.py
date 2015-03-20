@@ -791,6 +791,28 @@ def _apply_patch_817(wad): # Arbalest of the Ancients
 # ==============================================================================
 
 
+# Dump all DECORATES before and after patching to two files
+_decorates_dumping = False
+
+if _decorates_dumping:
+    _original_decos_file = open('tmp/original_decorates.txt', 'wb')
+    _processed_decos_file = open('tmp/processed_decorates.txt', 'wb')
+
+def _dump_decorate(id, wad, tofile):
+    if not tofile:
+        return
+
+    decorate = wad.find('DECORATE')
+    assert decorate
+
+    tofile.write('\n// #{0}: {1}\n\n'.format(id, wad.filename))
+    tofile.write(decorate.data)
+    tofile.flush()
+
+
+# ==============================================================================
+
+
 _broken_keyconfs = (
     226, # Sawed Off
     235, # Uber Minigun
@@ -846,28 +868,9 @@ _re_no_class_replacement = re.compile(r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replac
 _re_no_doomednum = re.compile(r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', re.IGNORECASE)
 
 
-# Dump all DECORATES before and after patching to two files
-_dump_decorates = False
-
-if _dump_decorates:
-    _original_decos_file = open('tmp/original_decorates.txt', 'wb')
-    _processed_decos_file = open('tmp/processed_decorates.txt', 'wb')
-
-def dump_decorate(id, wad, tofile):
-    if not tofile:
-        return
-
-    decorate = wad.find('DECORATE')
-    assert decorate
-
-    tofile.write('\n// #{0}: {1}\n\n'.format(id, wad.filename))
-    tofile.write(decorate.data)
-    tofile.flush()
-
-
 def apply_patch(id, wad):
-    if _dump_decorates:
-        dump_decorate(id, wad, _original_decos_file)
+    if _decorates_dumping:
+        _dump_decorate(id, wad, _original_decos_file)
 
     # fix conflict with texture from IWADs
     credit_lump = wad.find('CREDIT')
@@ -905,5 +908,5 @@ def apply_patch(id, wad):
                 continue
             sprite.data = doompic_to_png(sprite.data, png_sprites_compression)
 
-    if _dump_decorates:
-        dump_decorate(id, wad, _processed_decos_file)
+    if _decorates_dumping:
+        _dump_decorate(id, wad, _processed_decos_file)

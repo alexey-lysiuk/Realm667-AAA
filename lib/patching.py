@@ -66,7 +66,7 @@ def _verbose_print(level, message):
 # ==============================================================================
 
 
-def replace_in_lump(name, wad, old, new, optional = False):
+def _replace_in_lump(name, wad, old, new, optional = False):
     lump = wad.find(name)
 
     if lump:
@@ -79,18 +79,18 @@ def replace_in_lump(name, wad, old, new, optional = False):
     elif not optional:
         print("Error: Cannot find lump {0}".format(name))
 
-def replace_in_decorate(wad, old, new):
-    replace_in_lump('DECORATE', wad, old, new)
+def _replace_in_decorate(wad, old, new):
+    _replace_in_lump('DECORATE', wad, old, new)
 
-def replace_in_gldefs(wad, old, new):
+def _replace_in_gldefs(wad, old, new):
     for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
-        replace_in_lump(alias, wad, old, new, optional = True)
+        _replace_in_lump(alias, wad, old, new, optional = True)
 
-def replace_in_sndinfo(wad, old, new):
-    replace_in_lump('SNDINFO', wad, old, new)
+def _replace_in_sndinfo(wad, old, new):
+    _replace_in_lump('SNDINFO', wad, old, new)
 
 
-def rename_lump(wad, old, new):
+def _rename_lump(wad, old, new):
     lump = wad.find(old)
 
     if lump:
@@ -101,7 +101,7 @@ def rename_lump(wad, old, new):
     else:
         print('Error: Cannot find lump {0}'.format(old))
 
-def add_lump(wad, name, content):
+def _add_lump(wad, name, content):
     lump = wad.find(name)
 
     if lump:
@@ -113,7 +113,7 @@ def add_lump(wad, name, content):
         _verbose_print(VERBOSITY_LOW,
             'Lump {0} was added'.format(name))
 
-def remove_lump(wad, name):
+def _remove_lump(wad, name):
     lump = wad.find(name)
 
     if lump:
@@ -125,11 +125,11 @@ def remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
-def remove_unused_sound(wad, lump_name):
+def _remove_unused_sound(wad, lump_name):
     sndinfo = wad.find('SNDINFO')
     if sndinfo:
         if lump_name not in sndinfo.data:
-            remove_lump(wad, lump_name)
+            _remove_lump(wad, lump_name)
 
 
 def optimize_text(text):
@@ -141,7 +141,7 @@ def optimize_text(text):
 
     return '\n'.join(lines)
 
-def optimize_text_lump(wad, name):
+def _optimize_text_lump(wad, name):
     lump = wad.find(name)
 
     if lump:
@@ -218,11 +218,11 @@ def rename_sprite(wad, old, new):
 
     search_pattern = r'([\s"])%s(\w{0,4}[\s"])' % old
 
-    replace_in_lump('ANIMDEFS', wad,
+    _replace_in_lump('ANIMDEFS', wad,
         search_pattern, replace_pattern, optional = True)
-    replace_in_lump('DECALDEF', wad,
+    _replace_in_lump('DECALDEF', wad,
         search_pattern, replace_pattern, optional = True)
-    replace_in_gldefs(wad,
+    _replace_in_gldefs(wad,
         search_pattern, replace_pattern)
 
     for lump in wad.spritelumps():
@@ -281,8 +281,8 @@ def rename_actor(wad, actor):
     old_pattern = r'(["\s]){0}(["\s:])'.format(actor)
     new_pattern = r'\g<1>{0}\g<2>'.format(new_name)
 
-    replace_in_decorate(wad, old_pattern, new_pattern)
-    replace_in_gldefs(wad, old_pattern, new_pattern)
+    _replace_in_decorate(wad, old_pattern, new_pattern)
+    _replace_in_gldefs(wad, old_pattern, new_pattern)
 
     _verbose_print(VERBOSITY_LOW,
         'Actor class {0} was renamed to {1}'.format(actor, new_name))
@@ -404,9 +404,9 @@ def optimize(wad):
     wad.filter(is_lump_needed)
 
     # optimize common text lumps
-    optimize_text_lump(wad, 'DECORATE')
-    optimize_text_lump(wad, 'GLDEFS')
-    optimize_text_lump(wad, 'SNDINFO')
+    _optimize_text_lump(wad, 'DECORATE')
+    _optimize_text_lump(wad, 'GLDEFS')
+    _optimize_text_lump(wad, 'SNDINFO')
 
 
 # ==============================================================================
@@ -456,8 +456,8 @@ def rename_sound_lump(wad, name, content_hash):
         _sound_lump_renames[name].add(new_name)
         _sound_lumps[new_name] = content_hash
 
-    rename_lump(wad, name, new_name)
-    replace_in_sndinfo(wad,
+    _rename_lump(wad, name, new_name)
+    _replace_in_sndinfo(wad,
         r'(\s){0}(\s|$)'.format(name),
         r'\g<1>{0}\g<2>'.format(new_name))
 
@@ -473,10 +473,10 @@ def rename_logical_sound(wad, logical_name, lump_name):
     new_name = 'r667aaa/' + _generate_unique_lump_name().lower()
     _logical_sounds[new_name] = lump_name
 
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         '"{0}"'.format(logical_name),
         '"{0}"'.format(new_name))
-    replace_in_sndinfo(wad,
+    _replace_in_sndinfo(wad,
         r'(^|\s){0}(\s)'.format(logical_name),
         r'\g<1>{0}\g<2>'.format(new_name))
 
@@ -525,7 +525,7 @@ def _apply_patch_14(wad): # Bat
 
 def _apply_patch_33(wad): # Darkness Rift
     # fix wrong class name
-    replace_in_decorate(wad, '"Fatty"', '"Fatso"')
+    _replace_in_decorate(wad, '"Fatty"', '"Fatso"')
 
 def add_dummy_brighmap(wad, name):
     # fix 'brightmap not found' warning in console
@@ -545,14 +545,14 @@ def _apply_patch_44(wad): # Fallen
     add_dummy_brighmap(wad, 'BMFALNM0')
 
 def _apply_patch_52(wad): # Hell Apprentice
-    remove_unused_sound(wad, 'DSDASH')
+    _remove_unused_sound(wad, 'DSDASH')
 
 def _apply_patch_55(wad): # Hell Smith
-    remove_unused_sound(wad, 'DSDASH')
+    _remove_unused_sound(wad, 'DSDASH')
 
 def fix_actor_borgnail2(wad):
     # fix wrong class name
-    replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')
+    _replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')
 
 def _apply_patch_66(wad): # Nail Borg
     fix_actor_borgnail2(wad)
@@ -562,7 +562,7 @@ def _apply_patch_70(wad): # Nightmare Demon
     for lump in wad:
         if lump.name.startswith('BMSAR2'):
             lump.name = 'BMNMDM' + lump.name[6:]
-    replace_in_gldefs(wad, r'(\s)BMSAR2(\w{2}\s)', r'\1BMNMDM\2')
+    _replace_in_gldefs(wad, r'(\s)BMSAR2(\w{2}\s)', r'\1BMNMDM\2')
 
 def _apply_patch_71(wad): # Plasma Demon
     # resolve sound lumps conflicts with Doom IWADs
@@ -570,37 +570,37 @@ def _apply_patch_71(wad): # Plasma Demon
     if sndinfo:
         sndinfo.data += 'blueball/attack DSFIRSHT\n' \
                         'blueball/shotx  DSFIRXPL\n'
-        replace_in_decorate(wad,
+        _replace_in_decorate(wad,
             r'(Sound\s")imp(/\w+")',
             r'\1blueball\2')
 
 def _apply_patch_151(wad): # Phantom
     # fix wrong class name
-    replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
+    _replace_in_decorate(wad, '"GhostHatch"', '"PhantomHatch"')
 
 def _apply_patch_228(wad): # Zombieman Rifle
     # fix class name collision with #407 Rifle
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(actor\s+)Rifle(\s*:\s*\w+)',
         r'\1ZombiemanRifle\2')
 
 def _apply_patch_241(wad): # Devastator
     # fix incorrect sprite
-    replace_in_decorate(wad, r'(\s)DVST(\s)', r'\1DVGG\2')
+    _replace_in_decorate(wad, r'(\s)DVST(\s)', r'\1DVGG\2')
 
 def _apply_patch_242(wad): # Freeze Rifle
     # fix incorrect sprite
-    replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
+    _replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
 
 def _apply_patch_266(wad): # Napalm Launcher
     # fix infinite loop in engine caused by wrong state
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\s+)GASO(\s+\w\s+)(\d+)(\s+)Loop',
         r'\1GASO\2-1\4stop')
 
 def _apply_patch_271(wad): # Saw Thrower
     # fix incorrect sprite
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
 
@@ -609,31 +609,31 @@ def _apply_patch_284(wad): # Arachnobaron
 
 def _apply_patch_308(wad): # Doom III Super Shotgun
     # fix sound and sprite name collisions with Doom II Super Shotgun
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\w+\s+\w\s+)(\d+\s+)(\w*\s*)A_FireShotgun2',
         '\\g<1>0 \\3A_FireBullets(11.2, 7.1, 20, 5, "BulletPuff")\n'
         '      \\g<1>0 \\3A_PlaySound("doom3ssg/fire", CHAN_WEAPON)\n'
         '      \\g<1>\\2\\3A_GunFlash')
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d+\s+\w*\s*)A_OpenShotgun2',
         r'\1A_PlaySound("doom3ssg/open", CHAN_WEAPON)')
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d+\s+\w*\s*)A_LoadShotgun2',
         r'\1A_PlaySound("doom3ssg/load", CHAN_WEAPON)')
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d+\s+\w*\s*)A_CloseShotgun2',
         r'\1A_PlaySound("doom3ssg/close", CHAN_WEAPON)')
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'Stop(\s+)}(\s+)}',
         'Stop\n   Spawn:\n      SG3W A -1\n      Stop\\1}\\2}')
 
-    rename_lump(wad, 'SGN2A0',   'SG3WA0'  )
-    rename_lump(wad, 'DSDSHTGN', 'SSG3FIRE')
-    rename_lump(wad, 'DSDBLOAD', 'SSG3LOAD')
-    rename_lump(wad, 'DSDBOPN',  'SSG3OPEN')
-    rename_lump(wad, 'DSDBCLS',  'SSG3CLOS')
+    _rename_lump(wad, 'SGN2A0',   'SG3WA0'  )
+    _rename_lump(wad, 'DSDSHTGN', 'SSG3FIRE')
+    _rename_lump(wad, 'DSDBLOAD', 'SSG3LOAD')
+    _rename_lump(wad, 'DSDBOPN',  'SSG3OPEN')
+    _rename_lump(wad, 'DSDBCLS',  'SSG3CLOS')
 
-    add_lump(wad, 'SNDINFO',
+    _add_lump(wad, 'SNDINFO',
         'doom3ssg/fire  SSG3FIRE\n'
         'doom3ssg/load  SSG3LOAD\n'
         'doom3ssg/open  SSG3OPEN\n'
@@ -641,14 +641,14 @@ def _apply_patch_308(wad): # Doom III Super Shotgun
 
 def _apply_patch_314(wad): # Revolver PS
     # fix incorrect sprite
-    replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
+    _replace_in_decorate(wad, r'HGUN(\s+)A(\s+)1', r'HGUN\1C\2-1')
 
 def _apply_patch_316(wad): # Agaures
     add_dummy_brighmap(wad, 'BMAGURG5')
 
 def _apply_patch_318(wad): # Moloch
     # fix usage of missing actor class
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d\s+A_CustomMissile\s*\(\s*"MolochDeathFire")', r'//\1')
 
 def _apply_patch_337(wad): # Nail Borg Commando
@@ -656,15 +656,15 @@ def _apply_patch_337(wad): # Nail Borg Commando
 
 def _apply_patch_372(wad): # Autogun
     # fix error in keyword
-    replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
+    _replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
 
 def _apply_patch_405(wad): # Impaled Rocket Guy
     # fix wrong sprite name
-    rename_lump(wad, 'IMRGA1', 'IMRGA0')
+    _rename_lump(wad, 'IMRGA1', 'IMRGA0')
 
 def _apply_patch_412(wad): # Power Stimpack
     # fix wrong class name
-    replace_in_gldefs(wad, r'(\s)PowerStimpack(\s)', r'\1PowerStim\2')
+    _replace_in_gldefs(wad, r'(\s)PowerStimpack(\s)', r'\1PowerStim\2')
 
 def _apply_patch_421(wad): # Switchable Tech Lamp
     # extend sprite from Doom II and Final Doom IWADs
@@ -673,7 +673,7 @@ def _apply_patch_421(wad): # Switchable Tech Lamp
 
 def _apply_patch_433(wad): # Chiller
     # fix missing class name
-    replace_in_decorate(wad, '"ChillerFog2"', '"ChillerFog"')
+    _replace_in_decorate(wad, '"ChillerFog2"', '"ChillerFog"')
 
 _gizmo_search_pattern = r'(\sBlue|Red|Yellow)(Key|Skull)Gizmo(\s)'
 
@@ -681,7 +681,7 @@ def _apply_patch_474(wad): # Hell Gizmos
     # fix class name collisions with #476 Tech Gizmos
     # do not rely on automatic conflict resolution,
     # as these actors are explicitly referenced from menu
-    replace_in_decorate(wad, _gizmo_search_pattern, r'\1\2HellGizmo\3')
+    _replace_in_decorate(wad, _gizmo_search_pattern, r'\1\2HellGizmo\3')
 
 def _apply_patch_476(wad): # Tech Gizmos
     # fix class name collisions between two versions
@@ -690,28 +690,28 @@ def _apply_patch_476(wad): # Tech Gizmos
     # as these actors are explicitly referenced from menu
     if '1' in wad.filename:
         # fire version
-        replace_in_decorate(wad, _gizmo_search_pattern, r'\1\2FireGizmo\3')
+        _replace_in_decorate(wad, _gizmo_search_pattern, r'\1\2FireGizmo\3')
     elif '2' in wad.filename:
         # sphere version
-        replace_in_decorate(wad, _gizmo_search_pattern, r'\1\2SphereGizmo\3')
+        _replace_in_decorate(wad, _gizmo_search_pattern, r'\1\2SphereGizmo\3')
 
 def _apply_patch_485(wad): # Talisman of the Depths
     # fix class name collision with #482 Rebreather
     # cannot be resolved automatically because of optional Power... prefix
-    replace_in_decorate(wad, r'NoDrown(\s+)', r'NoDrownTalisman\1')
+    _replace_in_decorate(wad, r'NoDrown(\s+)', r'NoDrownTalisman\1')
 
 def _apply_patch_511(wad): # Lightbringer'
     # fix wrong class and light names
-    replace_in_gldefs(wad, r'(\s)SunProjectile1(\s)', r'\1SunProjectile\2')
+    _replace_in_gldefs(wad, r'(\s)SunProjectile1(\s)', r'\1SunProjectile\2')
 
 def _apply_patch_536(wad): # Jackbomb
     # fix missing class reference
     regex = re.compile(r'object\s+Curse\s+\{.*?\s+\}\s+}\s*', re.IGNORECASE | re.DOTALL)
-    replace_in_gldefs(wad, regex, '')
+    _replace_in_gldefs(wad, regex, '')
 
 def fix_always_activate(wad):
     # fix incorrect inventory flag
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         'Inventory.AlwaysActivate',
         'Inventory.AutoActivate')
 
@@ -734,56 +734,56 @@ def _apply_patch_604(wad): # Dark Inquisitor
 
 def _apply_patch_620(wad): # Chesire Cacodemon
     # fix wrong class names
-    replace_in_gldefs(wad, r'(\s)CheshBall(\s)', r'\1ChesBallA\2')
+    _replace_in_gldefs(wad, r'(\s)CheshBall(\s)', r'\1ChesBallA\2')
 
 def _apply_patch_647(wad): # Light Column Variations
     # fix class name collisions with embedded actors
-    replace_in_decorate(wad, r'(\s+)(\w+Column\s+)', r'\1Light\2')
+    _replace_in_decorate(wad, r'(\s+)(\w+Column\s+)', r'\1Light\2')
 
 def _apply_patch_659(wad): # Pulse Rifle UAC
     # fix class name collision with #522 Pulse Rifle
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(actor\s+)PulseRifle(\s*:\s*\w+)',
         r'\1PulseRifleUAC\2')
 
 def _apply_patch_664(wad): # Magic Sparkle
     # fix class name collision with #277 Sparkle Spawners
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'([\s:]\w+)SparkleSpawner(\s|:)',
         r'\1MagicSparkle\2')
 
 def _apply_patch_671(wad): # Food Barrel
     # fix class name collisions with embedded actors
-    replace_in_decorate(wad, 'Meat1', 'MeatBeef')
-    replace_in_decorate(wad, 'Meat2', 'MeatCheese')
-    replace_in_decorate(wad, 'Meat3', 'MeatFish')
+    _replace_in_decorate(wad, 'Meat1', 'MeatBeef')
+    _replace_in_decorate(wad, 'Meat2', 'MeatCheese')
+    _replace_in_decorate(wad, 'Meat3', 'MeatFish')
 
 def _apply_patch_685(wad): # Ammo Satchels
     # fix class name collision with ammo from Strife
-    replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667')
+    _replace_in_decorate(wad, 'AmmoSatchel', 'AmmoSatchelR667')
 
 def _apply_patch_762(wad): # Model 1887
     # fix wrong end marker
-    rename_lump(wad, 'SS_STOP', 'SS_END')
+    _rename_lump(wad, 'SS_STOP', 'SS_END')
 
 def _apply_patch_795(wad): # Missile Pod
     # fix usage of missing actor class
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(\w+\s+\w\s+\d\s+A_SpawnItemEx\s*\(\s*"MissileFlameTrail")', r'//\1')
 
 def _apply_patch_801(wad): # Candle Color Variations
     # fix wrong sprite name
-    rename_lump(wad, 'CNUNA0', 'CNBKA0')
+    _rename_lump(wad, 'CNUNA0', 'CNBKA0')
 
 def _apply_patch_804(wad): # Light Machinegun
     # fix class name collision with #233 Machinegun
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'(actor\s+)Machinegun(\s*:\s*\w+)',
         r'\1LightMachinegun\2')
 
 def _apply_patch_817(wad): # Arbalest of the Ancients
     # fix class name collision with #582 Super Crossbow
-    replace_in_decorate(wad,
+    _replace_in_decorate(wad,
         r'([^\w])SuperCrossbow',
         r'\1Arbalest')
 
@@ -879,7 +879,7 @@ def apply_patch(id, wad):
 
     # Fix weapon slot and player class resetting
     if id in _broken_keyconfs:
-        remove_lump(wad, 'KEYCONF')
+        _remove_lump(wad, 'KEYCONF')
 
     func_name = '_apply_patch_{0}'.format(id)
 
@@ -889,11 +889,11 @@ def apply_patch(id, wad):
         _verbose_print(VERBOSITY_HIGH, 'Asset-specific patch applied')
 
     if not allow_set_pitch and id in _weapons_change_pitch:
-        replace_in_decorate(wad, _re_no_set_pitch, '')
+        _replace_in_decorate(wad, _re_no_set_pitch, '')
     if not allow_class_replacement:
-        replace_in_decorate(wad, _re_no_class_replacement, r'\1')
+        _replace_in_decorate(wad, _re_no_class_replacement, r'\1')
     if not allow_doomednum:
-        replace_in_decorate(wad, _re_no_doomednum, r'\1')
+        _replace_in_decorate(wad, _re_no_doomednum, r'\1')
 
     make_unique_actors(wad)
     make_unique_sprites(wad)

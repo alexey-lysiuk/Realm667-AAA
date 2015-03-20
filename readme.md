@@ -33,4 +33,5 @@ cd Realm667-AAA
 git clone https://github.com/alexey-lysiuk/Realm667-AAA-Cache.git cache
 python build.py
 ```
-Use `--help` command line switch for the list of available options.
+Use `--help` command line switch for the list of available options.  
+Intel-based Windows, Linux and OS X are supported at full extent. Compression via 7-Zip and handling of assets packed with RAR are not available on other platforms.

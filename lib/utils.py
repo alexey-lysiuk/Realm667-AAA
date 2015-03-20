@@ -18,6 +18,7 @@
 
 import os
 
+
 def temp_path():
     self_path = os.path.dirname(__file__)
 
@@ -25,3 +26,22 @@ def temp_path():
         self_path = '.'
 
     return self_path + '/../tmp/'
+
+
+def license_header():
+    filename = os.path.splitext(__file__)[0] + '.py'
+
+    with open(filename) as f:
+        header = []
+
+        while True:
+            line = f.readline()
+
+            if line.startswith('#!') or not line.strip():
+                continue
+            elif line.startswith('#'):
+                header.append(line)
+            else:
+                break
+
+    return header

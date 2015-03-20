@@ -23,6 +23,8 @@ import re
 import sys
 import zipfile
 
+import utils
+
 
 if len(sys.argv) < 2:
     print('Usage: {0} (g)zdoom.pk3'.format(__file__))
@@ -53,29 +55,10 @@ for zipped_filename in pk3.namelist():
 
 pk3.close()
 
-# Create header
-
-self_path = os.path.dirname(__file__)
-self_file = open(__file__)
-
-header = []
-
-while True:
-    line = self_file.readline()
-
-    if line.startswith('#!') or not line.strip():
-        continue
-    elif line.startswith('#'):
-        header.append(line)
-    else:
-        break
-
-self_file.close()
-
 # Generate actors_iwads.py
 
-output_file = open(self_path + '/iwad_actors.py', 'w')
-output_file.writelines(header)
+output_file = open('iwad_actors.py', 'w')
+output_file.writelines(utils.license_header())
 output_file.write('\nACTORS_ALL = (\n')
 output_file.writelines(content)
 output_file.write(')\n')

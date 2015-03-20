@@ -22,6 +22,8 @@ import os
 import re
 import sys
 
+import utils
+
 
 if len(sys.argv) < 2:
     print('Usage: {0} sndinfo.txt ...'.format(__file__))
@@ -73,29 +75,10 @@ for filename in sys.argv[1:]:
             # ill-formed sound assignment, report error?
             pass
 
-# Create header
-
-self_path = os.path.dirname(__file__)
-self_file = open(__file__)
-
-header = []
-
-while True:
-    line = self_file.readline()
-
-    if line.startswith('#!') or not line.strip():
-        continue
-    elif line.startswith('#'):
-        header.append(line)
-    else:
-        break
-
-self_file.close()
-
 # Generate iwad_sndinfo.py
 
-output_file = open(self_path + '/iwad_sndinfo.py', 'w')
-output_file.writelines(header)
+output_file = open('iwad_sndinfo.py', 'w')
+output_file.writelines(utils.license_header())
 output_file.write('\nLOGICAL_SOUNDS_ALL = (\n')
 output_file.writelines(sorted(logical_sounds))
 output_file.write(')\n\nSOUNDS_LUMPS_ALL = (\n')

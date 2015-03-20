@@ -23,9 +23,6 @@ import re
 import sys
 import zipfile
 
-self_path = os.path.dirname(__file__)
-sys.path.append(self_path + '/lib')
-
 import doomwad
 
 
@@ -47,7 +44,7 @@ def print_result(mapping):
         #print('    Command "{0}", "summon {0}"'.format(actor))
 
 
-zip_filename = self_path + '/../realm667-aaa.pk3'
+zip_filename = os.path.dirname(__file__) + '/../realm667-aaa.pk3'
 zip_file = zipfile.ZipFile(zip_filename)
 
 ammo_actors_wads = { }

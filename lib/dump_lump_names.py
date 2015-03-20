@@ -19,9 +19,9 @@
 #
 
 
-import os, re, sys
-
-sys.path.append(os.path.dirname(__file__))
+import os
+import re
+import sys
 
 import doomwad
 
@@ -39,6 +39,7 @@ def skip_namespace(namespace):
     is_sprite = sprite_marker == namespace or sprite_marker == namespace[:1]
 
     return is_doom1_map or is_doom2_map or is_sprite
+
 
 def dump_names(filename):
     wad_file = open(filename, 'rb')

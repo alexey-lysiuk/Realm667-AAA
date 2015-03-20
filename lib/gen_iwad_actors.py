@@ -63,7 +63,9 @@ header = []
 while True:
     line = self_file.readline()
 
-    if line.startswith('#'):
+    if line.startswith('#!') or not line.strip():
+        continue
+    elif line.startswith('#'):
         header.append(line)
     else:
         break
@@ -74,7 +76,7 @@ self_file.close()
 
 output_file = open(self_path + '/iwad_actors.py', 'w')
 output_file.writelines(header)
-output_file.write('\nactors_all = (\n')
+output_file.write('\nACTORS_ALL = (\n')
 output_file.writelines(content)
 output_file.write(')\n')
 output_file.close()

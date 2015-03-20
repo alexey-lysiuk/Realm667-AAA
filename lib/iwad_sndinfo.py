@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-logical_sounds_all = (
+LOGICAL_SOUNDS_ALL = (
 '*pain',
 'BishopActiveSounds',
 'PigActive',
@@ -795,7 +795,7 @@ logical_sounds_all = (
 'zombie/spawner',
 )
 
-sounds_lumps_all = (
+SOUNDS_LUMPS_ALL = (
 'ACID5',
 'AMB1',
 'AMB10',

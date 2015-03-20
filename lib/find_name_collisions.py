@@ -31,16 +31,14 @@ import shutil
 import sys
 import zipfile
 
-self_path = os.path.dirname(__file__)
-os.chdir(self_path)
-
 import doomwad
+
 from case_insensitive import CaseInsensitiveDict
+from iwad_lumps import *
+from iwad_actors import ACTORS_ALL
+from iwad_sndinfo import LOGICAL_SOUNDS_ALL
 from patching import (
     actor_stateful_pattern, actor_stateless_pattern, actor_header_regex)
-from iwad_lumps import *
-from iwad_actors import actors_all
-from iwad_sndinfo import logical_sounds_all
 
 
 excluded_lump_names = [
@@ -194,26 +192,26 @@ def print_duplicates(mapping, iwads):
 
 print('\n|Lump|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(lumps_wads, (
-    ('!DOOM.WAD',     lumps_ultdoom ),
-    ('!DOOM2.WAD',    lumps_doom2   ),
-    ('!TNT.WAD',      lumps_tnt     ),
-    ('!PLUTONIA.WAD', lumps_plutonia),
-    ('!HERETIC.WAD',  lumps_heretic ),
-    ('!HEXEN.WAD',    lumps_hexen   ),
-    ('!STRIFE1.WAD',  lumps_strife  ),
+    ('!DOOM.WAD',     LUMPS_ULTDOOM ),
+    ('!DOOM2.WAD',    LUMPS_DOOM2   ),
+    ('!TNT.WAD',      LUMPS_TNT     ),
+    ('!PLUTONIA.WAD', LUMPS_PLUTONIA),
+    ('!HERETIC.WAD',  LUMPS_HERETIC ),
+    ('!HEXEN.WAD',    LUMPS_HEXEN   ),
+    ('!STRIFE1.WAD',  LUMPS_STRIFE  ),
 ))
 
 print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', sprites_all),))
+print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', SPRITES_ALL),))
 
 print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
 print_duplicates(actors_wads,
-    (('!ALL.WAD', [name.lower() for name in actors_all]),))
+    (('!ALL.WAD', [name.lower() for name in ACTORS_ALL]),))
 
 if False:
     print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
     print_duplicates(sounds_wads,
-       (('!ALL.WAD', [sound for sound in logical_sounds_all]),))
+       (('!ALL.WAD', [sound for sound in LOGICAL_SOUNDS_ALL]),))
 
 actor_dump_path = '../tmp/actors/'
 

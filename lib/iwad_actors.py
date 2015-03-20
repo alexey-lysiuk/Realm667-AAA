@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-actors_all = (
+ACTORS_ALL = (
 # actors/chex/chexammo.txt
 ('MiniZorchRecharge'),
 ('MiniZorchPack'),

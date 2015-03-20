@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-lumps_ultdoom = (
+LUMPS_ULTDOOM = (
 'AMMNUM0',
 'AMMNUM1',
 'AMMNUM2',
@@ -1031,7 +1031,7 @@ lumps_ultdoom = (
 'WALL97_3',
 )
 
-lumps_doom2 = (
+LUMPS_DOOM2 = (
 'AMMNUM0',
 'AMMNUM1',
 'AMMNUM2',
@@ -2207,7 +2207,7 @@ lumps_doom2 = (
 'WOLF9',
 )
 
-lumps_tnt = (
+LUMPS_TNT = (
 'AMMNUM0',
 'AMMNUM1',
 'AMMNUM2',
@@ -3574,7 +3574,7 @@ lumps_tnt = (
 'YELTNT',
 )
 
-lumps_plutonia = (
+LUMPS_PLUTONIA = (
 'AMMNUM0',
 'AMMNUM1',
 'AMMNUM2',
@@ -4826,7 +4826,7 @@ lumps_plutonia = (
 
 # Sprites marked with D2 comment are present in Doom II and Final Doom
 
-sprites_doom_all = (
+SPRITES_DOOM_ALL = (
 'AMMO',
 'APBX',
 'APLS',
@@ -4968,7 +4968,7 @@ sprites_doom_all = (
 )
 
 
-lumps_heretic = (
+LUMPS_HERETIC = (
 'ADVISOR',
 'AMB1',
 'AMB10',
@@ -5578,7 +5578,7 @@ lumps_heretic = (
 #  * Conflicting sprite names at http://zdoom.org/wiki/Sprites
 #  * FWadCollection::RenameSprites() at https://github.com/rheit/zdoom/blob/master/src/w_wad.cpp
 
-sprites_heretic = (
+SPRITES_HERETIC = (
 'ACLO',
 'AKYY',
 'AMB1',
@@ -5720,7 +5720,8 @@ sprites_heretic = (
 'XPL1',
 )
 
-lumps_hexen = (
+
+LUMPS_HEXEN = (
 'ACID5',
 'ADVISOR',
 'ANIMDEFS',
@@ -6920,7 +6921,7 @@ lumps_hexen = (
 #  * Conflicting sprite names at http://zdoom.org/wiki/Sprites
 #  * FWadCollection::RenameSprites() at https://github.com/rheit/zdoom/blob/master/src/w_wad.cpp
 
-sprites_hexen = (
+SPRITES_HEXEN = (
 'ABAT',
 'ABGM',
 'ABK1',
@@ -7261,7 +7262,8 @@ sprites_hexen = (
 'XPL1',
 )
 
-lumps_strife = (
+
+LUMPS_STRIFE = (
 'AMMNUM0',
 'AMMNUM1',
 'AMMNUM2',
@@ -8851,7 +8853,7 @@ lumps_strife = (
 #  * Conflicting sprite names at http://zdoom.org/wiki/Sprites
 #  * FWadCollection::RenameSprites() at https://github.com/rheit/zdoom/blob/master/src/w_wad.cpp
 
-sprites_strife = (
+SPRITES_STRIFE = (
 'AFED',
 'AGRD',
 'AL1P',
@@ -9126,4 +9128,4 @@ sprites_strife = (
 'ZOT3',
 )
 
-sprites_all = sprites_doom_all + sprites_heretic + sprites_hexen + sprites_strife
+SPRITES_ALL = SPRITES_DOOM_ALL + SPRITES_HERETIC + SPRITES_HEXEN + SPRITES_STRIFE

@@ -22,10 +22,11 @@ import re
 import string
 
 import doomwad
-from iwad_lumps import sprites_all
-from iwad_sndinfo import logical_sounds_all, sounds_lumps_all
+
 from case_insensitive import CaseInsensitiveSet
 from doompic import doompic_to_png
+from iwad_lumps import *
+from iwad_sndinfo import *
 
 
 # Allow A_SetPitch() calls in DECORATE,
@@ -155,7 +156,7 @@ def _optimize_text_lump(wad, name):
 # single incorrect frame is added for all sprites,
 # so sprites from IWADs will always be different and
 # any possibility of name collision is avoided
-_sprites = { sprite: { None: None } for sprite in sprites_all }
+_sprites = { sprite: { None: None } for sprite in SPRITES_ALL }
 
 def _generate_unique_sprite_name(sprite, frames):
     name_chars = string.ascii_uppercase + string.digits
@@ -434,7 +435,7 @@ def _generate_unique_lump_name():
 
 
 # map sound lump names to a hash of lump's content
-_sound_lumps = { name: None for name in sounds_lumps_all }
+_sound_lumps = { name: None for name in SOUNDS_LUMPS_ALL }
 
 # map old names to a set of new names
 _sound_lump_renames = { }
@@ -466,7 +467,7 @@ rename_sound_lump.global_mapping = _sound_lumps
 
 
 # map logical sound name to a lump name, based on SNDINFO lump content
-_logical_sounds = { name: None for name in logical_sounds_all }
+_logical_sounds = { name: None for name in LOGICAL_SOUNDS_ALL }
 
 def rename_logical_sound(wad, logical_name, lump_name):
     """ Rename logical sound in SNDINFO lump and change references to it in DECORATE """

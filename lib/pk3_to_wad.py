@@ -20,10 +20,9 @@
 
 
 import cStringIO
-import os, sys
+import os
+import sys
 import zipfile
-
-sys.path.append(os.path.dirname(__file__))
 
 import doomwad
 
@@ -33,6 +32,7 @@ def _add_lump(wad, name, namespace = '', data = ''):
     lump.marker = '' == data
     lump.namespace = namespace
     wad.lumps.append(lump)
+
 
 def pk3_to_wad(pk3_data):
     """

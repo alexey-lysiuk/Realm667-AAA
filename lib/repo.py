@@ -21,7 +21,7 @@ import case_insensitive
 # zero ID designates a category name
 # negative ID means that the given asset is excluded
 
-_armory_doom = (
+_ARMORY_DOOM = (
     (  0, 'Armory: Doom Style'),
     (342, '40mm Grenade Launcher'),
     (585, 'AA12 Shotgun'),
@@ -122,7 +122,7 @@ _armory_doom = (
     (228, 'Zombieman Rifle'),
 )
 
-_armory_heretic_hexen = (
+_ARMORY_HERETIC_HEXEN = (
     (  0, 'Armory: Heretic / Hexen Style'),
     (327, 'Apotheosis'),
     (817, 'Arbalest of the Ancients'),
@@ -148,7 +148,7 @@ _armory_heretic_hexen = (
     (473, 'Wand of Embers'),
 )
 
-_armory_other = (
+_ARMORY_OTHER = (
     (  0, 'Armory: Other Sources / Styles'),
     (697, 'Bearkiller'),
     (253, 'Blaster Rifle'),
@@ -184,7 +184,7 @@ _armory_other = (
 # ==============================================================================
 
 
-_beastiary_doom = (
+_BEASTIARY_DOOM = (
     (  0, 'Beastiary: Doom Style'),
     (  7, 'Afrit'),
     (  8, 'Agathodemon'),
@@ -385,7 +385,7 @@ _beastiary_doom = (
     (554, 'ZSpecOps'),
 )
 
-_beastiary_heretic_hexen = (
+_BEASTIARY_HERETIC_HEXEN = (
     (  0, 'Beastiary: Heretic / Hexen Style'),
     (  6, 'Acolyte'),
     ( 10, 'Apprentice of D\'Sparil'),
@@ -443,7 +443,7 @@ _beastiary_heretic_hexen = (
     (607, 'Zardaz'),
 )
 
-_beastiary_strife = (
+_BEASTIARY_STRIFE = (
     (  0, 'Beastiary: Strife Style'),
     (657, 'Black Ops'),
     (604, 'Dark Inquisitor'),
@@ -459,7 +459,7 @@ _beastiary_strife = (
 # ==============================================================================
 
 
-_itemstore_powerup_artifacts = (
+_ITEMSTORE_POWERUP_ARTIFACTS = (
     (  0, 'Item Store: PowerUps & Artifacts'),
     (391, 'AmmoSphere'),
     (827, 'Ankh of Life'),
@@ -513,7 +513,7 @@ _itemstore_powerup_artifacts = (
     (580, 'Turbo Sphere'),
 )
 
-_itemstore_keys_puzzle = (
+_ITEMSTORE_KEYS_PUZZLE = (
     (  0, 'Item Store: Keys & Puzzle'),
     (867, 'Cross Keys'),
     (710, 'Doom 3 Keycards'),
@@ -522,7 +522,7 @@ _itemstore_keys_puzzle = (
     (558, 'Various Doom Keys'),
 )
 
-_itemstore_other = (
+_ITEMSTORE_OTHER = (
     (  0, 'Item Store: Others'),
     (490, 'Adrenaline Kit'),
     (375, 'Ammo Belt'),
@@ -588,7 +588,7 @@ _itemstore_other = (
 # ==============================================================================
 
 
-_propstop_technical = (
+_PROPSTOP_TECHNICAL = (
     (  0, 'Prop Stop: Technical'),
     (450, 'Beach Umbrella'),
     (449, 'Box'),
@@ -621,7 +621,7 @@ _propstop_technical = (
     (364, 'Zapper')
 )
 
-_propstop_vegetation = (
+_PROPSTOP_VEGETATION = (
     (  0, 'Prop Stop: Vegetation'),
     (917, 'Bushes'),
     (676, 'Cacti'),
@@ -646,7 +646,7 @@ _propstop_vegetation = (
     (562, 'Winter Tree Spawner'),
 )
 
-_propstop_light_sources = (
+_PROPSTOP_LIGHT_SOURCES = (
     (  0, 'Prop Stop: Light Sources'),
     (819, 'Black Torch'),
     (784, 'Bronze Lamps'),
@@ -674,7 +674,7 @@ _propstop_light_sources = (
     (363, 'Yellow Lamp'),
 )
 
-_propstop_gore_corpses = (
+_PROPSTOP_GORE_CORPSES = (
     (  0, 'Prop Stop: Gore & Corpses'),
     (353, 'Bloody Chain (PSX Doom)'),
     (365, 'Bloody Heads'),
@@ -730,7 +730,7 @@ _propstop_gore_corpses = (
     (727, 'Wolfenstein Gore'),
 )
 
-_propstop_hell_magic = (
+_PROPSTOP_HELL_MAGIC = (
     (  0, 'Prop Stop: Hell & Magic'),
     (728, 'Banners'),
     (345, 'Bible'),
@@ -766,7 +766,7 @@ _propstop_hell_magic = (
 # ==============================================================================
 
 
-_sfx_shoppe_elementalfx = (
+_SFX_SHOPPE_ELEMENTALFX = (
     (  0, 'SFX Shoppe: Elemental Effects'),
     (335, 'Bubble Boiling'),
     (306, 'Clouds'),
@@ -783,7 +783,7 @@ _sfx_shoppe_elementalfx = (
     (667, 'Underwater Bubbles'),
 )
 
-_sfx_shoppe_particles = (
+_SFX_SHOPPE_PARTICLES = (
     (  0, 'SFX Shoppe: Particle Spawners'),
     (668, 'Casing Spawners'),
     (662, 'Forcefield Laserbeams'),
@@ -799,7 +799,7 @@ _sfx_shoppe_particles = (
     (870, 'Teleport Smoke Spawner'),
 )
 
-_sfx_shoppe_weather = (
+_SFX_SHOPPE_WEATHER = (
     (  0, 'SFX Shoppe: Weather Generators'),
     (666, 'Ash Spawner'),
     (707, 'Cinder'),
@@ -811,29 +811,29 @@ _sfx_shoppe_weather = (
 
 
 # the following notation allows simple repository customization
-repository = []
+REPOSITORY = []
 
-repository += _armory_doom
-repository += _armory_heretic_hexen
-repository += _armory_other
+REPOSITORY += _ARMORY_DOOM
+REPOSITORY += _ARMORY_HERETIC_HEXEN
+REPOSITORY += _ARMORY_OTHER
 
-repository += _beastiary_doom
-repository += _beastiary_heretic_hexen
-repository += _beastiary_strife
+REPOSITORY += _BEASTIARY_DOOM
+REPOSITORY += _BEASTIARY_HERETIC_HEXEN
+REPOSITORY += _BEASTIARY_STRIFE
 
-repository += _itemstore_powerup_artifacts
-repository += _itemstore_keys_puzzle
-repository += _itemstore_other
+REPOSITORY += _ITEMSTORE_POWERUP_ARTIFACTS
+REPOSITORY += _ITEMSTORE_KEYS_PUZZLE
+REPOSITORY += _ITEMSTORE_OTHER
 
-repository += _propstop_technical
-repository += _propstop_vegetation
-repository += _propstop_light_sources
-repository += _propstop_gore_corpses
-repository += _propstop_hell_magic
+REPOSITORY += _PROPSTOP_TECHNICAL
+REPOSITORY += _PROPSTOP_VEGETATION
+REPOSITORY += _PROPSTOP_LIGHT_SOURCES
+REPOSITORY += _PROPSTOP_GORE_CORPSES
+REPOSITORY += _PROPSTOP_HELL_MAGIC
 
-repository += _sfx_shoppe_elementalfx
-repository += _sfx_shoppe_particles
-repository += _sfx_shoppe_weather
+REPOSITORY += _SFX_SHOPPE_ELEMENTALFX
+REPOSITORY += _SFX_SHOPPE_PARTICLES
+REPOSITORY += _SFX_SHOPPE_WEATHER
 
 
 # ==============================================================================
@@ -842,7 +842,7 @@ repository += _sfx_shoppe_weather
 def _cis(*args):
     return case_insensitive.CaseInsensitiveSet(args)
 
-excluded_wads = {
+EXCLUDED_WADS = {
     143: _cis('InfernalSpider (Jumping).wad'),
     243: _cis('UnmakerCentered.wad'),
     258: _cis('PolyMorph (old version).wad'),

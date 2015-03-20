@@ -18,11 +18,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from repo import repository
+from repo import REPOSITORY
 
 print('|ID|Name|Comment|\n|---|---|---|')
 
-for item in repository:
+for item in REPOSITORY:
     gid     = item[0]
     name    = item[1]
 

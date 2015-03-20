@@ -41,7 +41,7 @@ from repo import repository, excluded_wads
 _CACHE_DIRNAME = 'cache/'
 
 
-def configure():
+def _configure():
     # hard-coded seed helps to have predictable generated names
     random.seed(31337)
 
@@ -121,11 +121,11 @@ def configure():
 _ARCHIVE_ZIP = 'zip'
 _ARCHIVE_RAR = 'rar'
 
-def cached_filename(gid, archive_format):
+def _cached_filename(gid, archive_format):
     return '{:s}{:04d}.{:s}'.format(_CACHE_DIRNAME, gid, archive_format)
 
-def load_cached(gid, archive_format, fatal = True):
-    filename = cached_filename(gid, archive_format)
+def _load_cached(gid, archive_format, fatal = True):
+    filename = _cached_filename(gid, archive_format)
 
     if _ARCHIVE_ZIP == archive_format:
         archiver = zipfile.ZipFile
@@ -144,12 +144,12 @@ def load_cached(gid, archive_format, fatal = True):
 
 _URL_PATTERN = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
 
-def load_and_cache(gid):
+def _load_and_cache(gid):
     # Try to load archive file from cache
-    cached_file = load_cached(gid, _ARCHIVE_ZIP, fatal = False)
+    cached_file = _load_cached(gid, _ARCHIVE_ZIP, fatal = False)
 
     if not cached_file:
-        cached_file = load_cached(gid, _ARCHIVE_RAR, fatal = False)
+        cached_file = _load_cached(gid, _ARCHIVE_RAR, fatal = False)
 
     if not cached_file:
         try:
@@ -172,7 +172,7 @@ def load_and_cache(gid):
             with open(filename, 'wb') as cached_file:
                 cached_file.write(data)
 
-            cached_file = load_cached(gid, archive_format)
+            cached_file = _load_cached(gid, archive_format)
 
         except:
             print('Error: Failed to load archive file')
@@ -186,7 +186,7 @@ def load_and_cache(gid):
 
 _wad_filenames = set()
 
-def unique_wad_filename(original_filename):
+def _unique_wad_filename(original_filename):
     wad_name = os.path.basename(original_filename)
 
     while wad_name in _wad_filenames:
@@ -198,7 +198,7 @@ def unique_wad_filename(original_filename):
     return wad_name
 
 
-def store_asset(gid, filename, cached_file, packager):
+def _store_asset(gid, filename, cached_file, packager):
     with cached_file.open(filename) as wad_file:
         wad_data = wad_file.read()
 
@@ -223,11 +223,11 @@ def store_asset(gid, filename, cached_file, packager):
     wad.writeto(wad_data)
 
     if packager:
-        wad_filename = unique_wad_filename(wad_filename)
+        wad_filename = _unique_wad_filename(wad_filename)
         packager.writestr(wad_filename, wad_data.getvalue())
 
 
-def store_lump(filename, packager):
+def _store_lump(filename, packager):
     filepath = 'data/' + filename
 
     if filename.lower().endswith('.txt'):
@@ -244,7 +244,7 @@ def store_lump(filename, packager):
 # ==============================================================================
 
 
-def select_packager(compression):
+def _select_packager(compression):
     packagers = {
         # uncompressed output file
         'none':    packaging.UncompressedZipPackager,
@@ -263,9 +263,9 @@ def select_packager(compression):
     return packagers[compression]()
 
 
-def build(args):
+def _build(args):
     profiler = profiling.Profiler(args.profiling)
-    packager = None if args.dry_run else select_packager(args.compression)
+    packager = None if args.dry_run else _select_packager(args.compression)
 
     for item in repository:
         gid  = item[0]
@@ -273,7 +273,7 @@ def build(args):
 
         if gid < 0:
             # excluded asset
-            load_and_cache(-gid)
+            _load_and_cache(-gid)
 
             if args.verbosity > 0:
                 print('Skipping #{:03d} {:s}...'.format(-gid, name))
@@ -285,7 +285,7 @@ def build(args):
 
         print('Processing #{:03d} {:s}...'.format(gid, name))
 
-        cached_file = load_and_cache(gid)
+        cached_file = _load_and_cache(gid)
         if not cached_file:
             continue
 
@@ -307,7 +307,7 @@ def build(args):
 
         for filename in wad_filenames:
             try:
-                store_asset(gid, filename, cached_file, packager)
+                _store_asset(gid, filename, cached_file, packager)
 
             except Exception as ex:
                 print('Error: Failed to add {0}'.format(filename))
@@ -317,9 +317,9 @@ def build(args):
         cached_file.close()
 
     if packager:
-        store_lump('cvarinfo.txt', packager)
-        store_lump('keyconf.txt',  packager)
-        store_lump('menudef.txt',  packager)
+        _store_lump('cvarinfo.txt', packager)
+        _store_lump('keyconf.txt',  packager)
+        _store_lump('menudef.txt',  packager)
 
         packager.close()
 
@@ -331,7 +331,7 @@ def build(args):
 # ==============================================================================
 
 
-def check_repo_update():
+def _check_repo_update():
     import web_repo
     remote_repo = web_repo.fetch_repository()
 
@@ -357,7 +357,7 @@ def check_repo_update():
 # ==============================================================================
 
 
-def clean_cache():
+def _clean_cache():
     # do not remove whole directory as it may contain other files, e.g.
     # when cache was created by cloning git repository with assets
 
@@ -374,14 +374,14 @@ def clean_cache():
 
 
 def main():
-    args = configure()
+    args = _configure()
 
     if args.check_repo_update:
-        check_repo_update()
+        _check_repo_update()
     elif args.clean_asset_cache:
-        clean_cache()
+        _clean_cache()
     else:
-        build(args)
+        _build(args)
 
 
 if __name__ == '__main__':

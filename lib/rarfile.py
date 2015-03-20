@@ -196,7 +196,7 @@ ALT_TEST_ARGS = ('-t', '-f')
 ALT_CHECK_ARGS = ('--help',)
 
 #: whether to speed up decompression by using tmp archive
-USE_EXTRACT_HACK = 1
+USE_EXTRACT_HACK = 0
 
 #: limit the filesize for tmp archive usage
 HACK_SIZE_LIMIT = 20*1024*1024

@@ -81,6 +81,9 @@ def configure():
     parser.add_argument('--clean-asset-cache',
         help='delete cached assets instead of building a package',
         action='store_true')
+    parser.add_argument('-d', '--dry-run',
+        help='do all build steps but do not write a package',
+        action='store_true')
 
     # Patching-related arguments
     parser.add_argument('--allow-set-pitch',
@@ -219,8 +222,9 @@ def store_asset(gid, filename, cached_file, packager):
     wad_data = cStringIO.StringIO()
     wad.writeto(wad_data)
 
-    wad_filename = unique_wad_filename(wad_filename)
-    packager.writestr(wad_filename, wad_data.getvalue())
+    if packager:
+        wad_filename = unique_wad_filename(wad_filename)
+        packager.writestr(wad_filename, wad_data.getvalue())
 
 
 def store_lump(filename, packager):
@@ -261,7 +265,7 @@ def select_packager(compression):
 
 def build(args):
     profiler = profiling.Profiler(args.profiling)
-    packager = select_packager(args.compression)
+    packager = None if args.dry_run else select_packager(args.compression)
 
     for item in repository:
         gid  = item[0]
@@ -312,13 +316,15 @@ def build(args):
 
         cached_file.close()
 
-    store_lump('cvarinfo.txt', packager)
-    store_lump('keyconf.txt',  packager)
-    store_lump('menudef.txt',  packager)
+    if packager:
+        store_lump('cvarinfo.txt', packager)
+        store_lump('keyconf.txt',  packager)
+        store_lump('menudef.txt',  packager)
+
+        packager.close()
 
     print('')
 
-    packager.close()
     profiler.close()
 
 

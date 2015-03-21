@@ -123,8 +123,10 @@ def _configure():
 _ARCHIVE_ZIP = 'zip'
 _ARCHIVE_RAR = 'rar'
 
+
 def _cached_filename(gid, archive_format):
     return '{:s}{:04d}.{:s}'.format(_CACHE_DIRNAME, gid, archive_format)
+
 
 def _load_cached(gid, archive_format, fatal = True):
     filename = _cached_filename(gid, archive_format)
@@ -145,6 +147,7 @@ def _load_cached(gid, archive_format, fatal = True):
 
 
 _URL_PATTERN = 'http://realm667.com/index.php/en/component/docman/?task=doc_download&gid={0}'
+
 
 def _load_and_cache(gid):
     # Try to load archive file from cache
@@ -187,6 +190,7 @@ def _load_and_cache(gid):
 
 
 _wad_filenames = set()
+
 
 def _unique_wad_filename(original_filename):
     wad_name = os.path.basename(original_filename)
@@ -311,7 +315,7 @@ def _build(args):
             try:
                 _store_asset(gid, filename, cached_file, packager)
 
-            except Exception as ex:
+            except:
                 print('Error: Failed to add {0}'.format(filename))
                 traceback.print_exc()
                 continue

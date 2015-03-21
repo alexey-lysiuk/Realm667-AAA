@@ -170,7 +170,7 @@ def _load_and_cache(gid):
                 return
 
             # Save archive file to cache
-            filename = cached_filename(gid, archive_format)
+            filename = _cached_filename(gid, archive_format)
             with open(filename, 'wb') as cached_file:
                 cached_file.write(data)
 

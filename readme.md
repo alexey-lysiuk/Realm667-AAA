@@ -1,3 +1,4 @@
+![Realm667 Logo](http://realm667.com/images/modules/header/header_general.jpg)
 ## Realm667 - An Awesome Awesomeness
 ##### Weapons/monsters/powerups/props/effects collection for (G)ZDoom
 #### About

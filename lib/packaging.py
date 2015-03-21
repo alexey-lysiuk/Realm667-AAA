@@ -70,7 +70,7 @@ class _SevenZipPackager(object):
         self._args += args
         self._args.append('*')
 
-        self._work_dir = tempfile.mkdtemp(prefix='', dir=utils.temp_path())
+        self._work_dir = tempfile.mkdtemp(prefix='', dir=utils.temp_path)
 
         try:
             os.remove(output_filename)

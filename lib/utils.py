@@ -19,13 +19,19 @@
 import os
 
 
-def temp_path():
-    self_path = os.path.dirname(__file__)
+root_path = os.path.dirname(__file__)
+root_path = (root_path + os.sep if root_path else '') + os.pardir
+root_path = os.path.abspath(root_path) + os.sep
 
-    if not self_path:
-        self_path = '.'
 
-    return self_path + '/../tmp/'
+def _sub_path(dirname):
+    return root_path + dirname + os.sep
+
+
+bin_path = _sub_path('bin')
+cache_path = _sub_path('cache')
+lib_path = _sub_path('lib')
+temp_path = _sub_path('tmp')
 
 
 def license_header():

@@ -32,15 +32,13 @@ import packaging
 import patching
 import profiling
 import rarfile
+import utils
 
 from pk3_to_wad import pk3_to_wad
 from repo import *
 
 
 # ==============================================================================
-
-
-_CACHE_DIRNAME = 'cache/'
 
 
 def _configure():
@@ -50,18 +48,15 @@ def _configure():
     # set current directory to project's root directory
     # in order to make build process portable and self-contained,
     # and to do not store anything in current or user's home/temp directories
-    work_path = os.path.dirname(__file__)
-    work_path += '/..' if work_path else '..'
-    work_path = os.path.abspath(work_path) + '/'
-    os.chdir(work_path)
+    os.chdir(utils.root_path)
 
     try:
-        os.mkdir(_CACHE_DIRNAME)
+        os.mkdir(utils.cache_path)
     except OSError:
         pass
 
     exe_ext = '.exe' if 'win32' == sys.platform else ''
-    rarfile.UNRAR_TOOL = '{}/bin/unrar.{}{}'.format(work_path, sys.platform, exe_ext)
+    rarfile.UNRAR_TOOL = utils.bin_path + 'unrar.' + sys.platform + exe_ext
 
     parser = argparse.ArgumentParser()
 
@@ -137,7 +132,7 @@ _ARCHIVE_RAR = 'rar'
 
 
 def _cached_filename(gid, archive_format):
-    return '{:s}{:04d}.{:s}'.format(_CACHE_DIRNAME, gid, archive_format)
+    return '{:s}{:04d}.{:s}'.format(utils.cache_path, gid, archive_format)
 
 
 def _load_cached(gid, archive_format, fatal=True):
@@ -377,9 +372,9 @@ def _clean_cache():
 
     cache_extensions = ('.' + _ARCHIVE_ZIP, '.' + _ARCHIVE_RAR)
 
-    for filename in os.listdir(_CACHE_DIRNAME):
+    for filename in os.listdir(utils.cache_path):
         if filename.lower().endswith(cache_extensions):
-            os.remove(_CACHE_DIRNAME + filename)
+            os.remove(utils.cache_path + filename)
 
     print('\nAssets cache cleared.')
 

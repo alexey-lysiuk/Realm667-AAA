@@ -66,41 +66,53 @@ def _configure():
     parser = argparse.ArgumentParser()
 
     # Generic arguments
-    parser.add_argument('-v', '--verbosity', type=int, choices=[0, 1, 2],
+    parser.add_argument(
+        '-v', '--verbosity', type=int, choices=[0, 1, 2],
         help='set output verbosity level')
-    parser.add_argument('--disable-optimization',
+    parser.add_argument(
+        '--disable-optimization',
         help='disable WAD files optimization', action='store_true')
-    parser.add_argument('-c', '--compression', type=str,
-        choices = ['none', 'default', 'pk3', '7zpk3', 'pk7'],
+    parser.add_argument(
+        '-c', '--compression', type=str,
+        choices=['none', 'default', 'pk3', '7zpk3', 'pk7'],
         help='set output file compression')
-    parser.add_argument('-p', '--profiling',
+    parser.add_argument(
+        '-p', '--profiling',
         help='enable Python performance profiling', action='store_true')
 
     # Operational mode arguments
-    parser.add_argument('--check-repo-update',
+    parser.add_argument(
+        '--check-repo-update',
         help='look for new assets in web repository instead of '
         ' building a package', action='store_true')
-    parser.add_argument('--clean-asset-cache',
+    parser.add_argument(
+        '--clean-asset-cache',
         help='delete cached assets instead of building a package',
         action='store_true')
-    parser.add_argument('-d', '--dry-run',
+    parser.add_argument(
+        '-d', '--dry-run',
         help='do all build steps but do not write a package',
         action='store_true')
 
     # Patching-related arguments
-    parser.add_argument('--allow-set-pitch',
+    parser.add_argument(
+        '--allow-set-pitch',
         help='allow A_SetPitch() calls in DECORATE',
         action='store_true')
-    parser.add_argument('--allow-class-replacement',
+    parser.add_argument(
+        '--allow-class-replacement',
         help='allow class replacement in DECORATE',
         action='store_true')
-    parser.add_argument('--allow-doomednum',
+    parser.add_argument(
+        '--allow-doomednum',
         help='allow editor number (DoomEdNum) assignment in DECORATE',
         action='store_true')
-    parser.add_argument('--png-sprites',
+    parser.add_argument(
+        '--png-sprites',
         help='convert all sprites to PNG format',
         action='store_true')
-    parser.add_argument('--png-sprites-compression',
+    parser.add_argument(
+        '--png-sprites-compression',
         type=int, choices=[value for value in range(-1, 10)],
         help='set compression level for sprites in PNG format')
 
@@ -128,7 +140,7 @@ def _cached_filename(gid, archive_format):
     return '{:s}{:04d}.{:s}'.format(_CACHE_DIRNAME, gid, archive_format)
 
 
-def _load_cached(gid, archive_format, fatal = True):
+def _load_cached(gid, archive_format, fatal=True):
     filename = _cached_filename(gid, archive_format)
 
     if _ARCHIVE_ZIP == archive_format:
@@ -151,10 +163,10 @@ _URL_PATTERN = 'http://realm667.com/index.php/en/component/docman/?task=doc_down
 
 def _load_and_cache(gid):
     # Try to load archive file from cache
-    cached_file = _load_cached(gid, _ARCHIVE_ZIP, fatal = False)
+    cached_file = _load_cached(gid, _ARCHIVE_ZIP, fatal=False)
 
     if not cached_file:
-        cached_file = _load_cached(gid, _ARCHIVE_RAR, fatal = False)
+        cached_file = _load_cached(gid, _ARCHIVE_RAR, fatal=False)
 
     if not cached_file:
         try:
@@ -197,7 +209,7 @@ def _unique_wad_filename(original_filename):
 
     while wad_name in _wad_filenames:
         name, ext = wad_name.rsplit('.', 1)
-        wad_name  = '{0}@.{1}'.format(name, ext)
+        wad_name = '{0}@.{1}'.format(name, ext)
 
     _wad_filenames.add(wad_name)
 
@@ -220,7 +232,7 @@ def _store_asset(gid, filename, cached_file, packager):
 
     if not wad.find('DECORATE'):
         print('Warning: No DECORATE lump found in file {0}, '
-            'skipping...'.format(filename))
+              'skipping...'.format(filename))
         return
 
     patching.apply_patch(gid, wad)
@@ -274,7 +286,7 @@ def _build(args):
     packager = None if args.dry_run else _select_packager(args.compression)
 
     for item in REPOSITORY:
-        gid  = item[0]
+        gid = item[0]
         name = item[1]
 
         if gid < 0:
@@ -300,7 +312,7 @@ def _build(args):
         for zipped_filename in cached_file.namelist():
             is_asset_file = zipped_filename.lower().endswith(('.wad', '.pk3')) \
                 and (gid not in EXCLUDED_WADS
-                    or zipped_filename not in EXCLUDED_WADS[gid])
+                     or zipped_filename not in EXCLUDED_WADS[gid])
 
             if is_asset_file:
                 wad_filenames.append(zipped_filename)

@@ -19,7 +19,6 @@
 #
 
 import re
-import sys
 import urllib2
 from HTMLParser import HTMLParser
 

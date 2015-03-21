@@ -341,11 +341,6 @@ def _check_repo_update():
     import web_repo
     remote_repo = web_repo.fetch_repository()
 
-    def name_by_id(gid):
-        for item in remote_repo:
-            if gid == item[0]:
-                return item[1]
-
     local_ids = {abs(gid) for gid, _ in REPOSITORY if 0 != gid}
     remote_ids = {gid for gid, _, _ in remote_repo}
 
@@ -355,7 +350,8 @@ def _check_repo_update():
         print('\nNew IDs found in web repository:')
 
         for gid in new_ids:
-            print('#{:03d} {:s}'.format(gid, name_by_id(gid)))
+            name = (item[1] for item in remote_repo if gid == item[0]).next()
+            print('#{:03d} {:s}'.format(gid, name))
     else:
         print('\nWeb repository has no new assets.')
 

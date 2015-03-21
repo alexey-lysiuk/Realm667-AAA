@@ -348,12 +348,12 @@ def _check_repo_update():
     new_ids = remote_ids - local_ids
 
     if new_ids:
-        print('\nNew IDs found in web repostiory:')
+        print('\nNew IDs found in web repository:')
 
         for gid in new_ids:
             print('#{:03d} {:s}'.format(gid, name_by_id(gid)))
     else:
-        print('\nWeb repostiory has no new assets.')
+        print('\nWeb repository has no new assets.')
 
 
 # ==============================================================================

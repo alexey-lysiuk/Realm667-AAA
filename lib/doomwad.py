@@ -189,12 +189,12 @@ class WadFile(object):
                     # use it as namespace start if it's top-level
                     # or if it's explicitly named so
                     namespace = lump.name
-                ismap = False
+                ismapcur = False
             else:
                 if not ismapcur and ismap:
                     # end of map found, reset namespace
                     namespace = ''
-                    ismap = False
+                    ismapcur = False
 
                 lump.namespace = namespace
 

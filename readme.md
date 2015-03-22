@@ -24,7 +24,8 @@ The key bindings can be changed in **Customize Controls** menu. Look for **Realm
 
 #### How to build
 
-You need Python 2.7 to run `build.py` script. It will create `realm667-aaa.pk3` (or `realm667-aaa.pk7`, depending on command line options) in the repository's root directory.  
+You need [Python 2.7](https://www.python.org/downloads/release/python-279/) to run `build.py` script. The recent versions of Linux and OS X come with Python pre-installed. Make sure that you have version 2.7.x and not 3.x by executing `python --version` command in the terminal.  
+The script will create `realm667-aaa.pk3` (or `realm667-aaa.pk7`, depending on command line options) in the repository's root directory.  
 The script will download and cache all resources during the first run. Generation process will be much faster next time.  
   
 Also, you can clone [an accompanied repository](https://github.com/alexey-lysiuk/Realm667-AAA-Cache) into `cache` directory to avoid downloading. In this case, the whole process will look like:

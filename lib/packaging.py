@@ -60,13 +60,9 @@ class UncompressedZipPackager(_InternalZipPackager):
 
 class _SevenZipPackager(object):
     def __init__(self, extention, args):
-        exe_path = '{}/../bin/7za.{}'.format(
-            os.path.dirname(__file__), sys.platform)
-        exe_path = os.path.abspath(exe_path)
+        output_filename = utils.root_path + _FILENAME_PATTERN + extention
 
-        output_filename = '../../{}{}'.format(_FILENAME_PATTERN, extention)
-
-        self._args = [exe_path, 'a', output_filename]
+        self._args = [utils.exe_path('7za'), 'a', output_filename]
         self._args += args
         self._args.append('*')
 

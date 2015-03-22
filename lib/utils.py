@@ -17,6 +17,7 @@
 #
 
 import os
+import sys
 
 
 root_path = os.path.dirname(__file__)
@@ -32,6 +33,12 @@ bin_path = _sub_path('bin')
 cache_path = _sub_path('cache')
 lib_path = _sub_path('lib')
 temp_path = _sub_path('tmp')
+
+
+def exe_path(tool):
+    """ Return absolute path to executable in bin directory by its tool name """
+    exe_ext = '.exe' if 'win32' == sys.platform else ''
+    return '{}{}.{}{}'.format(bin_path, tool, sys.platform, exe_ext)
 
 
 def license_header():

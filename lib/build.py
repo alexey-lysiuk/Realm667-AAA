@@ -55,8 +55,7 @@ def _configure():
     except OSError:
         pass
 
-    exe_ext = '.exe' if 'win32' == sys.platform else ''
-    rarfile.UNRAR_TOOL = utils.bin_path + 'unrar.' + sys.platform + exe_ext
+    rarfile.UNRAR_TOOL = utils.exe_path('unrar')
 
     parser = argparse.ArgumentParser()
 

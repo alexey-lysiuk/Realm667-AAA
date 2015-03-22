@@ -19,7 +19,6 @@
 import os
 import shutil
 import subprocess
-import sys
 import tempfile
 import zipfile
 
@@ -92,14 +91,12 @@ class _SevenZipPackager(object):
         proc = subprocess.Popen(self._args)
         proc.communicate()
 
-        if 0 == proc.returncode:
-            print('')
-        else:
-            print('\nError: External packager failed')
-
         os.chdir(current_dir)
 
-        shutil.rmtree(self._work_dir, ignore_errors = True)
+        shutil.rmtree(self._work_dir, ignore_errors=True)
+
+        if 0 != proc.returncode:
+            print('\nError: External packager failed')
 
 
 class SevenZipPK3Packager(_SevenZipPackager):

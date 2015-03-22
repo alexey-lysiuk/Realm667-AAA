@@ -61,7 +61,7 @@ def _configure():
 
     # Generic arguments
     parser.add_argument(
-        '-v', '--verbosity', type=int, choices=[0, 1, 2],
+        '-v', '--verbosity', type=int, choices=[0, 1, 2], default=0,
         help='set output verbosity level')
     parser.add_argument(
         '--disable-optimization',
@@ -107,7 +107,7 @@ def _configure():
         action='store_true')
     parser.add_argument(
         '--png-sprites-compression',
-        type=int, choices=[value for value in range(-1, 10)],
+        type=int, choices=[value for value in range(-1, 10)], default=-1,
         help='set compression level for sprites in PNG format')
 
     args = parser.parse_args()

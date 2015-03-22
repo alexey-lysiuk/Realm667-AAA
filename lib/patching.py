@@ -16,7 +16,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-
 import random
 import re
 import string
@@ -24,7 +23,6 @@ import string
 import doomwad
 
 from case_insensitive import CaseInsensitiveSet
-from doompic import doompic_to_png
 from iwad_lumps import *
 from iwad_sndinfo import *
 
@@ -904,6 +902,8 @@ def apply_patch(id, wad):
         optimize(wad)
 
     if png_sprites:
+        from doompic import doompic_to_png
+
         for sprite in wad.spritelumps():
             if sprite.data.startswith('\x89PNG'):
                 continue

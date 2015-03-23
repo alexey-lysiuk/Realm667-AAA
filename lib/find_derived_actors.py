@@ -18,12 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import re
-import sys
 import zipfile
 
 import doomwad
+import utils
 
 
 def find_derived_actors(mapping, wad_name, decorate, base_actor):
@@ -38,17 +37,17 @@ def find_derived_actors(mapping, wad_name, decorate, base_actor):
 
         find_derived_actors(mapping, wad_name, decorate, actor)
 
+
 def print_result(mapping):
     for actor in mapping:
         print('{0}: {1}'.format(actor, mapping[actor]))
-        #print('    Command "{0}", "summon {0}"'.format(actor))
 
 
-zip_filename = os.path.dirname(__file__) + '/../realm667-aaa.pk3'
+zip_filename = utils.root_path + 'realm667-aaa.pk3'
 zip_file = zipfile.ZipFile(zip_filename)
 
-ammo_actors_wads = { }
-item_actors_wads = { }
+ammo_actors_wads = {}
+item_actors_wads = {}
 
 for zipped_filename in zip_file.namelist():
     if not zipped_filename.lower().endswith('.wad'):
@@ -64,10 +63,10 @@ for zipped_filename in zip_file.namelist():
 
     for lump in wad:
         if 'DECORATE' == lump.name:
-            find_derived_actors(ammo_actors_wads, zipped_filename, \
-                lump.data, 'Ammo')
-            find_derived_actors(item_actors_wads, zipped_filename, \
-                lump.data, 'CustomInventory')
+            find_derived_actors(ammo_actors_wads, zipped_filename,
+                                lump.data, 'Ammo')
+            find_derived_actors(item_actors_wads, zipped_filename,
+                                lump.data, 'CustomInventory')
             break
 
 zip_file.close()

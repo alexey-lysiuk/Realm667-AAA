@@ -22,7 +22,6 @@ import argparse
 import io
 import os
 import random
-import traceback
 import zipfile
 
 try:
@@ -41,6 +40,20 @@ import utils
 
 from pk3_to_wad import pk3_to_wad
 from repo import *
+
+
+# ==============================================================================
+
+
+def _handle_exception():
+    import sys
+
+    if sys.gettrace():
+        raise
+    else:
+        import traceback
+
+        traceback.print_exc()
 
 
 # ==============================================================================
@@ -192,7 +205,7 @@ def _load_and_cache(gid):
 
         except:
             print('Error: Failed to load archive file')
-            traceback.print_exc()
+            _handle_exception()
 
     return cached_file
 
@@ -328,7 +341,7 @@ def _build(args):
 
             except:
                 print('Error: Failed to add {0}'.format(filename))
-                traceback.print_exc()
+                _handle_exception()
                 continue
 
         cached_file.close()

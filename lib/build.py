@@ -188,9 +188,9 @@ def _load_and_cache(gid):
             data = response.read()
 
             # Detect format of archive file
-            if data.startswith('PK\003\004') or data.startswith('PK00'):
+            if data.startswith(b'PK\003\004') or data.startswith(b'PK00'):
                 archive_format = _ARCHIVE_ZIP
-            elif data.startswith('Rar!'):
+            elif data.startswith(b'Rar!'):
                 archive_format = _ARCHIVE_RAR
             else:
                 print('Error: Unsupported archive format')

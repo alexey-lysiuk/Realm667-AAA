@@ -41,6 +41,27 @@ def exe_path(tool):
     return '{}{}.{}{}'.format(bin_path, tool, sys.platform, exe_ext)
 
 
+# ==============================================================================
+
+
+_STRING_CODEC = 'iso-8859-1'
+
+
+def native_str(data):
+    need_decode = sys.hexversion >= 0x3000000 \
+        and isinstance(data, (bytes, bytearray))
+    return data.decode(_STRING_CODEC) if need_decode else data
+
+
+def binary_str(data):
+    need_encode = sys.hexversion >= 0x3000000 \
+        and isinstance(data, str)
+    return data.encode(_STRING_CODEC) if need_encode else data
+
+
+# ==============================================================================
+
+
 def license_header():
     filename = os.path.splitext(__file__)[0] + '.py'
 

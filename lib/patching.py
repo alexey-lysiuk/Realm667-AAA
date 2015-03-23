@@ -165,7 +165,7 @@ def _generate_unique_sprite_name(sprite, frames):
     while True:
         unique_name = ''
 
-        for i in xrange(0, name_length):
+        for i in range(name_length):
             index = random.randint(0, char_count - 1)
             unique_name += name_chars[index]
 
@@ -246,7 +246,7 @@ def make_unique_sprites(wad):
     # for example, when sprite from IWAD is extended with frames from PWAD
     keep_sprites = hasattr(wad, 'keep_sprites') and wad.keep_sprites or ()
 
-    for name, frames in wad.spritemapping().iteritems():
+    for name, frames in wad.spritemapping().items():
         if name in keep_sprites:
             continue
 
@@ -418,7 +418,7 @@ def _generate_unique_lump_name():
     while True:
         unique_name = ''
 
-        for i in xrange(0, 8):
+        for i in range(8):
             index = random.randint(0, char_count - 1)
             unique_name += name_chars[index]
 

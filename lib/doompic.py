@@ -18,9 +18,15 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import cStringIO
+import io
 import struct
+import sys
+
 import png
+
+
+if sys.hexversion < 0x3000000:
+    range = xrange
 
 
 # Doom normal palette
@@ -286,21 +292,21 @@ _TRANSPARENT_REMAP= (0, 247) # duplicate black color
 
 
 def doompic_to_png(data, compression=-1):
-    pic = cStringIO.StringIO(data)
+    pic = io.BytesIO(data)
 
     # read header
     width, height, left, top = struct.unpack('<2H2h', pic.read(8))
     column_array = []
 
-    for i in xrange(width):
+    for i in range(width):
         offset = struct.unpack('<I', pic.read(4))
         column_array.append(offset[0])
 
     # read pixel data
-    row = [-1 for _ in xrange(width)]
-    pixels = [row[:] for _ in xrange(height)]
+    row = [-1 for _ in range(width)]
+    pixels = [row[:] for _ in range(height)]
 
-    for i in xrange(width):
+    for i in range(width):
         pic.seek(column_array[i])
         rowstart = 0
 
@@ -313,16 +319,16 @@ def doompic_to_png(data, compression=-1):
             pixel_count = ord(pic.read(1))
             pic.read(1) # dummy
 
-            for j in xrange(pixel_count):
+            for j in range(pixel_count):
                 pixels[rowstart + j][i] = ord(pic.read(1))
 
             pic.read(1) # dummy
 
     # replace holes with trasparent color
-    used_colors = [0 for _ in xrange(256)]
+    used_colors = [0 for _ in range(256)]
 
-    for j in xrange(height):
-        for i in xrange(width):
+    for j in range(height):
+        for i in range(width):
             pixel = pixels[j][i]
             assert -1 <= pixel < 256
 
@@ -335,8 +341,8 @@ def doompic_to_png(data, compression=-1):
         # all colors are used, use duplicate color
         transparent = _TRANSPARENT_REMAP[1]
 
-    for j in xrange(height):
-        for i in xrange(width):
+    for j in range(height):
+        for i in range(width):
             pixel = pixels[j][i]
 
             if -1 == pixel:
@@ -352,7 +358,7 @@ def doompic_to_png(data, compression=-1):
         0x00)
 
     # create PNG image
-    png_data = cStringIO.StringIO()
+    png_data = io.BytesIO()
     png_image = png.Writer(len(pixels[0]), len(pixels),
         palette = palette, compression = compression)
     png_image.custom_chunks['grAb'] = struct.pack('>2i', left, top)

@@ -18,7 +18,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import re
 import sys
 import zipfile
@@ -44,7 +43,7 @@ for zipped_filename in pk3.namelist():
     zipped_file.close()
 
     actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?'  \
-                     '(\s+replace\s+[\w+~.]+)?(\s+\d+)?(\s+native)?\s*{'
+        '(\s+replace\s+[\w+~.]+)?(\s+\d+)?(\s+native)?\s*{'
     actors = re.findall(actor_pattern, zipped_data, re.IGNORECASE)
 
     if len(actors) > 0:

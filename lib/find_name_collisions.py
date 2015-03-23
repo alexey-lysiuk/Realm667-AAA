@@ -28,7 +28,6 @@
 import os
 import re
 import shutil
-import sys
 import zipfile
 
 import doomwad
@@ -39,6 +38,7 @@ from iwad_actors import ACTORS_ALL
 from iwad_sndinfo import LOGICAL_SOUNDS_ALL
 from patching import (
     actor_stateful_pattern, actor_stateless_pattern, actor_header_regex)
+import utils
 
 
 excluded_lump_names = [
@@ -69,7 +69,8 @@ excluded_lump_names = [
     'SS_END',
 ]
 
-lumps_wads = { }
+lumps_wads = {}
+
 
 def find_duplicate_lumps(wad):
     """ Find duplicate lumps in WAD file
@@ -88,7 +89,9 @@ def find_duplicate_lumps(wad):
             else:
                 lumps_wads[lump.name] = [wad.filename]
 
-sprites_wads = { }
+
+sprites_wads = {}
+
 
 def find_duplicate_sprites(wad):
     """ Find duplicate sprites in WAD file (4 characters names) """
@@ -98,7 +101,9 @@ def find_duplicate_sprites(wad):
         else:
             sprites_wads[sprite] = [wad.filename]
 
+
 actors_wads = CaseInsensitiveDict()
+
 
 def prepare_decorate(wad):
     decorate = wad.find('DECORATE')
@@ -109,6 +114,7 @@ def prepare_decorate(wad):
 
     doomwad.striplumpcomments(decorate)
     return decorate.data
+
 
 def find_duplicate_actors(wad):
     """ Find duplicate actors (classes) in WAD file's DECORATE lump """
@@ -127,6 +133,7 @@ def find_duplicate_actors(wad):
 
 
 sounds_wads = CaseInsensitiveDict()
+
 
 def find_duplicate_sounds(wad):
     """ Find duplicate sounds in WAD file's SNDINFO lump """
@@ -149,7 +156,7 @@ def read_wad(zip_file, filename):
 
 # Scan generated .pk3
 
-pk3_filename = sys.path[0] + '/../realm667-aaa.pk3'
+pk3_filename = utils.root_path + 'realm667-aaa.pk3'
 pk3_file = zipfile.ZipFile(pk3_filename)
 
 for zipped_filename in pk3_file.namelist():
@@ -181,7 +188,7 @@ def print_duplicates(mapping, iwads):
         if 1 == len(wads):
             continue
 
-        wads.sort(key = lambda name: name.lower())
+        wads.sort(key=lambda name: name.lower())
 
         duplicates.append('|{0}|{1}||'.format(name, ', '.join(wads)))
 

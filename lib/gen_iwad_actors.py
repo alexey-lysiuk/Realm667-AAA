@@ -40,7 +40,7 @@ for zipped_filename in pk3.namelist():
         continue
 
     zipped_file = pk3.open(zipped_filename)
-    zipped_data = zipped_file.read()
+    zipped_data = utils.native_str(zipped_file.read())
     zipped_file.close()
 
     actor_pattern = r'actor\s+([\w+~.]+)(\s*:\s*[\w+~.]+)?'  \

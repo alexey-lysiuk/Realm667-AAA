@@ -80,7 +80,7 @@ class _SevenZipPackager(object):
 
     def writestr(self, arcname, data):
         with open(self._work_filename(arcname), 'wb') as f:
-            f.write(data)
+            f.write(utils.binary_str(data))
 
     def close(self):
         print('Compressing package...')

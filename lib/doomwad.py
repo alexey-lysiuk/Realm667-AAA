@@ -29,12 +29,16 @@
 """Read and write Doom WAD files"""
 
 import hashlib
+from io import BytesIO
 import re
 import string
 import struct
-from io import BytesIO
+
+import utils
+
 
 # ==============================================================================
+
 
 _spriteanglechar = string.digits + string.ascii_uppercase[:7]
 
@@ -48,6 +52,7 @@ specnames = {
 }
 
 spritemarker = 'S_START'
+
 
 # ==============================================================================
 
@@ -106,31 +111,46 @@ _marker_lumpname_regex = re.compile(r'^(E\dM\d|MAP\d\d|S?S_START|S?S_END)$')
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
-        self._data = data
-        self._hash = None
+        self.data = data
         self.index = index
         self.namespace = ''
-        self.marker = 0 == len(data) and name not in specnames \
+        self.marker = 0 == len(data) and self.name not in specnames \
             or _marker_lumpname_regex.match(self.name)
 
     def __repr__(self):
         return "Lump('{0}', {1})".format(self.name, len(self.data))
 
     @property
+    def name(self):
+        return utils.native_str(self._name)
+
+    @name.setter
+    def name(self, value):
+        self._name = utils.binary_str(value)
+
+    @property
+    def rawname(self):
+        return self._name
+
+    @property
     def data(self):
-        return self._data
+        return utils.native_str(self._data)
 
     @data.setter
     def data(self, value):
-        self._data = value
+        self._data = utils.binary_str(value)
         self._hash = None
+
+    @property
+    def rawdata(self):
+        return self._data
 
     def hash(self):
         if self._hash:
             return self._hash
         else:
             algo = hashlib.md5()
-            algo.update(self.data)
+            algo.update(self._data)
             self._hash = algo.digest()
             return self._hash
 
@@ -141,7 +161,7 @@ class Lump(object):
 class WadFile(object):
     def __init__(self, data_or_file=None):
         if not data_or_file:
-            self.sig = 'PWAD'
+            self.sig = b'PWAD'
             self.lumps = []
             self.filename = ''
             return
@@ -156,7 +176,7 @@ class WadFile(object):
 
         sig, numentries, offset = _header.unpack(file.read(12))
 
-        if 'IWAD' != sig and 'PWAD' != sig:
+        if b'IWAD' != sig and b'PWAD' != sig:
             raise ValueError('not a WAD file')
 
         self.sig = sig
@@ -166,10 +186,10 @@ class WadFile(object):
 
         lumps = []
 
-        for i in xrange(numentries):
+        for i in range(numentries):
             pos = i * 16
             offset, size, name = _dirent.unpack(direct[pos: pos + 16])
-            idx = name.find('\0')
+            idx = name.find(b'\0')
             if idx != -1:
                 name = name[:idx]
 
@@ -219,13 +239,13 @@ class WadFile(object):
         pos = 12
 
         for lump in self:
-            lsize = len(lump.data)
-            directory.append((lump.name, pos, lsize))
+            lsize = len(lump.rawdata)
+            directory.append((lump.rawname, pos, lsize))
             pos += lsize
 
         file.write(_header.pack(self.sig, len(self), pos))
         for lump in self:
-            file.write(lump.data)
+            file.write(lump.rawdata)
 
         for name, pos, size in directory:
             file.write(_dirent.pack(pos, size, name))
@@ -261,7 +281,7 @@ class WadFile(object):
         return None
 
     def _reindex(self, start=0):
-        for i in xrange(start, len(self.lumps)):
+        for i in range(start, len(self.lumps)):
             self.lumps[i].index = i
 
     def removelump(self, lump):
@@ -440,7 +460,7 @@ class WadFile(object):
 
     def filter(self, function):
         """ Keep only those lumps which function returns true """
-        self.lumps = filter(function, self)
+        self.lumps = list(filter(function, self))
         self._reindex()
 
 
@@ -460,7 +480,7 @@ if __name__ == '__main__':
 
         wad = WadFile(wad_data)
 
-        for sprite_name, frames in wad.spritemapping().iteritems():
+        for sprite_name, frames in wad.spritemapping().items():
             if sprite_name in allsprites:
                 template = allsprites[sprite_name] == frames         \
                     and '[.] Identical sprite {0} was found'         \

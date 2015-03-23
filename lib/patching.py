@@ -907,7 +907,7 @@ def apply_patch(id, wad):
         for sprite in wad.spritelumps():
             if sprite.data.startswith('\x89PNG'):
                 continue
-            sprite.data = doompic_to_png(sprite.data, png_sprites_compression)
+            sprite.data = doompic_to_png(sprite.rawdata, png_sprites_compression)
 
     if _decorates_dumping:
         _dump_decorate(id, wad, _processed_decos_file)

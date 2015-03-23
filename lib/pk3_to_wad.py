@@ -88,7 +88,7 @@ def pk3_to_wad(pk3_data):
         # add closing marker, if file from sprites directory was the last one
         _add_lump(wad, 'S_END')
 
-    wad_file = cStringIO.StringIO()
+    wad_file = io.BytesIO()
     wad.writeto(wad_file)
 
     return wad_file.getvalue()

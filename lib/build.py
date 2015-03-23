@@ -374,7 +374,7 @@ def _check_repo_update():
         print('\nNew IDs found in web repository:')
 
         for gid in new_ids:
-            name = (item[1] for item in remote_repo if gid == item[0]).next()
+            name = next((item[1] for item in remote_repo if gid == item[0]))
             print('#{:03d} {:s}'.format(gid, name))
     else:
         print('\nWeb repository has no new assets.')

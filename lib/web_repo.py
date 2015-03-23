@@ -19,8 +19,20 @@
 #
 
 import re
-import urllib2
-from HTMLParser import HTMLParser
+
+try:
+    # Python 2
+    from urllib2 import urlopen
+except ImportError:
+    # Python 3
+    from urllib.request import urlopen
+
+try:
+    # Python 2
+    from HTMLParser import HTMLParser
+except ImportError:
+    # Python 3
+    from html.parser import HTMLParser
 
 import utils
 
@@ -112,13 +124,13 @@ def _fetch_html(url):
         except KeyError:
             pass
 
-    data = urllib2.urlopen(url).read()
+    data = urlopen(url).read()
 
     if html_dump is not None:
         html_dump[url] = data
         html_dump.close()
 
-    return data
+    return utils.native_str(data)
 
 
 # ==============================================================================
@@ -178,7 +190,7 @@ def fetch_repository(page_separators=False):
     if not match_repo:
         return []
 
-    url_repo = '{0}{1}'.format(_URL_WEBSITE, match_repo.group(1))
+    url_repo = _URL_WEBSITE + match_repo.group(1)
     html_repo = _fetch_html(url_repo)
 
     repository = []

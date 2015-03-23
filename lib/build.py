@@ -19,13 +19,18 @@
 #
 
 import argparse
-import cStringIO
+import io
 import os
 import random
-import sys
 import traceback
-import urllib2
 import zipfile
+
+try:
+    # Python 2
+    from urllib2 import urlopen
+except ImportError:
+    # Python 3
+    from urllib.request import urlopen
 
 import doomwad
 import packaging
@@ -166,7 +171,7 @@ def _load_and_cache(gid):
         try:
             # Download archive file with given ID
             url = _URL_PATTERN.format(gid)
-            response = urllib2.urlopen(url)
+            response = urlopen(url)
             data = response.read()
 
             # Detect format of archive file
@@ -231,7 +236,7 @@ def _store_asset(gid, filename, cached_file, packager):
 
     patching.apply_patch(gid, wad)
 
-    wad_data = cStringIO.StringIO()
+    wad_data = io.BytesIO()
     wad.writeto(wad_data)
 
     if packager:

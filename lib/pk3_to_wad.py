@@ -19,8 +19,7 @@
 #
 
 
-import cStringIO
-import os
+import io
 import sys
 import zipfile
 
@@ -41,7 +40,7 @@ def pk3_to_wad(pk3_data):
     NOTE: Namespaces support is limited to sprites only
     """
 
-    mem_file = cStringIO.StringIO()
+    mem_file = io.BytesIO()
     mem_file.write(pk3_data)
     mem_file.seek(0)
 

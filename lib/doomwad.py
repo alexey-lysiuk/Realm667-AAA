@@ -32,7 +32,7 @@ import hashlib
 import re
 import string
 import struct
-from cStringIO import StringIO
+from io import BytesIO
 
 # ==============================================================================
 
@@ -136,7 +136,7 @@ class WadFile(object):
                 hasattr(data_or_file, 'seek'):
             file = data_or_file
         else:
-            file = StringIO(data_or_file)
+            file = BytesIO(data_or_file)
 
         self.filename = hasattr(file, 'name') and file.name or ''
 
@@ -450,7 +450,7 @@ def readarray(stream, clas):
         stream = stream.data
 
     if isinstance(stream, str):
-        stream = StringIO(stream)
+        stream = BytesIO(stream)
 
     ret = []
     ssize = clas.size

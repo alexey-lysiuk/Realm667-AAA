@@ -18,6 +18,11 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from lib import build
+import os
+import sys
 
+# all sources are in lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/lib'
+
+import build
 build.main()

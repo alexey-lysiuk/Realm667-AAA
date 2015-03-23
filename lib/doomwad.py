@@ -38,20 +38,23 @@ from io import BytesIO
 
 _spriteanglechar = string.digits + string.ascii_uppercase[:7]
 
-_header = struct.Struct("<4sII")
-_dirent = struct.Struct("<II8s")
+_header = struct.Struct('<4sII')
+_dirent = struct.Struct('<II8s')
 
 # Map members
-specnames = set(('THINGS', 'VERTEXES','LINEDEFS', 'SIDEDEFS', 'SEGS',
-                 'SSECTORS', 'NODES', 'SECTORS', 'REJECT', 'BLOCKMAP',
-                 'BEHAVIOR', 'SCRIPTS'))
+specnames = {
+    'THINGS', 'VERTEXES', 'LINEDEFS', 'SIDEDEFS', 'SEGS', 'SSECTORS',
+    'NODES', 'SECTORS', 'REJECT', 'BLOCKMAP', 'BEHAVIOR', 'SCRIPTS'
+}
 
 spritemarker = 'S_START'
 
 # ==============================================================================
 
+
 def issrpitenamespace(namespace):
     return namespace == spritemarker or namespace[1:] == spritemarker
+
 
 def issequentialsprite(name):
     if name.startswith('ARTI'):
@@ -70,32 +73,41 @@ def issequentialsprite(name):
         # if its name contains one or two valid angle characters
         return angle1 or angle2
 
+
 # ==============================================================================
+
 
 line_comment_regex = re.compile('//.*?$', re.MULTILINE)
 block_comment_regex = re.compile('/\*.*?\*/', re.DOTALL)
+
 
 def striplumpcomments(lump):
     """ Remove both block and line comments from text lump """
     for regex in (line_comment_regex, block_comment_regex):
         lump.data = regex.sub('', lump.data)
 
+
 # ==============================================================================
+
 
 class SoundMapping:
     LOGICAL_TO_LUMP = 0
     LUMP_TO_LOGICAL = 1
     LUMP_TO_CONTENT = 2
 
+
 # ==============================================================================
+
 
 # TODO: add other start/end marker names
 _marker_lumpname_regex = re.compile(r'^(E\dM\d|MAP\d\d|S?S_START|S?S_END)$')
 
+
 class Lump(object):
     def __init__(self, name, data, index=None):
         self.name = name
-        self.data = data
+        self._data = data
+        self._hash = None
         self.index = index
         self.namespace = ''
         self.marker = 0 == len(data) and name not in specnames \
@@ -122,10 +134,12 @@ class Lump(object):
             self._hash = algo.digest()
             return self._hash
 
+
 # ==============================================================================
 
+
 class WadFile(object):
-    def __init__(self, data_or_file = None):
+    def __init__(self, data_or_file=None):
         if not data_or_file:
             self.sig = 'PWAD'
             self.lumps = []
@@ -142,7 +156,7 @@ class WadFile(object):
 
         sig, numentries, offset = _header.unpack(file.read(12))
 
-        if (sig != 'IWAD' and sig != 'PWAD'):
+        if 'IWAD' != sig and 'PWAD' != sig:
             raise ValueError('not a WAD file')
 
         self.sig = sig
@@ -154,7 +168,7 @@ class WadFile(object):
 
         for i in xrange(numentries):
             pos = i * 16
-            offset, size, name = _dirent.unpack(direct[pos : pos + 16])
+            offset, size, name = _dirent.unpack(direct[pos: pos + 16])
             idx = name.find('\0')
             if idx != -1:
                 name = name[:idx]
@@ -200,12 +214,8 @@ class WadFile(object):
 
             ismap = ismapcur
 
-# ==============================================================================
-
     def writeto(self, file):
         directory = []
-        dirsize = 16 * len(self)
-
         pos = 12
 
         for lump in self:
@@ -255,9 +265,9 @@ class WadFile(object):
             self.lumps[i].index = i
 
     def removelump(self, lump):
-       idx = lump.index
-       self.lumps.remove(lump)
-       self._reindex(idx)
+        idx = lump.index
+        self.lumps.remove(lump)
+        self._reindex(idx)
 
     def insert(self, lump, before=None):
         idx = (before.index if before else len(self.lumps))
@@ -283,8 +293,6 @@ class WadFile(object):
 
     def __iter__(self):
         return iter(self.lumps)
-
-# ==============================================================================
 
     def namespaces(self):
         """ Return sorted list of namespace names.
@@ -322,8 +330,6 @@ class WadFile(object):
 
         return lumps
 
-# ==============================================================================
-
     def spritelumps(self):
         """ Return list of sprite lumps """
         lumps = []
@@ -353,7 +359,7 @@ class WadFile(object):
           sprite: { ... },
           ... }
         """
-        result = { }
+        result = {}
 
         for lump in self.spritelumps():
             lumpname = lump.name
@@ -379,8 +385,6 @@ class WadFile(object):
                 or not lump.name.startswith(sprite)
 
         self.filter(should_keep_lump)
-
-# ==============================================================================
 
     def soundmapping(self, mapping_type):
         """ Return dictionary with sound mapping in various mapping formats """
@@ -434,80 +438,10 @@ class WadFile(object):
 
         return result
 
-# ==============================================================================
-
     def filter(self, function):
         """ Keep only those lumps which function returns true """
         self.lumps = filter(function, self)
         self._reindex()
-
-# ==============================================================================
-
-parsers = {}
-
-def readarray(stream, clas):
-    if isinstance(stream, Lump):
-        stream = stream.data
-
-    if isinstance(stream, str):
-        stream = BytesIO(stream)
-
-    ret = []
-    ssize = clas.size
-    while True:
-        dat = stream.read(ssize)
-        if len(dat) < ssize:
-            break
-
-        ret.append(clas.fromstr(dat))
-    return ret
-
-def writearray(stream, array):
-    for item in array:
-        stream.write(str(item))
-
-def _defparser(name, sdef, *members):
-    mstruct = struct.Struct(sdef)
-    class clas(object):
-        size = mstruct.size
-
-
-        def __init__(self, *args, **kwargs):
-            for i, v in enumerate(args):
-                setattr(self, members[i], v)
-
-            for k, v in kwargs.items():
-                setattr(self, k, v)
-
-        def _toseq(self):
-            return [getattr(self, n) for n in members]
-
-        def __str__(self):
-            return mstruct.pack(*self._toseq())
-
-        def __repr__(self):
-            return '%s(%s)' % (name, ', '.join('%s=%r' % (n, getattr(self, n))
-                                               for n in members))
-
-        @staticmethod
-        def fromstr(string):
-            return clas(*mstruct.unpack(string[:mstruct.size]))
-
-    clas.members = members
-    clas.__name__ = name
-    globals()[name] = clas
-
-# TODO: finish other structures
-_defparser('Vertex', '<hh', 'x', 'y')
-_defparser('Thing', '<hhhhH', 'x', 'y', 'angle', 'type', 'flags')
-_defparser('HexThing', '<hhhhhhHBBBBBB', 'id', 'x', 'y', 'height',
-           'angle', 'type', 'flags', 'special', 'arg0', 'arg1',
-           'arg2', 'arg3', 'arg4')
-_defparser('Linedef', '<HHHHHhh', 'start_vtx', 'end_vtx', 'flags',
-           'special', 'sector_tag', 'right_sdef', 'left_sdef')
-_defparser('HexLinedef', '<HHHBBBBBBhh', 'start_vtx', 'end_vtx',
-           'flags', 'special', 'arg0', 'arg1', 'arg2', 'arg3',
-           'arg4', 'right_sdef', 'left_sdef')
 
 
 if __name__ == '__main__':
@@ -517,7 +451,7 @@ if __name__ == '__main__':
         print('Usage: {0} file.wad ...'.format(__file__))
         exit(1)
 
-    allsprites = { }
+    allsprites = {}
 
     for filename in sys.argv[1:]:
         wad_file = open(filename, 'rb')
@@ -526,14 +460,11 @@ if __name__ == '__main__':
 
         wad = WadFile(wad_data)
 
-        for name, frames in wad.spritemapping().iteritems():
-            if name in allsprites:
-                template = allsprites[name] == frames                 \
-                    and '[.] Identical sprite {0} was found'          \
-                    or  '[!] Sprite collision for name {0} was found'
-                print(template.format(name))
+        for sprite_name, frames in wad.spritemapping().iteritems():
+            if sprite_name in allsprites:
+                template = allsprites[sprite_name] == frames         \
+                    and '[.] Identical sprite {0} was found'         \
+                    or '[!] Sprite collision for name {0} was found'
+                print(template.format(sprite_name))
             else:
-                allsprites[name] = frames
-
-##    from pprint import pprint
-##    pprint(allsprites)
+                allsprites[sprite_name] = frames

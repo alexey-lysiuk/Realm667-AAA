@@ -52,12 +52,21 @@ class WebRepoHTMLParser(HTMLParser):
         # one entry can contain several items, i.e. more than one archives with WADs
         self.entries_count = 0
 
+        self._parsing_div = 0
+        self._preview_link = None
+
     def handle_starttag(self, tag, attrs):
         if self._parsing_span:
             if 'a' == tag:
                 for attr in attrs:
                     if 'href' == attr[0]:
                         self._link = attr[1]
+
+        if self._parsing_div:
+            if 'img' == tag:
+                for attr in attrs:
+                    if 'src' == attr[0]:
+                        self._preview_link = attr[1]
 
         if 'span' == tag:
             if self._parsing_span:
@@ -67,10 +76,20 @@ class WebRepoHTMLParser(HTMLParser):
                 if 'class' == attr[0] and 'download' in attr[1]:
                     self._parsing_span = 1  # no nested download spans
                     break
+        elif 'div' == tag:
+            if self._parsing_div:
+                self._parsing_div += 1
+
+            for attr in attrs:
+                if 'id' == attr[0] and 'preview' in attr[1]:
+                    self._parsing_div = 1  # no nested preview divs
+                    break
 
     def handle_endtag(self, tag):
         if self._parsing_span and 'span' == tag:
             self._parsing_span -= 1
+        elif self._parsing_div and 'div' == tag:
+            self._parsing_div -= 1
 
     def handle_data(self, data):
         data = data.strip()
@@ -90,9 +109,10 @@ class WebRepoHTMLParser(HTMLParser):
                 match = re.search(r'&gid=(\d+)', self._link)
                 if match:
                     gid = int(match.group(1).rjust(3))
-                    self.items.append((gid, data, self._class_names))
+                    self.items.append((gid, data, self._class_names, self._preview_link))
 
             self._link = None
+            self._preview_link = None
 
 
 # ==============================================================================
@@ -176,15 +196,18 @@ def _process_html(data, repository, page_separators):
     if page_separators and parser.entries_count > 0:
         separator = '--- {0} entries / {1} items ---'.format(
             parser.entries_count, len(parser.items))
-        repository.append((0, separator, '---'))
+        repository.append((0, separator, '---', ''))
 
     return parser.entries_count
 
 
 def fetch_repository(page_separators=False):
     """
-        Fetch web repository content and return it as a list of 3-tuples:
-        [int] asset id, [str] asset name, [str] actor class name(s)
+        Fetch web repository content and return it as a list of 4-tuples:
+        [int] asset id
+        [str] asset name
+        [str] actor class name(s)
+        [str] relative link to preview image
     """
     html_main = _fetch_html(_URL_WEBSITE)
     pattern_repo = r'<a href="([\w./-]+)">Repository</a>'

@@ -19,7 +19,6 @@
 #
 
 import collections
-import os
 import sys
 import doomwad
 
@@ -72,6 +71,5 @@ print('\nDuplicate colors:')
 
 for rgb, indices in sorted(duplicates.items()):
     if len(indices) > 1:
-        #print('{} -> {}'.format(rgb, indices))
         print('(0x%02X, 0x%02X, 0x%02X, 0xFF) -> %s'
-            % (rgb[0], rgb[1], rgb[2], indices))
+              % (rgb[0], rgb[1], rgb[2], indices))

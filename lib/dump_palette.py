@@ -51,14 +51,14 @@ if len(lump.data) < PALETTE_BYTES:
 colors = lump.data[:PALETTE_BYTES]
 palette = []
 
-for i in xrange(0, PALETTE_BYTES, 3):
+for i in range(0, PALETTE_BYTES, 3):
     palette.append((
         ord(colors[i]),
         ord(colors[i + 1]),
         ord(colors[i + 2]),
         255))
 
-for i in xrange(PALETTE_COLORS):
+for i in range(PALETTE_COLORS):
     rgb = palette[i]
     print('(0x%02X, 0x%02X, 0x%02X, 0xFF),' % (rgb[0], rgb[1], rgb[2]))
 
@@ -70,7 +70,7 @@ for index, rgb in enumerate(palette):
 
 print('\nDuplicate colors:')
 
-for rgb, indices in sorted(duplicates.iteritems()):
+for rgb, indices in sorted(duplicates.items()):
     if len(indices) > 1:
         #print('{} -> {}'.format(rgb, indices))
         print('(0x%02X, 0x%02X, 0x%02X, 0xFF) -> %s'

@@ -120,7 +120,7 @@ def _fetch_html(url):
         try:
             data = html_dump[url]
             html_dump.close()      # is this really needed?
-            return data
+            return utils.native_str(data)
         except KeyError:
             pass
 

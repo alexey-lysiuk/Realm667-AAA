@@ -18,6 +18,7 @@
 
 import time
 
+
 class Profiler(object):
     def __init__(self, enable):
         self._enable = enable
@@ -40,7 +41,7 @@ class Profiler(object):
 
             profiling_stream = io.StringIO() if sys.hexversion >= 0x3000000 else io.BytesIO()
             stats = pstats.Stats(self._profiler,
-                stream = profiling_stream).sort_stats('cumulative')
+                                 stream=profiling_stream).sort_stats('cumulative')
             stats.print_stats()
 
             print('\n')

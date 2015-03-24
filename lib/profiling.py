@@ -34,10 +34,11 @@ class Profiler(object):
         if self._enable:
             self._profiler.disable()
 
-            import cStringIO
+            import io
             import pstats
+            import sys
 
-            profiling_stream = cStringIO.StringIO()
+            profiling_stream = io.StringIO() if sys.hexversion >= 0x3000000 else io.BytesIO()
             stats = pstats.Stats(self._profiler,
                 stream = profiling_stream).sort_stats('cumulative')
             stats.print_stats()

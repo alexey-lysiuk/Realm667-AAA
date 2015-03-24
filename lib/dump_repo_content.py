@@ -19,23 +19,32 @@
 #
 
 from repo import REPOSITORY
+from web_repo import fetch_repository
 
-print('|ID|Name|Comment|\n|---|---|---|')
+remote_repo = fetch_repository()
+
+print('\n|ID|Name|Preview|Comment|\n|---|---|---|---|')
 
 for item in REPOSITORY:
-    gid     = item[0]
-    name    = item[1]
+    gid = item[0]
+    abs_gid = abs(gid)
 
-    if gid < 0:
-        gid     = -gid
-        comment = 'Excluded'
-    else:
-        comment = ''
+    link = ''
+    name = item[1]
+    preview = ''
+    comment = ''
 
     if 0 == gid:
-        name = '**{}**'.format(name)
-        link = ''
+        name = '**' + name + '**'
     else:
-        link = '[{0:d}](https://github.com/alexey-lysiuk/Realm667-AAA-Cache/raw/master/{0:04d}.zip)'.format(gid)
+        url = 'https://github.com/alexey-lysiuk/Realm667-AAA-Cache/raw/master/'
+        link = '[{0:d}]({1}{0:04d}.zip)'.format(abs_gid, url)
+        preview = next((ri[3] for ri in remote_repo if abs_gid == ri[0]))
+        preview = '![{}](http://www.realm667.com/{})'.format(name, preview)
 
-    print('|{}|{}|{}|'.format(link, name, comment))
+        if gid < 0:
+            link = '~~' + link + '~~'
+            name = '~~' + name + '~~'
+            comment = 'Excluded from generated package'
+
+    print('|{}|{}|{}|{}|'.format(link, name, preview, comment))

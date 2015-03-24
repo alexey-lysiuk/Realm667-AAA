@@ -18,7 +18,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-import os
 import re
 import sys
 
@@ -68,6 +67,10 @@ for filename in sys.argv[1:]:
 
             logical_name = logical_name.lower()
             lump_name = lump_name.upper()
+
+            if lump_name == '}':
+                # avoid dangling line in multi-line declarations
+                continue
 
             logical_sounds.add("'{0}',\n".format(logical_name))
             sound_lumps.add("'{0}',\n".format(lump_name))

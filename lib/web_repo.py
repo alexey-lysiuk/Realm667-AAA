@@ -223,15 +223,15 @@ def fetch_repository(page_separators=False):
 if __name__ == '__main__':
     repository = fetch_repository(page_separators=True)
 
-    file_menu = open(utils.temp_path + 'menudef.txt', 'w')
-    file_repo = open(utils.temp_path + 'repository.py', 'w')
+    file_menu = open(utils.temp_path + 'menudef.txt', 'wb')
+    file_repo = open(utils.temp_path + 'repository.py', 'wb')
 
     for item in repository:
         line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])
-        file_menu.write(line_menu)
+        file_menu.write(utils.binary_str(line_menu))
 
         line_repo = "    ({:3d}, '{}'),\n".format(item[0], item[1])
-        file_repo.write(line_repo)
+        file_repo.write(utils.binary_str(line_repo))
 
     file_repo.close()
     file_menu.close()

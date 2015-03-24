@@ -114,7 +114,10 @@ def _fetch_html(url):
     if _DONT_USE_DUMP == _dump_mode:
         html_dump = None
     else:
-        html_dump = shelve.open(utils.temp_path + 'html_dump')
+        import platform
+        dump_filename = '{}html_dump_{}.db'.format(
+            utils.temp_path, platform.python_version())
+        html_dump = shelve.open(dump_filename)
 
     if _READ_FROM_DUMP == _dump_mode:
         try:

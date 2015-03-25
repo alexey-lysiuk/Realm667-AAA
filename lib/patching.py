@@ -173,7 +173,7 @@ def _generate_unique_sprite_name(sprite, frames):
         unique_name = ''
 
         for i in range(name_length):
-            index = random.randint(0, char_count - 1)
+            index = random.randrange(0, char_count)
             unique_name += name_chars[index]
 
         if unique_name not in _sprites:
@@ -444,7 +444,7 @@ def _generate_unique_lump_name():
         unique_name = ''
 
         for i in range(8):
-            index = random.randint(0, char_count - 1)
+            index = random.randrange(0, char_count)
             unique_name += name_chars[index]
 
         if unique_name not in _lumps:

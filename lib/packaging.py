@@ -32,10 +32,6 @@ class _InternalZipPackager(object):
     def __init__(self, compression):
         self._file = zipfile.ZipFile(_FILENAME_PATTERN + 'pk3', 'w', compression)
 
-    def write(self, filename, arcname):
-        """ Put bytes from filename into the archive under the name arcname """
-        self._file.write(filename, arcname)
-
     def writestr(self, arcname, data):
         """ Put data into the archive under the name arcname """
         self._file.writestr(arcname, data)
@@ -74,9 +70,6 @@ class _SevenZipPackager(object):
 
     def _work_filename(self, arcname):
         return '{}/{}'.format(self._work_dir, arcname)
-
-    def write(self, filename, arcname):
-        shutil.copy(filename, self._work_filename(arcname))
 
     def writestr(self, arcname, data):
         with open(self._work_filename(arcname), 'wb') as f:

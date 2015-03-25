@@ -9128,4 +9128,24 @@ SPRITES_STRIFE = (
 'ZOT3',
 )
 
-SPRITES_ALL = SPRITES_DOOM_ALL + SPRITES_HERETIC + SPRITES_HEXEN + SPRITES_STRIFE
+# Additional sprites supplied with ZDoom
+# https://github.com/rheit/zdoom/tree/master/wadsrc/static/sprites
+
+ZDOOM_SPRITES = (
+'AMRK',
+'DOGS',
+'GWAN',
+'ICEC',
+'PIST',
+'PLS1',
+'PLS2',
+'PLYC',
+'RSMK',
+'SGRN',
+'SPKR',
+'TLGL',
+'TNT1',
+'UNKN',
+)
+
+SPRITES_ALL = SPRITES_DOOM_ALL + SPRITES_HERETIC + SPRITES_HEXEN + SPRITES_STRIFE + ZDOOM_SPRITES

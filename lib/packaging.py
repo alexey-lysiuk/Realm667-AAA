@@ -20,12 +20,14 @@ import os
 import shutil
 import subprocess
 import tempfile
+import time
 import zipfile
 
 import utils
 
 
 _FILENAME_PATTERN = 'realm667-aaa.'
+_ACRFILE_DATE_TIME = (2015, 2, 2, 0, 0, 0)
 
 
 class _InternalZipPackager(object):
@@ -34,7 +36,9 @@ class _InternalZipPackager(object):
 
     def writestr(self, arcname, data):
         """ Put data into the archive under the name arcname """
-        self._file.writestr(arcname, data)
+        zinfo = zipfile.ZipInfo(arcname, date_time=_ACRFILE_DATE_TIME)
+        zinfo.compress_type = self._file.compression
+        self._file.writestr(zinfo, data)
 
     def close(self):
         self._file.close()
@@ -72,8 +76,13 @@ class _SevenZipPackager(object):
         return '{}/{}'.format(self._work_dir, arcname)
 
     def writestr(self, arcname, data):
-        with open(self._work_filename(arcname), 'wb') as f:
+        work_filename = self._work_filename(arcname)
+
+        with open(work_filename, 'wb') as f:
             f.write(utils.binary_str(data))
+
+        file_time = time.mktime(_ACRFILE_DATE_TIME + (0, 0, -1))
+        os.utime(work_filename, (file_time, file_time))
 
     def close(self):
         print('Compressing package...')

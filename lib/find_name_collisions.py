@@ -157,10 +157,50 @@ def read_wad(zip_file, filename):
     return doomwad.WadFile(wad_data)
 
 
+states_block_regex = re.compile(r'states\s+\{(.*?)}', re.IGNORECASE | re.DOTALL)
+state_regex = re.compile(r'\s*"?([\w#-]{4})"?\s+"?[\w\[\]\\#]"?\s+-?\d+')
+
+deco_sprites = set()
+
+
+def gather_sprites(wad):
+    decorate = prepare_decorate(wad)
+
+    for states in states_block_regex.findall(decorate):
+        for line in states.split('\n'):
+            state_match = state_regex.match(line)
+
+            if state_match:
+                sprite = state_match.group(1).upper()
+                deco_sprites.add(sprite)
+
+
+def print_sprite_usage(iwads, warnings_only=False):
+    print('\nSprite usage:')
+
+    for sprite in sorted(deco_sprites):
+        wads = []
+
+        if sprite in sprites_wads:
+            wads += sprites_wads[sprite]
+
+        from_iwad = False
+
+        for iwad in iwads:
+            if sprite in iwad[1]:
+                wads.append(iwad[0])
+                from_iwad = True
+
+        if not warnings_only or (not wads or from_iwad):
+            print('{}: {}'.format(sprite, wads))
+
+
 def print_duplicates(mapping, iwads):
     duplicates = []
 
     for name, wads in mapping.items():
+        wads = wads[:]
+
         for iwad in iwads:
             if name in iwad[1]:
                 wads.append(iwad[0])
@@ -243,6 +283,7 @@ def main():
         wad = read_wad(pk3_file, zipped_filename)
         wad.filename = zipped_filename
 
+        gather_sprites(wad)
         find_duplicate_lumps(wad)
         find_duplicate_sprites(wad)
         find_duplicate_actors(wad)
@@ -263,14 +304,17 @@ def main():
         ('STRIFE', LUMPS_STRIFE),
     ))
 
-    print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
-    print_duplicates(sprites_wads, (
+    sprites_iwads = (
         ('DOOM1', SPRITES_ULTDOOM),
         ('DOOM2/TNT/PLUTONIA', SPRITES_DOOM2),
         ('HERETIC', SPRITES_HERETIC),
         ('HEXEN', SPRITES_HEXEN),
         ('STRIFE', SPRITES_STRIFE),
-    ))
+        ('(G)ZDOOM', SPRITES_ZDOOM),
+    )
+
+    print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
+    print_duplicates(sprites_wads, sprites_iwads)
 
     print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
     print_duplicates(actors_wads, (
@@ -283,6 +327,9 @@ def main():
 
     if False:
         dump_duplicate_actors()
+
+    if False:
+        print_sprite_usage(sprites_iwads, warnings_only=True)
 
 
 if __name__ == '__main__':

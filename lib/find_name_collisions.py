@@ -41,6 +41,9 @@ from patching import (
 import utils
 
 
+pk3_filename = utils.root_path + 'realm667-aaa.pk3'
+
+
 excluded_lump_names = [
     # lumps
     'ANIMDEFS',
@@ -84,8 +87,8 @@ def find_duplicate_lumps(wad):
                 continue
 
             if lump.name in lumps_wads \
-                and wad.filename not in lumps_wads[lump.name]:
-                    lumps_wads[lump.name].append(wad.filename)
+                    and wad.filename not in lumps_wads[lump.name]:
+                lumps_wads[lump.name].append(wad.filename)
             else:
                 lumps_wads[lump.name] = [wad.filename]
 
@@ -154,33 +157,10 @@ def read_wad(zip_file, filename):
     return doomwad.WadFile(wad_data)
 
 
-# Scan generated .pk3
-
-pk3_filename = utils.root_path + 'realm667-aaa.pk3'
-pk3_file = zipfile.ZipFile(pk3_filename)
-
-for zipped_filename in pk3_file.namelist():
-    if not zipped_filename.lower().endswith('.wad'):
-        continue
-
-    wad = read_wad(pk3_file, zipped_filename)
-    wad.filename = zipped_filename
-
-    find_duplicate_lumps(wad)
-    find_duplicate_sprites(wad)
-    find_duplicate_actors(wad)
-    find_duplicate_sounds(wad)
-
-pk3_file.close()
-
-# Print names collisions
-
 def print_duplicates(mapping, iwads):
     duplicates = []
 
-    for name in mapping:
-        wads = mapping[name]
-
+    for name, wads in mapping.items():
         for iwad in iwads:
             if name in iwad[1]:
                 wads.append(iwad[0])
@@ -188,7 +168,7 @@ def print_duplicates(mapping, iwads):
         if 1 == len(wads):
             continue
 
-        wads.sort(key=lambda name: name.lower())
+        wads.sort(key=lambda key: key.lower())
 
         duplicates.append('|{0}|{1}||'.format(name, ', '.join(wads)))
 
@@ -197,30 +177,9 @@ def print_duplicates(mapping, iwads):
     for dup in duplicates:
         print(dup)
 
-print('\n|Lump|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(lumps_wads, (
-    ('!DOOM.WAD',     LUMPS_ULTDOOM ),
-    ('!DOOM2.WAD',    LUMPS_DOOM2   ),
-    ('!TNT.WAD',      LUMPS_TNT     ),
-    ('!PLUTONIA.WAD', LUMPS_PLUTONIA),
-    ('!HERETIC.WAD',  LUMPS_HERETIC ),
-    ('!HEXEN.WAD',    LUMPS_HEXEN   ),
-    ('!STRIFE1.WAD',  LUMPS_STRIFE  ),
-))
 
-print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(sprites_wads, (('!DOOM_ALL.WAD', SPRITES_ALL),))
+actor_dump_path = utils.temp_path + 'actors/'
 
-print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
-print_duplicates(actors_wads,
-    (('!ALL.WAD', [name.lower() for name in ACTORS_ALL]),))
-
-if False:
-    print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
-    print_duplicates(sounds_wads,
-       (('!ALL.WAD', [sound for sound in LOGICAL_SOUNDS_ALL]),))
-
-actor_dump_path = '../tmp/actors/'
 
 def dump_actor(actor, filename, content):
     dump_filename = '{0}{1}_{2}.txt' \
@@ -230,14 +189,19 @@ def dump_actor(actor, filename, content):
     f.write(content)
     f.close()
 
+
 def dump_duplicate_actors():
     # NOTE: implementation ignores internal ZDoom actors at the moment
 
-    try: shutil.rmtree(actor_dump_path)
-    except OSError: pass
+    try:
+        shutil.rmtree(actor_dump_path)
+    except OSError:
+        pass
 
-    try: os.makedirs(actor_dump_path)
-    except OSError: pass
+    try:
+        os.makedirs(actor_dump_path)
+    except OSError:
+        pass
 
     pk3_file = zipfile.ZipFile(pk3_filename)
     count = 0
@@ -266,5 +230,60 @@ def dump_duplicate_actors():
     print('\nActors written: {0}\n'.format(count))
     pk3_file.close()
 
-if False:
-    dump_duplicate_actors()
+
+def main():
+    # Scan generated .pk3
+
+    pk3_file = zipfile.ZipFile(pk3_filename)
+
+    for zipped_filename in pk3_file.namelist():
+        if not zipped_filename.lower().endswith('.wad'):
+            continue
+
+        wad = read_wad(pk3_file, zipped_filename)
+        wad.filename = zipped_filename
+
+        find_duplicate_lumps(wad)
+        find_duplicate_sprites(wad)
+        find_duplicate_actors(wad)
+        find_duplicate_sounds(wad)
+
+    pk3_file.close()
+
+    # Print names collisions
+
+    print('\n|Lump|WAD Files|Comments|\n|---|---|---|')
+    print_duplicates(lumps_wads, (
+        ('DOOM1', LUMPS_ULTDOOM),
+        ('DOOM2', LUMPS_DOOM2),
+        ('TNT', LUMPS_TNT),
+        ('PLUTONIA', LUMPS_PLUTONIA),
+        ('HERETIC', LUMPS_HERETIC),
+        ('HEXEN', LUMPS_HEXEN),
+        ('STRIFE', LUMPS_STRIFE),
+    ))
+
+    print('\n|Sprite|WAD Files|Comments|\n|---|---|---|')
+    print_duplicates(sprites_wads, (
+        ('DOOM1', SPRITES_ULTDOOM),
+        ('DOOM2/TNT/PLUTONIA', SPRITES_DOOM2),
+        ('HERETIC', SPRITES_HERETIC),
+        ('HEXEN', SPRITES_HEXEN),
+        ('STRIFE', SPRITES_STRIFE),
+    ))
+
+    print('\n|Actor|WAD Files|Comments|\n|---|---|---|')
+    print_duplicates(actors_wads, (
+        ('ALL GAMES', [name.lower() for name in ACTORS_ALL]),))
+
+    if False:
+        print('\n|Sound|WAD Files|Comments|\n|---|---|---|')
+        print_duplicates(sounds_wads, (
+            ('ALL GAMES', [sound for sound in LOGICAL_SOUNDS_ALL]),))
+
+    if False:
+        dump_duplicate_actors()
+
+
+if __name__ == '__main__':
+    main()

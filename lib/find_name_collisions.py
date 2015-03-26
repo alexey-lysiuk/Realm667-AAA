@@ -160,7 +160,10 @@ def read_wad(zip_file, filename):
 states_block_regex = re.compile(r'states\s+\{(.*?)}', re.IGNORECASE | re.DOTALL)
 state_regex = re.compile(r'\s*"?([\w#-]{4})"?\s+"?[\w\[\]\\#]+"?\s+-?\d+')
 
-deco_sprites = set()
+deco_sprites = {}
+
+# special names, see http://zdoom.org/wiki/Sprite
+EXCLUDED_SPRITES = {'####', '----', 'TNT1'}
 
 
 def gather_sprites(wad):
@@ -172,13 +175,18 @@ def gather_sprites(wad):
 
             if state_match:
                 sprite = state_match.group(1).upper()
-                deco_sprites.add(sprite)
+
+                if sprite in EXCLUDED_SPRITES:
+                    continue
+
+                wads = deco_sprites.setdefault(sprite, set())
+                wads.add(wad.filename)
 
 
 def print_sprite_usage(iwads, warnings_only=False):
     print('\nSprite usage:')
 
-    for sprite in sorted(deco_sprites):
+    for sprite, deco_wads in sorted(deco_sprites.items()):
         wads = []
 
         if sprite in sprites_wads:
@@ -192,7 +200,8 @@ def print_sprite_usage(iwads, warnings_only=False):
                 from_iwad = True
 
         if not warnings_only or 1 != len(wads) or from_iwad:
-            print('{}: {}'.format(sprite, wads))
+            print('{}: stored in {}, referenced from {}'
+                  .format(sprite, wads, sorted(deco_wads)))
 
 
 def print_duplicates(mapping, iwads):

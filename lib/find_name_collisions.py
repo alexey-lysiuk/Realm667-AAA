@@ -158,7 +158,7 @@ def read_wad(zip_file, filename):
 
 
 states_block_regex = re.compile(r'states\s+\{(.*?)}', re.IGNORECASE | re.DOTALL)
-state_regex = re.compile(r'\s*"?([\w#-]{4})"?\s+"?[\w\[\]\\#]"?\s+-?\d+')
+state_regex = re.compile(r'\s*"?([\w#-]{4})"?\s+"?[\w\[\]\\#]+"?\s+-?\d+')
 
 deco_sprites = set()
 
@@ -191,7 +191,7 @@ def print_sprite_usage(iwads, warnings_only=False):
                 wads.append(iwad[0])
                 from_iwad = True
 
-        if not warnings_only or (not wads or from_iwad):
+        if not warnings_only or 1 != len(wads) or from_iwad:
             print('{}: {}'.format(sprite, wads))
 
 

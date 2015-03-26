@@ -260,15 +260,16 @@ def _store_asset(gid, filename, cached_file, packager):
 def _store_lump(filename, packager):
     filepath = 'data/' + filename
 
-    if filename.lower().endswith('.txt'):
-        # Optimize text lump
-        with open(filepath) as f:
-            original = f.read()
+    optimize = filename.lower().endswith('.txt')
+    filemode = 'r' if optimize else 'rb'
 
-        optimized = patching.optimize_text(original)
-        packager.writestr(filename, optimized)
-    else:
-        packager.write(filepath, filename)
+    with open(filepath, filemode) as f:
+        content = f.read()
+
+    if optimize:
+        content = patching.optimize_text(content)
+
+    packager.writestr(filename, content)
 
 
 # ==============================================================================

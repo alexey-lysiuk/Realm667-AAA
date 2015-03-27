@@ -30,6 +30,7 @@ def _sub_path(dirname):
 
 
 bin_path = _sub_path('bin')
+data_path = _sub_path('data')
 cache_path = _sub_path('cache')
 lib_path = _sub_path('lib')
 temp_path = _sub_path('tmp')

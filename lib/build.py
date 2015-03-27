@@ -257,19 +257,26 @@ def _store_asset(gid, filename, cached_file, packager):
         packager.writestr(wad_filename, wad_data.getvalue())
 
 
-def _store_lump(filename, packager):
-    filepath = 'data/' + filename
+def _store_lump(fullpath, packager):
+    relative = fullpath[len(utils.data_path):]
 
-    optimize = filename.lower().endswith('.txt')
+    optimize = relative.lower().endswith('.txt')
     filemode = 'r' if optimize else 'rb'
 
-    with open(filepath, filemode) as f:
+    with open(fullpath, filemode) as f:
         content = f.read()
 
     if optimize:
         content = patching.optimize_text(content)
 
-    packager.writestr(filename, content)
+    packager.writestr(relative, content)
+
+
+def _store_data_lumps(packager):
+    for dirname, _, filenames in os.walk(utils.data_path):
+        for filename in filenames:
+            fullpath = os.path.abspath(dirname + os.sep + filename)
+            _store_lump(fullpath, packager)
 
 
 # ==============================================================================
@@ -348,10 +355,7 @@ def _build(args):
         cached_file.close()
 
     if packager:
-        _store_lump('cvarinfo.txt', packager)
-        _store_lump('keyconf.txt',  packager)
-        _store_lump('menudef.txt',  packager)
-
+        _store_data_lumps(packager)
         packager.close()
 
     print('')

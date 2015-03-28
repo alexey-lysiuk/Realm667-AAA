@@ -16,6 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import sys
 import time
 
 
@@ -29,7 +30,10 @@ class Profiler(object):
             self._profiler = cProfile.Profile()
             self._profiler.enable()
         else:
-            self._start_time = time.clock()
+            # time.clock() doesn't return wall-time on UNIX,
+            # but it has greater precision on Windows
+            self._time_func = time.clock if 'win32' == sys.platform else time.time
+            self._start_time = self._time_func()
 
     def close(self):
         if self._enable:
@@ -47,5 +51,5 @@ class Profiler(object):
             print('\n')
             print(profiling_stream.getvalue())
         else:
-            build_time = time.clock() - self._start_time
+            build_time = self._time_func() - self._start_time
             print('Completed in {0:.3f} seconds'.format(build_time))

@@ -21,6 +21,11 @@
 import os
 import sys
 
+if (sys.hexversion < 0x2070000
+        or 0x3000000 <= sys.hexversion < 0x3020000):
+    print('This script requires Python 2.7 or Python 3.2 and higher')
+    exit(1)
+
 # all sources are in lib directory
 sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/lib'
 

@@ -21,7 +21,6 @@ The key bindings can be changed in **Customize Controls** menu. Look for **Realm
 
 **Note:** Do not expect that all assets will work in any game supported by (G)ZDoom. Use Doom II for maximum compatibility. Also, check `issues.md` file for the list of known issues.
 
-
 #### How to build
 
 You need [Python 2.7](https://www.python.org/downloads/release/python-279/) to run `build.py` script. Versions 3.2 and above are also supported but not recommended. The recent versions of Linux and OS X come with Python pre-installed. Make sure that you have required version by executing `python -V` command in the terminal.  
@@ -37,3 +36,14 @@ python build.py
 ```
 Use `--help` command line switch for the list of available options.  
 Intel-based Windows, Linux and OS X are supported at full extent. Compression via 7-Zip and handling of assets packed with RAR are not available on other platforms.
+
+#### Credits
+
+* Authors who contributed their work to the Realm667 Repository. Check individual asset's credits on the [web site](http://www.realm667.com)
+* Realm667 staff and Daniel Gimmer (Tormentor667) in particular for collecting everything in one place
+* Randy Heit et al. for ZDoom
+* Christoph Oelckers (Graf Zahl) for GZDoom
+* Guido van Rossum (BDFL) at al. for Python
+* Jared Stafford (jspenguin) for doomwad module
+* Marko Kreen for rarfile module
+* David Jones (drj11) for PyPNG module

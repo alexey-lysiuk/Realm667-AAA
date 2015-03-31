@@ -49,3 +49,20 @@ Intel-based Windows, Linux and OS X are supported at full extent. Compression vi
 * David Jones (drj11) for PyPNG module
 * Igor Pavlov for 7-Zip archiver and LZMA
 * Alexander Roshal for RAR archiver
+
+#### Links
+
+###### Realm 667
+* [Website](http://realm667.com)
+
+###### ZDoom
+* [Website](http://zdoom.org)
+* [Development Builds](http://devbuilds.drdteam.org/zdoom)
+* [Forums](http://forum.zdoom.org)
+* [Wiki](http://zdoom.org/wiki)
+
+###### GZDoom
+* [Website](http://www.osnanet.de/c.oelckers/gzdoom)
+* [Development Builds](http://devbuilds.drdteam.org/gzdoom)
+* [Forums](http://forum.drdteam.org/viewforum.php?f=22)
+* [Wiki](http://zdoom.org/wiki/Category:GZDoom_features)

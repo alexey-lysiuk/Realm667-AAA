@@ -4,7 +4,9 @@
 #### About
 
 This project is an attempt to _automatically_ combine all assets from www.realm667.com repository in a single package.  
-Almost all actors (weapons, monsters, powerups, props, effects) are included.
+Almost all actors (weapons, monsters, powerups, props, effects) are included.  
+  
+The single goal of this project is to showcase goodies available to creators of ZDoom-based projects.
 
 #### How to play
 

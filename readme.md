@@ -47,3 +47,5 @@ Intel-based Windows, Linux and OS X are supported at full extent. Compression vi
 * Jared Stafford (jspenguin) for doomwad module
 * Marko Kreen for rarfile module
 * David Jones (drj11) for PyPNG module
+* Igor Pavlov for 7-Zip archiver and LZMA
+* Alexander Roshal for RAR archiver

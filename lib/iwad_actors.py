@@ -581,6 +581,8 @@ ACTORS_ALL = (
 ('ArtiPoisonBagShooter'),
 ('PoisonCloud'),
 ('ZPoisonShroom'),
+# actors/hexen/flies.txt
+('LittleFly'),
 # actors/hexen/fog.txt
 ('FogSpawner'),
 ('FogPatchSmall'),

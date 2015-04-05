@@ -371,7 +371,7 @@ def _check_repo_update():
     remote_repo = web_repo.fetch_repository()
 
     local_ids = {abs(gid) for gid, _ in REPOSITORY if 0 != gid}
-    remote_ids = {gid for gid, _, _ in remote_repo}
+    remote_ids = {gid for gid, _, _, _ in remote_repo}
 
     new_ids = remote_ids - local_ids
 

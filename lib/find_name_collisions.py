@@ -36,6 +36,7 @@ from case_insensitive import CaseInsensitiveDict
 from iwad_lumps import *
 from iwad_actors import ACTORS_ALL
 from iwad_sndinfo import LOGICAL_SOUNDS_ALL
+from iwad_brightmaps import BRIGHTMAPS_ALL
 from patching import (
     actor_stateful_pattern, actor_stateless_pattern, actor_header_regex)
 import utils
@@ -311,6 +312,7 @@ def main():
         ('HERETIC', LUMPS_HERETIC),
         ('HEXEN', LUMPS_HEXEN),
         ('STRIFE', LUMPS_STRIFE),
+        ('BRIGHTMAPS', BRIGHTMAPS_ALL),
     ))
 
     sprites_iwads = (

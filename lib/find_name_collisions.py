@@ -312,6 +312,7 @@ def main():
         ('HERETIC', LUMPS_HERETIC),
         ('HEXEN', LUMPS_HEXEN),
         ('STRIFE', LUMPS_STRIFE),
+        ('ZDOOM', LUMPS_ZDOOM),
         ('BRIGHTMAPS', BRIGHTMAPS_ALL),
     ))
 

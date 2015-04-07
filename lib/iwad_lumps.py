@@ -9251,6 +9251,7 @@ SPRITES_STRIFE = (
 # https://github.com/rheit/zdoom/tree/master/wadsrc/static/sprites
 
 SPRITES_ZDOOM = (
+'AFLY',
 'AMRK',
 'DOGS',
 'GWAN',

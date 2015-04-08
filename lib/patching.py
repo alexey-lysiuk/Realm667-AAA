@@ -792,6 +792,16 @@ def _apply_patch_536(wad):  # Jackbomb
     _replace_in_gldefs(wad, regex, '')
 
 
+def _apply_patch_558(wad):  # Various Doom Keys
+    # fix lump names collision with graphics from (G)ZDoom
+    for i in range(6, 9):
+        old_name = 'STKEYS{}'.format(i)
+        new_name = old_name + '_'
+
+        _replace_in_decorate(wad, old_name, new_name)
+        _rename_lump(wad, old_name, new_name)
+
+
 def fix_always_activate(wad):
     # fix incorrect inventory flag
     _replace_in_decorate(

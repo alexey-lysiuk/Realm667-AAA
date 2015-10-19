@@ -23,6 +23,8 @@ The key bindings can be changed in **Customize Controls** menu. Look for **Realm
 
 **Note:** Do not expect that all assets will work in any game supported by (G)ZDoom. Use Doom II for maximum compatibility. Also, check `issues.md` file for the list of known issues.
 
+Users of the alternative HUD can set **HUD options >> Alternative HUD >> Show ammo for** option to **Available weapons** in order to fit the ammo column into the screen.
+
 #### How to build
 
 You need [Python 2.7](https://www.python.org/downloads/release/python-279/) to run `build.py` script. Versions 3.2 and above are also supported but not recommended. The recent versions of Linux and OS X come with Python pre-installed. Make sure that you have required version by executing `python -V` command in the terminal.  

@@ -979,7 +979,7 @@ _weapons_change_pitch = (
 )
 
 
-_re_no_set_pitch = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\+\-\*\\]+\)', re.IGNORECASE)
+_re_no_set_pitch = re.compile(r'\s+A_SetPitch\s*\([\+\w\s\.\-\*\\]+\)', re.IGNORECASE)
 _re_no_class_replacement = re.compile(r'(actor\s+[\w~.]+\s*:\s*[\w~.]+)\s+replaces\s+[\w~.]+', re.IGNORECASE)
 _re_no_doomednum = re.compile(r'(actor\s+[\w~.]+(\s*:\s*[\w~.]+)?\s+(replaces\s+[\w~.]+)?)\s*\d*', re.IGNORECASE)
 

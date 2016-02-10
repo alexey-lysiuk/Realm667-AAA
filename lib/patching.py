@@ -644,6 +644,11 @@ def _apply_patch_242(wad):  # Freeze Rifle
     _replace_in_decorate(wad, r'(\s)PLSG(\s)', r'\1FRSG\2')
 
 
+def _apply_patch_256(wad):  # Mancubus Arm
+    # fix incorrect inventory class
+    _replace_in_decorate(wad, r'(A_GiveInventory\s*\(\s*")(Blood")', r'\1Demon\2')
+
+
 def _apply_patch_266(wad):  # Napalm Launcher
     # fix infinite loop in engine caused by wrong state
     _replace_in_decorate(

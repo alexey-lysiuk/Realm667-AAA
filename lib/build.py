@@ -268,6 +268,17 @@ def _store_lump(fullpath, packager):
 
     if optimize:
         content = patching.optimize_text(content)
+    elif relative.endswith('.wad'):
+        wad = doomwad.WadFile(content)
+        wad.filename = relative
+
+        if wad.find('DECORATE'):
+            patching.apply_patch(-1, wad)
+
+        wad_data = io.BytesIO()
+        wad.writeto(wad_data)
+
+        content = wad_data.getvalue()
 
     packager.writestr(relative, content)
 

@@ -368,7 +368,7 @@ _BEASTIARY_DOOM = (
     (193, 'Undead Priest'),
     (298, 'Unmaker Zombie'),
     (812, 'Volacubi'),
-    (777, 'Vore'),
+    (-777, 'Vore'),  # no longer present in Repository
     (100, 'Vulgar'),
     (101, 'Warlord of Hell'),
     (102, 'Watcher'),

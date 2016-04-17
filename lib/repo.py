@@ -381,6 +381,7 @@ _BEASTIARY_DOOM = (
     (105, 'Zombie Marine'),
     (911, 'Zombie Missile Tank'),
     (341, 'Zombie Plasma Tank'),
+    (946, 'Zombie Plasma Scientist'),
     (106, 'Zombie Railgunner'),
     (-730, 'Zombie Scientist'), # the same as in #802 Former Scientists Pack
     (107, 'ZombieTank'),

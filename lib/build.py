@@ -51,9 +51,13 @@ def _handle_exception():
     if sys.gettrace():
         raise
     else:
-        import traceback
+        if sys.exc_info()[0] == KeyboardInterrupt:
+            print("Stopped by user")
+            sys.exit()
+        else:
+            import traceback
 
-        traceback.print_exc()
+            traceback.print_exc()
 
 
 # ==============================================================================

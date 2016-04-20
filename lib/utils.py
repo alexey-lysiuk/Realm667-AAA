@@ -20,6 +20,32 @@ import os
 import sys
 
 
+MODE_AAA = 1  # An Awesome Awesomeness
+MODE_ZDS = 2  # ZDoomed Souls
+
+_mode = MODE_AAA
+
+
+def mode():
+    return _mode
+
+
+def set_mode(new_mode):
+    global _mode
+    _mode = new_mode
+
+
+def is_aaa():
+    return mode() == MODE_AAA
+
+
+def is_zds():
+    return mode() == MODE_ZDS
+
+
+# ==============================================================================
+
+
 _root_path = os.path.dirname(__file__)
 _root_path = (_root_path + os.sep if _root_path else '') + os.pardir
 _root_path = os.path.abspath(_root_path) + os.sep

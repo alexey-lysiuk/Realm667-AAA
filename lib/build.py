@@ -39,7 +39,7 @@ import rarfile
 import utils
 
 from pk3_to_wad import pk3_to_wad
-from repo import *
+import repo
 
 
 # ==============================================================================
@@ -320,7 +320,9 @@ def _build(args):
     profiler = profiling.Profiler(args.profiling)
     packager = None if args.dry_run else _select_packager(args.compression)
 
-    for item in REPOSITORY:
+    excluded_wads = repo.excluded_wads()
+
+    for item in repo.content():
         gid = item[0]
         name = item[1]
 
@@ -346,8 +348,8 @@ def _build(args):
 
         for zipped_filename in cached_file.namelist():
             is_asset_file = zipped_filename.lower().endswith(('.wad', '.pk3')) \
-                and (gid not in EXCLUDED_WADS
-                     or zipped_filename not in EXCLUDED_WADS[gid])
+                and (gid not in excluded_wads
+                     or zipped_filename not in excluded_wads[gid])
 
             if is_asset_file:
                 wad_filenames.append(zipped_filename)
@@ -385,7 +387,7 @@ def _check_repo_update():
     import web_repo
     remote_repo = web_repo.fetch_repository()
 
-    local_ids = {abs(gid) for gid, _ in REPOSITORY if 0 != gid}
+    local_ids = {abs(gid) for gid, _ in repo.content() if 0 != gid}
     remote_ids = {gid for gid, _, _, _ in remote_repo}
 
     new_ids = remote_ids - local_ids

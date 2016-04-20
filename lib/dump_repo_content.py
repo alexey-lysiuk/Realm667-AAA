@@ -21,9 +21,9 @@
 import os
 import shutil
 
+import repo
 import utils
 
-from repo import REPOSITORY
 from web_repo import fetch_repository
 
 
@@ -43,7 +43,7 @@ def end_category():
         outfile.close()
 
 
-for item in REPOSITORY:
+for item in repo.content():
     gid = item[0]
     name = item[1]
 

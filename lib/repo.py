@@ -814,30 +814,33 @@ _SFX_SHOPPE_WEATHER = (
 # ==============================================================================
 
 
-# the following notation allows simple repository customization
-REPOSITORY = []
+def content():
+    # the following notation allows simple repository customization
+    result = []
 
-REPOSITORY += _ARMORY_DOOM
-REPOSITORY += _ARMORY_HERETIC_HEXEN
-REPOSITORY += _ARMORY_OTHER
+    result += _ARMORY_DOOM
+    result += _ARMORY_HERETIC_HEXEN
+    result += _ARMORY_OTHER
 
-REPOSITORY += _BEASTIARY_DOOM
-REPOSITORY += _BEASTIARY_HERETIC_HEXEN
-REPOSITORY += _BEASTIARY_STRIFE
+    result += _BEASTIARY_DOOM
+    result += _BEASTIARY_HERETIC_HEXEN
+    result += _BEASTIARY_STRIFE
 
-REPOSITORY += _ITEMSTORE_POWERUP_ARTIFACTS
-REPOSITORY += _ITEMSTORE_KEYS_PUZZLE
-REPOSITORY += _ITEMSTORE_OTHER
+    result += _ITEMSTORE_POWERUP_ARTIFACTS
+    result += _ITEMSTORE_KEYS_PUZZLE
+    result += _ITEMSTORE_OTHER
 
-REPOSITORY += _PROPSTOP_TECHNICAL
-REPOSITORY += _PROPSTOP_VEGETATION
-REPOSITORY += _PROPSTOP_LIGHT_SOURCES
-REPOSITORY += _PROPSTOP_GORE_CORPSES
-REPOSITORY += _PROPSTOP_HELL_MAGIC
+    result += _PROPSTOP_TECHNICAL
+    result += _PROPSTOP_VEGETATION
+    result += _PROPSTOP_LIGHT_SOURCES
+    result += _PROPSTOP_GORE_CORPSES
+    result += _PROPSTOP_HELL_MAGIC
 
-REPOSITORY += _SFX_SHOPPE_ELEMENTALFX
-REPOSITORY += _SFX_SHOPPE_PARTICLES
-REPOSITORY += _SFX_SHOPPE_WEATHER
+    result += _SFX_SHOPPE_ELEMENTALFX
+    result += _SFX_SHOPPE_PARTICLES
+    result += _SFX_SHOPPE_WEATHER
+
+    return result
 
 
 # ==============================================================================
@@ -846,26 +849,28 @@ REPOSITORY += _SFX_SHOPPE_WEATHER
 def _cis(*args):
     return case_insensitive.CaseInsensitiveSet(args)
 
-EXCLUDED_WADS = {
-    143: _cis('InfernalSpider (Jumping).wad'),
-    243: _cis('UnmakerCentered.wad'),
-    258: _cis('PolyMorph (old version).wad'),
-    645: _cis('FleshPillarTestMap01.wad'),
-    662: _cis('Demo.wad'),
-    663: _cis('Demo.wad'),
-    664: _cis('Demo.wad', 'SparkleFX_heretic.wad'), # or SparkleFX_doom.wad
-    667: _cis('BubbleTestMap.wad'),
-    703: _cis('ratTest.wad'),
-    711: _cis('BrightBook.pk3'), # TODO: merge brightmaps with asset WAD
-    716: _cis('StrobeTest.wad'),
-    717: _cis('StrifeLandMine.wad'),
-    721: _cis('testmap01.wad'),
-    799: _cis('Swarm Test.wad'),
-    816: _cis('CryoPal.wad'),
-    825: _cis('SkullOrbsDemoMap.wad'),
-    826: _cis('SupplyChestKeyDemoMap.wad'),
-    827: _cis('AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
-    867: _cis('Crosses.wad', 'Crosses3.wad'),  # or 'Crosses2.wad'
-    897: _cis('FamiliarSummon (Sphere).wad'),  # or 'FamiliarSummon (Scroll).wad'
-    925: _cis('demomaps.wad'),
-}
+
+def excluded_wads():
+    return {
+        143: _cis('InfernalSpider (Jumping).wad'),
+        243: _cis('UnmakerCentered.wad'),
+        258: _cis('PolyMorph (old version).wad'),
+        645: _cis('FleshPillarTestMap01.wad'),
+        662: _cis('Demo.wad'),
+        663: _cis('Demo.wad'),
+        664: _cis('Demo.wad', 'SparkleFX_heretic.wad'), # or SparkleFX_doom.wad
+        667: _cis('BubbleTestMap.wad'),
+        703: _cis('ratTest.wad'),
+        711: _cis('BrightBook.pk3'), # TODO: merge brightmaps with asset WAD
+        716: _cis('StrobeTest.wad'),
+        717: _cis('StrifeLandMine.wad'),
+        721: _cis('testmap01.wad'),
+        799: _cis('Swarm Test.wad'),
+        816: _cis('CryoPal.wad'),
+        825: _cis('SkullOrbsDemoMap.wad'),
+        826: _cis('SupplyChestKeyDemoMap.wad'),
+        827: _cis('AnkhOfLife (Upgradeable).wad'), # or 'AnkhOfLife (Map Duration).wad'
+        867: _cis('Crosses.wad', 'Crosses3.wad'),  # or 'Crosses2.wad'
+        897: _cis('FamiliarSummon (Sphere).wad'),  # or 'FamiliarSummon (Scroll).wad'
+        925: _cis('demomaps.wad'),
+    }

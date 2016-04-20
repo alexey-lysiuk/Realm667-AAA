@@ -17,6 +17,7 @@
 #
 
 import case_insensitive
+import utils
 
 # zero ID designates a category name
 # negative ID means that the given asset is excluded
@@ -827,18 +828,19 @@ def content():
     result += _BEASTIARY_STRIFE
 
     result += _ITEMSTORE_POWERUP_ARTIFACTS
-    result += _ITEMSTORE_KEYS_PUZZLE
+    result += _ITEMSTORE_KEYS_PUZZLE if utils.is_aaa() else ()
     result += _ITEMSTORE_OTHER
 
-    result += _PROPSTOP_TECHNICAL
-    result += _PROPSTOP_VEGETATION
-    result += _PROPSTOP_LIGHT_SOURCES
-    result += _PROPSTOP_GORE_CORPSES
-    result += _PROPSTOP_HELL_MAGIC
+    if utils.is_aaa():
+        result += _PROPSTOP_TECHNICAL
+        result += _PROPSTOP_VEGETATION
+        result += _PROPSTOP_LIGHT_SOURCES
+        result += _PROPSTOP_GORE_CORPSES
+        result += _PROPSTOP_HELL_MAGIC
 
-    result += _SFX_SHOPPE_ELEMENTALFX
-    result += _SFX_SHOPPE_PARTICLES
-    result += _SFX_SHOPPE_WEATHER
+        result += _SFX_SHOPPE_ELEMENTALFX
+        result += _SFX_SHOPPE_PARTICLES
+        result += _SFX_SHOPPE_WEATHER
 
     return result
 

@@ -98,6 +98,10 @@ def _configure():
 
     # Operational mode arguments
     parser.add_argument(
+        '--zdoomed-souls',
+        help='build ZDoomed Souls instead of An Awesome Awesomeness',
+        action='store_true')
+    parser.add_argument(
         '--check-repo-update',
         help='look for new assets in web repository instead of '
         ' building a package', action='store_true')
@@ -141,6 +145,9 @@ def _configure():
     patching.enable_optimization = not args.disable_optimization
     patching.png_sprites = args.png_sprites
     patching.png_sprites_compression = args.png_sprites_compression
+
+    if args.zdoomed_souls:
+        utils.set_mode(utils.MODE_ZDS)
 
     return args
 

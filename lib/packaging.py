@@ -26,17 +26,21 @@ import zipfile
 import utils
 
 
-_FILENAME_PATTERN = 'realm667-aaa.'
-_ACRFILE_DATE_TIME = (2015, 2, 2, 0, 0, 0)
+def _filename_pattern():
+    return 'realm667-{}.'.format('aaa' if utils.is_aaa() else 'zds')
+
+
+def _acrfile_date_time():
+    return (2015, 2, 2, 0, 0, 0) if utils.is_aaa() else (2016, 4, 17, 0, 0, 0)
 
 
 class _InternalZipPackager(object):
     def __init__(self, compression):
-        self._file = zipfile.ZipFile(_FILENAME_PATTERN + 'pk3', 'w', compression)
+        self._file = zipfile.ZipFile(_filename_pattern() + 'pk3', 'w', compression)
 
     def writestr(self, arcname, data):
         """ Put data into the archive under the name arcname """
-        zinfo = zipfile.ZipInfo(arcname, date_time=_ACRFILE_DATE_TIME)
+        zinfo = zipfile.ZipInfo(arcname, date_time=_acrfile_date_time())
         zinfo.compress_type = self._file.compression
         self._file.writestr(zinfo, data)
 
@@ -59,7 +63,7 @@ class UncompressedZipPackager(_InternalZipPackager):
 
 class _SevenZipPackager(object):
     def __init__(self, extention, args):
-        output_filename = utils.root_path() + _FILENAME_PATTERN + extention
+        output_filename = utils.root_path() + _filename_pattern() + extention
 
         self._args = [utils.exe_path('7za'), 'a', output_filename]
         self._args += args
@@ -81,7 +85,7 @@ class _SevenZipPackager(object):
         with open(work_filename, 'wb') as f:
             f.write(utils.binary_str(data))
 
-        file_time = time.mktime(_ACRFILE_DATE_TIME + (0, 0, -1))
+        file_time = time.mktime(_acrfile_date_time() + (0, 0, -1))
         os.utime(work_filename, (file_time, file_time))
 
     def close(self):

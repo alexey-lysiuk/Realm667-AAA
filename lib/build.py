@@ -268,13 +268,13 @@ def _store_asset(gid, filename, cached_file, packager):
         packager.writestr(wad_filename, wad_data.getvalue())
 
 
-def _store_lump(fullpath, packager):
-    relative = fullpath[len(utils.data_path()):]
+def _store_lump(full_path, data_path, packager):
+    relative = full_path[len(data_path):]
 
     optimize = relative.lower().endswith('.txt')
     filemode = 'r' if optimize else 'rb'
 
-    with open(fullpath, filemode) as f:
+    with open(full_path, filemode) as f:
         content = f.read()
 
     if optimize:
@@ -294,11 +294,11 @@ def _store_lump(fullpath, packager):
     packager.writestr(relative, content)
 
 
-def _store_data_lumps(packager):
-    for dirname, _, filenames in os.walk(utils.data_path()):
+def _store_data_lumps(packager, data_path):
+    for dirname, _, filenames in os.walk(data_path):
         for filename in filenames:
-            fullpath = os.path.abspath(dirname + os.sep + filename)
-            _store_lump(fullpath, packager)
+            full_path = os.path.abspath(dirname + os.sep + filename)
+            _store_lump(full_path, data_path, packager)
 
 
 # ==============================================================================
@@ -379,7 +379,8 @@ def _build(args):
         cached_file.close()
 
     if packager:
-        _store_data_lumps(packager)
+        _store_data_lumps(packager, utils.data_common_path())
+        _store_data_lumps(packager, utils.data_project_path())
         packager.close()
 
     print('')

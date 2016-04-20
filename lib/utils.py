@@ -87,6 +87,14 @@ def exe_path(tool):
     return '{}{}.{}{}'.format(bin_path(), tool, sys.platform, exe_ext)
 
 
+def data_common_path():
+    return data_path() + 'common/'
+
+
+def data_project_path():
+    return data_path() + ('aaa' if is_aaa() else 'zds') + '/'
+
+
 # ==============================================================================
 
 

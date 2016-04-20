@@ -43,7 +43,7 @@ def print_result(mapping):
         print('{0}: {1}'.format(actor, mapping[actor]))
 
 
-zip_filename = utils.root_path + 'realm667-aaa.pk3'
+zip_filename = utils.root_path() + 'realm667-aaa.pk3'
 zip_file = zipfile.ZipFile(zip_filename)
 
 ammo_actors_wads = {}

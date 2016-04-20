@@ -42,7 +42,7 @@ from patching import (
 import utils
 
 
-pk3_filename = utils.root_path + 'realm667-aaa.pk3'
+pk3_filename = utils.root_path() + 'realm667-aaa.pk3'
 
 
 excluded_lump_names = [
@@ -228,7 +228,7 @@ def print_duplicates(mapping, iwads):
         print(dup)
 
 
-actor_dump_path = utils.temp_path + 'actors/'
+actor_dump_path = utils.temp_path() + 'actors/'
 
 
 def dump_actor(actor, filename, content):

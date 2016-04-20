@@ -136,7 +136,7 @@ def _fetch_html(url):
     else:
         import platform
         dump_filename = '{}html_dump_{}.db'.format(
-            utils.temp_path, platform.python_version())
+            utils.temp_path(), platform.python_version())
         html_dump = shelve.open(dump_filename)
 
     if _READ_FROM_DUMP == _dump_mode:
@@ -248,9 +248,10 @@ def fetch_repository(page_separators=False):
 
 if __name__ == '__main__':
     repository = fetch_repository(page_separators=True)
+    temp_path = utils.temp_path()
 
-    file_menu = open(utils.temp_path + 'menudef.txt', 'wb')
-    file_repo = open(utils.temp_path + 'repository.py', 'wb')
+    file_menu = open(temp_path + 'menudef.txt', 'wb')
+    file_repo = open(temp_path + 'repository.py', 'wb')
 
     for item in repository:
         line_menu = '    Command "{0}", "r667aaa {1}"\n'.format(item[1], item[2])

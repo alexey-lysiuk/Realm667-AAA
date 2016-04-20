@@ -30,7 +30,7 @@ from web_repo import fetch_repository
 remote_repo = fetch_repository()
 toc = []
 
-toc_path = utils.cache_path + 'toc/'
+toc_path = utils.cache_path() + 'toc/'
 shutil.rmtree(toc_path)
 os.makedirs(toc_path)
 
@@ -90,6 +90,6 @@ header = (
     '####Table of content\n'
 )
 
-with open(utils.cache_path + 'readme.md', 'w') as outfile:
+with open(utils.cache_path() + 'readme.md', 'w') as outfile:
     outfile.write(header)
     outfile.writelines(toc)

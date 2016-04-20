@@ -59,13 +59,13 @@ class UncompressedZipPackager(_InternalZipPackager):
 
 class _SevenZipPackager(object):
     def __init__(self, extention, args):
-        output_filename = utils.root_path + _FILENAME_PATTERN + extention
+        output_filename = utils.root_path() + _FILENAME_PATTERN + extention
 
         self._args = [utils.exe_path('7za'), 'a', output_filename]
         self._args += args
         self._args.append('*')
 
-        self._work_dir = tempfile.mkdtemp(prefix='', dir=utils.temp_path)
+        self._work_dir = tempfile.mkdtemp(prefix='', dir=utils.temp_path())
 
         try:
             os.remove(output_filename)

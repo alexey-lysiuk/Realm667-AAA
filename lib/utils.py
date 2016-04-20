@@ -20,26 +20,45 @@ import os
 import sys
 
 
-root_path = os.path.dirname(__file__)
-root_path = (root_path + os.sep if root_path else '') + os.pardir
-root_path = os.path.abspath(root_path) + os.sep
+_root_path = os.path.dirname(__file__)
+_root_path = (_root_path + os.sep if _root_path else '') + os.pardir
+_root_path = os.path.abspath(_root_path) + os.sep
+
+
+def root_path():
+    return _root_path
 
 
 def _sub_path(dirname):
-    return root_path + dirname + os.sep
+    return root_path() + dirname + os.sep
 
 
-bin_path = _sub_path('bin')
-data_path = _sub_path('data')
-cache_path = _sub_path('cache')
-lib_path = _sub_path('lib')
-temp_path = _sub_path('tmp')
+_bin_path = _sub_path('bin')
+_data_path = _sub_path('data')
+_cache_path = _sub_path('cache')
+_temp_path = _sub_path('tmp')
+
+
+def bin_path():
+    return _bin_path
+
+
+def data_path():
+    return _data_path
+
+
+def cache_path():
+    return _cache_path
+
+
+def temp_path():
+    return _temp_path
 
 
 def exe_path(tool):
     """ Return absolute path to executable in bin directory by its tool name """
     exe_ext = '.exe' if 'win32' == sys.platform else ''
-    return '{}{}.{}{}'.format(bin_path, tool, sys.platform, exe_ext)
+    return '{}{}.{}{}'.format(bin_path(), tool, sys.platform, exe_ext)
 
 
 # ==============================================================================

@@ -70,10 +70,10 @@ def _configure():
     # set current directory to project's root directory
     # in order to make build process portable and self-contained,
     # and to do not store anything in current or user's home/temp directories
-    os.chdir(utils.root_path)
+    os.chdir(utils.root_path())
 
     try:
-        os.mkdir(utils.cache_path)
+        os.mkdir(utils.cache_path())
     except OSError:
         pass
 
@@ -153,7 +153,7 @@ _ARCHIVE_RAR = 'rar'
 
 
 def _cached_filename(gid, archive_format):
-    return '{:s}{:04d}.{:s}'.format(utils.cache_path, gid, archive_format)
+    return '{:s}{:04d}.{:s}'.format(utils.cache_path(), gid, archive_format)
 
 
 def _load_cached(gid, archive_format, fatal=True):
@@ -262,7 +262,7 @@ def _store_asset(gid, filename, cached_file, packager):
 
 
 def _store_lump(fullpath, packager):
-    relative = fullpath[len(utils.data_path):]
+    relative = fullpath[len(utils.data_path()):]
 
     optimize = relative.lower().endswith('.txt')
     filemode = 'r' if optimize else 'rb'
@@ -288,7 +288,7 @@ def _store_lump(fullpath, packager):
 
 
 def _store_data_lumps(packager):
-    for dirname, _, filenames in os.walk(utils.data_path):
+    for dirname, _, filenames in os.walk(utils.data_path()):
         for filename in filenames:
             fullpath = os.path.abspath(dirname + os.sep + filename)
             _store_lump(fullpath, packager)
@@ -410,10 +410,11 @@ def _clean_cache():
     # when cache was created by cloning git repository with assets
 
     cache_extensions = ('.' + _ARCHIVE_ZIP, '.' + _ARCHIVE_RAR)
+    cache_path = utils.cache_path()
 
-    for filename in os.listdir(utils.cache_path):
+    for filename in os.listdir(cache_path):
         if filename.lower().endswith(cache_extensions):
-            os.remove(utils.cache_path + filename)
+            os.remove(cache_path + filename)
 
     print('\nAssets cache cleared.')
 

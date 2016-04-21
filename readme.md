@@ -66,6 +66,7 @@ Intel-based Windows, Linux and OS X are supported at full extent. Compression vi
 * [Wiki](http://zdoom.org/wiki)
 
 ###### GZDoom
-* [Website/Forums](http://forum.drdteam.org/viewforum.php?f=22)
-* Development Builds: [with old renderer, version 1.x](http://devbuilds.drdteam.org/gzdoom-vintage) and [with new renderer, version 2.x](http://devbuilds.drdteam.org/gzdoom)
+* [Website](http://gzdoom.drdteam.org/)
+* Development Builds: [old renderer, version 1.x](http://devbuilds.drdteam.org/gzdoom-vintage) and [new renderer, version 2.x](http://devbuilds.drdteam.org/gzdoom)
+* [Forums](http://forum.drdteam.org/viewforum.php?f=22)
 * [Wiki](http://zdoom.org/wiki/Category:GZDoom_features)

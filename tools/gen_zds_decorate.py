@@ -31,9 +31,27 @@ import utils
 
 
 _MONSTERS = (
-    ('ZombieMan', 10),
-    ('ShotgunGuy', 20),
-    # ...
+    #  Class name    | Reward  | Has XDeath
+    ('ZombieMan',          10,     True),
+    ('ShotgunGuy',         25,     True),
+    ('ChaingunGuy',        50,     True),
+    ('WolfensteinSS',      40,     True),
+    ('DoomImp',            25,     True),
+    ('Demon',              50,    False),
+    ('Spectre',            70,    False),
+    ('Cacodemon',         150,    False),
+    ('BaronOfHell',       500,    False),
+    ('HellKnight',        250,    False),
+    ('PainElemental',     300,    False),
+    ('Revenant',          250,    False),
+    ('Arachnotron',       300,    False),
+    ('Fatso',             300,    False),
+    ('Archvile',          500,    False),
+    ('SpiderMastermind', 1000,    False),
+    ('Cyberdemon',       2000,    False),
+    ('BossBrain',        1000,    False),
+    # nothing for LostSoul and CommanderKeen :)
+    # TODO: Stealth monsters ?
 )
 
 _MONSTER_PATTERN = '''
@@ -43,29 +61,76 @@ actor ZDS{0} : {0} replaces {0}
 
     states
     {{
-    Death:
-        TNT1 A 0 A_GiveInventory("ZDSSoul", {1}, AAPTR_PLAYER1)
-        goto Super::Death
-    XDeath:
-        TNT1 A 0 A_GiveInventory("ZDSSoul", {1}, AAPTR_PLAYER1)
-        goto Super::XDeath
-    }}
+{1}    }}
 }}
 '''
+
+_MONSTER_STATE_PATTERN = '''    {0}:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", {1}, AAPTR_PLAYER1)
+        goto Super::{0}
+'''
+
+
+def _generate_monsters():
+    result = []
+
+    for monster in _MONSTERS:
+        class_name = monster[0]
+        reward = monster[1]
+        has_xdeath = monster[2]
+
+        states = _MONSTER_STATE_PATTERN.format('Death', reward)
+
+        if has_xdeath:
+            states += _MONSTER_STATE_PATTERN.format('XDeath', reward)
+
+        definition = _MONSTER_PATTERN.format(class_name, states)
+        result.append(definition)
+
+    return result
 
 
 # ==============================================================================
 
 
 _PICKUPS = (
-    # Ammo
-    ('Clip', 5),
-    ('ClipBox', 20),
-    # Health
-    ('HealthBonus', 5),
-    ('Stimpack', 10),
-    ('Medikit', 20),
-    # ...
+    #  Class name            | Price    | Amount
+    # -----------------------+----------+--------
+    #  Weapons               |          |
+    ('Chainsaw',                 100,        1),
+    ('Shotgun',                  100,        1),
+    ('SuperShotgun',             200,        1),
+    ('Chaingun',                 150,        1),
+    ('RocketLauncher',           300,        1),
+    ('PlasmaRifle',              300,        1),
+    ('BFG9000',                  500,        1),
+    #  Ammo                  |          |
+    ('Clip',                       5,       10),
+    ('ClipBox',                   25,       50),
+    ('Shell',                     20,        4),
+    ('ShellBox',                 100,       20),
+    ('RocketAmmo',                10,        1),
+    ('RocketBox',                 50,        5),
+    ('Cell',                      20,       20),
+    ('CellPack',                 100,      100),
+    ('Backpack',                 200,        1),
+    # Health                 |          |
+    ('HealthBonus',                1,        1),
+    ('Stimpack',                  10,        1),
+    ('Medikit',                   25,       25),
+    # Armor                  |          |
+    ('ArmorBonus',                 1,        1),
+    ('GreenArmor',               100,        1),
+    ('BlueArmor',                200,        1),
+    # Artifacts              |          |
+    ('InvulnerabilitySphere',    500,        1),
+    ('Soulsphere',               200,        1),
+    ('Megasphere',               400,        1),
+    ('BlurSphere',               200,        1),
+    ('RadSuit',                  100,        1),
+    ('Infrared',                 100,        1),
+    ('Allmap',                   500,        1),
+    ('Berserk',                  250,        1),
 )
 
 _PICKUP_PATTERN = '''
@@ -86,20 +151,20 @@ actor ZDS{0} : CustomInventory replaces {0}
 '''
 
 
-# ==============================================================================
-
-
-utils.set_mode(utils.MODE_ZDS)
-
-
-def _generate_decorate(content, pattern):
+def _generate_pickups():
     result = []
 
-    for item in content:
-        definition = pattern.format(item[0], item[1])
+    for item in _PICKUPS:
+        class_name = item[0]
+        price = item[1]
+
+        definition = _PICKUP_PATTERN.format(class_name, price)
         result.append(definition)
 
     return result
+
+
+# ==============================================================================
 
 
 def _write_file(path, lines):
@@ -109,8 +174,7 @@ def _write_file(path, lines):
     output_file.close()
 
 
-_monsters_decorate = _generate_decorate(_MONSTERS, _MONSTER_PATTERN)
-_write_file('actors/doom/monsters.txt', _monsters_decorate)
+utils.set_mode(utils.MODE_ZDS)
 
-_pickups_decorate = _generate_decorate(_PICKUPS, _PICKUP_PATTERN)
-_write_file('actors/doom/pickups.txt', _pickups_decorate)
+_write_file('actors/doom/monsters.txt', _generate_monsters())
+_write_file('actors/doom/pickups.txt', _generate_pickups())

@@ -38,10 +38,211 @@ actor ZDSShotgunGuy : ShotgunGuy replaces ShotgunGuy
     states
     {
     Death:
-        TNT1 A 0 A_GiveInventory("ZDSSoul", 20, AAPTR_PLAYER1)
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 25, AAPTR_PLAYER1)
         goto Super::Death
     XDeath:
-        TNT1 A 0 A_GiveInventory("ZDSSoul", 20, AAPTR_PLAYER1)
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 25, AAPTR_PLAYER1)
         goto Super::XDeath
+    }
+}
+
+actor ZDSChaingunGuy : ChaingunGuy replaces ChaingunGuy
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 50, AAPTR_PLAYER1)
+        goto Super::Death
+    XDeath:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 50, AAPTR_PLAYER1)
+        goto Super::XDeath
+    }
+}
+
+actor ZDSWolfensteinSS : WolfensteinSS replaces WolfensteinSS
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 40, AAPTR_PLAYER1)
+        goto Super::Death
+    XDeath:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 40, AAPTR_PLAYER1)
+        goto Super::XDeath
+    }
+}
+
+actor ZDSDoomImp : DoomImp replaces DoomImp
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 25, AAPTR_PLAYER1)
+        goto Super::Death
+    XDeath:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 25, AAPTR_PLAYER1)
+        goto Super::XDeath
+    }
+}
+
+actor ZDSDemon : Demon replaces Demon
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 50, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSSpectre : Spectre replaces Spectre
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 70, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSCacodemon : Cacodemon replaces Cacodemon
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 150, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSBaronOfHell : BaronOfHell replaces BaronOfHell
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 500, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSHellKnight : HellKnight replaces HellKnight
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 250, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSPainElemental : PainElemental replaces PainElemental
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 300, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSRevenant : Revenant replaces Revenant
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 250, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSArachnotron : Arachnotron replaces Arachnotron
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 300, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSFatso : Fatso replaces Fatso
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 300, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSArchvile : Archvile replaces Archvile
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 500, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSSpiderMastermind : SpiderMastermind replaces SpiderMastermind
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 1000, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSCyberdemon : Cyberdemon replaces Cyberdemon
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 2000, AAPTR_PLAYER1)
+        goto Super::Death
+    }
+}
+
+actor ZDSBossBrain : BossBrain replaces BossBrain
+{
+    DropItem None
+
+    states
+    {
+    Death:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 1000, AAPTR_PLAYER1)
+        goto Super::Death
     }
 }

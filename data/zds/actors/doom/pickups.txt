@@ -16,6 +16,111 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+actor ZDSChainsaw : CustomInventory replaces Chainsaw
+{
+    Inventory.PickupMessage "You picked up 100 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSShotgun : CustomInventory replaces Shotgun
+{
+    Inventory.PickupMessage "You picked up 100 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSSuperShotgun : CustomInventory replaces SuperShotgun
+{
+    Inventory.PickupMessage "You picked up 200 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 200)
+        stop
+    }
+}
+
+actor ZDSChaingun : CustomInventory replaces Chaingun
+{
+    Inventory.PickupMessage "You picked up 150 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 150)
+        stop
+    }
+}
+
+actor ZDSRocketLauncher : CustomInventory replaces RocketLauncher
+{
+    Inventory.PickupMessage "You picked up 300 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 300)
+        stop
+    }
+}
+
+actor ZDSPlasmaRifle : CustomInventory replaces PlasmaRifle
+{
+    Inventory.PickupMessage "You picked up 300 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 300)
+        stop
+    }
+}
+
+actor ZDSBFG9000 : CustomInventory replaces BFG9000
+{
+    Inventory.PickupMessage "You picked up 500 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 500)
+        stop
+    }
+}
+
 actor ZDSClip : CustomInventory replaces Clip
 {
     Inventory.PickupMessage "You picked up 5 souls"
@@ -33,6 +138,21 @@ actor ZDSClip : CustomInventory replaces Clip
 
 actor ZDSClipBox : CustomInventory replaces ClipBox
 {
+    Inventory.PickupMessage "You picked up 25 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 25)
+        stop
+    }
+}
+
+actor ZDSShell : CustomInventory replaces Shell
+{
     Inventory.PickupMessage "You picked up 20 souls"
 
     States
@@ -46,9 +166,9 @@ actor ZDSClipBox : CustomInventory replaces ClipBox
     }
 }
 
-actor ZDSHealthBonus : CustomInventory replaces HealthBonus
+actor ZDSShellBox : CustomInventory replaces ShellBox
 {
-    Inventory.PickupMessage "You picked up 5 souls"
+    Inventory.PickupMessage "You picked up 100 souls"
 
     States
     {
@@ -56,7 +176,97 @@ actor ZDSHealthBonus : CustomInventory replaces HealthBonus
         ZDSS ABCB 6 BRIGHT
         loop
     Pickup:
-        TNT1 A 0 A_GiveInventory("ZDSSoul", 5)
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSRocketAmmo : CustomInventory replaces RocketAmmo
+{
+    Inventory.PickupMessage "You picked up 10 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 10)
+        stop
+    }
+}
+
+actor ZDSRocketBox : CustomInventory replaces RocketBox
+{
+    Inventory.PickupMessage "You picked up 50 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 50)
+        stop
+    }
+}
+
+actor ZDSCell : CustomInventory replaces Cell
+{
+    Inventory.PickupMessage "You picked up 20 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 20)
+        stop
+    }
+}
+
+actor ZDSCellPack : CustomInventory replaces CellPack
+{
+    Inventory.PickupMessage "You picked up 100 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSBackpack : CustomInventory replaces Backpack
+{
+    Inventory.PickupMessage "You picked up 200 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 200)
+        stop
+    }
+}
+
+actor ZDSHealthBonus : CustomInventory replaces HealthBonus
+{
+    Inventory.PickupMessage "You picked up 1 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 1)
         stop
     }
 }
@@ -78,7 +288,7 @@ actor ZDSStimpack : CustomInventory replaces Stimpack
 
 actor ZDSMedikit : CustomInventory replaces Medikit
 {
-    Inventory.PickupMessage "You picked up 20 souls"
+    Inventory.PickupMessage "You picked up 25 souls"
 
     States
     {
@@ -86,7 +296,172 @@ actor ZDSMedikit : CustomInventory replaces Medikit
         ZDSS ABCB 6 BRIGHT
         loop
     Pickup:
-        TNT1 A 0 A_GiveInventory("ZDSSoul", 20)
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 25)
+        stop
+    }
+}
+
+actor ZDSArmorBonus : CustomInventory replaces ArmorBonus
+{
+    Inventory.PickupMessage "You picked up 1 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 1)
+        stop
+    }
+}
+
+actor ZDSGreenArmor : CustomInventory replaces GreenArmor
+{
+    Inventory.PickupMessage "You picked up 100 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSBlueArmor : CustomInventory replaces BlueArmor
+{
+    Inventory.PickupMessage "You picked up 200 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 200)
+        stop
+    }
+}
+
+actor ZDSInvulnerabilitySphere : CustomInventory replaces InvulnerabilitySphere
+{
+    Inventory.PickupMessage "You picked up 500 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 500)
+        stop
+    }
+}
+
+actor ZDSSoulsphere : CustomInventory replaces Soulsphere
+{
+    Inventory.PickupMessage "You picked up 200 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 200)
+        stop
+    }
+}
+
+actor ZDSMegasphere : CustomInventory replaces Megasphere
+{
+    Inventory.PickupMessage "You picked up 400 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 400)
+        stop
+    }
+}
+
+actor ZDSBlurSphere : CustomInventory replaces BlurSphere
+{
+    Inventory.PickupMessage "You picked up 200 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 200)
+        stop
+    }
+}
+
+actor ZDSRadSuit : CustomInventory replaces RadSuit
+{
+    Inventory.PickupMessage "You picked up 100 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSInfrared : CustomInventory replaces Infrared
+{
+    Inventory.PickupMessage "You picked up 100 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 100)
+        stop
+    }
+}
+
+actor ZDSAllmap : CustomInventory replaces Allmap
+{
+    Inventory.PickupMessage "You picked up 500 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 500)
+        stop
+    }
+}
+
+actor ZDSBerserk : CustomInventory replaces Berserk
+{
+    Inventory.PickupMessage "You picked up 250 souls"
+
+    States
+    {
+    Spawn:
+        ZDSS ABCB 6 BRIGHT
+        loop
+    Pickup:
+        TNT1 A 0 A_GiveInventory("ZDSSoul", 250)
         stop
     }
 }

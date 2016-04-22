@@ -16,4 +16,11 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-#include "actors/soul.txt"
+actor ZDSSoul : Inventory
+{
+    Inventory.Icon "ZDSSB0"
+    Inventory.MaxAmount 999999999
+
+    // TEMP: remove when HUD is ready
+    +INVENTORY.INVBAR
+}

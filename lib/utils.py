@@ -121,20 +121,27 @@ def binary_str(data):
 # ==============================================================================
 
 
-def license_header():
-    filename = os.path.splitext(__file__)[0] + '.py'
+def license_header(comment='#'):
+    project_name = 'An Awesome Awesomeness' if is_aaa() else 'ZDoomed Souls'
+    project_years = '2015, 2016' if is_aaa() else '2016'
 
-    with open(filename) as f:
-        header = []
+    license_pattern = '''{0}
+{0}    Realm667 - {1}
+{0}    Copyright (C) {2} Alexey Lysiuk
+{0}
+{0}    This program is free software: you can redistribute it and/or modify
+{0}    it under the terms of the GNU General Public License as published by
+{0}    the Free Software Foundation, either version 3 of the License, or
+{0}    (at your option) any later version.
+{0}
+{0}    This program is distributed in the hope that it will be useful,
+{0}    but WITHOUT ANY WARRANTY; without even the implied warranty of
+{0}    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+{0}    GNU General Public License for more details.
+{0}
+{0}    You should have received a copy of the GNU General Public License
+{0}    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+{0}
+'''
 
-        while True:
-            line = f.readline()
-
-            if line.startswith('#!') or not line.strip():
-                continue
-            elif line.startswith('#'):
-                header.append(line)
-            else:
-                break
-
-    return header
+    return license_pattern.format(comment, project_name, project_years)

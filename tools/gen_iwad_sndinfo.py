@@ -18,8 +18,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import re
 import sys
+
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
 
 import utils
 
@@ -80,7 +84,7 @@ for filename in sys.argv[1:]:
 
 # Generate iwad_sndinfo.py
 
-output_file = open('iwad_sndinfo.py', 'w')
+output_file = open(utils.lib_path() + 'iwad_sndinfo.py', 'w')
 output_file.writelines(utils.license_header())
 output_file.write('\nLOGICAL_SOUNDS_ALL = (\n')
 output_file.writelines(sorted(logical_sounds))

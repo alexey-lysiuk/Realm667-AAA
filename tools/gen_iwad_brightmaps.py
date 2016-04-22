@@ -22,6 +22,9 @@ import os
 import sys
 import zipfile
 
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
+
 import utils
 
 
@@ -47,7 +50,7 @@ pk3.close()
 
 # Generate iwad_brightmaps.py
 
-output_file = open('iwad_brightmaps.py', 'w')
+output_file = open(utils.lib_path() + 'iwad_brightmaps.py', 'w')
 output_file.writelines(utils.license_header())
 output_file.write('\nBRIGHTMAPS_ALL = (\n')
 output_file.writelines(lumps)

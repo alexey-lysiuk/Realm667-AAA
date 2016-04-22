@@ -19,7 +19,11 @@
 #
 
 import os
+import sys
 import shutil
+
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
 
 import repo
 import utils

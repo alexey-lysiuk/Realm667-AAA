@@ -26,7 +26,7 @@ if (sys.hexversion < 0x2070000
     print('This script requires Python 2.7 or Python 3.2 and higher')
     exit(1)
 
-# all sources are in lib directory
+# all modules are in the lib directory
 sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/lib'
 
 import build

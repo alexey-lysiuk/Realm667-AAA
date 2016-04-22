@@ -18,8 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import re
+import sys
 import zipfile
+
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
 
 import doomwad
 import utils

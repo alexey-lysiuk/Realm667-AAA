@@ -28,7 +28,11 @@
 import os
 import re
 import shutil
+import sys
 import zipfile
+
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
 
 import doomwad
 

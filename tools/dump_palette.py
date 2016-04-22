@@ -19,7 +19,12 @@
 #
 
 import collections
+import os
 import sys
+
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
+
 import doomwad
 
 

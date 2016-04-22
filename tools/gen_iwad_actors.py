@@ -18,9 +18,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+import os
 import re
 import sys
 import zipfile
+
+# all modules are in the lib directory
+sys.path[0] = os.path.dirname(os.path.abspath(__file__)) + '/../lib'
 
 import utils
 
@@ -56,7 +60,7 @@ pk3.close()
 
 # Generate actors_iwads.py
 
-output_file = open('iwad_actors.py', 'w')
+output_file = open(utils.lib_path() + 'iwad_actors.py', 'w')
 output_file.writelines(utils.license_header())
 output_file.write('\nACTORS_ALL = (\n')
 output_file.writelines(content)

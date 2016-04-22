@@ -4,3 +4,4 @@ tmp/
 /*.pk3
 /*.pk7
 *.pyc
+*.err

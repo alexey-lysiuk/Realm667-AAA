@@ -1,6 +1,6 @@
 #
 #    Realm667 - An Awesome Awesomeness
-#    Copyright (C) 2015 Alexey Lysiuk
+#    Copyright (C) 2015, 2016 Alexey Lysiuk
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by

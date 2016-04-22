@@ -1,7 +1,7 @@
 # doomwad.py: Doom WAD file library
 #
 # Copyright (c) 2009 Jared Stafford (jspenguin@gmail.com)
-# Copyright (c) 2015 Alexey Lysiuk
+# Copyright (C) 2015, 2016 Alexey Lysiuk
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions

@@ -1,0 +1,96 @@
+//
+//    Realm667 - ZDoomed Souls
+//    Copyright (C) 2016 Alexey Lysiuk
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+#library "r667zds"
+
+#include "zcommon.acs"
+
+
+// =============================================================================
+
+
+// TODO: generate this!
+
+#define CLASS_COUNT 3
+
+str CLASS_NAMES[CLASS_COUNT] = 
+{
+    "Clip",
+    "Shell",
+    "Cell"
+};
+
+int PRICES[CLASS_COUNT] =
+{
+    10,
+    10,
+    20,
+};
+
+int AMOUNTS[CLASS_COUNT] =
+{
+    10,
+    4,
+    20,
+};
+
+
+// =============================================================================
+
+
+function int FindClassIndex(str className)
+{
+    // TODO: optimize this!
+
+    for (int i = 0; i < CLASS_COUNT; ++i)
+    {
+        if (StrICmp(className, CLASS_NAMES[i]) == 0)
+        {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+
+script "ZDSBuy" (void)
+{
+    str className = GetUserCVarString(0, "r667zds_class");
+    int classIndex = FindClassIndex(className);
+
+    if (-1 == classIndex)
+    {
+        log(s:"\cgFailed to buy, unknown actor class");
+        terminate;
+    }
+
+    int price = PRICES[classIndex];
+
+    if (CheckInventory("ZDSSoul") >= price)
+    {
+        int amount = AMOUNTS[classIndex];
+        GiveInventory(className, amount);
+
+        TakeInventory("ZDSSoul", price);
+    }
+    else
+    {
+        log(s:"\cgNot enough souls");
+    }
+}

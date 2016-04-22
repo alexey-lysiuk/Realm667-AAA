@@ -1,0 +1,46 @@
+//
+//    Realm667 - ZDoomed Souls
+//    Copyright (C) 2016 Alexey Lysiuk
+//
+//    This program is free software: you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation, either version 3 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
+
+// Soul sprites
+
+sprite ZDSSA0, 40, 37
+{
+    Offset 20, 37
+    Patch IFOGA0, 0, 0
+    {
+        Translation Red
+    }
+}
+
+sprite ZDSSB0, 34, 30
+{
+    Offset 14, 30
+    Patch IFOGB0, 0, 0
+    {
+        Translation Red
+    }
+}
+
+sprite ZDSSC0, 17, 16
+{
+    Offset 8, 16
+    Patch IFOGC0, 0, 0
+    {
+        Translation Red
+    }
+}

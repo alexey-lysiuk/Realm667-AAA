@@ -207,6 +207,48 @@ def _generate_menudef():
 # ==============================================================================
 
 
+_ACS_INCLUDE_PATTERN = '''
+#define CLASS_COUNT {0}
+
+str CLASS_NAMES[CLASS_COUNT] =
+{{{1}
+}};
+
+int PRICES[CLASS_COUNT] =
+{{{2}
+}};
+
+int AMOUNTS[CLASS_COUNT] =
+{{{3}
+}};
+'''
+
+
+def _generate_acs_include():
+    class_names = ''
+    prices = ''
+    amounts = ''
+
+    for item in _PICKUPS:
+        if 1 == len(item):
+            # Skip category
+            continue
+
+        class_name = item[0]
+        class_names += '\n    "{}",'.format(class_name)
+
+        price = item[2]
+        prices += '\n    {},'.format(price)
+
+        amount = item[3]
+        amounts += '\n    {},'.format(amount)
+
+    return _ACS_INCLUDE_PATTERN.format(len(_PICKUPS), class_names, prices, amounts)
+
+
+# ==============================================================================
+
+
 def _compile_acs():
     data_path = utils.data_project_path()
     input_path = data_path + 'scripts/r667zds.acs'
@@ -233,5 +275,6 @@ utils.set_mode(utils.MODE_ZDS)
 _write_file('actors/doom/monsters.txt', _generate_monsters())
 _write_file('actors/doom/pickups.txt', _generate_pickups())
 _write_file('menudef.txt', _generate_menudef())
+_write_file('scripts/r667zds.h', _generate_acs_include())
 
 _compile_acs()

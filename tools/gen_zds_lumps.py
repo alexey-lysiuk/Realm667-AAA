@@ -96,7 +96,7 @@ def _generate_monsters():
 _PICKUPS = (
     #  Class name             | Visible name                 | Price    | Amount
     # ------------------------+------------------------------+----------+--------
-    #  Weapons                |                              |          |
+    ('Weapons',),
     ('Chainsaw',                'Chainsaw',                      100,        1),
     ('Shotgun',                 'Shotgun',                       100,        1),
     ('SuperShotgun',            'Super Shotgun',                 200,        1),
@@ -104,7 +104,8 @@ _PICKUPS = (
     ('RocketLauncher',          'Rocket Launcher',               300,        1),
     ('PlasmaRifle',             'Plasma Gun',                    300,        1),
     ('BFG9000',                 'BFG9000',                       500,        1),
-    #  Ammo                   |                              |          |
+
+    ('Ammo',),
     ('Clip',                    'Clip of Bullets',                 5,       10),
     ('ClipBox',                 'Box of Bullets',                 25,       50),
     ('Shell',                   'Shotgun Shells',                 20,        4),
@@ -114,15 +115,18 @@ _PICKUPS = (
     ('Cell',                    'Energy Cell',                    20,       20),
     ('CellPack',                'Energy Cell Pack',              100,      100),
     ('Backpack',                'Backpack',                      200,        1),
-    # Health                  |                              |          |
+
+    ('Health',),
     ('HealthBonus',             'Health Bonus',                    1,        1),
     ('Stimpack',                'Stimpack',                       10,        1),
     ('Medikit',                 'Medikit',                        25,       25),
-    # Armor                   |                              |          |
+
+    ('Armor',),
     ('ArmorBonus',              'Armor Bonus',                     1,        1),
     ('GreenArmor',              'Armor',                         100,        1),
     ('BlueArmor',               'MegaArmor',                     200,        1),
-    # Artifacts               |                              |          |
+
+    ('Artifacts',),
     ('InvulnerabilitySphere',   'Invulnerability',               500,        1),
     ('Soulsphere',              'Supercharge',                   200,        1),
     ('Megasphere',              'MegaSphere',                    400,        1),
@@ -155,6 +159,10 @@ def _generate_pickups():
     result = []
 
     for item in _PICKUPS:
+        if 1 == len(item):
+            # Skip category
+            continue
+
         class_name = item[0]
         price = item[2]
 
@@ -171,25 +179,28 @@ _MENUDEF_PATTERN = '''
 OptionMenu "Menu_R667ZDS"
 {{
     StaticText "Realm667 - ZDoomed Souls", 1
-    StaticText ""
-
 {0}}}
 '''
 
-
-_MENUDEF_COMMAND_PATTERN = '    Command "Buy {0}", "r667zds {1}"\n'
+_MENUDEF_CATEGORY_PATTERN = '    StaticText ""\n\n    StaticText "Buy {0}"\n'
+_MENUDEF_ITEM_PATTERN = '    Command "{0}", "r667zds {1}"\n'
 
 
 def _generate_menudef():
-    commands = ''
+    menu = ''
 
     for item in _PICKUPS:
-        class_name = item[0]
-        visible_name = item[1]
+        if 1 == len(item):
+            # Category
+            menu += _MENUDEF_CATEGORY_PATTERN.format(item[0])
+        else:
+            # Item to
+            class_name = item[0]
+            visible_name = item[1]
 
-        commands += _MENUDEF_COMMAND_PATTERN.format(visible_name, class_name)
+            menu += _MENUDEF_ITEM_PATTERN.format(visible_name, class_name)
 
-    return _MENUDEF_PATTERN.format(commands)
+    return _MENUDEF_PATTERN.format(menu)
 
 
 # ==============================================================================

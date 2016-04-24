@@ -94,43 +94,43 @@ def _generate_monsters():
 
 
 _PICKUPS = (
-    #  Class name            | Price    | Amount
-    # -----------------------+----------+--------
-    #  Weapons               |          |
-    ('Chainsaw',                 100,        1),
-    ('Shotgun',                  100,        1),
-    ('SuperShotgun',             200,        1),
-    ('Chaingun',                 150,        1),
-    ('RocketLauncher',           300,        1),
-    ('PlasmaRifle',              300,        1),
-    ('BFG9000',                  500,        1),
-    #  Ammo                  |          |
-    ('Clip',                       5,       10),
-    ('ClipBox',                   25,       50),
-    ('Shell',                     20,        4),
-    ('ShellBox',                 100,       20),
-    ('RocketAmmo',                10,        1),
-    ('RocketBox',                 50,        5),
-    ('Cell',                      20,       20),
-    ('CellPack',                 100,      100),
-    ('Backpack',                 200,        1),
-    # Health                 |          |
-    ('HealthBonus',                1,        1),
-    ('Stimpack',                  10,        1),
-    ('Medikit',                   25,       25),
-    # Armor                  |          |
-    ('ArmorBonus',                 1,        1),
-    ('GreenArmor',               100,        1),
-    ('BlueArmor',                200,        1),
-    # Artifacts              |          |
-    ('InvulnerabilitySphere',    500,        1),
-    ('Soulsphere',               200,        1),
-    ('Megasphere',               400,        1),
-    ('BlurSphere',               200,        1),
-    ('RadSuit',                  100,        1),
-    ('Infrared',                 100,        1),
-    ('Allmap',                   500,        1),
-    ('Berserk',                  250,        1),
+    #  Class name             | Visible name                 | Price    | Amount
+    # ------------------------+------------------------------+----------+--------
+    #  Weapons                |                              |          |
+    ('Chainsaw',                'Chainsaw',                      100,        1),
+    ('Shotgun',                 'Shotgun',                       100,        1),
+    ('SuperShotgun',            'Super Shotgun',                 200,        1),
+    ('Chaingun',                'Chaingun',                      150,        1),
+    ('RocketLauncher',          'Rocket Launcher',               300,        1),
+    ('PlasmaRifle',             'Plasma Gun',                    300,        1),
+    ('BFG9000',                 'BFG9000',                       500,        1),
+    #  Ammo                   |                              |          |
+    ('Clip',                    'Clip of Bullets',                 5,       10),
+    ('ClipBox',                 'Box of Bullets',                 25,       50),
+    ('Shell',                   'Shotgun Shells',                 20,        4),
+    ('ShellBox',                'Box of Shotgun Shells',         100,       20),
+    ('RocketAmmo',              'Rocket',                         10,        1),
+    ('RocketBox',               'Box of Rockets',                 50,        5),
+    ('Cell',                    'Energy Cell',                    20,       20),
+    ('CellPack',                'Energy Cell Pack',              100,      100),
+    ('Backpack',                'Backpack',                      200,        1),
+    # Health                  |                              |          |
+    ('HealthBonus',             'Health Bonus',                    1,        1),
+    ('Stimpack',                'Stimpack',                       10,        1),
+    ('Medikit',                 'Medikit',                        25,       25),
+    # Armor                   |                              |          |
+    ('ArmorBonus',              'Armor Bonus',                     1,        1),
+    ('GreenArmor',              'Armor',                         100,        1),
+    ('BlueArmor',               'MegaArmor',                     200,        1),
+    # Artifacts               |                              |          |
+    ('InvulnerabilitySphere',   'Invulnerability',               500,        1),
+    ('Soulsphere',              'Supercharge',                   200,        1),
+    ('Megasphere',              'MegaSphere',                    400,        1),
+    ('BlurSphere',              'Partial Invisibility',          200,        1),
+    ('RadSuit',                 'Radiation Shielding Suit',      100,        1),
+    ('Infrared',                'Light Amplification Visor',     100,        1),
+    ('Allmap',                  'Computer Area Map',             500,        1),
+    ('Berserk',                 'Berserk',                       250,        1),
 )
 
 _PICKUP_PATTERN = '''
@@ -156,12 +156,40 @@ def _generate_pickups():
 
     for item in _PICKUPS:
         class_name = item[0]
-        price = item[1]
+        price = item[2]
 
         definition = _PICKUP_PATTERN.format(class_name, price)
         result.append(definition)
 
     return result
+
+
+# ==============================================================================
+
+
+_MENUDEF_PATTERN = '''
+OptionMenu "Menu_R667ZDS"
+{{
+    StaticText "Realm667 - ZDoomed Souls", 1
+    StaticText ""
+
+{0}}}
+'''
+
+
+_MENUDEF_COMMAND_PATTERN = '    Command "Buy {0}", "r667zds {1}"\n'
+
+
+def _generate_menudef():
+    commands = ''
+
+    for item in _PICKUPS:
+        class_name = item[0]
+        visible_name = item[1]
+
+        commands += _MENUDEF_COMMAND_PATTERN.format(visible_name, class_name)
+
+    return _MENUDEF_PATTERN.format(commands)
 
 
 # ==============================================================================
@@ -178,3 +206,4 @@ utils.set_mode(utils.MODE_ZDS)
 
 _write_file('actors/doom/monsters.txt', _generate_monsters())
 _write_file('actors/doom/pickups.txt', _generate_pickups())
+_write_file('menudef.txt', _generate_menudef())

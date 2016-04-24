@@ -16,13 +16,52 @@
 //    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
 
-
 OptionMenu "Menu_R667ZDS"
 {
     StaticText "Realm667 - ZDoomed Souls", 1
     StaticText ""
 
-    Command "Buy Clip", "r667zds Clip"
-    Command "Buy Shells", "r667zds Shell"
-    Command "Buy Cells", "r667zds Cell"
+    StaticText "Buy Weapons"
+    Command "Chainsaw", "r667zds Chainsaw"
+    Command "Shotgun", "r667zds Shotgun"
+    Command "Super Shotgun", "r667zds SuperShotgun"
+    Command "Chaingun", "r667zds Chaingun"
+    Command "Rocket Launcher", "r667zds RocketLauncher"
+    Command "Plasma Gun", "r667zds PlasmaRifle"
+    Command "BFG9000", "r667zds BFG9000"
+    StaticText ""
+
+    StaticText "Buy Ammo"
+    Command "Clip of Bullets", "r667zds Clip"
+    Command "Box of Bullets", "r667zds ClipBox"
+    Command "Shotgun Shells", "r667zds Shell"
+    Command "Box of Shotgun Shells", "r667zds ShellBox"
+    Command "Rocket", "r667zds RocketAmmo"
+    Command "Box of Rockets", "r667zds RocketBox"
+    Command "Energy Cell", "r667zds Cell"
+    Command "Energy Cell Pack", "r667zds CellPack"
+    Command "Backpack", "r667zds Backpack"
+    StaticText ""
+
+    StaticText "Buy Health"
+    Command "Health Bonus", "r667zds HealthBonus"
+    Command "Stimpack", "r667zds Stimpack"
+    Command "Medikit", "r667zds Medikit"
+    StaticText ""
+
+    StaticText "Buy Armor"
+    Command "Armor Bonus", "r667zds ArmorBonus"
+    Command "Armor", "r667zds GreenArmor"
+    Command "MegaArmor", "r667zds BlueArmor"
+    StaticText ""
+
+    StaticText "Buy Artifacts"
+    Command "Invulnerability", "r667zds InvulnerabilitySphere"
+    Command "Supercharge", "r667zds Soulsphere"
+    Command "MegaSphere", "r667zds Megasphere"
+    Command "Partial Invisibility", "r667zds BlurSphere"
+    Command "Radiation Shielding Suit", "r667zds RadSuit"
+    Command "Light Amplification Visor", "r667zds Infrared"
+    Command "Computer Area Map", "r667zds Allmap"
+    Command "Berserk", "r667zds Berserk"
 }

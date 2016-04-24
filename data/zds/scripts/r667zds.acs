@@ -20,37 +20,7 @@
 
 #include "zcommon.acs"
 
-
-// =============================================================================
-
-
-// TODO: generate this!
-
-#define CLASS_COUNT 3
-
-str CLASS_NAMES[CLASS_COUNT] = 
-{
-    "Clip",
-    "Shell",
-    "Cell"
-};
-
-int PRICES[CLASS_COUNT] =
-{
-    10,
-    10,
-    20,
-};
-
-int AMOUNTS[CLASS_COUNT] =
-{
-    10,
-    4,
-    20,
-};
-
-
-// =============================================================================
+#include "r667zds.h"
 
 
 function int FindClassIndex(str className)

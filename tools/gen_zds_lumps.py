@@ -19,6 +19,7 @@
 #
 
 import os
+import subprocess
 import sys
 
 # all modules are in the lib directory
@@ -206,6 +207,20 @@ def _generate_menudef():
 # ==============================================================================
 
 
+def _compile_acs():
+    data_path = utils.data_project_path()
+    input_path = data_path + 'scripts/r667zds.acs'
+    output_path = data_path + 'acs/r667zds.o'
+
+    args = (utils.exe_path('acc'), input_path, output_path)
+
+    proc = subprocess.Popen(args)
+    proc.communicate()
+
+
+# ==============================================================================
+
+
 def _write_file(path, lines):
     output_file = open(utils.data_project_path() + path, 'w')
     output_file.writelines(utils.license_header('//'))
@@ -218,3 +233,5 @@ utils.set_mode(utils.MODE_ZDS)
 _write_file('actors/doom/monsters.txt', _generate_monsters())
 _write_file('actors/doom/pickups.txt', _generate_pickups())
 _write_file('menudef.txt', _generate_menudef())
+
+_compile_acs()

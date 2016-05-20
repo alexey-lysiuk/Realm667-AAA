@@ -108,7 +108,7 @@ _ARMORY_DOOM = (
     (272, 'Sniper Rifle'),
     (250, 'SPAS-12'),
     (876, 'Spray Cannon'),
-    (-767, 'Strife Pistol'), # Strife weapon
+    (767, 'Strife Pistol'),
     (568, 'Stunner Rifle'),
     (402, 'Super Shotgun (KDiZD)'),
     (273, 'Swat Shotgun'),

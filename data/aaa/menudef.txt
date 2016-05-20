@@ -139,7 +139,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_SZ"
     Command "Sniper Rifle", "r667aaa SniperRifle"
     Command "SPAS-12", "r667aaa SPAS-12"
     Command "Spray Cannon", "r667aaa SprayCannon"
-    //Command "Strife Pistol", "r667aaa StrifePistol" // TODO
+    Command "Strife Pistol", "r667aaa StrifePistol"
     Command "Stunner Rifle", "r667aaa StunnerRifle"
     Command "Super Shotgun (KDiZD)", "r667aaa KDiZDSuperShotgun"
     Command "Swat Shotgun", "r667aaa SwatShotgun"

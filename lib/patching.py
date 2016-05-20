@@ -879,6 +879,13 @@ def _apply_patch_762(wad):  # Model 1887
     _rename_lump(wad, 'SS_STOP', 'SS_END')
 
 
+def _apply_patch_767(wad):  # Strife Pistol
+    # convert into generic weapon
+    _replace_in_decorate(wad, r'(\s+)StrifeWeapon(\s+)', r'\1Weapon\2')
+    _replace_in_decorate(wad, r'(\s+)Game\s+Strife(\s+)', r'\1Weapon.Kickback 100\2')
+    _replace_in_decorate(wad, r'(\s+Weapon.AmmoType\s+")ClipOfBullets("\s+)', r'\1Clip\2')
+
+
 def _apply_patch_795(wad):  # Missile Pod
     # fix usage of missing actor class
     _replace_in_decorate(

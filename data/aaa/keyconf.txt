@@ -52,6 +52,7 @@ addslotdefault 2 iGun
 addslotdefault 2 Mag60
 addslotdefault 2 Raptor
 addslotdefault 2 ScatterPistol
+addslotdefault 2 StrifePistol
 addslotdefault 2 Uzi
 
 addslotdefault 3 EgoSmasher

@@ -458,6 +458,7 @@ _BEASTIARY_OTHER = (
     ( 68, 'Netherworld Queen'),
     (625, 'Pustule'),
     (811, 'Shark'),
+    (958, 'Shark with Laser'),
     (813, 'Skeleton'),
     (189, 'Source Guardian'),
     (623, 'Trash Monster'),

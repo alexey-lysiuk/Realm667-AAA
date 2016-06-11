@@ -649,14 +649,6 @@ def _apply_patch_256(wad):  # Mancubus Arm
     _replace_in_decorate(wad, r'(A_GiveInventory\s*\(\s*")(Blood")', r'\1Demon\2')
 
 
-def _apply_patch_266(wad):  # Napalm Launcher
-    # fix infinite loop in engine caused by wrong state
-    _replace_in_decorate(
-        wad,
-        r'(\s+)GASO(\s+\w\s+)(\d+)(\s+)Loop',
-        r'\1GASO\2-1\4stop')
-
-
 def _apply_patch_271(wad):  # Saw Thrower
     # fix incorrect sprite
     _replace_in_decorate(

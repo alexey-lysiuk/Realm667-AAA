@@ -153,7 +153,6 @@ addslotdefault 4 BloodTommygun
 
 addslotdefault 5 Devastator
 addslotdefault 5 DoubleDevastator
-addslotdefault 5 NapalmLauncher
 addslotdefault 5 Q2Chaingun
 addslotdefault 5 SeekerBazooka
 

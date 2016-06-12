@@ -1273,6 +1273,15 @@ OptionString "Option_R667AAA_TechGizmo_KeyKind"
     "Skull", "Skull"
 }
 
+OptionValue "Option_R667AAA_Pipe_Variation"
+{
+    1, "Variant 1"
+    2, "Variant 2"
+    3, "Variant 3"
+    4, "Variant 4"
+    5, "Variant 5"
+}
+
 OptionMenu "Menu_R667AAA_PropStop_Technical_4"
 {
     StaticText "Realm667 - Pillars and Pipes", 1
@@ -1296,11 +1305,8 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_4"
     Command "Yellow Key Tech Gizmo", "r667aaa YellowKeyGizmo"
     StaticText ""
 
-    Command "Pipe 1", "r667aaa HPipe1"
-    Command "Pipe 2", "r667aaa HPipe2"
-    Command "Pipe 3", "r667aaa HPipe3"
-    Command "Pipe 4", "r667aaa HPipe4"
-    Command "Pipe 5", "r667aaa HPipe5"
+	Command "Pipe:", "r667aaa_pipe $r667aaa_pipe_kind"
+	Option "Pipe Kind", "r667aaa_pipe_kind", "Option_R667AAA_Pipe_Variation"
 }
 
 OptionMenu "Menu_R667AAA_PropStop_Technical_5"

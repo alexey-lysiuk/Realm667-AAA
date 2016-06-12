@@ -1004,6 +1004,10 @@ OptionMenu "Menu_R667AAA_ItemStore_Puzzle_Other"
 
     Command "Supply Chest", "r667aaa SupplyChest"
     Command "Supply Chest Key", "r667aaa ChestKey"
+    StaticText ""
+    
+    Command "Power Cube", "r667aaa PowerCube"
+    Command "Power Cube Holder", "r667aaa PowerCubeHolder"
 }
 
 OptionMenu "Menu_R667AAA_ItemStore_Other_AE"

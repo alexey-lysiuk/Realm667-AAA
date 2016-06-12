@@ -528,6 +528,7 @@ _ITEMSTORE_KEYS_PUZZLE = (
     (  0, 'Item Store: Keys & Puzzle'),
     (867, 'Cross Keys'),
     (710, 'Doom 3 Keycards'),
+    (955, 'Power Cube'),
     (825, 'Skull Orbs'),
     (826, 'Supply Chest Key'),
     (558, 'Various Doom Keys'),

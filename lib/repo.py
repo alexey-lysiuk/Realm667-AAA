@@ -566,6 +566,7 @@ _ITEMSTORE_OTHER = (
     (869, 'Jump Boots'),
     (478, 'Heavy Armor'),
     (896, 'Magic Apples'),
+    (956, 'Marine Supply Pack'),
     (502, 'Median Runes'),
     (875, 'Medical Backpack'),
     (371, 'Medipack'),

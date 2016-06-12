@@ -260,6 +260,7 @@ _BEASTIARY_DOOM = (
     ( 48, 'Guardian Cube'),
     ( 51, 'Hades Elemental'),
     ( 49, 'Hades Sphere'),
+    (952, 'Haedexebus'),
     (191, 'Hangman'),
     (864, 'Hazmat Zombie'),
     (605, 'Heaven Guard'),

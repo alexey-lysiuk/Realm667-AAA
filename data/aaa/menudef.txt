@@ -535,6 +535,7 @@ OptionMenu "Menu_R667AAA_Beastiary_Doom_05"
     StaticText "Doom Monsters", 1
     StaticText ""
 
+    Command "Haedexebus", "r667aaa Haedexebus"
     Command "Hangman", "r667aaa Hangman"
     Command "Hazmat Zombie", "r667aaa HazmatZombie"
     Command "Heaven Guard", "r667aaa HeavenGuard"

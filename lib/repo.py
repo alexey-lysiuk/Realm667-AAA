@@ -552,6 +552,7 @@ _ITEMSTORE_OTHER = (
     (823, 'Crusader Shield'),
     (498, 'Crystal Gem'),
     (417, 'Deployable Sentry Gun'),
+    (957, 'Deployable Shield'),
     (691, 'Electric Bolt Bundle'),
     (787, 'Electric Pod'),
     (860, 'Elemental Gems'),

@@ -30,6 +30,7 @@ user string r667aaa_arg5;
 user noarchive string r667aaa_techgizmo_color     = "Blue";
 user noarchive string r667aaa_techgizmo_gizmokind = "Fire";
 user noarchive string r667aaa_techgizmo_keykind   = "Key";
+user noarchive string r667aaa_hydrant_kind        = "Water";
 user noarchive int    r667aaa_pipe_kind           = 1;
 
 // Prop Stop - Vegetation

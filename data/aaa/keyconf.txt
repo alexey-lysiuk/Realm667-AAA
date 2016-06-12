@@ -167,6 +167,7 @@ addslotdefault 0 Jackbomb
 
 // Prop Stop - Technical
 alias r667aaa_techgizmo "r667aaa %1%2%3Gizmo"
+alias r667aaa_hydrant "r667aaa HS%1"
 alias r667aaa_pipe "r667aaa HPipe%1"
 
 // Prop Stop - Vegetation

@@ -603,6 +603,7 @@ _PROPSTOP_TECHNICAL = (
     (  0, 'Prop Stop: Technical'),
     (450, 'Beach Umbrella'),
     (449, 'Box'),
+    (953, 'Breakable Hydrant'),
     (347, 'Broken Lamp'),
     (348, 'Brown Metal Barrel'),
     (349, 'Chair'),

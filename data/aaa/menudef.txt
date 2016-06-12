@@ -1274,6 +1274,14 @@ OptionString "Option_R667AAA_TechGizmo_KeyKind"
     "Skull", "Skull"
 }
 
+OptionString "Option_R667AAA_Hydrant_Variation"
+{
+    "Water", "Water"
+    "Sewer", "Sewer"
+    "Blood", "Blood"
+    "Nuke", "Nukage"
+}
+
 OptionValue "Option_R667AAA_Pipe_Variation"
 {
     1, "Variant 1"
@@ -1305,6 +1313,10 @@ OptionMenu "Menu_R667AAA_PropStop_Technical_4"
     Command "Red Key Tech Gizmo", "r667aaa RedKeyGizmo"
     Command "Yellow Key Tech Gizmo", "r667aaa YellowKeyGizmo"
     StaticText ""
+
+	Command "Breakable Hydrant:", "r667aaa_hydrant $r667aaa_hydrant_kind"
+	Option "Hydrant Kind", "r667aaa_hydrant_kind", "Option_R667AAA_Hydrant_Variation"
+	StaticText ""
 
 	Command "Pipe:", "r667aaa_pipe $r667aaa_pipe_kind"
 	Option "Pipe Kind", "r667aaa_pipe_kind", "Option_R667AAA_Pipe_Variation"

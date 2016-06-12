@@ -284,6 +284,7 @@ _BEASTIARY_DOOM = (
     (337, 'Nail Borg Commando'),
     ( 69, 'Nightmare'),
     ( 70, 'Nightmare Demon'),
+    (954, 'Nightmare Spectre'),
     (369, 'Nightshade'),
     ( 72, 'Obsidian Statue'),
     (289, 'Overlord'),

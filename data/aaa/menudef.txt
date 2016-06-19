@@ -2275,6 +2275,8 @@ OptionMenu "Menu_R667AAA_PropStop_HellMagic_1"
     Command "Breakable Ceramic Pottery:", "r667aaa_breakvase $r667aaa_breakvase_kind"
     Option "Pottery Kind", "r667aaa_breakvase_kind", "Option_R667AAA_BreakVase_Kind"
 
+	Command "Chaos Sphere", "r667aaa ChaosSphereHolder"
+
     Command "Crow:", "r667aaa_crow $r667aaa_crow_kind $r667aaa_crow_proxflee $r667aaa_crow_weapsreaction $r667aaa_crow_facing"
     Option "Crow Kind", "r667aaa_crow_kind", "Option_R667AAA_Crow_Kind"
     Option "Crow Facing", "r667aaa_crow_facing", "Option_R667AAA_Crow_Facing"

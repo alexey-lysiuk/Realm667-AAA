@@ -752,6 +752,7 @@ _PROPSTOP_HELL_MAGIC = (
     (345, 'Bible'),
     (346, 'Bloody Chalice'),
     (677, 'Ceramic Pottery'),
+    (959, 'Chaos Sphere'),
     (882, 'Crow'),
     (616, 'D\'Sparil Statue'),
     (583, 'Doom Statues'),

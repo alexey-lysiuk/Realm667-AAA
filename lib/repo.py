@@ -751,7 +751,7 @@ _PROPSTOP_HELL_MAGIC = (
     (728, 'Banners'),
     (345, 'Bible'),
     (346, 'Bloody Chalice'),
-    (677, 'Ceramic Potery'),
+    (677, 'Ceramic Pottery'),
     (882, 'Crow'),
     (616, 'D\'Sparil Statue'),
     (583, 'Doom Statues'),

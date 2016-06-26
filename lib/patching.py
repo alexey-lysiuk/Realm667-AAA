@@ -1030,5 +1030,8 @@ def apply_patch(gid, wad):
                 continue
             sprite.data = doompic_to_png(sprite.rawdata, png_sprites_compression)
 
+            _verbose_print(
+                VERBOSITY_VERY_HIGH, 'Sprite {0} converted to PNG format'.format(sprite.name))
+
     if _decorates_dumping:
         _dump_decorate(gid, wad, _processed_decos_file)

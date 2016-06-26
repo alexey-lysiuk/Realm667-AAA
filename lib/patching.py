@@ -52,6 +52,7 @@ png_sprites_compression = -1
 VERBOSITY_NONE = 0
 VERBOSITY_LOW = 1
 VERBOSITY_HIGH = 2
+VERBOSITY_VERY_HIGH = 3
 
 
 verbosity_level = VERBOSITY_NONE

@@ -83,7 +83,7 @@ def _configure():
 
     # Generic arguments
     parser.add_argument(
-        '-v', '--verbosity', type=int, choices=[0, 1, 2], default=0,
+        '-v', '--verbosity', type=int, choices=range(0, 4), default=0,
         help='set output verbosity level')
     parser.add_argument(
         '--disable-optimization',

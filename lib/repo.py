@@ -888,4 +888,5 @@ def excluded_wads():
         867: _cis('Crosses.wad', 'Crosses3.wad'),  # or 'Crosses2.wad'
         897: _cis('FamiliarSummon (Sphere).wad'),  # or 'FamiliarSummon (Scroll).wad'
         925: _cis('demomaps.wad'),
+        955: _cis('PowerCubeDemoMap.wad'),
     }

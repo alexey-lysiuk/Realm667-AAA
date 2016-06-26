@@ -942,7 +942,6 @@ _broken_keyconfs = (
     252,  # Tesla Cannon
     257,  # Power Nailgun
     263,  # Hunter Shotgun
-    266,  # Napalm Launcher
     267,  # Necrovision MG40
     269,  # Pulse Machinegun
     273,  # Swat Shotgun

@@ -159,6 +159,7 @@ _ARMORY_OTHER = (
     (404, 'Enforcer'),
     (236, 'Flare Gun'),
     (686, 'G3'),
+    (970, 'Heat-Seeker Launcher'),
     (263, 'Hunter Shotgun'),
     (536, 'Jackbomb'),
     (238, 'M60'),

@@ -30,6 +30,7 @@ _ARMORY_DOOM = (
     (516, 'AK47'),
     (685, 'Ammo Satchel'),
     (534, 'Angled Pistol'),
+    (972, 'Auto Shotgun'),
     (432, 'Autogun'),
     (884, 'Axe'),
     (874, 'BFG 2704'),

@@ -241,6 +241,7 @@ _BEASTIARY_DOOM = (
     (633, 'Devastator Zombie'),
     ( 37, 'Devil'),
     ( 38, 'Diabolist'),
+    (974, 'Divine Shadow'),
     ( 40, 'Double Chaingunner'),
     ( 41, 'Dune Warrior'),
     ( 42, 'Enhanced Cacodemon'),

@@ -53,6 +53,7 @@ _ARMORY_DOOM = (
     (541, 'Flamethrower'),
     (913, 'Flashlight'),
     (242, 'Freeze Rifle'),
+    (973, 'Gatling Laser'),
     (559, 'Glock 18'),
     (373, 'Grenade Launcher'),
     (406, 'Grenade Launcher (KDiZD)'),

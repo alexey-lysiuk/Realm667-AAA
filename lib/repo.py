@@ -269,6 +269,7 @@ _BEASTIARY_DOOM = (
     (191, 'Hangman'),
     (864, 'Hazmat Zombie'),
     (605, 'Heaven Guard'),
+    (979, 'Heavy Carbine Zombieman'),
     ( 50, 'Hectebus'),
     ( 56, 'Hell Warrior'),
     ( 57, 'Hell\'s Fury'),

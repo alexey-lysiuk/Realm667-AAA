@@ -58,6 +58,7 @@ _ARMORY_DOOM = (
     (373, 'Grenade Launcher'),
     (406, 'Grenade Launcher (KDiZD)'),
     (254, 'HandGrenade'),
+    (977, 'Heavy Carbine'),
     (760, 'Heavy Chaingun'),
     (803, 'Heavy Machinegun'),
     (255, 'Heavy Rifle'),

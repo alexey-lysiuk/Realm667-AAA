@@ -283,6 +283,7 @@ _BEASTIARY_DOOM = (
     (553, 'Karasawa Zombie'),
     (150, 'Lesser Mutant'),
     ( 64, 'Lord of Heresy'),
+    (978, 'Machinegun Zombieman'),
     ( 65, 'Mauler Demon'),
     (901, 'Minigunner'),
     ( 66, 'Nail Borg'),

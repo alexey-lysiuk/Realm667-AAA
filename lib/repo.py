@@ -449,6 +449,7 @@ _BEASTIARY_OTHER = (
     (  0, 'Beastiary: Other Style'),
     ( 14, 'Bat'),
     (436, 'Cheogh'),
+    (980, 'Daggerfall Skeleton'),
     (634, 'Drone'),
     (863, 'Elite Guard'),
     (386, 'Evil Knight'),

@@ -814,6 +814,7 @@ OptionMenu "Menu_R667AAA_Beastiary_Other_1"
 
     Command "Bat Familiar", "r667aaa BatFamiliar"
     Command "Cheogh", "r667aaa Cheogh"
+    Command "Daggerfall Skeleton", "r667aaa dagfallskeleton"
     Command "Drone", "r667aaa Drone"
     Command "Elite Guard", "r667aaa EliteGuard"
     Command "Evil Knight", "r667aaa EvilKnight"

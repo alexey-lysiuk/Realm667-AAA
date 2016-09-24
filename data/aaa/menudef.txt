@@ -46,14 +46,15 @@ OptionMenu "Menu_R667AAA_Armory_Doom_AD"
     Command "Doom III Super Shotgun", "r667aaa Doom2.5SSG"
     Command "Double Bladed Chainsaw", "r667aaa DoubleBladedChainsaw"
     Command "Double Grenade Launcher", "r667aaa DGL"
-    Command "Duke Shotgun", "r667aaa DukeShotgun"
 }
 
-OptionMenu "Menu_R667AAA_Armory_Doom_EI"
+OptionMenu "Menu_R667AAA_Armory_Doom_DI"
 {
     StaticText "Doom Weapons", 1
     StaticText ""
 
+    Command "Dual Barrel Laser Rifle", "r667aaa DualLaser"
+    Command "Duke Shotgun", "r667aaa DukeShotgun"
     Command "EgoSmasher", "r667aaa Egosmasher"
     Command "Electro Gun", "r667aaa ElectroGun"
     Command "Fist Redux", "r667aaa FistRedux"
@@ -389,7 +390,7 @@ OptionMenu "Menu_R667AAA_Armory"
     StaticText ""
 
     Submenu "Doom Weapons * A..D", "Menu_R667AAA_Armory_Doom_AD"
-    Submenu "Doom Weapons * E..I", "Menu_R667AAA_Armory_Doom_EI"
+    Submenu "Doom Weapons * D..I", "Menu_R667AAA_Armory_Doom_DI"
     Submenu "Doom Weapons * K..N", "Menu_R667AAA_Armory_Doom_KN"
     Submenu "Doom Weapons * P..R", "Menu_R667AAA_Armory_Doom_PR"
     Submenu "Doom Weapons * S..Z", "Menu_R667AAA_Armory_Doom_SZ"

@@ -46,6 +46,7 @@ _ARMORY_DOOM = (
     (308, 'Doom 3 SSG'),
     (520, 'Double Bladed Chainsaw'),
     (344, 'Double Grenade Launcher'),
+    (983, 'Dual Barrel Laser Rifle'),
     (409, 'Duke Shotgun'),
     (246, 'Ego Smasher'),
     (262, 'Electro Gun'),

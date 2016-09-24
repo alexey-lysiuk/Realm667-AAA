@@ -90,6 +90,7 @@ _ARMORY_DOOM = (
     (232, 'Plasma Beam'),
     (313, 'Plasma Bolter'),
     (763, 'Plasma Pistol'),
+    (984, 'Plasma Repeater'),
     (329, 'Plasma Shotgun'),
     (509, 'Prox Launcher'),
     (764, 'Pulse Nailgun'),

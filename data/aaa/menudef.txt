@@ -114,6 +114,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_PR"
     Command "Plasma Bolter", "r667aaa PlasmaBolter"
     Command "Plasma Ballista", "r667aaa PlasmaBallista" // from CryoBow
     Command "Plasma Pistol", "r667aaa PlasmaPistol"
+    Command "Plasma Repeater", "r667aaa PlasmaRepeater"
     Command "Plasma Shotgun", "r667aaa Plasmashotgun"
     Command "Prox Launcher", "r667aaa ProxLauncher"
     Command "Pulse Nailgun", "r667aaa PulseNailgun"

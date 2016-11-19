@@ -722,11 +722,6 @@ def _apply_patch_337(wad):  # Nail Borg Commando
     fix_actor_borgnail2(wad)
 
 
-def _apply_patch_372(wad):  # Autogun
-    # fix error in keyword
-    _replace_in_gldefs(wad, 'PlickerLight', 'FlickerLight')
-
-
 def _apply_patch_405(wad):  # Impaled Rocket Guy
     # fix wrong sprite name
     _rename_lump(wad, 'IMRGA1', 'IMRGA0')

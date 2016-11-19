@@ -103,6 +103,7 @@ _ARMORY_DOOM = (
     (561, 'Reaper'),
     (567, 'Repeater'),
     (407, 'Rifle'),
+    (990, 'Riot Nerve Gas Launcher'),
     (857, 'Rivet Gun'),
     (886, 'Scatter Pistol'),
     (368, 'Shield Gun'),

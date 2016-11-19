@@ -127,6 +127,7 @@ OptionMenu "Menu_R667AAA_Armory_Doom_PR"
     Command "Reaper", "r667aaa Reaper"
     Command "Repeater", "r667aaa Repeater"
     Command "Rifle", "r667aaa Rifle"
+    Command "Riot Nerve Gas Launcher", "r667aaa GasGun"
     Command "Rivet Gun", "r667aaa RivetGun"
 }
 
@@ -350,6 +351,8 @@ OptionMenu "Menu_R667AAA_Armory_Ammo_RZ"
 
     Command "Rivet Pile", "r667aaa Rivets"
     Command "Rivet Bolt Rack", "r667aaa RivetRack"
+
+    Command "Sarin Gas Grenade", "r667aaa GasBombs"
 
     Command "Saws", "r667aaa Saws"
     Command "Box of Saws", "r667aaa SawBox"

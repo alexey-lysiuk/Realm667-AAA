@@ -722,6 +722,15 @@ def _apply_patch_337(wad):  # Nail Borg Commando
     fix_actor_borgnail2(wad)
 
 
+def _apply_patch_380(wad):  # Shrink Sphere
+    # disable morph style flag unsupported in ZDoom 2.8.1
+    # TODO: remove this "fix" after 2.9 release
+    _replace_in_decorate(
+        wad,
+        r'(PowerMorph.MorphStyle\s*\(?MRF_TRANSFERTRANSLATION\)?)',
+        r'/*\1*/')
+
+
 def _apply_patch_405(wad):  # Impaled Rocket Guy
     # fix wrong sprite name
     _rename_lump(wad, 'IMRGA1', 'IMRGA0')

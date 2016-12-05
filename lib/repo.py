@@ -738,6 +738,7 @@ _PROPSTOP_GORE_CORPSES = (
     (547, 'Impaled Corpses'),
     (906, 'Impaled Dog Heads'),
     (504, 'Impaled Marines'),
+    (991, 'Impaled Rebels'),
     (405, 'Impaled Rocket Guy'),
     (822, 'Impaled Scientists'),
     (441, 'Marine Corpses'),

@@ -1934,6 +1934,8 @@ OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_4"
     Command "Imp Head Stick", "r667aaa ImpHeadStick"
     Command "Trooper Head Stick", "r667aaa TrooperHeadStick"
     Command "Imp Stick", "r667aaa ImpStick"
+    Command "Impaled Rebel 1", "r667aaa ImpaledRebel"
+    Command "Impaled Rebel 2", "r667aaa ImpaledRebel2"
 }
 
 OptionMenu "Menu_R667AAA_PropStop_GoreCorpses_5"

@@ -1707,6 +1707,9 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_2"
     Option "Torch Stand Color", "r667aaa_d64torch_standcolor", "Option_R667AAA_D64Torch_StandColor"
     Command "Fire Bowl", "r667aaa FireBowl"
 
+    Command "Stone Fire Pillar", "r667aaa StoneFirePillar"
+    Command "Aztec Fire Pillar", "r667aaa AztecFirePillar"
+
     Command "Clean Log Firewood", "r667aaa CleanLog"
     Command "Cut Log Firewood", "r667aaa CutLog"
     Command "Charred Log Firewood", "r667aaa CharredLog"
@@ -1718,9 +1721,6 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_2"
     Command "Golden Eagle Statue 3", "r667aaa GoldenEagle3"
 
     Command "Grey Lamp", "r667aaa GreyLamp"
-    Command "Lamp 1", "r667aaa TLamp1"
-    Command "Lamp 2", "r667aaa TLamp2"
-    Command "Lamp 3", "r667aaa TLamp3"
 }
 
 OptionString "Option_R667AAA_StrifeColumn_Color"
@@ -1739,6 +1739,10 @@ OptionMenu "Menu_R667AAA_PropStop_LightSources_3"
 {
     StaticText "Realm667 - Light Sources", 1
     StaticText ""
+
+    Command "Lamp 1", "r667aaa TLamp1"
+    Command "Lamp 2", "r667aaa TLamp2"
+    Command "Lamp 3", "r667aaa TLamp3"
 
     Command "Lava Cauldron", "r667aaa LavaCauldron"
     Command "Lava Cauldron Spitter", "r667aaa LavaCauldronSpitter"
@@ -2592,7 +2596,7 @@ OptionMenu "Menu_R667AAA_PropStop"
     StaticText ""
 
     Submenu "Light Sources * A..C", "Menu_R667AAA_PropStop_LightSources_1"
-    Submenu "Light Sources * D..L", "Menu_R667AAA_PropStop_LightSources_2"
+    Submenu "Light Sources * D..G", "Menu_R667AAA_PropStop_LightSources_2"
     Submenu "Light Sources * L..S", "Menu_R667AAA_PropStop_LightSources_3"
     Submenu "Light Sources * S..Z", "Menu_R667AAA_PropStop_LightSources_4"
     StaticText ""

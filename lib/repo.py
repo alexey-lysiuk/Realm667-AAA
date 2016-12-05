@@ -683,6 +683,7 @@ _PROPSTOP_LIGHT_SOURCES = (
     (715, 'Doom64 Lamps'),
     (699, 'Doom64 Torches'),
     (871, 'Fire Bowl'),
+    (992, 'Fire Pillars (Strife)'),
     (820, 'Firewood'),
     (821, 'Golden Eagle Statue'),
     (357, 'Grey Lamp'),

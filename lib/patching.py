@@ -912,6 +912,15 @@ def _apply_patch_817(wad):  # Arbalest of the Ancients
         r'\1Arbalest')
 
 
+def _apply_patch_993(wad):  # Sentient Mushroom
+    # remove duplicate Big Red Mushroom actor to use the class defined in #613 Mushrooms
+    # to use this actor delete the patch and add 'BigMushroomRed' to _duplicate_actors set
+    _replace_in_decorate(
+        wad,
+        r'actor\s+BigMushroomRed\s*{[^{]+{[^{]+}\s*}',
+        '')
+
+
 # ==============================================================================
 
 

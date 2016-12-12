@@ -428,6 +428,7 @@ _BEASTIARY_HERETIC_HEXEN = (
     (846, 'Pyro Succubus'),
     (494, 'Rot Wraith'),
     (321, 'Scimitar'),
+    (993, 'Sentient Mushroom'),
     ( 81, 'Sentinel'),
     (293, 'Shadow Beast'),
     ( 95, 'Thor'),

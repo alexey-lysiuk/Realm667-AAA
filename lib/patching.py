@@ -292,7 +292,7 @@ def make_unique_sprites(wad):
 _actors = CaseInsensitiveSet()
 
 
-def rename_actor(wad, actor):
+def _rename_actor(wad, actor):
     new_name = '????'
     suffix = 1
 
@@ -323,15 +323,19 @@ actor_stateful_pattern = r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*'
 actor_stateless_pattern = r'actor\s+%s[\s:{].*?}\s*'
 
 
-def remove_actor(decorate, name):
+def _remove_actor(decorate, name):
+    count_total = 0
+
     for pattern in (actor_stateful_pattern, actor_stateless_pattern):
-        decorate.data = re.sub(
+        decorate.data, count = re.subn(
             pattern % name, '', decorate.data, 0,
             re.IGNORECASE | re.DOTALL)
+        count_total += count
 
-    _verbose_print(
-        VERBOSITY_LOW,
-        'Actor class {0} was deleted'.format(name))
+    if 0 == count_total:
+        print('Error: Failed to delete actor class ' + name)
+    else:
+        _verbose_print(VERBOSITY_LOW, 'Actor class {} was deleted'.format(name))
 
 
 actor_header_regex = re.compile(
@@ -366,9 +370,9 @@ def make_unique_actors(wad):
     for dummy, actor in actor_header_regex.findall(decorate.data):
         if actor in _actors:
             if actor in _duplicate_actors:
-                remove_actor(decorate, actor)
+                _remove_actor(decorate, actor)
             else:
-                rename_actor(wad, actor)
+                _rename_actor(wad, actor)
         else:
             _actors.add(actor)
 

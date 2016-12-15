@@ -72,25 +72,39 @@ def _replace_in_lump(name, wad, old, new, optional=False):
     if lump:
         if hasattr(old, 'sub') and hasattr(old, 'groups'):
             # regular expression object
-            lump.data = old.sub(new, lump.data, 0)
+            lump.data, count = old.subn(new, lump.data, 0)
+            old = old.pattern
         else:
             # string object
-            lump.data = re.sub(old, new, lump.data, 0, re.IGNORECASE)
+            lump.data, count = re.subn(old, new, lump.data, 0, re.IGNORECASE)
+
+        if 0 == count and not optional:
+            print('Error: No match found for pattern {} in lump {}'.format(old, name))
+
+        return count
+
     elif not optional:
         print("Error: Cannot find lump {0}".format(name))
 
-
-def _replace_in_decorate(wad, old, new):
-    _replace_in_lump('DECORATE', wad, old, new)
+    return 0
 
 
-def _replace_in_gldefs(wad, old, new):
+def _replace_in_decorate(wad, old, new, optional=False):
+    _replace_in_lump('DECORATE', wad, old, new, optional)
+
+
+def _replace_in_gldefs(wad, old, new, optional=False):
+    count = 0
+
     for alias in ('GLDEFS', 'DOOMDEFS', 'HTICDEFS', 'HEXNDEFS', 'STRFDEFS'):
-        _replace_in_lump(alias, wad, old, new, optional=True)
+        count += _replace_in_lump(alias, wad, old, new, optional=True)
+
+    if 0 == count and not optional:
+        print("Error: Failed to find pattern in GLDEFS")
 
 
-def _replace_in_sndinfo(wad, old, new):
-    _replace_in_lump('SNDINFO', wad, old, new)
+def _replace_in_sndinfo(wad, old, new, optional=False):
+    _replace_in_lump('SNDINFO', wad, old, new, optional)
 
 
 def _rename_lump(wad, old, new):
@@ -1022,11 +1036,11 @@ def apply_patch(gid, wad):
         _verbose_print(VERBOSITY_HIGH, 'Asset-specific patch applied')
 
     if not allow_set_pitch and gid in _weapons_change_pitch:
-        _replace_in_decorate(wad, _re_no_set_pitch, '')
+        _replace_in_decorate(wad, _re_no_set_pitch, '', optional=True)
     if not allow_class_replacement:
-        _replace_in_decorate(wad, _re_no_class_replacement, r'\1')
+        _replace_in_decorate(wad, _re_no_class_replacement, r'\1', optional=True)
     if not allow_doomednum:
-        _replace_in_decorate(wad, _re_no_doomednum, r'\1')
+        _replace_in_decorate(wad, _re_no_doomednum, r'\1', optional=True)
 
     make_unique_actors(wad)
     make_unique_sprites(wad)

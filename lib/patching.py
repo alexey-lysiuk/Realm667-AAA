@@ -226,7 +226,7 @@ def rename_sprite(wad, old, new):
     decorate = wad.find('DECORATE')
     assert decorate
 
-    decorate.data = re.sub(
+    decorate.data, count = re.subn(
         search_pattern, replace_pattern, decorate.data, 0, re.IGNORECASE)
 
     search_pattern = r'Inventory.Icon\s+"?(%s\w{0,4})"?[\s}]' % old
@@ -237,9 +237,13 @@ def rename_sprite(wad, old, new):
         search_pattern = r'(Inventory.Icon\s+"?)%s(\w{0,4}"?[\s}])' % old
 
         if icon_lump and doomwad.issrpitenamespace(icon_lump.namespace):
-            decorate.data = re.sub(
+            decorate.data, icount = re.subn(
                 search_pattern, replace_pattern, decorate.data, 0,
                 re.IGNORECASE)
+            count += icount
+
+    if 0 == count:
+        _verbose_print(VERBOSITY_VERY_HIGH, 'Found unused sprite ' + old)
 
     search_pattern = r'([\s"])%s(\w{0,4}[\s"])' % old
 

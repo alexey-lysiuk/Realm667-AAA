@@ -248,7 +248,7 @@ def rename_sprite(wad, old, new):
     _replace_in_lump(
         'DECALDEF', wad, search_pattern, replace_pattern, optional=True)
     _replace_in_gldefs(
-        wad, r"frame\s*" + search_pattern, "frame " + replace_pattern)
+        wad, r"frame\s*" + search_pattern, "frame " + replace_pattern, optional=True)
 
     for lump in wad.spritelumps():
         if lump.name.startswith(old):
@@ -311,7 +311,7 @@ def _rename_actor(wad, actor):
     new_pattern = r'\g<1>{0}\g<2>'.format(new_name)
 
     _replace_in_decorate(wad, old_pattern, new_pattern)
-    _replace_in_gldefs(wad, old_pattern, new_pattern)
+    _replace_in_gldefs(wad, old_pattern, new_pattern, optional=True)
 
     _verbose_print(
         VERBOSITY_LOW,

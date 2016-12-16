@@ -884,6 +884,9 @@ def _apply_patch_582(wad):  # Super Crossbow
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
 
+    # avoid renaming of ethereal arrow sprites from Heretic
+    if wad.find('FX03A1'):
+        wad.keep_sprites = ('FX03',)
 
 def _apply_patch_604(wad):  # Dark Inquisitor
     # fix lump name conflict with Doom IWADs

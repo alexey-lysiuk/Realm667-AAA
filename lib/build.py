@@ -113,6 +113,9 @@ def _configure():
         '-d', '--dry-run',
         help='do all build steps but do not write a package',
         action='store_true')
+    parser.add_argument(
+        '-s', '--single', type=int, default=0,
+        help='build only one repository asset specified by its index')
 
     # Patching-related arguments
     parser.add_argument(
@@ -334,6 +337,9 @@ def _build(args):
     for item in repo.content():
         gid = item[0]
         name = item[1]
+
+        if args.single > 0 and args.single != gid:
+            continue
 
         if gid < 0:
             # excluded asset

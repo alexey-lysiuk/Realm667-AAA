@@ -144,6 +144,19 @@ def _remove_lump(wad, name):
         print("Error: Cannot find lump {0}".format(name))
 
 
+def _remove_lumps(wad, pattern):
+    lumps = []
+
+    for lump in wad:
+        if re.match(pattern, lump.name):
+            lumps.append(lump)
+
+    for lump in lumps:
+        wad.removelump(lump)
+
+        _verbose_print(VERBOSITY_LOW, 'Lump {0} was deleted'.format(lump.name))
+
+
 def _remove_unused_sound(wad, lump_name):
     sndinfo = wad.find('SNDINFO')
     if sndinfo:
@@ -703,12 +716,23 @@ def _apply_patch_256(wad):  # Mancubus Arm
     _replace_in_decorate(wad, r'(A_GiveInventory\s*\(\s*")(Blood")', r'\1Demon\2')
 
 
+def _apply_patch_266(wad):  # Napalm Launcher
+    # remove unused sprites
+    _remove_lumps(wad, 'FSPK[A-E]0')
+    _remove_lumps(wad, 'SMOK[A-Q]0')
+
+
 def _apply_patch_271(wad):  # Saw Thrower
     # fix incorrect sprite
     _replace_in_decorate(
         wad,
         r'Inventory.Icon(\s+)SAWA',
         r'Inventory.Icon\1SAWAA0')
+
+
+def _apply_patch_272(wad):  # Sniper Rifle
+    # remove unused sprites
+    _remove_lumps(wad, 'BULL[A-F]0')
 
 
 def _apply_patch_284(wad):  # Arachnobaron
@@ -849,6 +873,11 @@ def _apply_patch_536(wad):  # Jackbomb
         r'object\s+Curse\s+\{.*?\s+\}\s+}\s*',
         re.IGNORECASE | re.DOTALL)
     _replace_in_gldefs(wad, regex, '')
+
+
+def _apply_patch_543(wad):  # UTNT Pyro-Cannon...
+    # remove unused sprites
+    _remove_lumps(wad, 'AGAS[AB]0')
 
 
 def _apply_patch_558(wad):  # Various Doom Keys

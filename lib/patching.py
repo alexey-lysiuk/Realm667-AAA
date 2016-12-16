@@ -219,7 +219,7 @@ def _generate_new_sprite_name(sprite, frames):
     return new_name
 
 
-def rename_sprite(wad, old, new):
+def _rename_sprite(wad, old, new):
     search_pattern = r'(\s"?)%s("?\s+"?[\[\]\w\\]+"?\s+-?\d)' % old
     replace_pattern = r'\g<1>{0}\g<2>'.format(new)
 
@@ -268,7 +268,7 @@ def rename_sprite(wad, old, new):
         'Sprite {0} was renamed to {1}'.format(old, new))
 
 
-def make_unique_sprites(wad):
+def _make_unique_sprites(wad):
     """ Find and rename sprites with the same name but different content
         New names are randomly generated """
 
@@ -285,7 +285,7 @@ def make_unique_sprites(wad):
         if name in _sprites:
             if frames != _sprites[name]:
                 new_name = _generate_new_sprite_name(name, frames)
-                rename_sprite(wad, name, new_name)
+                _rename_sprite(wad, name, new_name)
         else:
             _sprites[name] = frames
 
@@ -359,7 +359,7 @@ _duplicate_actors = CaseInsensitiveSet((
 ),)
 
 
-def make_unique_actors(wad):
+def _make_unique_actors(wad):
     decorate = wad.find('DECORATE')
     assert decorate
 
@@ -408,7 +408,7 @@ _excluded_names = {
 }
 
 
-def is_lump_needed(lump):
+def _is_lump_needed(lump):
     name = lump.name
 
     if name in _excluded_names:
@@ -436,7 +436,7 @@ def is_lump_needed(lump):
         return True
 
 
-def optimize(wad):
+def _optimize(wad):
     # remove map lumps
     while True:
         things_lump = wad.find('THINGS')
@@ -448,7 +448,7 @@ def optimize(wad):
                    and map_name != lump.namespace)
 
     # remove other unwanted lumps
-    wad.filter(is_lump_needed)
+    wad.filter(_is_lump_needed)
 
     # optimize common text lumps
     _optimize_text_lump(wad, 'DECORATE')
@@ -487,7 +487,7 @@ _sound_lumps = {name: None for name in SOUNDS_LUMPS_ALL}
 _sound_lump_renames = {}
 
 
-def rename_sound_lump(wad, name, content_hash):
+def _rename_sound_lump(wad, name, content_hash):
     """ Rename sound lump in WAD file and change references to it in SNDINFO """
     new_name = None
 
@@ -511,15 +511,15 @@ def rename_sound_lump(wad, name, content_hash):
         r'\g<1>{0}\g<2>'.format(new_name))
 
 
-rename_sound_lump.mapping_type = doomwad.SoundMapping.LUMP_TO_CONTENT
-rename_sound_lump.global_mapping = _sound_lumps
+_rename_sound_lump.mapping_type = doomwad.SoundMapping.LUMP_TO_CONTENT
+_rename_sound_lump.global_mapping = _sound_lumps
 
 
 # map logical sound name to a lump name, based on SNDINFO lump content
 _logical_sounds = {name: None for name in LOGICAL_SOUNDS_ALL}
 
 
-def rename_logical_sound(wad, logical_name, lump_name):
+def _rename_logical_sound(wad, logical_name, lump_name):
     """ Rename logical sound in SNDINFO lump and change references to it in DECORATE """
     new_name = 'r667aaa/' + _generate_unique_lump_name().lower()
     _logical_sounds[new_name] = lump_name
@@ -540,8 +540,8 @@ def rename_logical_sound(wad, logical_name, lump_name):
     return new_name
 
 
-rename_logical_sound.mapping_type = doomwad.SoundMapping.LOGICAL_TO_LUMP
-rename_logical_sound.global_mapping = _logical_sounds
+_rename_logical_sound.mapping_type = doomwad.SoundMapping.LOGICAL_TO_LUMP
+_rename_logical_sound.global_mapping = _logical_sounds
 
 
 def _make_unique_sounds_with_mapping(wad, rename_func):
@@ -557,9 +557,9 @@ def _make_unique_sounds_with_mapping(wad, rename_func):
             rename_func.global_mapping[key] = value
 
 
-def make_unique_sounds(wad):
-    _make_unique_sounds_with_mapping(wad, rename_sound_lump)
-    _make_unique_sounds_with_mapping(wad, rename_logical_sound)
+def _make_unique_sounds(wad):
+    _make_unique_sounds_with_mapping(wad, _rename_sound_lump)
+    _make_unique_sounds_with_mapping(wad, _rename_logical_sound)
 
 
 # ==============================================================================
@@ -615,13 +615,13 @@ def _apply_patch_55(wad):  # Hell Smith
     _remove_unused_sound(wad, 'DSDASH')
 
 
-def fix_actor_borgnail2(wad):
+def _fix_actor_borgnail2(wad):
     # fix wrong class name
     _replace_in_decorate(wad, '"BornNail2"', '"BorgNail2"')
 
 
 def _apply_patch_66(wad):  # Nail Borg
-    fix_actor_borgnail2(wad)
+    _fix_actor_borgnail2(wad)
 
 
 def _apply_patch_70(wad):  # Nightmare Demon
@@ -741,7 +741,7 @@ def _apply_patch_318(wad):  # Moloch
 
 
 def _apply_patch_337(wad):  # Nail Borg Commando
-    fix_actor_borgnail2(wad)
+    _fix_actor_borgnail2(wad)
 
 
 def _apply_patch_380(wad):  # Shrink Sphere
@@ -852,7 +852,7 @@ def _apply_patch_582(wad):  # Super Crossbow
 
 def _apply_patch_604(wad):  # Dark Inquisitor
     # fix lump name conflict with Doom IWADs
-    rename_sound_lump(wad, 'STEP2', None)
+    _rename_sound_lump(wad, 'STEP2', None)
 
 
 def _apply_patch_620(wad):  # Chesire Cacodemon
@@ -1050,12 +1050,12 @@ def apply_patch(gid, wad):
     if not allow_doomednum:
         _replace_in_decorate(wad, _re_no_doomednum, r'\1', optional=True)
 
-    make_unique_actors(wad)
-    make_unique_sprites(wad)
-    make_unique_sounds(wad)
+    _make_unique_actors(wad)
+    _make_unique_sprites(wad)
+    _make_unique_sounds(wad)
 
     if enable_optimization:
-        optimize(wad)
+        _optimize(wad)
 
     if png_sprites:
         from doompic import doompic_to_png

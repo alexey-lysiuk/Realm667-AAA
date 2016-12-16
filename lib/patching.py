@@ -657,6 +657,37 @@ def _apply_patch_228(wad):  # Zombieman Rifle
         r'\1ZombiemanRifle\2')
 
 
+def _fix_raduis_quake(wad):
+    # remove quake sound override
+    _replace_in_sndinfo(wad, r'world/quake\s+(""|none)', '')
+
+    # replace Radius_Quake() with A_Quake()
+    decorate = wad.find('DECORATE')
+    assert decorate
+
+    raduis_quake_pattern = re.compile(r'(radius_quake\s*\((\s*\d+),(\s*\d+),(\s*\d+),(\s*\d+),\s*\d+\))', re.IGNORECASE)
+    functions = raduis_quake_pattern.findall(decorate.data)
+
+    if 0 == len(functions):
+        print('Error: No match found for Radius_Quake() pattern')
+        return
+
+    for func in functions:
+        assert 5 == len(func)
+
+        intensity = int(func[1])
+        duration = int(func[2])
+        damrad = int(func[3]) * 64
+        tremrad = int(func[4]) * 64
+
+        a_quake = 'A_Quake({}, {}, {}, {}, "")'.format(intensity, duration, damrad, tremrad)
+        decorate.data = decorate.data.replace(func[0], a_quake)
+
+
+def _apply_patch_233(wad):  # Machinegun
+    _fix_raduis_quake(wad)
+
+
 def _apply_patch_241(wad):  # Devastator
     # fix incorrect sprite
     _replace_in_decorate(wad, r'(\s)DVST(\s)', r'\1DVGG\2')
@@ -756,6 +787,10 @@ def _apply_patch_380(wad):  # Shrink Sphere
 def _apply_patch_405(wad):  # Impaled Rocket Guy
     # fix wrong sprite name
     _rename_lump(wad, 'IMRGA1', 'IMRGA0')
+
+
+def _apply_patch_409(wad):  # Duke Shotgun
+    _fix_raduis_quake(wad)
 
 
 def _apply_patch_412(wad):  # Power Stimpack

@@ -274,6 +274,8 @@ def _store_lump(full_path, data_path, packager):
     optimize = relative.lower().endswith('.txt')
     filemode = 'r' if optimize else 'rb'
 
+    print('Processing {}...'.format(relative))
+
     with open(full_path, filemode) as f:
         content = f.read()
 

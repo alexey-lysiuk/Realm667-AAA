@@ -26,7 +26,7 @@ import zipfile
 import doomwad
 
 
-def _add_lump(wad, name, namespace = '', data = ''):
+def _add_lump(wad, name, namespace='', data=''):
     lump = doomwad.Lump(name, data)
     lump.marker = '' == data
     lump.namespace = namespace
@@ -49,8 +49,7 @@ def pk3_to_wad(pk3_data):
     directory = ''
     namespace = ''
 
-    zip_infos = sorted(zip_file.infolist(), \
-        key = lambda info : info.filename.lower())
+    zip_infos = sorted(zip_file.infolist(), key=lambda i: i.filename.lower())
     wad = doomwad.WadFile()
 
     sprite_namespace = 'S_START'
@@ -94,15 +93,19 @@ def pk3_to_wad(pk3_data):
     return wad_file.getvalue()
 
 
+def _convert(in_path, out_path):
+    with open(in_path, 'rb') as f:
+        pk3_data = f.read()
+
+    wad_data = pk3_to_wad(pk3_data)
+
+    with open(out_path, 'wb') as f:
+        f.write(wad_data)
+
+
 if __name__ == '__main__':
     if 3 != len(sys.argv):
         print('Usage: {0} input.pk3 output.wad'.format(__file__))
         exit(1)
 
-    with open(sys.argv[1], 'rb') as f:
-        pk3_data = f.read()
-
-    wad_data = pk3_to_wad(pk3_data)
-
-    with open(sys.argv[2], 'wb') as f:
-        f.write(wad_data)
+    _convert(sys.argv[1], sys.argv[2])

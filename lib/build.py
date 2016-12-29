@@ -387,6 +387,7 @@ def _build(args):
         cached_file.close()
 
     if packager:
+        print('\nProcessing local data files...')
         _store_data_lumps(packager, utils.data_common_path())
         _store_data_lumps(packager, utils.data_project_path())
         packager.close()

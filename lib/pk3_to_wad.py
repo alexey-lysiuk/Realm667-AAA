@@ -20,6 +20,7 @@
 
 
 import io
+import re
 import sys
 import zipfile
 
@@ -31,6 +32,64 @@ def _add_lump(wad, name, namespace='', data=''):
     lump.marker = '' == data
     lump.namespace = namespace
     wad.lumps.append(lump)
+
+
+#_DECORATE_FILENAME = re.compile(r'decorate(\.\w*)?', re.IGNORECASE)
+_DECORATE_INCLUDE = re.compile(r'#include\s+\"(.+)\"', re.IGNORECASE)
+
+
+def _resolve_includes(zip_file, zip_infos, decorate):
+    infos_to_remove = []
+    done = False
+
+    while not done:
+        done = True
+
+        for include_match in _DECORATE_INCLUDE.finditer(decorate):
+            include = include_match.group(1)
+            found = False
+
+            for info in zip_infos:
+                if info.filename.lower() != include.lower():
+                    continue
+
+                data = zip_file.open(info.filename).read() + '\n'
+                decorate = _DECORATE_INCLUDE.sub(data, decorate, 1)
+
+                infos_to_remove.append(info)
+
+                found = True
+                done = False
+                break
+
+            if not found:
+                print('Error: Could not find include file ' + include)
+
+    for info in infos_to_remove:
+        zip_infos.remove(info)
+
+    return decorate
+
+
+def _process_decorate(zip_file):
+    zip_infos = zip_file.infolist()
+    infos_to_remove = []
+    decorate = ''
+
+    # merge DECORATE files
+    for info in zip_infos:
+        if info.filename.lower().startswith('decorate'):
+            data = zip_file.open(info.filename).read()
+            decorate = decorate + data
+
+            infos_to_remove.append(info)
+
+    decorate = _resolve_includes(zip_file, zip_infos, decorate)
+
+    for info in infos_to_remove:
+       zip_infos.remove(info)
+
+    return decorate, zip_infos
 
 
 def pk3_to_wad(pk3_data):
@@ -49,9 +108,12 @@ def pk3_to_wad(pk3_data):
     directory = ''
     namespace = ''
 
-    zip_infos = sorted(zip_file.infolist(), key=lambda i: i.filename.lower())
-    wad = doomwad.WadFile()
+    decorate, zip_infos = _process_decorate(zip_file)
 
+    wad = doomwad.WadFile()
+    _add_lump(wad, 'DECORATE', '', decorate)
+
+    zip_infos = sorted(zip_infos, key=lambda i: i.filename.lower())
     sprite_namespace = 'S_START'
 
     for info in zip_infos:

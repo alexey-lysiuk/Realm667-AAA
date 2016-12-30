@@ -36,6 +36,7 @@ import packaging
 import patching
 import profiling
 import rarfile
+import StringIO
 import utils
 
 from pk3_to_wad import pk3_to_wad
@@ -159,6 +160,7 @@ def _configure():
 
 
 _ARCHIVE_ZIP = 'zip'
+_ARCHIVE_PK3 = 'pk3'
 _ARCHIVE_RAR = 'rar'
 
 
@@ -166,11 +168,50 @@ def _cached_filename(gid, archive_format):
     return '{:s}{:04d}.{:s}'.format(utils.cache_path(), gid, archive_format)
 
 
+def _detect_zip_format(data):
+    fake_file = StringIO.StringIO(data)
+    zip_file = zipfile.ZipFile(fake_file)
+
+    for zipped_file in zip_file.filelist:
+        filename = zipped_file.filename.lower()
+
+        if filename.endswith('.pk3') or filename.endswith('.wad'):
+            return _ARCHIVE_ZIP
+
+    # No .zip or .wad found inside archive file, probably it's .pk3 by itself
+    return _ARCHIVE_PK3
+
+
+def _prepare_pk3(gid, filename, fatal):
+    if not os.path.exists(filename):
+        if fatal:
+            raise IOError, "File not found " + filename
+        else:
+            return None
+
+    name = None
+
+    for item in repo.content():
+        if item[0] == gid:
+            name = item[1]
+            break
+
+    assert name
+
+    fake_file = StringIO.StringIO()
+    zip_file = zipfile.ZipFile(fake_file, 'w')
+    zip_file.write(filename, name + '.pk3')
+
+    return zip_file
+
+
 def _load_cached(gid, archive_format, fatal=True):
     filename = _cached_filename(gid, archive_format)
 
     if _ARCHIVE_ZIP == archive_format:
         archiver = zipfile.ZipFile
+    elif _ARCHIVE_PK3 == archive_format:
+        return _prepare_pk3(gid, filename, fatal)
     elif _ARCHIVE_RAR == archive_format:
         archiver = rarfile.RarFile
     else:
@@ -192,6 +233,9 @@ def _load_and_cache(gid):
     cached_file = _load_cached(gid, _ARCHIVE_ZIP, fatal=False)
 
     if not cached_file:
+        cached_file = _load_cached(gid, _ARCHIVE_PK3, fatal=False)
+
+    if not cached_file:
         cached_file = _load_cached(gid, _ARCHIVE_RAR, fatal=False)
 
     if not cached_file:
@@ -203,7 +247,7 @@ def _load_and_cache(gid):
 
             # Detect format of archive file
             if data.startswith(b'PK\003\004') or data.startswith(b'PK00'):
-                archive_format = _ARCHIVE_ZIP
+                archive_format = _detect_zip_format(data)
             elif data.startswith(b'Rar!'):
                 archive_format = _ARCHIVE_RAR
             else:

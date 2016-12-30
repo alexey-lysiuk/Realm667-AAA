@@ -457,6 +457,7 @@ _BEASTIARY_OTHER = (
     (634, 'Drone'),
     (863, 'Elite Guard'),
     (386, 'Evil Knight'),
+    (994, 'Fire Serpents'),
     (621, 'Gatekeeper'),
     (469, 'Giant Bat'),
     (709, 'Giant Rat'),

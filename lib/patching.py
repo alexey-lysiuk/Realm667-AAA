@@ -542,6 +542,14 @@ _logical_sounds = {name: None for name in LOGICAL_SOUNDS_ALL}
 
 def _rename_logical_sound(wad, logical_name, lump_name):
     """ Rename logical sound in SNDINFO lump and change references to it in DECORATE """
+
+    # if keep_logical_sounds attribute exists in wad instance
+    # keep the name unchanged and ignore possible name
+    keep_logical_sounds = hasattr(wad, 'keep_logical_sounds') and wad.keep_logical_sounds or ()
+
+    if logical_name in keep_logical_sounds:
+        return
+
     new_name = 'r667aaa/' + _generate_unique_lump_name().lower()
     _logical_sounds[new_name] = lump_name
 

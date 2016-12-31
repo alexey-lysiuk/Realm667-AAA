@@ -732,6 +732,25 @@ def _apply_patch_256(wad):  # Mancubus Arm
     _replace_in_decorate(wad, r'(A_GiveInventory\s*\(\s*")(Blood")', r'\1Demon\2')
 
 
+def _apply_patch_258(wad):  # Poly Morph
+    # do not rename sprites from Heretic and Hexen
+    wad.keep_sprites = ('CHKN', 'PIGY', 'BEAK', 'WPIG')
+
+    # do not rename logical sounds from Heretic and Hexen
+    wad.keep_logical_sounds = (
+        'chicken/active',
+        'chicken/attack',
+        'chicken/death',
+        'chicken/pain',
+        'chicken/peck',
+        'pigactive1',
+        'pigactive2',
+        'pigattack',
+        'pigdeath',
+        'pigpain'
+    )
+
+
 def _apply_patch_266(wad):  # Napalm Launcher
     # remove unused sprites
     _remove_lumps(wad, 'FSPK[A-E]0')

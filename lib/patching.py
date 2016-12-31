@@ -615,6 +615,17 @@ def _apply_patch_33(wad):  # Darkness Rift
     _replace_in_decorate(wad, '"Fatty"', '"Fatso"')
 
 
+def _apply_patch_38(wad):  # Diabolist
+    # do not rename sprites from Hexen
+    wad.keep_sprites = ('CFCF', 'CFFX')
+
+    # do not rename logical sounds from Hexen
+    wad.keep_logical_sounds = (
+        'clericflamecircle',
+        'clericflameexplode',
+        'clericflamefire'
+    )
+
 def add_dummy_brighmap(wad, name):
     # fix 'brightmap not found' warning in console
     brightmap = doomwad.Lump(

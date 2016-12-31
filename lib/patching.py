@@ -1031,6 +1031,30 @@ def _apply_patch_801(wad):  # Candle Color Variations
     _rename_lump(wad, 'CNUNA0', 'CNBKA0')
 
 
+def _apply_patch_802(wad):  # Former Scientists Pack
+    # keep sound lumps stored by multiple WADs
+    wad.keep_sound_lumps = (
+        'DSKNIFE',
+        'FEMZACT',
+        'FEMZPAIN',
+        'FEMZDHT',
+        'FEMZDT2',
+        'FEMZSIT',
+        'FEMZSI2'
+    )
+
+    # keep logical sounds defined in multiple WADs
+    wad.keep_logical_sounds = (
+        'fem/sight1',
+        'fem/sight2',
+        'fem/pain',
+        'fem/death1',
+        'fem/death2',
+        'fem/active',
+        'knifehit'
+    )
+
+
 def _apply_patch_804(wad):  # Light Machinegun
     # fix class name collision with #233 Machinegun
     _replace_in_decorate(
@@ -1045,6 +1069,11 @@ def _apply_patch_817(wad):  # Arbalest of the Ancients
         wad,
         r'([^\w])SuperCrossbow',
         r'\1Arbalest')
+
+
+def _apply_patch_865(wad):  # Former Scientists Pack 2
+    # the same as for the first pack
+    _apply_patch_802(wad)
 
 
 def _apply_patch_993(wad):  # Sentient Mushroom

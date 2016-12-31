@@ -502,6 +502,14 @@ _sound_lump_renames = {}
 
 def _rename_sound_lump(wad, name, content_hash):
     """ Rename sound lump in WAD file and change references to it in SNDINFO """
+
+    # if keep_sound_lumps attribute exists in wad instance
+    # keep the name unchanged and ignore possible name
+    keep_sound_lumps = hasattr(wad, 'keep_sound_lumps') and wad.keep_sound_lumps or ()
+
+    if name in keep_sound_lumps:
+        return
+
     new_name = None
 
     if name in _sound_lump_renames:

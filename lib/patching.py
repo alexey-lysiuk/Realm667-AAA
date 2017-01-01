@@ -647,6 +647,12 @@ def _apply_patch_44(wad):  # Fallen
     add_dummy_brighmap(wad, 'BMFALNM0')
 
 
+def _apply_patch_51(wad):  # Hades Elemental
+    # remove unused and conflicting sound
+    _replace_in_sndinfo(wad, r'weapons/devzap\s+dsdevzap', '')
+    _remove_unused_sound(wad, 'DSDEVZAP')
+
+
 def _apply_patch_52(wad):  # Hell Apprentice
     _remove_unused_sound(wad, 'DSDASH')
 

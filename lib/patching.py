@@ -602,6 +602,9 @@ def _apply_patch_10(wad):  # Apprentice of D'Sparil
         marker = doomwad.Lump(sprite_end_marker, '')
         wad.append(marker)
 
+    # fix typo in logical sound
+    _replace_in_sndinfo(wad, 'Wizard/Active', 'Wizard2/Active')
+
 
 def _apply_patch_14(wad):  # Bat
     # remove sprites with broken transparency

@@ -669,6 +669,68 @@ def _fix_actor_borgnail2(wad):
 def _apply_patch_66(wad):  # Nail Borg
     _fix_actor_borgnail2(wad)
 
+    # remove sounds and sprites shared with #337 Nail Borg Commando
+    # they are the same but in different formats, Doom vs. Ogg/PNG
+    shared_lumpnames = (
+        'SNDINFO',
+        # sounds
+        'DSNBBEXP',
+        'DSNBBNC1',
+        'DSNBBNC2',
+        'DSNBDTH1',
+        'DSNBDTH2',
+        'DSNBDTH3',
+        'DSNBMBLC',
+        'DSNBPAIN',
+        'DSNBSACT',
+        'DSNBSIT1',
+        'DSNBSIT2',
+        'DSNBSIT3',
+        'DSNBWALK',
+        'DSNLFIRE',
+        'DSNLFLIT',
+        'DSNLIMPD',
+        'DSNLIMPL',
+        # sprites
+        'DARTA1',
+        'DARTA2A8',
+        'DARTA3A7',
+        'DARTA4A6',
+        'DARTA5',
+        'DARTB0',
+        'DARTC0',
+        'DARTD0',
+        'DARTE0',
+        'DARTF0',
+        'DARTG0',
+        'NBMBA0',
+        'NBMBB0',
+        'WSMKA0',
+        'WSMKB0',
+        'WSMKC0',
+        'WSMKD0',
+        'WSMKE0'
+    )
+
+    for lumpname in shared_lumpnames:
+        _remove_lump(wad, lumpname)
+
+    # remove duplicate actors as well
+    shared_actors = (
+        'BorgNailBomb',
+        'BorgNailBombBig',
+        'BorgNail1',
+        'BorgNail2',
+        'BorgCenterNail',
+        'NailBlur'
+    )
+
+    decorate = wad.find('DECORATE')
+    assert decorate
+
+    for actor in shared_actors:
+        _remove_actor(decorate, actor)
+
 
 def _apply_patch_70(wad):  # Nightmare Demon
     # fix brightmap collisions with #17 Blood Fiend

@@ -508,8 +508,9 @@ def _rename_sound_lump(wad, name, content_hash):
     """ Rename sound lump in WAD file and change references to it in SNDINFO """
 
     # if keep_sound_lumps attribute exists in wad instance
-    # keep the name unchanged and ignore possible name
+    # keep the name unchanged and ignore possible names collision
     keep_sound_lumps = hasattr(wad, 'keep_sound_lumps') and wad.keep_sound_lumps or ()
+    keep_sound_lumps = CaseInsensitiveSet(keep_sound_lumps)
 
     if name in keep_sound_lumps:
         return
@@ -548,8 +549,9 @@ def _rename_logical_sound(wad, logical_name, lump_name):
     """ Rename logical sound in SNDINFO lump and change references to it in DECORATE """
 
     # if keep_logical_sounds attribute exists in wad instance
-    # keep the name unchanged and ignore possible name
+    # keep the name unchanged and ignore possible names collision
     keep_logical_sounds = hasattr(wad, 'keep_logical_sounds') and wad.keep_logical_sounds or ()
+    keep_logical_sounds = CaseInsensitiveSet(keep_logical_sounds)
 
     if logical_name in keep_logical_sounds:
         return

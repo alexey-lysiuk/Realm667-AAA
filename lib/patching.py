@@ -597,6 +597,30 @@ def _make_unique_sounds(wad):
     _make_unique_sounds_with_mapping(wad, _rename_logical_sound)
 
 
+def _remove_logical_sound(wad, name, optional=False):
+    sndinfo = wad.find('SNDINFO')
+
+    if sndinfo:
+        old_lines = sndinfo.data.splitlines()
+        name = name.lower()
+
+        def should_keep(line):
+            return not line.strip().lower().startswith(name)
+
+        new_lines = filter(should_keep, old_lines)
+
+        if len(old_lines) == len(new_lines):
+            print('Error: Logical sound {} was not found in SNDINFO'.format(name))
+        else:
+            sndinfo.data = '\n'.join(new_lines)
+            return True
+
+    elif not optional:
+        print('Error: Cannot find SNDINFO lump')
+
+    return False
+
+
 # ==============================================================================
 
 # Asset-specific patches
@@ -658,7 +682,7 @@ def _apply_patch_44(wad):  # Fallen
 
 def _apply_patch_51(wad):  # Hades Elemental
     # remove unused and conflicting sound
-    _replace_in_sndinfo(wad, r'weapons/devzap\s+dsdevzap', '')
+    _remove_logical_sound(wad, 'weapons/devzap')
     _remove_unused_sound(wad, 'DSDEVZAP')
 
 

@@ -340,7 +340,11 @@ actor_stateful_pattern = r'actor\s+%s[\s:{].*?(states\s*{.+?}).*?}\s*'
 actor_stateless_pattern = r'actor\s+%s[\s:{].*?}\s*'
 
 
-def _remove_actor(decorate, name):
+def _remove_actor(source, name):
+    # source can be doomwad.WadFile or doomwad.Lump
+    decorate = source if isinstance(source, doomwad.Lump) else source.find('DECORATE')
+    assert decorate
+
     count_total = 0
 
     for pattern in (actor_stateful_pattern, actor_stateless_pattern):
@@ -728,11 +732,8 @@ def _apply_patch_66(wad):  # Nail Borg
         'NailBlur'
     )
 
-    decorate = wad.find('DECORATE')
-    assert decorate
-
     for actor in shared_actors:
-        _remove_actor(decorate, actor)
+        _remove_actor(wad, actor)
 
 
 def _apply_patch_70(wad):  # Nightmare Demon

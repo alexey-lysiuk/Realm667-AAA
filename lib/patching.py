@@ -995,6 +995,51 @@ def _apply_patch_536(wad):  # Jackbomb
     _replace_in_gldefs(wad, regex, '')
 
 
+def _apply_patch_539(wad):  # Blood Lich
+    # remove overriding actors
+    _remove_actor(wad, 'TestPlayer')
+    _remove_actor(wad, 'TestImp')
+
+    # keep sprites from Hexen
+    wad.keep_sprites = ('WRTH', 'WRBL', 'XPL1')
+
+    # keep sound lumps from IWADs
+    wad.keep_sound_lumps = (
+        # Heretic
+        'HEDSIT',
+        'HEDPAI',
+        'HEDACT',
+        'HEDDTH',
+        # Hexen
+        'MAGE4',
+        'MAGEBALL',
+        'RAITH5A',
+        'RAITH3',
+        'RAITH4A',
+        'RAITH1B',
+        'IMPFIRE2',
+        'IMPACT3'
+    )
+
+    # keep logical sounds from IWADs
+    wad.keep_logical_sounds = (
+        # Heretic
+        'ironlich/sight',
+        'ironlich/pain',
+        'ironlich/active',
+        'ironlich/death',
+        # Hexen
+        'MageStaffFire',
+        'MageStaffExplode',
+        'WraithSight',
+        'WraithActive',
+        'WraithPain',
+        'WraithAttack',
+        'WraithMissileFire',
+        'WraithMissileExplode'
+    )
+
+
 def _apply_patch_543(wad):  # UTNT Pyro-Cannon...
     # remove unused sprites
     _remove_lumps(wad, 'AGAS[AB]0')

@@ -612,6 +612,10 @@ def _remove_logical_sound(wad, name, optional=False):
         if len(old_lines) == len(new_lines):
             print('Error: Logical sound {} was not found in SNDINFO'.format(name))
         else:
+            _verbose_print(
+                VERBOSITY_LOW,
+                'Logical sound {} was removed'.format(name))
+
             sndinfo.data = '\n'.join(new_lines)
             return True
 

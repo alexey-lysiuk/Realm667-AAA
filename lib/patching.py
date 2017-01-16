@@ -695,7 +695,12 @@ def _apply_patch_52(wad):  # Hell Apprentice
 
 
 def _apply_patch_55(wad):  # Hell Smith
-    _remove_unused_sound(wad, 'DSDASH')
+    # remove unused sounds (logical and lumps)
+    for sound in ('monster/hamsht', 'monster/smithr', 'monster/smiths', 'monster/smitht'):
+        _remove_logical_sound(wad, sound)
+
+    for sound in ('DSDASH', 'DSFIHOOF', 'DSHAMSHT', 'DSSMITHR', 'DSSMITHS', 'DSSMITHT'):
+        _remove_unused_sound(wad, sound)
 
 
 def _fix_actor_borgnail2(wad):
